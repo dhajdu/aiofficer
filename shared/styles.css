@@ -239,6 +239,27 @@ p strong { color: var(--text-primary); font-weight: 600; }
 
 .divider { height: 1px; background: var(--border); margin: 40px 0; }
 
+/* ── AGENT TEAM GRID ── */
+.agent-grid { display: flex; flex-direction: column; gap: 12px; margin: 24px 0; }
+.agent-card { display: flex; align-items: flex-start; gap: 16px; padding: 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--card-bg); }
+.agent-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+.agent-icon.research { background: rgba(40,123,232,0.1); color: var(--blue); }
+.agent-icon.copy { background: rgba(209,69,139,0.1); color: var(--magenta); }
+.agent-icon.analytics { background: rgba(111,242,193,0.15); color: #0a8a5e; }
+.agent-body h4 { font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+.agent-body p { font-size: 13.5px; color: var(--text-muted); margin: 0; }
+.agent-role-tag { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; padding: 2px 8px; border-radius: 4px; margin-left: 8px; }
+.agent-role-tag.research { background: rgba(40,123,232,0.1); color: var(--blue); }
+.agent-role-tag.copy { background: rgba(209,69,139,0.1); color: var(--magenta); }
+.agent-role-tag.analytics { background: rgba(111,242,193,0.2); color: #0a8a5e; }
+
+/* ── EXERCISE BLOCK ── */
+.exercise-block { background: linear-gradient(135deg, rgba(209,69,139,0.04), rgba(40,123,232,0.04)); border: 1px solid rgba(209,69,139,0.2); border-radius: 12px; padding: 28px 32px; margin: 32px 0; }
+.exercise-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--magenta); margin-bottom: 12px; }
+.exercise-block h3 { margin: 0 0 12px; }
+.exercise-block p { font-size: 14.5px; margin-bottom: 8px; }
+.exercise-block p:last-child { margin-bottom: 0; }
+
 .ai-buddy-prompt { background: rgba(40,123,232,0.05); border: 1px solid rgba(40,123,232,0.2); border-radius: 8px; padding: 14px 18px; margin: 20px 0; font-size: 14px; color: var(--text-secondary); }
 .ai-buddy-prompt strong { color: var(--blue); }
 

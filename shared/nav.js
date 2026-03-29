@@ -11,7 +11,8 @@
     { trackId: "agentic-ai", trackName: "Agentic AI", slug: "mission-3", short: "Wire the Workflow" },
     { trackId: "agentic-ai", trackName: "Agentic AI", slug: "mission-4", short: "Teach Your Workflow to Decide" },
     { trackId: "agentic-ai", trackName: "Agentic AI", slug: "mission-5", short: "Unleash the Agent" },
-    { trackId: "micro-sessions", trackName: "Micro-Sessions", slug: "cowork-first-workflow", short: "Your First Cowork Workflow" }
+    { trackId: "micro-sessions", trackName: "Micro-Sessions", slug: "cowork-first-workflow", short: "Your First Cowork Workflow" },
+    { trackId: "micro-sessions", trackName: "Micro-Sessions", slug: "build-ai-team-paperclip", short: "Build Your AI Team with Paperclip" }
   ];
 
   function getBasePath() {
