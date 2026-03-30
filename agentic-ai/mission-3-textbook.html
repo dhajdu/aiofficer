@@ -18,18 +18,8 @@
   }
   body { background: var(--surface); }
 
-  .page-wrap { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; padding-top: 56px; }
-  .tb-sidebar { position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; background: white; border-right: 1px solid var(--border); padding: 28px 0; }
-  .tb-sidebar-inner { padding: 0 20px; }
-  .tb-sidebar-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; padding: 0 4px; }
-  .tb-nav-link { display: block; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: all 0.12s; margin-bottom: 2px; line-height: 1.4; }
-  .tb-nav-link:hover { background: var(--surface); color: var(--text-primary); }
-  .tb-nav-link.active { background: rgba(26,158,116,0.08); color: #1a9e74; font-weight: 600; }
-  .tb-nav-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 1px; }
-  .tb-nav-divider { height: 1px; background: var(--border); margin: 14px 0; }
-  .tb-buddy-btn { display: flex; align-items: center; gap: 8px; width: 100%; margin-top: 20px; padding: 10px 12px; border-radius: 8px; background: rgba(26,158,116,0.07); border: 1px solid rgba(26,158,116,0.2); color: #1a9e74; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.15s; }
-  .tb-buddy-btn:hover { background: rgba(26,158,116,0.12); }
-  .tb-main { padding: 48px 60px 100px; max-width: 780px; }
+  .page-main { max-width: 1160px; margin: 0 auto; padding: 80px 40px 100px; }
+  .tb-layout { display: grid; grid-template-columns: 1fr 280px; gap: 40px; align-items: start; }
   .tb-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; margin-bottom: 32px; transition: color 0.12s; }
   .tb-back:hover { color: var(--text-primary); }
   .tb-hero { margin-bottom: 48px; }
@@ -60,7 +50,19 @@
   .tb-nav-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
   .tb-nav-btn.primary { background: #1a9e74; color: white; border-color: #1a9e74; }
   .tb-nav-btn.primary:hover { background: #178a65; }
-  @media (max-width: 900px) { .page-wrap { grid-template-columns: 1fr; } .tb-sidebar { display: none; } .tb-main { padding: 40px 24px 80px; } .topbar-nav { display: none; } }
+  @media (max-width: 900px) { .tb-layout { grid-template-columns: 1fr; } .res-sidebar { display: none; } .page-main { padding: 70px 20px 80px; } .topbar-nav { display: none; } }
+
+  .res-sidebar { display: flex; flex-direction: column; gap: 8px; position: sticky; top: 80px; }
+  .res-sidebar-label { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); padding: 0 2px; margin-bottom: 4px; }
+  .resource-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow-sm); transition: all 0.15s var(--ease); }
+  .resource-card:hover { border-color: rgba(26,158,116,0.35); box-shadow: 0 4px 16px rgba(4,16,45,0.09); transform: translateY(-1px); }
+  .resource-card.active { border-color: rgba(26,158,116,0.4); background: rgba(26,158,116,0.04); }
+  .resource-icon { width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .resource-info { flex: 1; min-width: 0; }
+  .resource-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1px; }
+  .resource-title { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+  .resource-arrow { font-size: 13px; color: var(--text-muted); flex-shrink: 0; }
+  .resource-card.active .resource-arrow { color: #1a9e74; }
 
 </style>
 </head>
@@ -84,43 +86,20 @@
   </div>
 </div>
 
-<div class="page-wrap">
+<main class="page-main">
 
-  <aside class="tb-sidebar">
-    <div class="tb-sidebar-inner">
-      <div class="tb-sidebar-label">Mission 3 Briefs</div>
+  <a href="mission-3.html" class="tb-back">← Back to Mission 3</a>
+
+  <div class="tb-layout">
+    <div class="tb-content">
+
+      <div class="tb-hero">
+        <div class="tb-track-pill">Agentic AI for Business · Mission 03</div>
+        <h1 class="tb-title">Wire the Workflow</h1>
+        <p class="tb-sub">Stop being the middleware. Build a workflow that runs your AI tool automatically — trigger, data, AI step, action, log.</p>
+      </div>
+
       
-      <a href="#section-1" class="tb-nav-link">
-        <span class="tb-nav-num">SECTION 1</span>Welcome to Mission 3
-      </a>
-      <a href="#section-2" class="tb-nav-link">
-        <span class="tb-nav-num">SECTION 2</span>Brief 1: Why You&#x27;re Still the Bottleneck
-      </a>
-      <a href="#section-3" class="tb-nav-link">
-        <span class="tb-nav-num">SECTION 3</span>Key Takeaways
-      </a>
-      <div class="tb-nav-divider"></div>
-      <div class="tb-sidebar-label" style="margin-top:4px;">Mission Resources</div>
-      <a href="mission-3-textbook.html" class="tb-nav-link" style="color:#1a9e74;font-weight:700;">📖 Mission Briefs</a>
-      <a href="mission-3-prompts.html" class="tb-nav-link">💬 Prompt Library</a>
-      <a href="mission-3-words.html" class="tb-nav-link">🔤 Words to Know</a>
-      <a href="mission-3-slides.html" class="tb-nav-link">📊 Slide Deck</a>
-      <div class="tb-nav-divider"></div>
-      <a href="https://claude.ai" target="_blank" class="tb-buddy-btn">🤖 Open AI Buddy</a>
-    </div>
-  </aside>
-
-  <main class="tb-main">
-
-    <a href="mission-3.html" class="tb-back">← Back to Mission 3</a>
-
-    <div class="tb-hero">
-      <div class="tb-track-pill">Agentic AI for Business · Mission 03</div>
-      <h1 class="tb-title">Wire the Workflow</h1>
-      <p class="tb-sub">Stop being the middleware. Build a workflow that runs your AI tool automatically — trigger, data, AI step, action, log.</p>
-    </div>
-
-    
     <section class="brief-section" id="section-1">
       <div class="brief-label">SECTION 1</div>
       <h2 class="brief-title">Welcome to Mission 3</h2>
@@ -556,12 +535,51 @@ D) To be the person who approves automation</p>
       </div>
     </section>
 
-    <div class="tb-bottom-nav">
-      <a href="mission-3.html" class="tb-nav-btn">← Mission 3 Hub</a>
-      <a href="mission-3-prompts.html" class="tb-nav-btn primary">Prompt Library →</a>
-    </div>
+      <div class="tb-bottom-nav">
+        <a href="mission-3.html" class="tb-nav-btn">← Mission 3 Hub</a>
+        <a href="mission-3-prompts.html" class="tb-nav-btn primary">Prompt Library →</a>
+      </div>
 
-  </main>
-</div>
+    </div>
+    
+      <div class="res-sidebar">
+        <div class="res-sidebar-label">Mission Resources</div>
+        
+        <a href="mission-3-textbook.html" class="resource-card active">
+          <div class="resource-icon" style="background:rgba(40,123,232,0.1);">📖</div>
+          <div class="resource-info">
+            <div class="resource-tag">Text Book</div>
+            <div class="resource-title">Mission Briefs</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-3-prompts.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(26,158,116,0.1);">💬</div>
+          <div class="resource-info">
+            <div class="resource-tag">Prompts</div>
+            <div class="resource-title">Prompt Library</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-3-words.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(4,16,45,0.06);">🔤</div>
+          <div class="resource-info">
+            <div class="resource-tag">Words to Know</div>
+            <div class="resource-title">Key Terms</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-3-slides.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(111,242,193,0.2);">📊</div>
+          <div class="resource-info">
+            <div class="resource-tag">Slides</div>
+            <div class="resource-title">Slide Deck</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+      </div>
+  </div>
+
+</main>
 </body>
 </html>

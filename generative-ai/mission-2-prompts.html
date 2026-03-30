@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prompt Library — Mission 2: Clean Data, AI's Favorite Snack</title>
+<title>Prompt Library — Mission 2: Clean Data — AI Officer Institute</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../shared/styles.css">
 <style>
@@ -19,112 +19,56 @@
   body { background: var(--surface); }
 
   .page-main { max-width: 760px; margin: 0 auto; padding: 80px 40px 100px; }
-
-  .pl-back {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 13px; font-weight: 600; color: var(--text-muted);
-    text-decoration: none; margin-bottom: 32px; transition: color 0.12s;
-  }
+  .pl-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; margin-bottom: 32px; transition: color 0.12s; }
   .pl-back:hover { color: var(--text-primary); }
-
   .pl-hero { margin-bottom: 40px; }
-  .pl-track-pill {
-    display: inline-flex; align-items: center; gap: 7px;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.7px;
-    text-transform: uppercase; padding: 5px 12px; border-radius: 20px;
-    background: rgba(26,158,116,0.1); color: #1a9e74;
-    border: 1px solid rgba(26,158,116,0.2); margin-bottom: 14px;
-  }
-  .pl-title {
-    font-size: 30px; font-weight: 700; color: var(--text-primary);
-    letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 10px;
-  }
+  .pl-track-pill { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; background: rgba(40,123,232,0.1); color: #287be8; border: 1px solid rgba(40,123,232,0.2); margin-bottom: 14px; }
+  .pl-title { font-size: 30px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 10px; }
   .pl-sub { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
-
-  /* Intro note */
-  .pl-intro-note {
-    background: rgba(26,158,116,0.05); border: 1px solid rgba(26,158,116,0.18);
-    border-radius: var(--radius); padding: 16px 20px; margin-bottom: 40px;
-    font-size: 14px; color: var(--text-secondary); line-height: 1.6;
-  }
-
-  /* Section heading */
+  .pl-intro-note { background: rgba(40,123,232,0.05); border: 1px solid rgba(40,123,232,0.18); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 40px; font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
   .pl-section { margin-bottom: 48px; }
-  .pl-section-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 1px;
-    text-transform: uppercase; color: var(--text-muted);
-    margin-bottom: 4px; padding-bottom: 10px;
-    border-bottom: 1px solid var(--border); margin-bottom: 20px;
-  }
-
-  /* Prompt card */
-  .prompt-card {
-    background: white; border: 1px solid var(--border);
-    border-radius: var(--radius); overflow: hidden;
-    margin-bottom: 16px; box-shadow: var(--shadow-sm);
-  }
-  .prompt-card-header {
-    display: flex; align-items: flex-start; justify-content: space-between;
-    gap: 16px; padding: 16px 20px 12px;
-  }
+  .pl-section-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); padding-bottom: 10px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+  .prompt-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 16px; box-shadow: var(--shadow-sm); }
+  .prompt-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 16px 20px 12px; }
   .prompt-card-meta { flex: 1; }
-  .prompt-tag {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
-    letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px;
-    color: #1a9e74;
-  }
+  .prompt-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px; color: #287be8; }
   .prompt-name { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 3px; }
   .prompt-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
-  .copy-btn {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 7px; padding: 6px 12px;
-    font-size: 12px; font-weight: 600; color: var(--text-muted);
-    cursor: pointer; transition: all 0.12s; white-space: nowrap; flex-shrink: 0;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .copy-btn:hover { border-color: #1a9e74; color: #1a9e74; background: rgba(26,158,116,0.05); }
-  .copy-btn.copied { border-color: #1a9e74; color: #1a9e74; background: rgba(26,158,116,0.08); }
-
-  .prompt-text-block {
-    background: #f8f9fc; border-top: 1px solid var(--border);
-    padding: 16px 20px;
-    font-family: 'JetBrains Mono', monospace; font-size: 13px;
-    color: var(--text-primary); line-height: 1.65;
-    white-space: pre-wrap; word-break: break-word;
-  }
-  .prompt-text-block .bracket { color: #287BE8; font-weight: 700; }
-
-  /* Bottom nav */
-  .pl-bottom-nav {
-    display: flex; align-items: center; justify-content: space-between;
-    border-top: 1px solid var(--border); padding-top: 32px; margin-top: 16px;
-  }
-  .pl-nav-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 13px; font-weight: 600; color: var(--text-muted);
-    text-decoration: none; padding: 8px 14px; border-radius: 8px;
-    border: 1px solid var(--border); transition: all 0.12s;
-  }
+  .copy-btn { background: var(--surface); border: 1px solid var(--border); border-radius: 7px; padding: 6px 12px; font-size: 12px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all 0.12s; white-space: nowrap; flex-shrink: 0; font-family: 'DM Sans', sans-serif; }
+  .copy-btn:hover { border-color: #287be8; color: #287be8; background: rgba(40,123,232,0.05); }
+  .copy-btn.copied { border-color: #287be8; color: #287be8; background: rgba(40,123,232,0.08); }
+  .prompt-text-block { background: #f8f9fc; border-top: 1px solid var(--border); padding: 16px 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-primary); line-height: 1.65; white-space: pre-wrap; word-break: break-word; }
+  .pl-bottom-nav { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 32px; margin-top: 16px; }
+  .pl-nav-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border); transition: all 0.12s; }
   .pl-nav-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
-  .pl-nav-btn.primary { background: #1a9e74; color: white; border-color: #1a9e74; }
-  .pl-nav-btn.primary:hover { background: #178a65; }
+  .pl-nav-btn.primary { background: #287be8; color: white; border-color: #287be8; }
+  .pl-nav-btn.primary:hover { background: #1a6fd4; }
+  .pl-layout { display: grid; grid-template-columns: 1fr 280px; gap: 32px; align-items: start; }
+  @media (max-width: 900px) { .pl-layout { grid-template-columns: 1fr; } .res-sidebar { display: none; } }
+  @media (max-width: 760px) { .page-main { padding: 70px 20px 80px; } .topbar-nav { display: none; } }
 
-  @media (max-width: 760px) {
-    .page-main { padding: 70px 20px 80px; }
-    .topbar-nav { display: none; }
-  }
+  .res-sidebar { display: flex; flex-direction: column; gap: 8px; position: sticky; top: 80px; }
+  .res-sidebar-label { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); padding: 0 2px; margin-bottom: 4px; }
+  .resource-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow-sm); transition: all 0.15s var(--ease); }
+  .resource-card:hover { border-color: rgba(40,123,232,0.35); box-shadow: 0 4px 16px rgba(4,16,45,0.09); transform: translateY(-1px); }
+  .resource-card.active { border-color: rgba(40,123,232,0.4); background: rgba(40,123,232,0.04); }
+  .resource-icon { width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .resource-info { flex: 1; min-width: 0; }
+  .resource-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1px; }
+  .resource-title { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+  .resource-arrow { font-size: 13px; color: var(--text-muted); flex-shrink: 0; }
+  .resource-card.active .resource-arrow { color: #287be8; }
+
 </style>
 </head>
 <body>
-
-<!-- ═══════════════ TOP BAR ═══════════════ -->
 <div class="topbar">
   <a href="../index.html" class="topbar-brand">AIO <span>Labs</span></a>
   <nav class="topbar-nav">
     <a href="../index.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> Home</a>
     <a href="../certification.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
     <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
-    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Micro-Sessions</a>
     <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
     <a href="../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
   </nav>
@@ -141,199 +85,67 @@
 
   <a href="mission-2.html" class="pl-back">← Back to Mission 2</a>
 
-  <div class="pl-hero">
-    <div class="pl-track-pill">💬 Prompt Library</div>
-    <h1 class="pl-title">Mission 2 — Challenge Prompts</h1>
-    <p class="pl-sub">Every prompt is copy-paste ready. Replace anything in <strong style="color:#287BE8;">[brackets]</strong> with your specific information. The data is the fuel. These frameworks help you find it, fix it, and make it matter.</p>
-  </div>
+  <div class="pl-layout">
+    <div class="pl-content">
 
-  <div class="pl-intro-note">
-    💡 <strong>How to use these:</strong> Copy any prompt, paste it into your AI tool, fill in the brackets with your real data. But first, check your settings. Once your data is out there, you cannot take it back.
-  </div>
-
-
-  <!-- ─── SECTION 1 ─── -->
-  <div class="pl-section">
-    <div class="pl-section-label">Find the Root Cause of AI Failure in Your Organization</div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-card-meta">
-          <div class="prompt-tag">Diagnostic Prompt</div>
-          <div class="prompt-name">Diagnose Your AI Program</div>
-          <div class="prompt-desc">Understand why AI programs are not delivering results at your organization</div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      <div class="pl-hero">
+        <div class="pl-track-pill">💬 Prompt Library</div>
+        <h1 class="pl-title">Mission 2 — Challenge Prompts</h1>
+        <p class="pl-sub">Every prompt is copy-paste ready. Replace anything in <strong style="color:#287be8;">[brackets]</strong> with your specific information.</p>
       </div>
-      <pre class="prompt-text-block">I want to understand why AI programs fail and how to prevent it at my organization. My team is <span class="bracket">[size]</span> people in <span class="bracket">[department/industry]</span>. We have tried <span class="bracket">[describe any AI tools or initiatives tried]</span>. Ask me about our workflows, our data situation, and our current tool usage, then tell me the most likely root causes of our AI program problems and what an AI Officer would fix first.</pre>
-    </div>
-  </div>
 
-
-  <!-- ─── SECTION 2 ─── -->
-  <div class="pl-section">
-    <div class="pl-section-label">Identify Your Data Moat</div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-card-meta">
-          <div class="prompt-tag">Strategy Prompt</div>
-          <div class="prompt-name">Find Your Competitive Data Advantage</div>
-          <div class="prompt-desc">Identify the unique data your organization has that nobody else can replicate</div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      <div class="pl-intro-note">
+        Use these prompts with your AI Buddy in AIO Labs, or copy them into Claude, ChatGPT, or Gemini. Add your own context to get better results.
       </div>
-      <pre class="prompt-text-block">I want to identify my organization's data moat. We work in <span class="bracket">[industry]</span> and our main business activities are <span class="bracket">[describe what your team does]</span>. Ask me about the data we collect, where it lives, and how organized it is. Then tell me: what data do we have that competitors cannot easily replicate, and what would need to happen to make it AI-ready?</pre>
-    </div>
-  </div>
 
-
-  <!-- ─── SECTION 3 ─── -->
-  <div class="pl-section">
-    <div class="pl-section-label">Data Audit - What You Have and What It Needs</div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-card-meta">
-          <div class="prompt-tag">Audit Prompt</div>
-          <div class="prompt-name">Audit Your Data Before Building</div>
-          <div class="prompt-desc">Assess whether your data is ready for an AI program</div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      <div class="pl-section">
+        <div class="pl-section-label">All Prompts — Mission 2</div>
+        <p style="color:var(--text-muted);font-size:14px;">Prompts for this mission are being prepared.</p>
       </div>
-      <pre class="prompt-text-block">Help me audit the data for an AI program I am planning. The program goal is <span class="bracket">[describe what you want AI to do]</span>. Before you start, ask me:
-- What data sources are involved?
-- Where does that data currently live?
-- How consistently is it formatted?
-- Are there known gaps or quality issues?
-- Who owns the data and who has access?
 
-After I answer, give me a data readiness score and tell me exactly what needs to be fixed before this program can work.</pre>
-    </div>
-  </div>
-
-
-  <!-- ─── SECTION 4 ─── -->
-  <div class="pl-section">
-    <div class="pl-section-label">Clean a Messy Dataset</div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-card-meta">
-          <div class="prompt-tag">Hands-On Prompt</div>
-          <div class="prompt-name">Fix Your Data Step by Step</div>
-          <div class="prompt-desc">Use this when you have a dataset that needs cleaning before AI can use it</div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      <div class="pl-bottom-nav">
+        <a href="mission-2-textbook.html" class="pl-nav-btn">← Mission Briefs</a>
+        <a href="mission-2-words.html" class="pl-nav-btn primary">Words to Know →</a>
       </div>
-      <pre class="prompt-text-block">I am going to paste a dataset that I need to clean before using it in an AI program. When I paste it, do the following:
 
-1. Identify every data quality problem you find (duplicates, inconsistent formats, missing fields, wrong data types, outliers)
-2. For each problem, tell me what it is and where it appears
-3. Produce a cleaned version of the dataset
-4. Tell me what you changed and flag anything you could not fix
-
-Do not make up values for missing fields. Flag them instead. After cleaning, verify your own work: check the row count, check for remaining duplicates, and confirm the formats are consistent.</pre>
     </div>
-  </div>
-
-
-  <!-- ─── SECTION 5 ─── -->
-  <div class="pl-section">
-    <div class="pl-section-label">Verify AI's Data Work</div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-card-meta">
-          <div class="prompt-tag">Verification Prompt</div>
-          <div class="prompt-name">Check AI's Output Before Trusting Numbers</div>
-          <div class="prompt-desc">Audit AI's analysis to catch errors before they reach leadership</div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    
+      <div class="res-sidebar">
+        <div class="res-sidebar-label">Mission Resources</div>
+        
+        <a href="mission-2-textbook.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(40,123,232,0.1);">📖</div>
+          <div class="resource-info">
+            <div class="resource-tag">Text Book</div>
+            <div class="resource-title">Mission Briefs</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-2-prompts.html" class="resource-card active">
+          <div class="resource-icon" style="background:rgba(40,123,232,0.1);">💬</div>
+          <div class="resource-info">
+            <div class="resource-tag">Prompts</div>
+            <div class="resource-title">Prompt Library</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-2-words.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(4,16,45,0.06);">🔤</div>
+          <div class="resource-info">
+            <div class="resource-tag">Words to Know</div>
+            <div class="resource-title">Key Terms</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-2-slides.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(111,242,193,0.2);">📊</div>
+          <div class="resource-info">
+            <div class="resource-tag">Slides</div>
+            <div class="resource-title">Slide Deck</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
       </div>
-      <pre class="prompt-text-block">I am going to paste a dataset and an analysis AI produced from it. Your job is to verify the analysis, not accept it. Check:
-- Does the row count in the analysis match the actual dataset?
-- Are there any numbers that do not add up?
-- Did AI make any assumptions that are not stated?
-- Are there any patterns in the data that the analysis missed or misrepresented?
-- What is the single biggest risk in this analysis if it went to leadership?
-
-Report any discrepancies directly. Do not soften the feedback.</pre>
-    </div>
-  </div>
-
-
-  <!-- ─── SECTION 6 ─── -->
-  <div class="pl-section">
-    <div class="pl-section-label">Conduct a Settings Audit for Your Team</div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-card-meta">
-          <div class="prompt-tag">Governance Prompt</div>
-          <div class="prompt-name">Check Your AI Tool's Privacy Settings</div>
-          <div class="prompt-desc">Understand how your AI tool handles your company's data</div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-      </div>
-      <pre class="prompt-text-block">Walk me through how to check my privacy and data settings in <span class="bracket">[ChatGPT / Claude / Gemini]</span>. Tell me:
-- Where to find the settings
-- What each relevant setting controls
-- What the safest configuration looks like for professional work
-- How to check whether my data is being used to train the model
-
-After you explain the settings, help me determine whether the current tier I am on (<span class="bracket">[free / paid / enterprise]</span>) is appropriate for the type of data my team works with.</pre>
-    </div>
-  </div>
-
-
-  <!-- ─── SECTION 7 ─── -->
-  <div class="pl-section">
-    <div class="pl-section-label">Evaluate an AI Tool for a Program</div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-card-meta">
-          <div class="prompt-tag">Selection Prompt</div>
-          <div class="prompt-name">Choose the Right AI for Your Program</div>
-          <div class="prompt-desc">Apply the four selection criteria to pick the best tool</div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-      </div>
-      <pre class="prompt-text-block">I am evaluating AI tools for a program at my organization. Help me apply the four selection criteria. Before you give a recommendation, ask me:
-- What is the program trying to accomplish?
-- What type of data is involved?
-- What tier does my organization need (free / paid / enterprise)?
-- What tools does my team already use day-to-day?
-- Are there specific safety or compliance requirements?
-
-After I answer, recommend the best AI Kingdom for this program and explain why using all four criteria: data advantage, interface features, safety controls, and integration.</pre>
-    </div>
-  </div>
-
-
-  <!-- ─── SECTION 8 ─── -->
-  <div class="pl-section">
-    <div class="pl-section-label">Build Your Organization's Data Moat - Step by Step</div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-card-meta">
-          <div class="prompt-tag">Planning Prompt</div>
-          <div class="prompt-name">Create a Data Organization Action Plan</div>
-          <div class="prompt-desc">Turn your best data into an AI-ready asset</div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-      </div>
-      <pre class="prompt-text-block">I want to build a data moat for my organization using the four-step process: Capture, Clean, Connect, Reuse. My organization works in <span class="bracket">[industry]</span> and I want to start with the <span class="bracket">[Revenue / Talent / Operations / Innovation]</span> office. Ask me about what data we already collect and how it is currently stored, then build me a step-by-step action plan for turning that data into an AI-ready asset.</pre>
-    </div>
-  </div>
-
-
-  <!-- Bottom nav -->
-  <div class="pl-bottom-nav">
-    <a href="mission-2-textbook.html" class="pl-nav-btn">← Text Book</a>
-    <a href="mission-2-words.html" class="pl-nav-btn primary">Words to Know →</a>
   </div>
 
 </main>
@@ -341,17 +153,12 @@ After I answer, recommend the best AI Kingdom for this program and explain why u
 <script>
 function copyPrompt(btn) {
   const pre = btn.closest('.prompt-card').querySelector('.prompt-text-block');
-  const text = pre.innerText;
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = '✓ Copied!';
+  navigator.clipboard.writeText(pre.textContent.trim()).then(() => {
+    btn.textContent = '✓ Copied';
     btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = 'Copy';
-      btn.classList.remove('copied');
-    }, 2000);
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
   });
 }
 </script>
-
 </body>
 </html>

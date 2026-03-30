@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prompt Library — Mission 4: Prompting Perfect Visuals</title>
+<title>Prompt Library — Mission 4: Prompting Perfect Visuals — AI Officer Institute</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../shared/styles.css">
 <style>
@@ -19,112 +19,56 @@
   body { background: var(--surface); }
 
   .page-main { max-width: 760px; margin: 0 auto; padding: 80px 40px 100px; }
-
-  .pl-back {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 13px; font-weight: 600; color: var(--text-muted);
-    text-decoration: none; margin-bottom: 32px; transition: color 0.12s;
-  }
+  .pl-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; margin-bottom: 32px; transition: color 0.12s; }
   .pl-back:hover { color: var(--text-primary); }
-
   .pl-hero { margin-bottom: 40px; }
-  .pl-track-pill {
-    display: inline-flex; align-items: center; gap: 7px;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.7px;
-    text-transform: uppercase; padding: 5px 12px; border-radius: 20px;
-    background: rgba(26,158,116,0.1); color: #1a9e74;
-    border: 1px solid rgba(26,158,116,0.2); margin-bottom: 14px;
-  }
-  .pl-title {
-    font-size: 30px; font-weight: 700; color: var(--text-primary);
-    letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 10px;
-  }
+  .pl-track-pill { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; background: rgba(40,123,232,0.1); color: #287be8; border: 1px solid rgba(40,123,232,0.2); margin-bottom: 14px; }
+  .pl-title { font-size: 30px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 10px; }
   .pl-sub { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
-
-  /* Intro note */
-  .pl-intro-note {
-    background: rgba(26,158,116,0.05); border: 1px solid rgba(26,158,116,0.18);
-    border-radius: var(--radius); padding: 16px 20px; margin-bottom: 40px;
-    font-size: 14px; color: var(--text-secondary); line-height: 1.6;
-  }
-
-  /* Section heading */
+  .pl-intro-note { background: rgba(40,123,232,0.05); border: 1px solid rgba(40,123,232,0.18); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 40px; font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
   .pl-section { margin-bottom: 48px; }
-  .pl-section-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 1px;
-    text-transform: uppercase; color: var(--text-muted);
-    margin-bottom: 4px; padding-bottom: 10px;
-    border-bottom: 1px solid var(--border); margin-bottom: 20px;
-  }
-
-  /* Prompt card */
-  .prompt-card {
-    background: white; border: 1px solid var(--border);
-    border-radius: var(--radius); overflow: hidden;
-    margin-bottom: 16px; box-shadow: var(--shadow-sm);
-  }
-  .prompt-card-header {
-    display: flex; align-items: flex-start; justify-content: space-between;
-    gap: 16px; padding: 16px 20px 12px;
-  }
+  .pl-section-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); padding-bottom: 10px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+  .prompt-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 16px; box-shadow: var(--shadow-sm); }
+  .prompt-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 16px 20px 12px; }
   .prompt-card-meta { flex: 1; }
-  .prompt-tag {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
-    letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px;
-    color: #1a9e74;
-  }
+  .prompt-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px; color: #287be8; }
   .prompt-name { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 3px; }
   .prompt-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
-  .copy-btn {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 7px; padding: 6px 12px;
-    font-size: 12px; font-weight: 600; color: var(--text-muted);
-    cursor: pointer; transition: all 0.12s; white-space: nowrap; flex-shrink: 0;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .copy-btn:hover { border-color: #1a9e74; color: #1a9e74; background: rgba(26,158,116,0.05); }
-  .copy-btn.copied { border-color: #1a9e74; color: #1a9e74; background: rgba(26,158,116,0.08); }
-
-  .prompt-text-block {
-    background: #f8f9fc; border-top: 1px solid var(--border);
-    padding: 16px 20px;
-    font-family: 'JetBrains Mono', monospace; font-size: 13px;
-    color: var(--text-primary); line-height: 1.65;
-    white-space: pre-wrap; word-break: break-word;
-  }
-  .prompt-text-block .bracket { color: #287BE8; font-weight: 700; }
-
-  /* Bottom nav */
-  .pl-bottom-nav {
-    display: flex; align-items: center; justify-content: space-between;
-    border-top: 1px solid var(--border); padding-top: 32px; margin-top: 16px;
-  }
-  .pl-nav-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 13px; font-weight: 600; color: var(--text-muted);
-    text-decoration: none; padding: 8px 14px; border-radius: 8px;
-    border: 1px solid var(--border); transition: all 0.12s;
-  }
+  .copy-btn { background: var(--surface); border: 1px solid var(--border); border-radius: 7px; padding: 6px 12px; font-size: 12px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all 0.12s; white-space: nowrap; flex-shrink: 0; font-family: 'DM Sans', sans-serif; }
+  .copy-btn:hover { border-color: #287be8; color: #287be8; background: rgba(40,123,232,0.05); }
+  .copy-btn.copied { border-color: #287be8; color: #287be8; background: rgba(40,123,232,0.08); }
+  .prompt-text-block { background: #f8f9fc; border-top: 1px solid var(--border); padding: 16px 20px; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-primary); line-height: 1.65; white-space: pre-wrap; word-break: break-word; }
+  .pl-bottom-nav { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 32px; margin-top: 16px; }
+  .pl-nav-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border); transition: all 0.12s; }
   .pl-nav-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
-  .pl-nav-btn.primary { background: #1a9e74; color: white; border-color: #1a9e74; }
-  .pl-nav-btn.primary:hover { background: #178a65; }
+  .pl-nav-btn.primary { background: #287be8; color: white; border-color: #287be8; }
+  .pl-nav-btn.primary:hover { background: #1a6fd4; }
+  .pl-layout { display: grid; grid-template-columns: 1fr 280px; gap: 32px; align-items: start; }
+  @media (max-width: 900px) { .pl-layout { grid-template-columns: 1fr; } .res-sidebar { display: none; } }
+  @media (max-width: 760px) { .page-main { padding: 70px 20px 80px; } .topbar-nav { display: none; } }
 
-  @media (max-width: 760px) {
-    .page-main { padding: 70px 20px 80px; }
-    .topbar-nav { display: none; }
-  }
+  .res-sidebar { display: flex; flex-direction: column; gap: 8px; position: sticky; top: 80px; }
+  .res-sidebar-label { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); padding: 0 2px; margin-bottom: 4px; }
+  .resource-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow-sm); transition: all 0.15s var(--ease); }
+  .resource-card:hover { border-color: rgba(40,123,232,0.35); box-shadow: 0 4px 16px rgba(4,16,45,0.09); transform: translateY(-1px); }
+  .resource-card.active { border-color: rgba(40,123,232,0.4); background: rgba(40,123,232,0.04); }
+  .resource-icon { width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .resource-info { flex: 1; min-width: 0; }
+  .resource-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1px; }
+  .resource-title { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+  .resource-arrow { font-size: 13px; color: var(--text-muted); flex-shrink: 0; }
+  .resource-card.active .resource-arrow { color: #287be8; }
+
 </style>
 </head>
 <body>
-
-<!-- ═══════════════ TOP BAR ═══════════════ -->
 <div class="topbar">
   <a href="../index.html" class="topbar-brand">AIO <span>Labs</span></a>
   <nav class="topbar-nav">
     <a href="../index.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> Home</a>
     <a href="../certification.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
     <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
-    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Micro-Sessions</a>
     <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
     <a href="../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
   </nav>
@@ -141,219 +85,86 @@
 
   <a href="mission-4.html" class="pl-back">← Back to Mission 4</a>
 
-  <div class="pl-hero">
-    <div class="pl-track-pill">💬 Prompt Library</div>
-    <h1 class="pl-title">Mission 4 — Challenge Prompts</h1>
-    <p class="pl-sub">Every prompt is copy-paste ready. Use these to build the 5-Element Framework, VISION videos, and BOLT's Style DNA. Replace anything in <strong style="color:#287BE8;">[brackets]</strong> with your specific information.</p>
-  </div>
+  <div class="pl-layout">
+    <div class="pl-content">
 
-  <div class="pl-intro-note">
-    💡 <strong>How to use these:</strong> Copy any prompt, paste it into your AI tool, fill in the brackets with your real context. Structure before generation. AI does not know what good looks like unless you tell it.
-  </div>
+      <div class="pl-hero">
+        <div class="pl-track-pill">💬 Prompt Library</div>
+        <h1 class="pl-title">Mission 4 — Challenge Prompts</h1>
+        <p class="pl-sub">Every prompt is copy-paste ready. Replace anything in <strong style="color:#287be8;">[brackets]</strong> with your specific information.</p>
+      </div>
 
+      <div class="pl-intro-note">
+        Use these prompts with your AI Buddy in AIO Labs, or copy them into Claude, ChatGPT, or Gemini. Add your own context to get better results.
+      </div>
 
-  <!-- ─── 5-ELEMENT FRAMEWORK ─── -->
-  <div class="pl-section">
-    <div class="pl-section-label">5-Element Framework Builder</div>
-
+      <div class="pl-section">
+        <div class="pl-section-label">All Prompts — Mission 4</div>
+        
     <div class="prompt-card">
       <div class="prompt-card-header">
         <div class="prompt-card-meta">
-          <div class="prompt-tag">Framework Builder</div>
-          <div class="prompt-name">Build a Structured Image Prompt</div>
-          <div class="prompt-desc">Walk through all five elements to create a professional visual</div>
+          <div class="prompt-tag">Prompt 5</div>
+          <div class="prompt-name">Element Framework Builder</div>
+          <div class="prompt-desc">Use this to build a structured image prompt for any product or scene.</div>
         </div>
         <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
-      <pre class="prompt-text-block">I need to create a professional image for <span class="bracket">[describe what the image is for]</span>. Before I write any prompt, walk me through the 5-Element Framework. For each element, give me three options that would work for <span class="bracket">[your brand/product/audience]</span>:
+      <pre class="prompt-text-block">I need to create a professional image for [describe what the image is for]. Before I write any prompt, walk me through the 5-Element Framework. For each element, give me three options that would work for [your brand/product/audience]:
 
-1. Subject - three options for how to describe the specific subject
-2. Style - three visual style options
+1. Subject - three options for how to describe the specific subject of this image
+2. Style - three visual style options that fit this use case
 3. Environment - three environment or background options
-4. Lighting and Mood - three options for how this should feel
-5. Details and Enhancements - three finishing touch options
+4. Lighting and Mood - three options for how this image should feel
+5. Details and Enhancements - three finishing touch options (depth of field, lens effects, camera angle, space for copy)
 
 After I choose, write the complete .json prompt for this image.</pre>
     </div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-card-meta">
-          <div class="prompt-tag">5-Element Prompt</div>
-          <div class="prompt-name">BOLT Product Shot - Premium Dark Style</div>
-          <div class="prompt-desc">Create a professional product image with dramatic lighting and studio setup</div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
       </div>
-      <pre class="prompt-text-block">Create a professional product image using the 5-Element Framework:
 
-Subject: <span class="bracket">[single BOLT can, matte black finish with electric blue accent stripe, condensation visible on surface]</span>
-Style: <span class="bracket">[photorealistic product photography]</span>
-Environment: <span class="bracket">[dark studio with single spotlight from directly above]</span>
-Lighting and Mood: <span class="bracket">[dramatic high contrast, premium feel, slight shadow extending from base]</span>
-Details: <span class="bracket">[shallow depth of field, subtle reflection on the dark surface below the can, negative space on right side for headline text, no background clutter]</span>
-
-Output as a .json prompt I can run in <span class="bracket">[ChatGPT / Gemini / Midjourney]</span>.</pre>
-    </div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-card-meta">
-          <div class="prompt-tag">5-Element Prompt</div>
-          <div class="prompt-name">Social Media Visual - Platform Specific</div>
-          <div class="prompt-desc">Create lifestyle or social content tailored to your platform and audience</div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      <div class="pl-bottom-nav">
+        <a href="mission-4-textbook.html" class="pl-nav-btn">← Mission Briefs</a>
+        <a href="mission-4-words.html" class="pl-nav-btn primary">Words to Know →</a>
       </div>
-      <pre class="prompt-text-block">I need a social media image for <span class="bracket">[platform: LinkedIn / Instagram / TikTok / Facebook]</span>. The image should support this content: <span class="bracket">[describe what the post is about]</span>.
 
-Using the 5-Element Framework, build a prompt that fits:
-- The platform's visual norms for <span class="bracket">[LinkedIn = professional / Instagram = lifestyle / TikTok = dynamic / Facebook = approachable]</span>
-- My brand's fixed elements: <span class="bracket">[paste or describe your Style DNA fixed elements]</span>
-- The audience for this specific post: <span class="bracket">[describe who will see it]</span>
-
-Write the complete .json prompt and explain why you made each element choice.</pre>
     </div>
-  </div>
-
-
-  <!-- ─── VISION FRAMEWORK ─── -->
-  <div class="pl-section">
-    <div class="pl-section-label">VISION Framework for Video</div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-card-meta">
-          <div class="prompt-tag">VISION Framework</div>
-          <div class="prompt-name">Video Builder - Six Elements</div>
-          <div class="prompt-desc">Extend a still image into video with purpose and structure</div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+    
+      <div class="res-sidebar">
+        <div class="res-sidebar-label">Mission Resources</div>
+        
+        <a href="mission-4-textbook.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(40,123,232,0.1);">📖</div>
+          <div class="resource-info">
+            <div class="resource-tag">Text Book</div>
+            <div class="resource-title">Mission Briefs</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-4-prompts.html" class="resource-card active">
+          <div class="resource-icon" style="background:rgba(40,123,232,0.1);">💬</div>
+          <div class="resource-info">
+            <div class="resource-tag">Prompts</div>
+            <div class="resource-title">Prompt Library</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-4-words.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(4,16,45,0.06);">🔤</div>
+          <div class="resource-info">
+            <div class="resource-tag">Words to Know</div>
+            <div class="resource-title">Key Terms</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-4-slides.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(111,242,193,0.2);">📊</div>
+          <div class="resource-info">
+            <div class="resource-tag">Slides</div>
+            <div class="resource-title">Slide Deck</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
       </div>
-      <pre class="prompt-text-block">I have a product image I want to turn into a short video clip for <span class="bracket">[platform: social media / internal training / website]</span>. Walk me through the VISION Framework for this video. For each of the six elements, give me two or three options:
-
-V - Visual Anchor: <span class="bracket">[paste your starting image or describe it]</span>. Confirm it is a strong anchor.
-I - Intention: <span class="bracket">[What emotion or message should land in this timeframe?]</span>
-S - Sequence: <span class="bracket">[What movement or action happens, step by step?]</span>
-I - Immersion: <span class="bracket">[What sensory details make this feel real to the viewer?]</span>
-O - Orbit: <span class="bracket">[What camera motion fits this intention and platform?]</span>
-N - Narrative Arc: <span class="bracket">[What is the beginning, shift, and end of this clip?]</span>
-
-After I choose each element, write the complete .json video prompt for <span class="bracket">[Google Flow / Runway / your tool]</span>.</pre>
-    </div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-card-meta">
-          <div class="prompt-tag">VISION Framework</div>
-          <div class="prompt-name">BOLT Product Reveal Video - 6 Seconds</div>
-          <div class="prompt-desc">Premium product reveal with dramatic motion and narrative arc</div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-      </div>
-      <pre class="prompt-text-block">Using the VISION Framework, build a video prompt for a 6-second BOLT product reveal on social media. Here is my starting image: <span class="bracket">[paste or describe the image]</span>.
-
-V - Visual Anchor: <span class="bracket">[The BOLT can, dark studio, spotlight from above, condensation]</span>
-I - Intention: <span class="bracket">[Premium product reveal. The viewer should feel "I want that."]</span>
-S - Sequence: <span class="bracket">[Start tight on condensation dripping down the can. Slowly pull back to reveal the full can in spotlight. Final frame: product and brand in full]</span>
-I - Immersion: <span class="bracket">[Sound of condensation drip. Low ambient hum. Spotlight intensifies as camera pulls back]</span>
-O - Orbit: <span class="bracket">[Slow dolly back with slight upward tilt to make the can feel heroic]</span>
-N - Narrative Arc: <span class="bracket">[Mystery (what am I looking at?) to reveal (BOLT) to desire (I want that)]</span>
-
-Write the complete .json video prompt for <span class="bracket">[Google Flow / Runway]</span>.</pre>
-    </div>
-  </div>
-
-
-  <!-- ─── STYLE DNA ─── -->
-  <div class="pl-section">
-    <div class="pl-section-label">Style DNA & Brand Systems</div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-card-meta">
-          <div class="prompt-tag">Style DNA</div>
-          <div class="prompt-name">Build Your Brand's Style DNA</div>
-          <div class="prompt-desc">Create the system document for consistent, on-brand visuals</div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-      </div>
-      <pre class="prompt-text-block">I need to build a Style DNA document for <span class="bracket">[brand name]</span>, a <span class="bracket">[describe the brand and product]</span>. This document will be used by our team to generate consistent, on-brand visuals without needing a designer in the loop.
-
-Ask me about:
-- The brand's personality (3-5 words)
-- Color palette (primary and accent colors with hex codes if you have them)
-- Typography style preference (bold/minimal/elegant/modern)
-- Overall mood (premium/approachable/energetic/professional)
-- The platforms we will be publishing on
-- The four audience types we create visuals for most often
-- Any specific visual elements that must always appear or always be avoided
-
-After I answer, create a Style DNA template with two sections:
-1. Fixed Elements (stays the same across everything)
-2. Variable Elements (what shifts by platform and audience)
-
-Format it as a document the team can use as a reference when generating visuals.</pre>
-    </div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-card-meta">
-          <div class="prompt-tag">Style DNA</div>
-          <div class="prompt-name">Persona-to-Style Mapping</div>
-          <div class="prompt-desc">Define how variable elements shift by audience and platform</div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-      </div>
-      <pre class="prompt-text-block">I have my brand's Style DNA document. Now I need to create a persona-to-style mapping that tells my team how to adjust the variable elements for each audience type.
-
-My four audiences are:
-1. <span class="bracket">[Audience 1 - e.g., LinkedIn professional / retail partner]</span>
-2. <span class="bracket">[Audience 2 - e.g., Instagram consumer / millennial wellness buyer]</span>
-3. <span class="bracket">[Audience 3 - e.g., internal team / employee]</span>
-4. <span class="bracket">[Audience 4 - e.g., TikTok / Gen Z consumer]</span>
-
-For each audience, tell me:
-- Composition style (close-up vs. wide / centered vs. rule-of-thirds)
-- Environment (studio vs. lifestyle vs. workplace)
-- Energy level (calm vs. dynamic vs. aspirational)
-- Camera angle (eye-level / overhead / low angle)
-- Aspect ratio (1:1 / 4:5 / 9:16 / 16:9)
-
-Here are my fixed elements: <span class="bracket">[paste your Style DNA fixed elements]</span></pre>
-    </div>
-  </div>
-
-
-  <!-- ─── TOOL EVALUATION ─── -->
-  <div class="pl-section">
-    <div class="pl-section-label">Tool Evaluation</div>
-
-    <div class="prompt-card">
-      <div class="prompt-card-header">
-        <div class="prompt-card-meta">
-          <div class="prompt-tag">Tool Evaluation</div>
-          <div class="prompt-name">Which Visual AI Tool Fits Your Program?</div>
-          <div class="prompt-desc">Choose between LLMs, embedded, and purpose-built tools</div>
-        </div>
-        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
-      </div>
-      <pre class="prompt-text-block">I am choosing a visual AI tool for a program at my organization. Help me evaluate the options. Ask me:
-- What types of visuals does this program need? (product shots / social media / video / illustrations / presentations)
-- What is the skill level of the team who will generate these visuals?
-- What tools does the team already use day-to-day?
-- Are there specific quality or brand control requirements?
-- What is the approximate volume of visuals per month?
-
-After I answer, recommend whether I should use an LLM with image generation (ChatGPT, Claude, Gemini), an embedded tool (Canva, Adobe Firefly), or a purpose-built tool (Midjourney, Runway, Google Flow), and explain why using specific criteria from my situation.</pre>
-    </div>
-  </div>
-
-
-  <!-- Bottom nav -->
-  <div class="pl-bottom-nav">
-    <a href="mission-4-textbook.html" class="pl-nav-btn">← Text Book</a>
-    <a href="mission-4-words.html" class="pl-nav-btn primary">Words to Know →</a>
   </div>
 
 </main>
@@ -361,17 +172,12 @@ After I answer, recommend whether I should use an LLM with image generation (Cha
 <script>
 function copyPrompt(btn) {
   const pre = btn.closest('.prompt-card').querySelector('.prompt-text-block');
-  const text = pre.innerText;
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = '✓ Copied!';
+  navigator.clipboard.writeText(pre.textContent.trim()).then(() => {
+    btn.textContent = '✓ Copied';
     btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = 'Copy';
-      btn.classList.remove('copied');
-    }, 2000);
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
   });
 }
 </script>
-
 </body>
 </html>

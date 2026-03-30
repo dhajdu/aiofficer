@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Slide Deck — Mission 3: Advanced Prompt Frameworks</title>
+<title>Slide Deck — Mission 3: Advanced Prompt Frameworks — AI Officer Institute</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../shared/styles.css">
 <style>
@@ -16,212 +16,58 @@
     --text-tertiary: #8b91ac;
     --border-hover: #b0b6cc;
   }
+  body { background: var(--surface); }
 
   body { background: #0d1117; }
-
-  /* ── Header bar ── */
-  .slides-header {
-    position: fixed; top: 56px; left: 0; right: 0;
-    background: rgba(13,17,23,0.95); border-bottom: 1px solid rgba(255,255,255,0.08);
-    padding: 0 32px; height: 48px; display: flex; align-items: center; z-index: 50;
-    gap: 16px;
-  }
-  .slides-back {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5);
-    text-decoration: none; transition: color 0.12s;
-  }
+  .slides-header { position: fixed; top: 56px; left: 0; right: 0; background: rgba(13,17,23,0.95); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 32px; height: 48px; display: flex; align-items: center; z-index: 50; gap: 16px; }
+  .slides-back { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.12s; }
   .slides-back:hover { color: rgba(255,255,255,0.85); }
-  .slides-title {
-    font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.65);
-    margin-left: 8px;
-  }
-  .slides-counter {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    color: rgba(255,255,255,0.35); margin-left: auto;
-  }
-
-  /* ── Slide wrapper ── */
-  .slides-wrapper {
-    padding-top: 104px;
-    padding-bottom: 80px;
-    display: flex; flex-direction: column; align-items: center; gap: 0;
-  }
-
-  /* ── Individual slide ── */
-  .slide {
-    width: 100%; max-width: 900px; min-height: 520px;
-    margin: 0 auto 3px;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 60px 80px;
-    position: relative;
-  }
-
-  /* Slide variants */
-  .slide-title-card {
-    background: var(--navy);
-    min-height: 600px;
-  }
+  .slides-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.65); margin-left: 8px; }
+  .slides-counter { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.35); margin-left: 16px; }
+  .slides-wrapper { padding-top: 104px; padding-bottom: 80px; display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .slide { width: 100%; max-width: 900px; min-height: 520px; margin: 0 auto 3px; display: flex; flex-direction: column; justify-content: center; padding: 60px 80px; position: relative; }
+  .slide-title-card { background: var(--navy); min-height: 600px; }
   .slide-dark { background: #161b22; }
-  .slide-blue { background: rgba(40,123,232,0.12); border: 1px solid rgba(40,123,232,0.2); }
   .slide-light { background: white; }
-  .slide-navy { background: var(--navy); }
-  .slide-mint { background: rgba(26,158,116,0.1); border: 1px solid rgba(26,158,116,0.2); }
-
-  /* Slide number */
-  .slide-num {
-    position: absolute; top: 28px; right: 32px;
-    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
-    color: rgba(255,255,255,0.2);
-  }
+  .slide-mint { background: rgba(40,123,232,0.1); border: 1px solid rgba(40,123,232,0.2); }
+  .slide-blue { background: rgba(40,123,232,0.12); border: 1px solid rgba(40,123,232,0.2); }
+  .slide-num { position: absolute; top: 28px; right: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.2); }
   .slide-light .slide-num { color: rgba(4,16,45,0.2); }
-
-  /* Typography in slides */
-  .slide-eyebrow {
-    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
-    text-transform: uppercase; margin-bottom: 16px;
-    color: rgba(111,242,193,0.8);
-  }
+  .slide-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; color: rgba(111,242,193,0.8); }
+  .slide-eyebrow.mint { color: #287be8; }
   .slide-eyebrow.blue { color: rgba(40,123,232,0.9); }
   .slide-eyebrow.muted { color: rgba(255,255,255,0.4); }
-  .slide-eyebrow.dark-muted { color: rgba(4,16,45,0.4); }
-  .slide-eyebrow.mint { color: #1a9e74; }
-
-  .slide-h1 {
-    font-size: 52px; font-weight: 700; letter-spacing: -1.5px;
-    line-height: 1.05; color: white; margin-bottom: 24px;
-  }
+  .slide-h1 { font-size: 52px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.05; color: white; margin-bottom: 24px; }
   .slide-h1 .accent { color: #6FF2C1; }
-  .slide-h2 {
-    font-size: 36px; font-weight: 700; letter-spacing: -0.8px;
-    line-height: 1.15; color: white; margin-bottom: 20px;
-  }
+  .slide-h2 { font-size: 36px; font-weight: 700; letter-spacing: -0.8px; line-height: 1.15; color: white; margin-bottom: 20px; }
   .slide-h2.dark { color: var(--navy); }
-  .slide-h3 {
-    font-size: 28px; font-weight: 700; letter-spacing: -0.5px;
-    line-height: 1.2; color: white; margin-bottom: 16px;
-  }
+  .slide-h3 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.2; color: white; margin-bottom: 16px; }
   .slide-h3.dark { color: var(--navy); }
-
-  .slide-body {
-    font-size: 18px; line-height: 1.65;
-    color: rgba(255,255,255,0.75); max-width: 660px;
-  }
+  .slide-body { font-size: 18px; line-height: 1.65; color: rgba(255,255,255,0.75); max-width: 660px; }
   .slide-body.dark { color: rgba(4,16,45,0.7); }
   .slide-body strong { color: white; font-weight: 700; }
   .slide-body.dark strong { color: var(--navy); }
-
-  /* Two-column layout */
-  .slide-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-  .slide-col-label {
-    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-
-  /* Stat callout */
-  .stat-block {
-    display: flex; flex-direction: column; align-items: flex-start;
-    background: rgba(255,255,255,0.05); border-radius: 16px;
-    padding: 24px 28px; margin: 24px 0;
-  }
-  .stat-num {
-    font-size: 72px; font-weight: 700; letter-spacing: -3px;
-    line-height: 1; color: #6FF2C1; margin-bottom: 8px;
-  }
-  .stat-label { font-size: 16px; color: rgba(255,255,255,0.6); }
-
-  /* List styles */
-  .slide-list {
-    list-style: none; padding: 0; margin: 0;
-    display: flex; flex-direction: column; gap: 14px;
-  }
-  .slide-list li {
-    display: flex; align-items: flex-start; gap: 12px;
-    font-size: 17px; line-height: 1.5;
-  }
-  .slide-list li .bullet {
-    width: 24px; height: 24px; border-radius: 6px; flex-shrink: 0;
-    background: rgba(40,123,232,0.2); color: #287BE8;
-    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center; margin-top: 2px;
-  }
-  .slide-list.mint li .bullet { background: rgba(26,158,116,0.2); color: #1a9e74; }
+  .slide-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+  .slide-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 17px; line-height: 1.5; }
+  .slide-list li .bullet { width: 24px; height: 24px; border-radius: 6px; flex-shrink: 0; background: rgba(40,123,232,0.2); color: #287be8; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
   .slide-list li .text { color: rgba(255,255,255,0.8); }
   .slide-list li .text strong { color: white; display: block; margin-bottom: 2px; }
-  .slide-list.dark li .text { color: rgba(4,16,45,0.75); }
-  .slide-list.dark li .text strong { color: var(--navy); }
-  .slide-list.dark li .bullet { background: rgba(40,123,232,0.1); }
+  .slides-res-footer { background: rgba(255,255,255,0.04); border-top: 1px solid rgba(255,255,255,0.08); padding: 24px 40px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .slides-res-label { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-right: 8px; }
+  .slides-res-link { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); text-decoration: none; padding: 7px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.12s; }
+  .slides-res-link:hover { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.05); }
+  .slides-res-link.active { color: #6FF2C1; border-color: rgba(111,242,193,0.3); background: rgba(111,242,193,0.06); }
 
-  /* Divider line */
-  .slide-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 24px 0; }
-  .slide-divider.dark { background: rgba(4,16,45,0.1); }
-
-  /* Quote */
-  .slide-quote {
-    font-size: 26px; font-weight: 700; letter-spacing: -0.3px;
-    color: white; line-height: 1.35; font-style: italic; margin-bottom: 20px;
-  }
-  .slide-quote-attr { font-size: 14px; color: rgba(255,255,255,0.4); }
-
-  /* Belief row */
-  .belief-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
-  .belief-box {
-    background: rgba(255,255,255,0.05); border-radius: 10px; padding: 16px 18px;
-    border: 1px solid rgba(255,255,255,0.07);
-  }
-  .belief-box-num {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
-    color: #6FF2C1; margin-bottom: 6px;
-  }
-  .belief-box-text { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); line-height: 1.4; }
-  .belief-box-sub { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; margin-top: 3px; }
-
-  /* Nav arrows */
-  .slide-nav {
-    position: fixed; bottom: 28px; right: 32px;
-    display: flex; gap: 8px; z-index: 60;
-  }
-  .slide-nav-btn {
-    width: 40px; height: 40px; border-radius: 10px;
-    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
-    color: rgba(255,255,255,0.7); font-size: 16px; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.12s;
-  }
-  .slide-nav-btn:hover { background: rgba(255,255,255,0.18); color: white; }
-
-  /* Progress dots */
-  .slide-dots {
-    position: fixed; bottom: 36px; left: 50%; transform: translateX(-50%);
-    display: flex; gap: 6px; z-index: 60;
-  }
-  .slide-dot {
-    width: 6px; height: 6px; border-radius: 3px;
-    background: rgba(255,255,255,0.2); cursor: pointer;
-    transition: all 0.2s;
-  }
-  .slide-dot.active { width: 20px; background: #6FF2C1; }
-
-  @media (max-width: 760px) {
-    .slide { padding: 40px 28px; min-height: auto; }
-    .slide-h1 { font-size: 32px; }
-    .slide-h2 { font-size: 24px; }
-    .slide-cols { grid-template-columns: 1fr; }
-    .belief-row { grid-template-columns: 1fr; }
-    .topbar-nav { display: none; }
-  }
 </style>
 </head>
 <body>
-
-<!-- ═══════════════ TOP BAR ═══════════════ -->
 <div class="topbar">
   <a href="../index.html" class="topbar-brand">AIO <span>Labs</span></a>
   <nav class="topbar-nav">
     <a href="../index.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> Home</a>
     <a href="../certification.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
     <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
-    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Micro-Sessions</a>
     <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
     <a href="../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
   </nav>
@@ -234,305 +80,163 @@
   </div>
 </div>
 
-<!-- Slide sub-header -->
 <div class="slides-header">
   <a href="mission-3.html" class="slides-back">← Mission 3</a>
-  <span class="slides-title">Advanced Prompt Frameworks — Visual Summary</span>
-  <span class="slides-counter" id="slide-counter">1 / 20</span>
+  <span class="slides-title">Advanced Prompt Frameworks</span>
+  <span class="slides-counter">20 slides</span>
 </div>
 
-<!-- ═══════════════ SLIDES ═══════════════ -->
-<div class="slides-wrapper" id="slides-wrapper">
-
-  <!-- SLIDE 1: Title -->
-  <div class="slide slide-title-card" data-slide="1">
-    <span class="slide-num">01</span>
-    <div class="slide-eyebrow">Generative AI Essentials · Mission 03</div>
-    <h1 class="slide-h1">Advanced<br><span class="accent">Prompt Frameworks</span></h1>
-    <p class="slide-body">Anyone can type a prompt. Not everyone can produce something worth trusting.</p>
+<div class="slides-wrapper">
+  
+  <div class="slide slide-title-card">
+    <span class="slide-num">1 / 20</span>
+    <div class="slide-eyebrow">Generative AI for Business — Mission 3</div>
+    <h1 class="slide-h1">Title Slide</h1>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Generative AI Essentials</span></li><li><span class="bullet">2</span><span class="text">Advanced Prompt Frameworks</span></li><li><span class="bullet">3</span><span class="text">Mission 3</span></li><li><span class="bullet">4</span><span class="text">Anyone can type a prompt. Not everyone can produce something worth trusting.</span></li><li><span class="bullet">5</span><span class="text">#AIOfficerCertification | Dave Hajdu | dave@ai-officer.com</span></li></ul>
   </div>
-
-  <!-- SLIDE 2: Progress -->
-  <div class="slide slide-dark" data-slide="2">
-    <span class="slide-num">02</span>
-    <div class="slide-eyebrow">Your Journey</div>
-    <h2 class="slide-h2">You have the mindset and the data.</h2>
-    <ul class="slide-list" style="margin-top: 28px; gap: 18px;">
-      <li><div class="bullet">✓</div><div class="text"><strong>Mission 1:</strong> You learned to lead AI.</div></li>
-      <li><div class="bullet">✓</div><div class="text"><strong>Mission 2:</strong> You fixed the fuel.</div></li>
-      <li><div class="bullet">→</div><div class="text"><strong>Mission 3:</strong> You produce what leadership trusts.</div></li>
-    </ul>
+  <div class="slide slide-dark">
+    <span class="slide-num">2 / 20</span>
+    
+    <h2 class="slide-h2">You Have the Mindset and the Data</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Mission 1: You learned to lead AI.</span></li><li><span class="bullet">2</span><span class="text">Mission 2: You fixed the fuel.</span></li><li><span class="bullet">3</span><span class="text">Mission 3: You produce what leadership trusts.</span></li></ul>
   </div>
-
-  <!-- SLIDE 3: The Passable Problem -->
-  <div class="slide slide-dark" data-slide="3">
-    <span class="slide-num">03</span>
-    <div class="slide-eyebrow">The Gap</div>
-    <h2 class="slide-h2">Passable is enough for personal tasks.</h2>
-    <div class="slide-divider" style="margin: 20px 0;"></div>
-    <p class="slide-body">It is not enough for programs. When you are leading an AI program, passable is not enough. You are producing work that changes how your team operates, how your company makes decisions, and how leadership invests in AI. Generic output does not change anything.</p>
+  <div class="slide slide-mint">
+    <span class="slide-num">3 / 20</span>
+    
+    <h2 class="slide-h2">The Passable Problem</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Passable is enough for personal tasks.</span></li><li><span class="bullet">2</span><span class="text">It is not enough for programs.</span></li></ul>
   </div>
-
-  <!-- SLIDE 4: Section Divider - RACE + CRA -->
-  <div class="slide slide-navy" data-slide="4">
-    <span class="slide-num">04</span>
-    <h2 class="slide-h2" style="color: #6FF2C1;">RACE + CRA</h2>
-    <p class="slide-body" style="font-size: 20px;">First pass gets the content. Second pass meets the standard.</p>
+  <div class="slide slide-light">
+    <span class="slide-num">4 / 20</span>
+    
+    <h2 class="slide-h2 dark">Section Divider - RACE + CRA: The Two-Pass System</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">RACE + CRA</span></li><li><span class="bullet">2</span><span class="text">First pass gets the content. Second pass meets the standard.</span></li></ul>
   </div>
-
-  <!-- SLIDE 5: RACE Review -->
-  <div class="slide slide-dark" data-slide="5">
-    <span class="slide-num">05</span>
-    <div class="slide-eyebrow blue">Framework</div>
-    <h2 class="slide-h2">RACE gets you 70%.</h2>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 28px;">
-      <div><span style="font-size: 28px; font-weight: 700; color: #287BE8;">R</span><br><strong style="color: white;">Role</strong><br><span style="font-size: 14px; color: rgba(255,255,255,0.6);">Who is the AI acting as?</span></div>
-      <div><span style="font-size: 28px; font-weight: 700; color: #287BE8;">A</span><br><strong style="color: white;">Action</strong><br><span style="font-size: 14px; color: rgba(255,255,255,0.6);">What should it do?</span></div>
-      <div><span style="font-size: 28px; font-weight: 700; color: #287BE8;">C</span><br><strong style="color: white;">Context</strong><br><span style="font-size: 14px; color: rgba(255,255,255,0.6);">What's the situation?</span></div>
-      <div><span style="font-size: 28px; font-weight: 700; color: #287BE8;">E</span><br><strong style="color: white;">Example</strong><br><span style="font-size: 14px; color: rgba(255,255,255,0.6);">What does good look like?</span></div>
-    </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">5 / 20</span>
+    
+    <h2 class="slide-h2">RACE: You Know This</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">R - Role.</span></li><li><span class="bullet">2</span><span class="text">A - Action.</span></li><li><span class="bullet">3</span><span class="text">C - Context.</span></li><li><span class="bullet">4</span><span class="text">E - Example.</span></li><li><span class="bullet">5</span><span class="text">RACE gets you 70%.</span></li></ul>
   </div>
-
-  <!-- SLIDE 6: CRA Framework -->
-  <div class="slide slide-dark" data-slide="6">
-    <span class="slide-num">06</span>
-    <div class="slide-eyebrow blue">Framework</div>
-    <h2 class="slide-h2">CRA: The quality lock.</h2>
-    <div style="display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 28px;">
-      <div style="background: rgba(255,255,255,0.05); padding: 16px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);">
-        <div style="font-weight: 700; color: white; margin-bottom: 4px;">C — Constraints</div>
-        <div style="font-size: 14px; color: rgba(255,255,255,0.65);">What are the limits? Budget, time, brand rules, scope.</div>
-      </div>
-      <div style="background: rgba(255,255,255,0.05); padding: 16px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);">
-        <div style="font-weight: 700; color: white; margin-bottom: 4px;">R — Requirements</div>
-        <div style="font-size: 14px; color: rgba(255,255,255,0.65);">What must be included? The non-negotiables.</div>
-      </div>
-      <div style="background: rgba(255,255,255,0.05); padding: 16px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);">
-        <div style="font-weight: 700; color: white; margin-bottom: 4px;">A — Acceptance Criteria</div>
-        <div style="font-size: 14px; color: rgba(255,255,255,0.65);">How do you know it is good enough? Specific pass-fail checks.</div>
-      </div>
-    </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">6 / 20</span>
+    
+    <h2 class="slide-h2">CRA: The Quality Lock</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">C - Constraints. What are the limits?</span></li><li><span class="bullet">2</span><span class="text">R - Requirements. What must be included?</span></li><li><span class="bullet">3</span><span class="text">A - Acceptance Criteria. How do you know it is good enough?</span></li></ul>
   </div>
-
-  <!-- SLIDE 7: Two-Pass Jump -->
-  <div class="slide slide-dark" data-slide="7">
-    <span class="slide-num">07</span>
-    <div class="slide-eyebrow blue">Example</div>
-    <h2 class="slide-h2">RACE vs. RACE + CRA</h2>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px;">
-      <div>
-        <div style="font-weight: 700; color: rgba(255,255,255,0.7); margin-bottom: 12px;">RACE only:</div>
-        <div style="font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6;">Decent. Could be about any energy drink. Generic tone. Includes irrelevant competitors.</div>
-      </div>
-      <div>
-        <div style="font-weight: 700; color: #6FF2C1; margin-bottom: 12px;">RACE + CRA:</div>
-        <div style="font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6;">Dana could walk into a meeting with this. Specific. Focused. Ready to send.</div>
-      </div>
-    </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">7 / 20</span>
+    
+    <h2 class="slide-h2">The Jump from 70% to Your Name On It</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">RACE: &quot;Decent. Could be about any energy drink.&quot;</span></li><li><span class="bullet">2</span><span class="text">RACE + CRA: &quot;Dana could walk into a meeting with this.&quot;</span></li></ul>
   </div>
-
-  <!-- SLIDE 8: Section Divider - AI Interview -->
-  <div class="slide slide-navy" data-slide="8">
-    <span class="slide-num">08</span>
-    <h2 class="slide-h2" style="color: #6FF2C1;">The AI Interview</h2>
-    <p class="slide-body" style="font-size: 20px;">The gap between what you would have written and what AI asks. That gap is the value.</p>
+  <div class="slide slide-mint">
+    <span class="slide-num">8 / 20</span>
+    
+    <h2 class="slide-h2">Section Divider - The AI Interview: The Master Skill</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">The AI Interview</span></li><li><span class="bullet">2</span><span class="text">The gap between what you would have written and what AI asks. That gap is the value.</span></li></ul>
   </div>
-
-  <!-- SLIDE 9: Stop Guessing -->
-  <div class="slide slide-dark" data-slide="9">
-    <span class="slide-num">09</span>
-    <div class="slide-eyebrow mint">Technique</div>
-    <h2 class="slide-h2">Stop guessing what AI needs.</h2>
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px;">
-      <div>
-        <div style="font-weight: 700; color: rgba(255,255,255,0.7); margin-bottom: 12px;">Without it:</div>
-        <div style="font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6;">You guess what AI needs. Output is generic. Could have come from anyone.</div>
-      </div>
-      <div>
-        <div style="font-weight: 700; color: #1a9e74; margin-bottom: 12px;">With it:</div>
-        <div style="font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6;">AI finds gaps you didn't know you had. Output is yours.</div>
-      </div>
-    </div>
+  <div class="slide slide-light">
+    <span class="slide-num">9 / 20</span>
+    
+    <h2 class="slide-h2 dark">Stop Guessing. Start Asking.</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Without it: You guess what AI needs.</span></li><li><span class="bullet">2</span><span class="text">With it: AI finds what you did not know was missing.</span></li></ul>
   </div>
-
-  <!-- SLIDE 10: Example - Customer Profiles -->
-  <div class="slide slide-dark" data-slide="10">
-    <span class="slide-num">10</span>
-    <div class="slide-eyebrow mint">Example</div>
-    <h2 class="slide-h2">Live example: Customer profiles</h2>
-    <div class="slide-divider" style="margin: 16px 0;"></div>
-    <p class="slide-body" style="margin-bottom: 12px;">You: "I need to build customer profiles for BOLT. Before you start, ask me every question you need answered."</p>
-    <p class="slide-body" style="font-size: 16px; color: rgba(255,255,255,0.5);">AI asks about current vs. aspirational customers, pricing, distribution, what has failed before. Those questions reveal what you didn't know was missing.</p>
+  <div class="slide slide-dark">
+    <span class="slide-num">10 / 20</span>
+    
+    <h2 class="slide-h2">Live Example: Customer Profiles</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">&quot;I need to build customer profiles for BOLT&#x27;s launch.&quot;</span></li><li><span class="bullet">2</span><span class="text">AI: &quot;Before I start, let me ask you some questions.&quot;</span></li></ul>
   </div>
-
-  <!-- SLIDE 11: Exercise -->
-  <div class="slide slide-mint" data-slide="11">
-    <span class="slide-num">11</span>
-    <div class="slide-eyebrow mint">Exercise</div>
-    <h2 class="slide-h2 dark">Your turn.</h2>
-    <div class="slide-divider dark" style="margin: 16px 0;"></div>
-    <ul class="slide-list dark" style="margin-top: 20px;">
-      <li><div class="bullet">→</div><div class="text"><strong>Pick a deliverable</strong> from the BOLT challenge or your real work.</div></li>
-      <li><div class="bullet">→</div><div class="text"><strong>Tell AI what you want.</strong> Ask AI to ask you questions.</div></li>
-      <li><div class="bullet">→</div><div class="text"><strong>Answer honestly.</strong> Real context, real constraints.</div></li>
-      <li><div class="bullet">→</div><div class="text"><strong>Write down two questions</strong> AI asked that you would have missed.</div></li>
-    </ul>
+  <div class="slide slide-dark">
+    <span class="slide-num">11 / 20</span>
+    
+    <h2 class="slide-h2">Exercise: Run the AI Interview</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Exercise: Your Turn</span></li><li><span class="bullet">2</span><span class="text">Pick a deliverable from your real work or from the BOLT challenge.</span></li><li><span class="bullet">3</span><span class="text">Tell AI what you want. Ask AI to ask you questions. Answer honestly.</span></li></ul>
   </div>
-
-  <!-- SLIDE 12: Section Divider - On-Demand Learning -->
-  <div class="slide slide-navy" data-slide="12">
-    <span class="slide-num">12</span>
-    <h2 class="slide-h2" style="color: #6FF2C1;">On-Demand Learning</h2>
-    <p class="slide-body" style="font-size: 20px;">You do not memorize frameworks. You access them.</p>
+  <div class="slide slide-dark">
+    <span class="slide-num">12 / 20</span>
+    
+    <h2 class="slide-h2">Section Divider - Let AI Teach You Frameworks On Demand</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">On-Demand Learning</span></li><li><span class="bullet">2</span><span class="text">You do not memorize frameworks. You access them.</span></li></ul>
   </div>
-
-  <!-- SLIDE 13: The Habit -->
-  <div class="slide slide-dark" data-slide="13">
-    <span class="slide-num">13</span>
-    <div class="slide-eyebrow blue">Technique</div>
-    <h2 class="slide-h2">The habit that compounds.</h2>
-    <div style="margin-top: 28px;">
-      <div style="font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.75);">
-        <p>Ask AI: <strong>"What framework should I use for this?"</strong></p>
-        <p>Apply it. Learn it. Keep it.</p>
-        <div class="slide-divider" style="margin: 20px 0;"></div>
-        <p style="font-size: 15px; color: rgba(255,255,255,0.55);">You learn the framework and get the deliverable at the same time. This skill compounds every session.</p>
-      </div>
-    </div>
+  <div class="slide slide-mint">
+    <span class="slide-num">13 / 20</span>
+    
+    <h2 class="slide-h2">The Habit That Compounds</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Ask AI: &quot;What framework should I use for this?&quot;</span></li><li><span class="bullet">2</span><span class="text">Apply it. Learn it. Keep it.</span></li></ul>
   </div>
-
-  <!-- SLIDE 14: Section Divider - VRC -->
-  <div class="slide slide-navy" data-slide="14">
-    <span class="slide-num">14</span>
-    <h2 class="slide-h2" style="color: #6FF2C1;">VRC</h2>
-    <p class="slide-body" style="font-size: 20px;">Creating output is only half the job.</p>
+  <div class="slide slide-light">
+    <span class="slide-num">14 / 20</span>
+    
+    <h2 class="slide-h2 dark">Section Divider - VRC: Check Before You Send</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">VRC</span></li><li><span class="bullet">2</span><span class="text">Creating output is only half the job.</span></li></ul>
   </div>
-
-  <!-- SLIDE 15: Value Risk Checkpoint -->
-  <div class="slide slide-dark" data-slide="15">
-    <span class="slide-num">15</span>
-    <div class="slide-eyebrow blue">Framework</div>
+  <div class="slide slide-dark">
+    <span class="slide-num">15 / 20</span>
+    
     <h2 class="slide-h2">Value. Risk. Checkpoint.</h2>
-    <div style="display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 28px;">
-      <div style="background: rgba(255,255,255,0.05); padding: 16px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);">
-        <div style="font-weight: 700; color: white; margin-bottom: 4px;">V — Value</div>
-        <div style="font-size: 14px; color: rgba(255,255,255,0.65);">Where does the benefit come from? Is the payoff clear?</div>
-      </div>
-      <div style="background: rgba(255,255,255,0.05); padding: 16px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);">
-        <div style="font-weight: 700; color: white; margin-bottom: 4px;">R — Risk</div>
-        <div style="font-size: 14px; color: rgba(255,255,255,0.65);">What are the top two ways this fails?</div>
-      </div>
-      <div style="background: rgba(255,255,255,0.05); padding: 16px 18px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);">
-        <div style="font-weight: 700; color: white; margin-bottom: 4px;">C — Checkpoint</div>
-        <div style="font-size: 14px; color: rgba(255,255,255,0.65);">What is the early signal it is working?</div>
-      </div>
-    </div>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">V - Value. Where does the benefit come from?</span></li><li><span class="bullet">2</span><span class="text">R - Risk. What are the top two ways this fails?</span></li><li><span class="bullet">3</span><span class="text">C - Checkpoint. What is the early signal it is working?</span></li></ul>
   </div>
-
-  <!-- SLIDE 16: VRC Scales -->
-  <div class="slide slide-dark" data-slide="16">
-    <span class="slide-num">16</span>
-    <div class="slide-eyebrow blue">Scaling</div>
-    <h2 class="slide-h2">VRC works at every scale.</h2>
-    <div class="slide-divider" style="margin: 16px 0;"></div>
-    <p class="slide-body">Same three questions that evaluate a competitor analysis also evaluate an entire AI initiative before it gets budget and headcount. VRC is a career skill, not just a prompting technique.</p>
+  <div class="slide slide-dark">
+    <span class="slide-num">16 / 20</span>
+    
+    <h2 class="slide-h2">VRC Scales Up</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">One prompt. One program. Same discipline.</span></li></ul>
   </div>
-
-  <!-- SLIDE 17: The Brief -->
-  <div class="slide slide-dark" data-slide="17">
-    <span class="slide-num">17</span>
-    <div class="slide-eyebrow blue">Final Project</div>
-    <h2 class="slide-h2">The BOLT go-to-market brief.</h2>
-    <ul class="slide-list" style="margin-top: 20px; gap: 16px;">
-      <li><div class="bullet">1</div><div class="text"><strong>Seven sections.</strong> Everything from Missions 1, 2, and 3.</div></li>
-      <li><div class="bullet">2</div><div class="text"><strong>The standard:</strong> Dana walks into a leadership meeting with this.</div></li>
-      <li><div class="bullet">3</div><div class="text"><strong>Run VRC</strong> on the full brief before submitting.</div></li>
-    </ul>
+  <div class="slide slide-dark">
+    <span class="slide-num">17 / 20</span>
+    
+    <h2 class="slide-h2">The BOLT Go-to-Market Brief</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Seven sections.</span></li><li><span class="bullet">2</span><span class="text">Everything from Missions 1, 2, and 3.</span></li><li><span class="bullet">3</span><span class="text">The standard: Dana walks into a leadership meeting with this.</span></li></ul>
   </div>
-
-  <!-- SLIDE 18: Reflection -->
-  <div class="slide slide-dark" data-slide="18">
-    <span class="slide-num">18</span>
-    <div class="slide-eyebrow blue">Reflection</div>
-    <h2 class="slide-h2">The person trusted with bigger things.</h2>
-    <p class="slide-body" style="margin-top: 28px;">Is the person who proves they can produce what bigger things require. Not output that is technically correct. Output that your manager would put in front of her CEO.</p>
+  <div class="slide slide-mint">
+    <span class="slide-num">18 / 20</span>
+    
+    <h2 class="slide-h2">Closing Reflection</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">The person trusted with bigger things is the person who proves they can produce what bigger things require.</span></li></ul>
   </div>
-
-  <!-- SLIDE 19: Your Commitment -->
-  <div class="slide slide-dark" data-slide="19">
-    <span class="slide-num">19</span>
-    <div class="slide-eyebrow blue">Commitment</div>
-    <h2 class="slide-h2">Start, stop, or continue.</h2>
-    <div class="slide-divider" style="margin: 16px 0;"></div>
-    <p class="slide-body">Name one behavior your manager would notice this week. Not a tool. A behavior.</p>
+  <div class="slide slide-light">
+    <span class="slide-num">19 / 20</span>
+    
+    <h2 class="slide-h2 dark">Your Commitment</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Start, stop, or continue.</span></li><li><span class="bullet">2</span><span class="text">Name one behavior your manager would notice this week.</span></li></ul>
   </div>
-
-  <!-- SLIDE 20: Thank You -->
-  <div class="slide slide-navy" data-slide="20">
-    <span class="slide-num">20</span>
-    <h2 class="slide-h2">Mission 3 Complete.</h2>
-    <div class="slide-divider" style="margin: 20px 0;"></div>
-    <p class="slide-body" style="margin-bottom: 24px;">You now have the complete logic stack: RACE, CRA, the AI Interview, on-demand framework learning, and VRC.</p>
-    <p class="slide-body" style="font-size: 15px; color: rgba(255,255,255,0.5);">Next: Prompting Perfect Visuals</p>
+  <div class="slide slide-dark">
+    <span class="slide-num">20 / 20</span>
+    
+    <h2 class="slide-h2">Thank You</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Mission 3 Complete.</span></li><li><span class="bullet">2</span><span class="text">Next: Prompting Perfect Visuals.</span></li><li><span class="bullet">3</span><span class="text">[QR Code - Session Feedback]</span></li><li><span class="bullet">4</span><span class="text">#AIOfficerCertification | dave@ai-officer.com | ai-officer.com</span></li></ul>
   </div>
-
 </div>
 
-<!-- Navigation dots & arrows -->
-<div class="slide-dots" id="slide-dots"></div>
-<div class="slide-nav">
-  <button class="slide-nav-btn" id="prev-btn" onclick="prevSlide()">←</button>
-  <button class="slide-nav-btn" id="next-btn" onclick="nextSlide()">→</button>
+<div class="slides-res-footer">
+  <span class="slides-res-label">Mission Resources</span>
+  <a href="mission-3-textbook.html" class="slides-res-link">📖 Mission Briefs</a>
+  <a href="mission-3-prompts.html" class="slides-res-link">💬 Prompt Library</a>
+  <a href="mission-3-words.html" class="slides-res-link">🔤 Words to Know</a>
+  <a href="mission-3-slides.html" class="slides-res-link active">📊 Slide Deck</a>
 </div>
-
-<script>
-const totalSlides = 20;
-let currentSlide = 1;
-
-// Build dots
-const dotsEl = document.getElementById('slide-dots');
-for (let i = 1; i <= totalSlides; i++) {
-  const dot = document.createElement('div');
-  dot.className = 'slide-dot' + (i === 1 ? ' active' : '');
-  dot.onclick = () => goToSlide(i);
-  dotsEl.appendChild(dot);
-}
-
-function goToSlide(n) {
-  currentSlide = n;
-  updateUI();
-  document.querySelector(`[data-slide="${n}"]`).scrollIntoView({ behavior: 'smooth', block: 'center' });
-}
-
-function nextSlide() { if (currentSlide < totalSlides) goToSlide(currentSlide + 1); }
-function prevSlide() { if (currentSlide > 1) goToSlide(currentSlide - 1); }
-
-function updateUI() {
-  document.getElementById('slide-counter').textContent = `${currentSlide} / ${totalSlides}`;
-  document.querySelectorAll('.slide-dot').forEach((d, i) => {
-    d.classList.toggle('active', i + 1 === currentSlide);
-  });
-}
-
-// Keyboard nav
-document.addEventListener('keydown', e => {
-  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextSlide();
-  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevSlide();
-});
-
-// Intersection observer to update current slide
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const n = parseInt(entry.target.dataset.slide);
-      currentSlide = n;
-      updateUI();
-    }
-  });
-}, { threshold: 0.5 });
-
-document.querySelectorAll('.slide').forEach(s => observer.observe(s));
-</script>
 
 </body>
 </html>

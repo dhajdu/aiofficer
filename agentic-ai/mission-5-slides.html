@@ -52,6 +52,11 @@
   .slide-list li .bullet { width: 24px; height: 24px; border-radius: 6px; flex-shrink: 0; background: rgba(26,158,116,0.2); color: #1a9e74; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
   .slide-list li .text { color: rgba(255,255,255,0.8); }
   .slide-list li .text strong { color: white; display: block; margin-bottom: 2px; }
+  .slides-res-footer { background: rgba(255,255,255,0.04); border-top: 1px solid rgba(255,255,255,0.08); padding: 24px 40px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .slides-res-label { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-right: 8px; }
+  .slides-res-link { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); text-decoration: none; padding: 7px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.12s; }
+  .slides-res-link:hover { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.05); }
+  .slides-res-link.active { color: #6FF2C1; border-color: rgba(111,242,193,0.3); background: rgba(111,242,193,0.06); }
 
 </style>
 </head>
@@ -79,12 +84,6 @@
   <a href="mission-5.html" class="slides-back">← Mission 5</a>
   <span class="slides-title">Unleash the Agent</span>
   <span class="slides-counter">20 slides</span>
-  <span style="margin-left:auto;display:flex;align-items:center;gap:6px;">
-    <a href="mission-5-textbook.html" style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);transition:all 0.12s;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">📖 Briefs</a>
-    <a href="mission-5-prompts.html" style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);transition:all 0.12s;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">💬 Prompts</a>
-    <a href="mission-5-words.html" style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.45);text-decoration:none;padding:4px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);transition:all 0.12s;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">🔤 Words</a>
-    <a href="mission-5-slides.html" style="font-size:11px;font-weight:600;color:#6FF2C1;text-decoration:none;padding:4px 10px;border-radius:6px;border:1px solid rgba(111,242,193,0.3);background:rgba(111,242,193,0.08);">📊 Slides</a>
-  </span>
 </div>
 
 <div class="slides-wrapper">
@@ -229,6 +228,14 @@
     
     <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Thank you.</span></li><li><span class="bullet">2</span><span class="text">[QR Code Placeholder -- Session Feedback]</span></li><li><span class="bullet">3</span><span class="text">#AIOfficerCertification | Dave Hajdu | dave@ai-officer.com | ai-officer.com</span></li></ul>
   </div>
+</div>
+
+<div class="slides-res-footer">
+  <span class="slides-res-label">Mission Resources</span>
+  <a href="mission-5-textbook.html" class="slides-res-link">📖 Mission Briefs</a>
+  <a href="mission-5-prompts.html" class="slides-res-link">💬 Prompt Library</a>
+  <a href="mission-5-words.html" class="slides-res-link">🔤 Words to Know</a>
+  <a href="mission-5-slides.html" class="slides-res-link active">📊 Slide Deck</a>
 </div>
 
 </body>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Words to Know — Mission 2: Clean Data, AI's Favorite Snack</title>
+<title>Words to Know — Mission 2: Clean Data — AI Officer Institute</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../shared/styles.css">
 <style>
@@ -19,119 +19,53 @@
   body { background: var(--surface); }
 
   .page-main { max-width: 760px; margin: 0 auto; padding: 80px 40px 100px; }
-
-  .wtk-back {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 13px; font-weight: 600; color: var(--text-muted);
-    text-decoration: none; margin-bottom: 32px; transition: color 0.12s;
-  }
+  .wtk-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; margin-bottom: 32px; transition: color 0.12s; }
   .wtk-back:hover { color: var(--text-primary); }
-
   .wtk-hero { margin-bottom: 40px; }
-  .wtk-track-pill {
-    display: inline-flex; align-items: center; gap: 7px;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.7px;
-    text-transform: uppercase; padding: 5px 12px; border-radius: 20px;
-    background: rgba(4,16,45,0.06); color: var(--text-secondary);
-    border: 1px solid var(--border); margin-bottom: 14px;
-  }
-  .wtk-title {
-    font-size: 30px; font-weight: 700; color: var(--text-primary);
-    letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 10px;
-  }
+  .wtk-track-pill { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; background: rgba(4,16,45,0.06); color: var(--text-secondary); border: 1px solid var(--border); margin-bottom: 14px; }
+  .wtk-title { font-size: 30px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 10px; }
   .wtk-sub { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
-
-  /* Intro note */
-  .wtk-note {
-    background: white; border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 16px 20px; margin-bottom: 40px;
-    font-size: 14px; color: var(--text-secondary); line-height: 1.6;
-  }
-
-  /* Category label */
-  .wtk-category {
-    font-size: 10px; font-weight: 700; letter-spacing: 1px;
-    text-transform: uppercase; color: var(--text-muted);
-    padding-bottom: 10px; border-bottom: 1px solid var(--border);
-    margin-bottom: 16px; margin-top: 40px;
-  }
+  .wtk-note { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 40px; font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+  .wtk-category { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); padding-bottom: 10px; border-bottom: 1px solid var(--border); margin-bottom: 16px; margin-top: 40px; }
   .wtk-category:first-of-type { margin-top: 0; }
-
-  /* Term cards */
-  .term-card {
-    background: white; border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 20px 22px;
-    margin-bottom: 10px; box-shadow: var(--shadow-sm);
-  }
+  .term-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; margin-bottom: 10px; box-shadow: var(--shadow-sm); }
   .term-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
-  .term-name {
-    font-size: 16px; font-weight: 700; color: var(--text-primary); line-height: 1.2;
-  }
-  .term-badge {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
-    padding: 3px 8px; border-radius: 5px; white-space: nowrap; flex-shrink: 0;
-    background: rgba(40,123,232,0.08); color: #287BE8;
-    border: 1px solid rgba(40,123,232,0.15);
-  }
-  .term-def {
-    font-size: 14px; color: var(--text-secondary); line-height: 1.7;
-  }
-  .term-example {
-    margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--surface);
-    font-size: 13px; color: var(--text-muted); line-height: 1.6;
-    font-style: italic;
-  }
+  .term-name { font-size: 16px; font-weight: 700; color: var(--text-primary); line-height: 1.2; }
+  .term-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 5px; white-space: nowrap; flex-shrink: 0; background: rgba(40,123,232,0.08); color: #287be8; border: 1px solid rgba(40,123,232,0.15); }
+  .term-def { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+  .term-example { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--surface); font-size: 13px; color: var(--text-muted); line-height: 1.6; font-style: italic; }
   .term-example strong { color: var(--text-secondary); font-style: normal; }
-
-  /* Buddy prompt at bottom */
-  .buddy-note {
-    background: rgba(40,123,232,0.05); border: 1px solid rgba(40,123,232,0.15);
-    border-radius: var(--radius); padding: 20px 22px; margin-top: 48px;
-    text-align: center;
-  }
-  .buddy-note p {
-    font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 12px;
-  }
-  .buddy-note .buddy-prompt-text {
-    font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-primary);
-    background: white; padding: 12px 16px; border-radius: 8px;
-    border: 1px solid rgba(40,123,232,0.15); line-height: 1.6;
-    font-style: italic; text-align: left;
-  }
-
-  /* Bottom nav */
-  .wtk-bottom-nav {
-    display: flex; align-items: center; justify-content: space-between;
-    border-top: 1px solid var(--border); padding-top: 32px; margin-top: 16px;
-  }
-  .wtk-nav-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 13px; font-weight: 600; color: var(--text-muted);
-    text-decoration: none; padding: 8px 14px; border-radius: 8px;
-    border: 1px solid var(--border); transition: all 0.12s;
-  }
+  .wtk-bottom-nav { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 32px; margin-top: 16px; }
+  .wtk-nav-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border); transition: all 0.12s; }
   .wtk-nav-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
-  .wtk-nav-btn.primary {
-    background: var(--navy); color: white; border-color: var(--navy);
-  }
+  .wtk-nav-btn.primary { background: var(--navy); color: white; border-color: var(--navy); }
   .wtk-nav-btn.primary:hover { opacity: 0.88; }
+  .wtk-layout { display: grid; grid-template-columns: 1fr 280px; gap: 32px; align-items: start; }
+  @media (max-width: 900px) { .wtk-layout { grid-template-columns: 1fr; } .res-sidebar { display: none; } }
+  @media (max-width: 760px) { .page-main { padding: 70px 20px 80px; } .topbar-nav { display: none; } }
 
-  @media (max-width: 760px) {
-    .page-main { padding: 70px 20px 80px; }
-    .topbar-nav { display: none; }
-  }
+  .res-sidebar { display: flex; flex-direction: column; gap: 8px; position: sticky; top: 80px; }
+  .res-sidebar-label { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); padding: 0 2px; margin-bottom: 4px; }
+  .resource-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow-sm); transition: all 0.15s var(--ease); }
+  .resource-card:hover { border-color: rgba(40,123,232,0.35); box-shadow: 0 4px 16px rgba(4,16,45,0.09); transform: translateY(-1px); }
+  .resource-card.active { border-color: rgba(40,123,232,0.4); background: rgba(40,123,232,0.04); }
+  .resource-icon { width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .resource-info { flex: 1; min-width: 0; }
+  .resource-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1px; }
+  .resource-title { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+  .resource-arrow { font-size: 13px; color: var(--text-muted); flex-shrink: 0; }
+  .resource-card.active .resource-arrow { color: #287be8; }
+
 </style>
 </head>
 <body>
-
-<!-- ═══════════════ TOP BAR ═══════════════ -->
 <div class="topbar">
   <a href="../index.html" class="topbar-brand">AIO <span>Labs</span></a>
   <nav class="topbar-nav">
     <a href="../index.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> Home</a>
     <a href="../certification.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
     <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
-    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Micro-Sessions</a>
     <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
     <a href="../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
   </nav>
@@ -148,157 +82,75 @@
 
   <a href="mission-2.html" class="wtk-back">← Back to Mission 2</a>
 
-  <div class="wtk-hero">
-    <div class="wtk-track-pill">🔤 Words to Know</div>
-    <h1 class="wtk-title">Mission 2 — Key Terms</h1>
-    <p class="wtk-sub">The data terms, frameworks, and concepts you need to understand Mission 2 — and every AI program you lead. Plain language. No jargon. No assumptions.</p>
-  </div>
+  <div class="wtk-layout">
+    <div class="wtk-content">
 
-  <div class="wtk-note">
-    <strong>When a term is still unclear:</strong> Ask your AI Buddy — <em>"Explain [term] with an example from my industry."</em> That is what it is there for.
-  </div>
+      <div class="wtk-hero">
+        <div class="wtk-track-pill">🔤 Words to Know</div>
+        <h1 class="wtk-title">Mission 2 — Key Terms</h1>
+        <p class="wtk-sub">The vocabulary you need to understand and apply this mission's concepts. When in doubt, ask your AI Buddy.</p>
+      </div>
 
+      <div class="wtk-note">
+        These terms appear across the briefs, challenges, and prompts for Mission 2. Read them before you start, or use this page as a reference while you work.
+      </div>
 
-  <!-- ═══ CATEGORY: The Data Layer ═══ -->
-  <div class="wtk-category">The Data Layer</div>
-
+      <div class="wtk-category">All Terms — Mission 2</div>
+      
   <div class="term-card">
     <div class="term-header">
-      <div class="term-name">Data Moat</div>
-      <span class="term-badge">Core Concept</span>
+      <div class="term-name">Words to Know</div>
+      <span class="term-badge">Term</span>
     </div>
-    <div class="term-def">Your organization's unique data advantage. Anyone can buy the same AI tools. Nobody else has your company's data — your customer feedback, your internal docs, your historical records, your operational data. When you organize that data and make it AI-ready, you build a moat nobody else can cross. The AI Officer's job is to find it, clean it, and make it the foundation of every AI program.</div>
+    <div class="term-def">AI Officer Institute | Generative AI Essentials</div>
+    
   </div>
 
-  <div class="term-card">
-    <div class="term-header">
-      <div class="term-name">The Three-Layer Sandwich</div>
-      <span class="term-badge">Framework</span>
+      <div class="wtk-bottom-nav">
+        <a href="mission-2-prompts.html" class="wtk-nav-btn">← Prompt Library</a>
+        <a href="mission-2-slides.html" class="wtk-nav-btn primary">Slide Deck →</a>
+      </div>
+
     </div>
-    <div class="term-def">The three layers that make up any AI system. Layer one is the user interface — the chat box, buttons, and upload tools. Layer two is the LLM — the brain that processes patterns and predicts outputs. Layer three is the data — what you feed it right now. Most people obsess over layers one and two. The AI Officer obsesses over layer three, because that is where results are made or broken.</div>
-  </div>
-
-  <div class="term-card">
-    <div class="term-header">
-      <div class="term-name">Training Data</div>
-      <span class="term-badge">Technical</span>
-    </div>
-    <div class="term-def">The massive dataset an LLM was built on before you ever opened it. Billions of pages of text, code, and research. You did not choose it, you cannot change it, and nothing you do updates it. The model knows what it knows from this layer — and it is fixed.</div>
-  </div>
-
-  <div class="term-card">
-    <div class="term-header">
-      <div class="term-name">Application Memory</div>
-      <span class="term-badge">Technical</span>
-    </div>
-    <div class="term-def">The layer where tools like ChatGPT and Claude remember your past conversations, preferences, and saved files. This is the app knowing you, not the AI knowing you. If you switch to a different app running the same underlying model, it has no idea who you are. The memory belongs to the application, not the model.</div>
-  </div>
-
-  <div class="term-card">
-    <div class="term-header">
-      <div class="term-name">The Data You Feed It Right Now</div>
-      <span class="term-badge">Core Concept</span>
-    </div>
-    <div class="term-def">The third and most controllable layer of data. What you paste into the prompt, what you upload, and what context you provide in the session. This is the layer that determines whether you get useful output or garbage. The model knows how to think. The app remembers who you are. But what you feed it right now is what determines the result.</div>
-  </div>
-
-
-  <!-- ═══ CATEGORY: Data Quality ═══ -->
-  <div class="wtk-category">Data Quality</div>
-
-  <div class="term-card">
-    <div class="term-header">
-      <div class="term-name">Data Checklist</div>
-      <span class="term-badge">Framework</span>
-    </div>
-    <div class="term-def">The four properties that make data AI-ready. (1) <strong>Consistent</strong> — same format, labels, and structure throughout. "New York" and "NY" and "new york" are three different things to AI. (2) <strong>Complete</strong> — no missing fields where data should exist. Gaps create blind spots AI will not flag. (3) <strong>Labeled</strong> — every column, category, and field has a clear name. If a human cannot tell what it means, AI definitely cannot. (4) <strong>Connected</strong> — related data is linked so the story makes sense. All four, or it is not ready.</div>
-  </div>
-
-  <div class="term-card">
-    <div class="term-header">
-      <div class="term-name">Hallucination</div>
-      <span class="term-badge">Risk</span>
-    </div>
-    <div class="term-def">When AI produces incorrect information and presents it confidently. AI does not flag its own errors. It will give you a polished, professional answer built entirely on wrong data if you let it. This is why the AI Officer verifies numbers, audits math, and surfaces assumptions before anything goes to leadership. Always tell AI: "Do not make up numbers."</div>
-  </div>
-
-  <div class="term-card">
-    <div class="term-header">
-      <div class="term-name">Garbage In, Garbage Out</div>
-      <span class="term-badge">Core Concept</span>
-    </div>
-    <div class="term-def">The foundational rule of AI data. Feed AI messy, incomplete, inconsistent data and it will produce a confident, professional, completely wrong output. The model does not know the data is bad. It just works with what you gave it. Fixing the data before building the program is the difference between an AI Officer and someone who is just using AI.</div>
-  </div>
-
-
-  <!-- ═══ CATEGORY: Safety & Governance ═══ -->
-  <div class="wtk-category">Safety &amp; Governance</div>
-
-  <div class="term-card">
-    <div class="term-header">
-      <div class="term-name">Free Tier</div>
-      <span class="term-badge">Risk</span>
-    </div>
-    <div class="term-def">The free version of AI tools like ChatGPT or Gemini. When you use the free version for work, your data is very likely being used to train the model. Whatever you paste in — client names, project details, financial numbers — could influence future outputs for other users. Never use free AI tools for work.</div>
-  </div>
-
-  <div class="term-card">
-    <div class="term-header">
-      <div class="term-name">Paid Tier</div>
-      <span class="term-badge">Governance</span>
-    </div>
-    <div class="term-def">A subscription-level AI account. Most paid tools stop using your data for training. This is the minimum level for professional work. Your data still goes through their servers and may be stored, but it is not used to train the model.</div>
-  </div>
-
-  <div class="term-card">
-    <div class="term-header">
-      <div class="term-name">Enterprise Tier</div>
-      <span class="term-badge">Governance</span>
-    </div>
-    <div class="term-def">An account negotiated between your organization's IT department and the AI provider. Includes contracts about how your data is handled, where it is stored, and what happens to it. The right tier for sensitive company data — salary information, client lists, financial records, legal documents.</div>
-  </div>
-
-  <div class="term-card">
-    <div class="term-header">
-      <div class="term-name">Data Governance</div>
-      <span class="term-badge">Governance</span>
-    </div>
-    <div class="term-def">The organizational decisions about which AI tools are approved, what data is safe to use with each tool, and what tier your team should be on. The AI Officer does not just use tools. The AI Officer sets the standard for the team. Data governance is one of the first things you establish when leading an AI program.</div>
-  </div>
-
-
-  <!-- ═══ CATEGORY: Tool Selection ═══ -->
-  <div class="wtk-category">Tool Selection</div>
-
-  <div class="term-card">
-    <div class="term-header">
-      <div class="term-name">The Four Tool Selection Criteria</div>
-      <span class="term-badge">Framework</span>
-    </div>
-    <div class="term-def">The AI Officer's framework for choosing the right AI tool for a program: (1) The data behind the model — what does it know best? (2) The user interface features — what does your team actually need? (3) The safety controls — what data agreements exist? (4) The apps it integrates with — what is already in your stack? Never start with the tool. Start with what the program needs.</div>
-  </div>
-
-  <div class="term-card">
-    <div class="term-header">
-      <div class="term-name">Context Window</div>
-      <span class="term-badge">Technical</span>
-    </div>
-    <div class="term-def">The amount of information an AI model can hold and process in one session. Larger context windows let you upload longer documents, paste more data, and maintain more complex conversations without the model losing track of earlier information. Important when selecting tools for programs that involve large reports or datasets.</div>
-  </div>
-
-
-  <div class="buddy-note">
-    <p>If any term here is still unclear, open your AI Buddy and ask:</p>
-    <div class="buddy-prompt-text">"Explain [term] with an example from my industry."</div>
-  </div>
-
-  <!-- Bottom nav -->
-  <div class="wtk-bottom-nav">
-    <a href="mission-2-prompts.html" class="wtk-nav-btn">← Prompt Library</a>
-    <a href="mission-2-slides.html" class="wtk-nav-btn primary">Slide Deck →</a>
+    
+      <div class="res-sidebar">
+        <div class="res-sidebar-label">Mission Resources</div>
+        
+        <a href="mission-2-textbook.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(40,123,232,0.1);">📖</div>
+          <div class="resource-info">
+            <div class="resource-tag">Text Book</div>
+            <div class="resource-title">Mission Briefs</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-2-prompts.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(40,123,232,0.1);">💬</div>
+          <div class="resource-info">
+            <div class="resource-tag">Prompts</div>
+            <div class="resource-title">Prompt Library</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-2-words.html" class="resource-card active">
+          <div class="resource-icon" style="background:rgba(4,16,45,0.06);">🔤</div>
+          <div class="resource-info">
+            <div class="resource-tag">Words to Know</div>
+            <div class="resource-title">Key Terms</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-2-slides.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(111,242,193,0.2);">📊</div>
+          <div class="resource-info">
+            <div class="resource-tag">Slides</div>
+            <div class="resource-title">Slide Deck</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+      </div>
   </div>
 
 </main>
-
 </body>
 </html>
