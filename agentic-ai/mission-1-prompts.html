@@ -43,7 +43,21 @@
   .pl-nav-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
   .pl-nav-btn.primary { background: #1a9e74; color: white; border-color: #1a9e74; }
   .pl-nav-btn.primary:hover { background: #178a65; }
+  .pl-layout { display: grid; grid-template-columns: 1fr 280px; gap: 32px; align-items: start; }
+  @media (max-width: 900px) { .pl-layout { grid-template-columns: 1fr; } .res-sidebar { display: none; } }
   @media (max-width: 760px) { .page-main { padding: 70px 20px 80px; } .topbar-nav { display: none; } }
+
+  .res-sidebar { display: flex; flex-direction: column; gap: 8px; position: sticky; top: 80px; }
+  .res-sidebar-label { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); padding: 0 2px; margin-bottom: 4px; }
+  .resource-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow-sm); transition: all 0.15s var(--ease); }
+  .resource-card:hover { border-color: rgba(26,158,116,0.35); box-shadow: 0 4px 16px rgba(4,16,45,0.09); transform: translateY(-1px); }
+  .resource-card.active { border-color: rgba(26,158,116,0.4); background: rgba(26,158,116,0.04); }
+  .resource-icon { width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .resource-info { flex: 1; min-width: 0; }
+  .resource-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1px; }
+  .resource-title { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+  .resource-arrow { font-size: 13px; color: var(--text-muted); flex-shrink: 0; }
+  .resource-card.active .resource-arrow { color: #1a9e74; }
 
 </style>
 </head>
@@ -71,24 +85,67 @@
 
   <a href="mission-1.html" class="pl-back">← Back to Mission 1</a>
 
-  <div class="pl-hero">
-    <div class="pl-track-pill">💬 Prompt Library</div>
-    <h1 class="pl-title">Mission 1 — Challenge Prompts</h1>
-    <p class="pl-sub">Every prompt is copy-paste ready. Replace anything in <strong style="color:#1a9e74;">[brackets]</strong> with your specific information.</p>
-  </div>
+  <div class="pl-layout">
+    <div class="pl-content">
 
-  <div class="pl-intro-note">
-    Use these prompts with your AI Buddy in AIO Labs, or copy them into Claude, ChatGPT, or Gemini. Add your own context to get better results.
-  </div>
+      <div class="pl-hero">
+        <div class="pl-track-pill">💬 Prompt Library</div>
+        <h1 class="pl-title">Mission 1 — Challenge Prompts</h1>
+        <p class="pl-sub">Every prompt is copy-paste ready. Replace anything in <strong style="color:#1a9e74;">[brackets]</strong> with your specific information.</p>
+      </div>
 
-  <div class="pl-section">
-    <div class="pl-section-label">All Prompts — Mission 1</div>
-    <p style="color:var(--text-muted);font-size:14px;">Prompts for this mission are being prepared.</p>
-  </div>
+      <div class="pl-intro-note">
+        Use these prompts with your AI Buddy in AIO Labs, or copy them into Claude, ChatGPT, or Gemini. Add your own context to get better results.
+      </div>
 
-  <div class="pl-bottom-nav">
-    <a href="mission-1-textbook.html" class="pl-nav-btn">← Mission Briefs</a>
-    <a href="mission-1-words.html" class="pl-nav-btn primary">Words to Know →</a>
+      <div class="pl-section">
+        <div class="pl-section-label">All Prompts — Mission 1</div>
+        <p style="color:var(--text-muted);font-size:14px;">Prompts for this mission are being prepared.</p>
+      </div>
+
+      <div class="pl-bottom-nav">
+        <a href="mission-1-textbook.html" class="pl-nav-btn">← Mission Briefs</a>
+        <a href="mission-1-words.html" class="pl-nav-btn primary">Words to Know →</a>
+      </div>
+
+    </div>
+    
+      <div class="res-sidebar">
+        <div class="res-sidebar-label">Mission Resources</div>
+        
+        <a href="mission-1-textbook.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(40,123,232,0.1);">📖</div>
+          <div class="resource-info">
+            <div class="resource-tag">Text Book</div>
+            <div class="resource-title">Mission Briefs</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-1-prompts.html" class="resource-card active">
+          <div class="resource-icon" style="background:rgba(26,158,116,0.1);">💬</div>
+          <div class="resource-info">
+            <div class="resource-tag">Prompts</div>
+            <div class="resource-title">Prompt Library</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-1-words.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(4,16,45,0.06);">🔤</div>
+          <div class="resource-info">
+            <div class="resource-tag">Words to Know</div>
+            <div class="resource-title">Key Terms</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-1-slides.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(111,242,193,0.2);">📊</div>
+          <div class="resource-info">
+            <div class="resource-tag">Slides</div>
+            <div class="resource-title">Slide Deck</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+      </div>
   </div>
 
 </main>
