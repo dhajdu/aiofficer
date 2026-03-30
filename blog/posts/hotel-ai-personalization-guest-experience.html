@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel AI Personalization: The Guest Experience Gap</title>
+    <title>Hotel AI Personalization: The Guest Experience Gap | AI Officer Institute</title>
     <meta name="description" content="Hotels collect guest data but fail to activate it. The AI Personalization Flywheel explains how hotel AI personalization creates real competitive advantage.">
 
     <!-- Open Graph Tags -->
     <meta property="og:type" content="article">
     <meta property="og:title" content="Hotel AI Personalization: The Guest Experience Gap">
     <meta property="og:description" content="Hotels collect guest data but fail to activate it. The AI Personalization Flywheel explains how hotel AI personalization creates real competitive advantage.">
-    <meta property="og:url" content="https://www.aiofficer.com/blog/posts/hotel-ai-personalization-guest-experience.html">
+    <meta property="og:url" content="https://www.ai-officer.com/blog/posts/hotel-ai-personalization-guest-experience.html">
     <meta property="og:site_name" content="AI Officer Institute">
 
     <!-- Twitter Card Tags -->
@@ -19,7 +19,7 @@
     <meta name="twitter:description" content="Hotels collect guest data but fail to activate it. The AI Personalization Flywheel explains how hotel AI personalization creates real competitive advantage.">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.aiofficer.com/blog/posts/hotel-ai-personalization-guest-experience.html">
+    <link rel="canonical" href="https://www.ai-officer.com/blog/posts/hotel-ai-personalization-guest-experience.html">
 
     <!-- JSON-LD Article Schema -->
     <script type="application/ld+json">
@@ -32,7 +32,7 @@
         "dateModified": "2026-03-30",
         "author": {
             "@type": "Person",
-            "name": "Dave Hajdu"
+            "name": "Dave"
         },
         "publisher": {
             "@type": "Organization",
@@ -97,7 +97,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Stylesheets -->
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="../../shared/styles.css">
     <link rel="stylesheet" href="../styles.css">
 
@@ -122,29 +122,69 @@
         .post-content h2:nth-of-type(3) { animation-delay: 0.3s; }
         .post-content h2:nth-of-type(4) { animation-delay: 0.4s; }
         .post-content h2:nth-of-type(5) { animation-delay: 0.5s; }
+
+        /* Post image styles */
+        figure.post-image {
+            margin: 2rem 0;
+        }
+
+        figure.post-image img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius-md);
+            display: block;
+        }
+
+        figure.post-image figcaption {
+            margin-top: 0.6rem;
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        figure.post-image-hero {
+            margin: 0 0 2.5rem 0;
+        }
+
+        figure.post-image-hero img {
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            display: block;
+        }
+
+        figure.post-image-hero figcaption {
+            margin-top: 0.6rem;
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.5;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
     <!-- Header Navigation -->
     <div class="topbar">
-        <a href="../../index.html" class="topbar-brand">AI Officer <span>Institute</span></a>
-        <div class="topbar-divider"></div>
-        <nav class="topbar-nav">
-            <a href="../../index.html" class="tnav-link">Hub</a>
-            <a href="../../generative-ai/index.html" class="tnav-link"><span class="tnav-dot" style="background:#D1458B"></span>Generative AI</a>
-            <a href="../../agentic-ai/index.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span>Agentic AI</a>
-            <a href="../../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1a9e74"></span>Micro-Sessions</a>
-            <a href="../../blog/index.html" class="tnav-link active"><span class="tnav-dot" style="background:#6FF2C1"></span>Blog</a>
-        </nav>
-    </div>
-
-    <!-- Post Hero Section -->
+  <a href="../../index.html" class="topbar-brand">AI Officer <span>Institute</span></a>
+  <div class="topbar-divider"></div>
+  <nav class="topbar-nav">
+    <a href="../../index.html" class="tnav-link">Hub</a>
+    <a href="../../generative-ai/index.html" class="tnav-link"><span class="tnav-dot" style="background:#D1458B"></span>Generative AI</a>
+    <a href="../../agentic-ai/index.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span>Agentic AI</a>
+    <a href="../../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1a9e74"></span>Micro-Sessions</a>
+    <a href="../../blog/index.html" class="tnav-link active"><span class="tnav-dot" style="background:#6FF2C1"></span>Blog</a>
+  </nav>
+</div>
+<!-- Post Hero Section -->
     <section class="post-hero">
         <div class="container-narrow">
             <div class="breadcrumb">
                 <a href="../index.html">Blog</a> / <span>The Hotel AI Personalization Gap</span>
             </div>
-            <div class="post-eyebrow">AI News &amp; Updates</div>
+            <div class="post-eyebrow">AI News & Updates</div>
             <h1>The Hotel AI Personalization Gap</h1>
             <p class="post-subtitle">Hotels have more guest data than ever. They just don't know how to activate it.</p>
         </div>
@@ -163,30 +203,28 @@
                     <span class="meta-value">4 min read</span>
                 </div>
                 <div class="meta-item">
-                    <span class="post-meta-category">AI News &amp; Updates</span>
+                    <span class="post-meta-category">AI News & Updates</span>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Hero Image -->
-    <div class="container-narrow">
-        <figure class="post-image post-image-hero">
-            <img
-                src="images/hotel-ai-personalization-guest-experience/hotel-ai-personalization-welcome-amenity-marriott-2026.webp"
-                alt="Marriott Bonvoy welcome amenity basket with tiered tray of pastries, tropical fruits, and coconuts — the kind of generic hotel personalization that misses what guests actually want"
-                width="480"
-                height="640"
-                loading="eager"
-            >
-            <figcaption>A welcome basket in room — real money spent on items nobody asked for. This is the hotel AI personalization problem in physical form.</figcaption>
-        </figure>
-    </div>
+</div>
 
     <!-- Post Content -->
     <article class="post-content-section">
         <div class="container-narrow">
             <div class="post-content">
+
+                <figure class="post-image post-image-hero">
+                    <img
+                        src="images/hotel-ai-personalization-guest-experience/hotel-ai-personalization-welcome-amenity-marriott-2026.webp"
+                        alt="Marriott Bonvoy welcome amenity basket with tiered tray of pastries, tropical fruits, and coconuts — the kind of generic hotel personalization that misses what guests actually want"
+                        width="480"
+                        height="640"
+                        loading="eager"
+                    >
+                    <figcaption>A welcome basket in room — real money spent on items nobody asked for. This is the hotel AI personalization problem in physical form.</figcaption>
+                </figure>
 
                 <p>I am sitting in a Marriott hotel room on my birthday weekend. Surrounded by paper. Folded brochures, printed menus, a welcome letter with my name typed at the top.</p>
 
@@ -317,13 +355,13 @@
     <section class="post-nav-wrapper">
         <div class="container-narrow">
             <div class="post-nav">
-                <a href="four-offices-of-the-future.html" class="post-nav-card">
+                <div class="post-nav-card">
                     <div class="post-nav-label">← Previous Post</div>
                     <h3 class="post-nav-title">The Four Offices of the Future</h3>
-                </a>
-                <div class="post-nav-card post-nav-empty">
+                </div>
+                <div class="post-nav-card">
                     <div class="post-nav-label">Next Post →</div>
-                    <h3 class="post-nav-title">Coming soon</h3>
+                    <h3 class="post-nav-title">View more posts</h3>
                 </div>
             </div>
         </div>
@@ -366,10 +404,18 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 by AI Officer Institute. All rights reserved.</p>
+                <p>&copy; 2025 by AI Officer Institute. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <script>
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            mobileMenuToggle.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
