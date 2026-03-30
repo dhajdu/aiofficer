@@ -18,8 +18,7 @@
   }
   body { background: var(--surface); }
 
-  .page-main { max-width: 1160px; margin: 0 auto; padding: 80px 40px 100px; }
-  .tb-layout { display: grid; grid-template-columns: 1fr 280px; gap: 40px; align-items: start; }
+  .page-main { max-width: 1060px; margin: 0 auto; padding: 80px 40px 100px; }
   .tb-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; margin-bottom: 32px; transition: color 0.12s; }
   .tb-back:hover { color: var(--text-primary); }
   .tb-hero { margin-bottom: 48px; }
@@ -50,19 +49,22 @@
   .tb-nav-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
   .tb-nav-btn.primary { background: #287be8; color: white; border-color: #287be8; }
   .tb-nav-btn.primary:hover { background: #1a6fd4; }
-  @media (max-width: 900px) { .tb-layout { grid-template-columns: 1fr; } .res-sidebar { display: none; } .page-main { padding: 70px 20px 80px; } .topbar-nav { display: none; } }
 
-  .res-sidebar { display: flex; flex-direction: column; gap: 8px; position: sticky; top: 80px; }
-  .res-sidebar-label { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); padding: 0 2px; margin-bottom: 4px; }
-  .resource-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px; box-shadow: var(--shadow-sm); transition: all 0.15s var(--ease); }
+  .mission-body { display: grid; grid-template-columns: 1fr 300px; gap: 24px; align-items: start; }
+  .resource-stack-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+  .resource-stack { display: flex; flex-direction: column; gap: 8px; }
+  .resource-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; text-decoration: none; color: inherit; display: flex; align-items: center; gap: 14px; box-shadow: var(--shadow-sm); transition: all 0.15s var(--ease); }
   .resource-card:hover { border-color: rgba(40,123,232,0.35); box-shadow: 0 4px 16px rgba(4,16,45,0.09); transform: translateY(-1px); }
   .resource-card.active { border-color: rgba(40,123,232,0.4); background: rgba(40,123,232,0.04); }
-  .resource-icon { width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .resource-icon { width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 17px; }
   .resource-info { flex: 1; min-width: 0; }
-  .resource-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1px; }
-  .resource-title { font-size: 13px; font-weight: 700; color: var(--text-primary); }
-  .resource-arrow { font-size: 13px; color: var(--text-muted); flex-shrink: 0; }
-  .resource-card.active .resource-arrow { color: #287be8; }
+  .resource-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px; }
+  .resource-title { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+  .resource-desc { font-size: 11.5px; color: var(--text-secondary); margin-top: 1px; }
+  .resource-arrow { font-size: 14px; color: var(--text-muted); flex-shrink: 0; }
+  .resource-card.active .resource-arrow { color: #287BE8; }
+  .mission-divider { height: 1px; background: var(--border); margin: 32px 0; }
+  @media (max-width: 900px) { .mission-body { grid-template-columns: 1fr; } }
 
 </style>
 </head>
@@ -90,14 +92,16 @@
 
   <a href="mission-3.html" class="tb-back">← Back to Mission 3</a>
 
-  <div class="tb-layout">
-    <div class="tb-content">
+  <div class="tb-hero">
+    <div class="tb-track-pill">Generative AI for Business · Mission 03</div>
+    <h1 class="tb-title">Advanced Prompt Frameworks</h1>
+    <p class="tb-sub">This is where prompts become professional deliverables. Stack RACE and CRA, master the AI Interview, and assemble a complete go-to-market brief that leadership can trust.</p>
+  </div>
 
-      <div class="tb-hero">
-        <div class="tb-track-pill">Generative AI for Business · Mission 03</div>
-        <h1 class="tb-title">Advanced Prompt Frameworks</h1>
-        <p class="tb-sub">This is where prompts become professional deliverables. Stack RACE and CRA, master the AI Interview, and assemble a complete go-to-market brief that leadership can trust.</p>
-      </div>
+  <div class="mission-divider"></div>
+
+  <div class="mission-body">
+    <div>
 
       
     <section class="brief-section" id="brief-1">
@@ -299,22 +303,25 @@ https://aiofficer.sg.larksuite.com/sync/[Mission3_Prompts_Link]</p>
 
     </div>
     
-      <div class="res-sidebar">
-        <div class="res-sidebar-label">Mission Resources</div>
-        
+      <div>
+        <div class="resource-stack-label">Mission Resources</div>
+        <div class="resource-stack">
+          
         <a href="mission-3-textbook.html" class="resource-card active">
           <div class="resource-icon" style="background:rgba(40,123,232,0.1);">📖</div>
           <div class="resource-info">
             <div class="resource-tag">Text Book</div>
             <div class="resource-title">Mission Briefs</div>
+            <div class="resource-desc">All the briefs for this mission</div>
           </div>
           <div class="resource-arrow">→</div>
         </a>
         <a href="mission-3-prompts.html" class="resource-card">
           <div class="resource-icon" style="background:rgba(40,123,232,0.1);">💬</div>
           <div class="resource-info">
-            <div class="resource-tag">Prompts</div>
-            <div class="resource-title">Prompt Library</div>
+            <div class="resource-tag">Prompt Library</div>
+            <div class="resource-title">Challenge Prompts</div>
+            <div class="resource-desc">Copy-paste prompts for every challenge</div>
           </div>
           <div class="resource-arrow">→</div>
         </a>
@@ -323,6 +330,7 @@ https://aiofficer.sg.larksuite.com/sync/[Mission3_Prompts_Link]</p>
           <div class="resource-info">
             <div class="resource-tag">Words to Know</div>
             <div class="resource-title">Key Terms</div>
+            <div class="resource-desc">Definitions for every key concept</div>
           </div>
           <div class="resource-arrow">→</div>
         </a>
@@ -331,9 +339,11 @@ https://aiofficer.sg.larksuite.com/sync/[Mission3_Prompts_Link]</p>
           <div class="resource-info">
             <div class="resource-tag">Slides</div>
             <div class="resource-title">Slide Deck</div>
+            <div class="resource-desc">Visual summary of key concepts</div>
           </div>
           <div class="resource-arrow">→</div>
         </a>
+        </div>
       </div>
   </div>
 
