@@ -123,45 +123,27 @@
         .post-content h2:nth-of-type(4) { animation-delay: 0.4s; }
         .post-content h2:nth-of-type(5) { animation-delay: 0.5s; }
 
-        /* Post image styles */
-        figure.post-image {
-            margin: 2rem 0;
-        }
+        /* Fix double-numbering: stylesheet uses CSS counters but doesn't suppress browser-native ol numbers */
+        .post-content ol { list-style: none; }
 
-        figure.post-image img {
+        /* Post image styles — matches pattern from 8-marketing-trends-2026.html */
+        .post-image {
+            margin: 2.5rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .post-image img {
             width: 100%;
             height: auto;
-            border-radius: var(--radius-md);
             display: block;
         }
-
-        figure.post-image figcaption {
-            margin-top: 0.6rem;
-            font-size: 13px;
-            color: var(--muted);
-            line-height: 1.5;
+        .post-image figcaption {
+            padding: 0.75rem 1rem;
+            background: var(--gray, #EAEEF2);
+            font-size: 0.8rem;
+            color: #6B7A90;
             font-style: italic;
-        }
-
-        figure.post-image-hero {
-            margin: 0 0 2.5rem 0;
-        }
-
-        figure.post-image-hero img {
-            width: 100%;
-            height: auto;
-            max-height: 480px;
-            object-fit: cover;
-            border-radius: var(--radius-md);
-            display: block;
-        }
-
-        figure.post-image-hero figcaption {
-            margin-top: 0.6rem;
-            font-size: 13px;
-            color: var(--muted);
             line-height: 1.5;
-            font-style: italic;
         }
     </style>
 </head>
@@ -215,7 +197,7 @@
         <div class="container-narrow">
             <div class="post-content">
 
-                <figure class="post-image post-image-hero">
+                <figure class="post-image" style="margin-top: 0;">
                     <img
                         src="images/hotel-ai-personalization-guest-experience/hotel-ai-personalization-welcome-amenity-marriott-2026.webp"
                         alt="Marriott Bonvoy welcome amenity basket with tiered tray of pastries, tropical fruits, and coconuts — the kind of generic hotel personalization that misses what guests actually want"
