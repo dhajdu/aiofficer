@@ -12,13 +12,22 @@
   /* team main — no extra top margin (hero provides it) */
   .team-main { max-width: 1160px; margin: 0 auto; padding: 48px 56px 100px; }
 
-  /* ── Stat cards ── */
-  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px; }
-  .stat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; }
-  .stat-card-num { font-size: 36px; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: var(--text-primary); letter-spacing: -1px; margin-bottom: 4px; }
-  .stat-card-num.blue { color: var(--blue); }
-  .stat-card-num.mint { color: var(--mint-dark); }
-  .stat-card-label { font-size: 13px; color: var(--text-muted); line-height: 1.4; }
+  /* ── Hero stats (inside .hero) ── */
+  .hero-stats {
+    display: flex; align-items: center; gap: 0;
+    margin-top: 32px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px; overflow: hidden;
+  }
+  .hero-stat { flex: 1; padding: 20px 28px; }
+  .hero-stat-num {
+    font-size: 32px; font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    color: white; letter-spacing: -1px; margin-bottom: 3px;
+  }
+  .hero-stat-num.mint { color: var(--mint); }
+  .hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 500; }
+  .hero-stat-divider { width: 1px; height: 48px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
 
   /* ── Toolbar ── */
   .table-toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
@@ -124,9 +133,7 @@
 
 <div class="topbar">
   <a href="index.html" class="topbar-brand">AIO <span>Labs</span></a>
-  <nav class="topbar-nav">
-    <a href="index.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> Home</a>
-    <a href="certification.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
+  <nav class="topbar-nav">    <a href="certification.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
     <a href="coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
     <a href="micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
     <a href="blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
@@ -146,35 +153,32 @@
     <p class="hero-eyebrow">My Team &middot; Edge8 AI</p>
     <h1>Team Progress <span class="accent">at a Glance</span></h1>
     <p class="hero-subtitle">Track your team's certification progress across Gen AI, Agentic AI, and Leadership tracks.</p>
-    <div class="hero-pills">
-    <span class="pill pill-blue">17 Learners</span>
-    <span class="pill pill-mint">Edge8 AI</span>
-    <span class="pill pill-mag">Live Progress</span>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">17</div>
+        <div class="hero-stat-label">Learners Enrolled</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num mint">2</div>
+        <div class="hero-stat-label">Certificates Achieved</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">0</div>
+        <div class="hero-stat-label">AI Officers</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">0</div>
+        <div class="hero-stat-label">CAIOs</div>
+      </div>
     </div>
   </div>
 </section>
 
 <div class="layout">
   <main class="team-main">
-
-    <div class="stat-row">
-      <div class="stat-card">
-        <div class="stat-card-num blue">17</div>
-        <div class="stat-card-label">Learners Enrolled</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-num mint">2</div>
-        <div class="stat-card-label">Certificates Achieved</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-num">0</div>
-        <div class="stat-card-label">AI Officers</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-num">0</div>
-        <div class="stat-card-label">CAIOs</div>
-      </div>
-    </div>
 
     <div class="table-toolbar">
       <input class="search-input" type="text" id="searchInput" placeholder="Search learners…" oninput="filterTable()">
