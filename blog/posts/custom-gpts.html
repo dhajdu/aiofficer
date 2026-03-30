@@ -139,6 +139,9 @@
         .post-content blockquote {
             animation-delay: 0.5s;
         }
+
+        /* Numbered list fix */
+        .post-content ol { list-style: none; }
     </style>
 </head>
 <body>
@@ -223,7 +226,7 @@
 
             <h3>5. Test with Real Work</h3>
 
-            <p>Don't test with toy prompts. Use actual briefs, documents, or requests from your team. See where the GPT succeeds. See where it fails. Refine instructions based on real patterns.</p>
+            <p>Don't test with toy prompts. Use actual briefs, documents, or requests from your team. See where the GPT succeeds. See where it fails. Refine instructions based on real patterns. This iterative approach is the single biggest separator between effective and ineffective AI users — read more in <a href="iteration-secret-weapon.html">Iteration Is the Secret Weapon of AI Power Users</a>.</p>
 
             <h3>6. Save and Share</h3>
 
@@ -249,7 +252,7 @@
 
             <h3>Training Enablement GPT</h3>
 
-            <p>Knows your product, materials, and docs. Generates training scenarios, quizzes, explanations. New hires get consistent, instant context.</p>
+            <p>Knows your product, materials, and docs. Generates training scenarios, quizzes, explanations. New hires get consistent, instant context. For a more immersive version, <a href="interactive-ai-avatars.html">interactive AI avatars</a> can take this further with conversational, video-based onboarding that exists 24/7.</p>
 
             <h3>Technical Documentation Assistant</h3>
 
@@ -403,10 +406,12 @@
     <script>
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-            mobileMenuToggle.classList.toggle('active');
-        });
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+        }
     </script>
 </body>
 </html>

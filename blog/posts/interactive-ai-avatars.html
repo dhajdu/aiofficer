@@ -194,6 +194,8 @@
 
             <h2>Four Offices, Four Uses</h2>
 
+            <p>This framework maps directly to the <a href="four-offices-of-the-future.html">four offices of the future</a> — Revenue, Talent, Operations, and Innovation — where AI creates the most leverage.</p>
+
             <h3>Revenue</h3>
 
             <p>Always-on sales rep, customer success guidance, and product demos that never sleep. Customers get answers instantly.</p>
@@ -226,7 +228,7 @@
 
             <h3>Step 3: Build Knowledge Base</h3>
 
-            <p>Persona instructions, knowledge content, and prompt engineering. This is where the real work lives. Clear instructions, quality data, and proper prompting determine whether your avatar is useful or frustrating. A beautifully recorded avatar with poor knowledge data creates frustration. A technically imperfect avatar with rich, organized knowledge becomes genuinely useful.</p>
+            <p>Persona instructions, knowledge content, and prompt engineering. This is where the real work lives. If you are already using <a href="custom-gpts.html">Custom GPTs</a> for your team, the same knowledge upload approach applies here. Clear instructions, quality data, and proper prompting determine whether your avatar is useful or frustrating. A beautifully recorded avatar with poor knowledge data creates frustration. A technically imperfect avatar with rich, organized knowledge becomes genuinely useful.</p>
 
             <h3>Step 4: Test and Deploy</h3>
 
@@ -312,11 +314,11 @@
         <!-- Previous/Next Navigation -->
         <nav class="post-nav">
             <div class="nav-prev">
-                <a href="eight-marketing-trends-2026.html">
+                <a href="../index.html">
                     <span class="nav-arrow">&larr;</span>
                     <div>
-                        <span class="nav-label">Previous post</span>
-                        <span class="nav-title">8 Marketing Trends for 2026</span>
+                        <span class="nav-label">All posts</span>
+                        <span class="nav-title">Back to Blog</span>
                     </div>
                 </a>
             </div>
@@ -381,10 +383,12 @@
     <script>
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-            mobileMenuToggle.classList.toggle('active');
-        });
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+        }
     </script>
 </body>
 </html>

@@ -200,7 +200,7 @@
 
             <h2>2. Gemini Gems: Reusable AI Agents</h2>
 
-            <p>Save context once. Deploy AI agents repeatedly. Build a campaign copy reviewer. A research summarizer. A Facebook Ads ideation engine. Each one remembers its job.</p>
+            <p>Save context once. Deploy AI agents repeatedly. Build a campaign copy reviewer. A research summarizer. A Facebook Ads ideation engine. Each one remembers its job. If you are already in the OpenAI ecosystem, <a href="custom-gpts.html">Custom GPTs</a> serve the same purpose — the concept is identical, just a different platform.</p>
 
             <p><strong>Key Features:</strong> Saved context, custom instructions, reusable agents, persistent memory</p>
 
@@ -248,7 +248,7 @@
 
             <h2>The Takeaway</h2>
 
-            <p>Google is building toward outcomes, not interfaces. These tools reduce the distance between thinking and execution. For AI Officers managing complexity, that shift matters. Explore them. Experiment. Find where they reduce friction in your workflow.</p>
+            <p>Google is building toward outcomes, not interfaces. These tools reduce the distance between thinking and execution. For AI Officers managing complexity, that shift matters. Pair these tools with voice-first workflows — the <a href="ai-dictation-tools.html">top AI dictation tools in 2026</a> can dramatically speed up how fast ideas move from your head into these platforms. Explore them. Experiment. Find where they reduce friction in your workflow.</p>
 
             <p>Start with NotebookLM if research grounding matters. Start with Gems if team consistency matters. Start with Imagen 3 if visual output matters. Start with Opal if internal tooling matters. You don't need all of them. You need the ones that solve your most immediate friction.</p>
         </article>
@@ -357,10 +357,12 @@
     <script>
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-            mobileMenuToggle.classList.toggle('active');
-        });
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+        }
     </script>
 </body>
 </html>

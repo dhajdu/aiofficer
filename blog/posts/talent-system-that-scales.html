@@ -174,7 +174,7 @@
             <div class="post-content">
                 <h2>The Real Problem Isn't Talent Scarcity</h2>
                 <p>In Vietnam, 65% of employees plan to change jobs within six months. Over 75% of employers can't find the talent they need. This isn't a shortage. It's a system design problem.</p>
-                <p>Serial entrepreneur Ray Chou, who built 19 companies, led a session for Leadership in the AI Era that exposed the truth: loyalty is not something you screen for. It's the result of the environment leaders create.</p>
+                <p>Serial entrepreneur Ray Chou, who built 19 companies, led a session for Leadership in the AI Era that exposed the truth: loyalty is not something you screen for. It's the result of the environment leaders create. Understanding your own leadership patterns is the foundation of this — see <a href="leadership-brand.html">The Leadership Brand You Already Have</a> for the inner work that makes the outer systems work.</p>
 
                 <h2>The Four Stages of Your Employee Lifecycle</h2>
                 <p>High-performing companies treat the entire employee journey as one integrated system:</p>
@@ -320,14 +320,14 @@
     <section class="post-nav-wrapper">
         <div class="container-narrow">
             <div class="post-nav">
-                <div class="post-nav-card">
+                <a class="post-nav-card" href="iteration-secret-weapon.html">
                     <div class="post-nav-label">← Previous Post</div>
                     <h3 class="post-nav-title">Iteration Is the Secret Weapon of AI Power Users</h3>
-                </div>
-                <div class="post-nav-card">
+                </a>
+                <a class="post-nav-card" href="four-offices-of-the-future.html">
                     <div class="post-nav-label">Next Post →</div>
                     <h3 class="post-nav-title">The Four Offices of the Future</h3>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -377,10 +377,12 @@
     <script>
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-            mobileMenuToggle.classList.toggle('active');
-        });
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+        }
     </script>
 </body>
 </html>

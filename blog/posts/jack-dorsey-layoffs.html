@@ -223,12 +223,12 @@
                     </div>
                 </div>
 
-                <p>Now it's 50% people and 50% artificial intelligence. Every leader is managing a hybrid workforce. Humans and machines. Your people are working alongside AI systems. Your workflows are being optimized by AI.</p>
+                <p>Now it's 50% people and 50% artificial intelligence. Every leader is managing a hybrid workforce. Humans and machines. Your people are working alongside AI systems. Your workflows are being optimized by AI. The organizational structure required for this shift is what we call <a href="four-offices-of-the-future.html">the four offices of the future</a> — a framework for connecting AI directly to business outcomes.</p>
 
                 <p>But most leaders have only been trained for the first half. Managing people is experience-based. Managing the intersection of people and AI systems requires different skills.</p>
 
                 <h2>What This Reveals</h2>
-                <p>The 4,000 people Dorsey let go likely included roles that existed to manage the complexity of old tools and systems. Customer success managers dealing with Salesforce implementation. DevOps engineers managing legacy infrastructure. People whose job was to bridge the gap between what the software could do and what the business needed.</p>
+                <p>The 4,000 people Dorsey let go likely included roles that existed to manage the complexity of old tools and systems. Customer success managers dealing with Salesforce implementation. DevOps engineers managing legacy infrastructure. People whose job was to bridge the gap between what the software could do and what the business needed. To understand how to build the talent systems that thrive in this new environment, read <a href="talent-system-that-scales.html">How to Build a Talent System That Actually Scales</a>.</p>
 
                 <div class="callout">
                     <strong>In the 50/50 Era, those bridges are built differently. Smaller teams work with AI as a co-worker. The workflows are cleaner because they're designed for AI to follow, which means humans can follow them too.</strong>
@@ -293,14 +293,14 @@
     <section class="post-nav-wrapper">
         <div class="container-narrow">
             <div class="post-nav">
-                <div class="post-nav-card">
+                <a class="post-nav-card" href="8-marketing-trends-2026.html">
                     <div class="post-nav-label">← Previous Post</div>
                     <h3 class="post-nav-title">8 Marketing Trends for 2026 That Actually Matter</h3>
-                </div>
-                <div class="post-nav-card">
+                </a>
+                <a class="post-nav-card" href="iteration-secret-weapon.html">
                     <div class="post-nav-label">Next Post →</div>
                     <h3 class="post-nav-title">Iteration Is the Secret Weapon of AI Power Users</h3>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -350,10 +350,12 @@
     <script>
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-            mobileMenuToggle.classList.toggle('active');
-        });
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+        }
     </script>
 </body>
 </html>

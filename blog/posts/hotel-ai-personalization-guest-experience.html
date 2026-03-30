@@ -243,7 +243,7 @@
 
                 <p>Here is what a good hotel AI personalization system looks like in practice.</p>
 
-                <p>It starts before you arrive. You book a room. An AI-assisted concierge reaches out in your preferred language, available 24 hours a day. It already knows you don't eat onions. It suggests the crab pasta from the newest menu. It asks if you'd like to book a tennis coach and recommends available times.</p>
+                <p>It starts before you arrive. You book a room. An <a href="interactive-ai-avatars.html">AI-assisted avatar concierge</a> reaches out in your preferred language, available 24 hours a day. It already knows you don't eat onions. It suggests the crab pasta from the newest menu. It asks if you'd like to book a tennis coach and recommends available times.</p>
 
                 <p>When you arrive, check-in takes two minutes. The front desk wishes you a happy birthday. The system asks if you'd like to book a massage at a nearby spa after your tennis session — because it knows those are things you value.</p>
 
@@ -269,7 +269,7 @@
 
                 <div class="callout-highlight">
                     <div class="callout-highlight-label">The 50/50 Era</div>
-                    <div class="callout-highlight-text">Half of every workflow in hospitality is becoming AI. The brands winning are not the ones with the most data. They are the ones who know how to lead people and AI as a team to activate that data.</div>
+                    <div class="callout-highlight-text">Half of every workflow in hospitality is becoming AI. The brands winning are not the ones with the most data. They are the ones who know how to lead people and AI as a team to activate that data. This is the <a href="jack-dorsey-layoffs.html">50/50 Era</a> playing out in hospitality.</div>
                 </div>
 
                 <h2>The Real Problem Is Leadership, Not Technology</h2>
@@ -337,14 +337,14 @@
     <section class="post-nav-wrapper">
         <div class="container-narrow">
             <div class="post-nav">
-                <div class="post-nav-card">
+                <a class="post-nav-card" href="four-offices-of-the-future.html">
                     <div class="post-nav-label">← Previous Post</div>
                     <h3 class="post-nav-title">The Four Offices of the Future</h3>
-                </div>
-                <div class="post-nav-card">
-                    <div class="post-nav-label">Next Post →</div>
-                    <h3 class="post-nav-title">View more posts</h3>
-                </div>
+                </a>
+                <a class="post-nav-card" href="../index.html">
+                    <div class="post-nav-label">All Posts →</div>
+                    <h3 class="post-nav-title">View all blog posts</h3>
+                </a>
             </div>
         </div>
     </section>
@@ -394,10 +394,12 @@
     <script>
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-            mobileMenuToggle.classList.toggle('active');
-        });
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+        }
     </script>
 </body>
 </html>

@@ -192,7 +192,7 @@
                 <p>Everything related to your customer that drives new sales and retention. But it only works when someone owns the whole pipeline. Not just marketing. Not just sales. The whole thing. When it's siloed, AI optimizes pieces that don't connect.</p>
 
                 <h3>Talent</h3>
-                <p>The full lifecycle of your people. Hiring, onboarding, development, culture. But it only works when you treat your people processes as a product, not a process.</p>
+                <p>The full lifecycle of your people. Hiring, onboarding, development, culture. But it only works when you treat your people processes as a product, not a process. See how to build this end-to-end in <a href="talent-system-that-scales.html">How to Build a Talent System That Actually Scales</a>.</p>
                 <p>The most important asset you have is your people processes, not your people. People fill them. AI accelerates them. But only if they exist.</p>
 
                 <h3>Operations</h3>
@@ -244,7 +244,7 @@
 
                 <div class="callout-highlight">
                     <div class="callout-highlight-label">The Key Shift</div>
-                    <div class="callout-highlight-text">Then something interesting happened. The documented workflow became the prompt. They pasted it into an AI tool and vibe coded interactive prototypes in under an hour. Proposal generators. Onboarding tools. Customer feedback routers. All built from workflows that didn't exist that morning. The documentation wasn't prep work for the build. The documentation was the build spec.</div>
+                    <div class="callout-highlight-text">Then something interesting happened. The documented workflow became the prompt. They pasted it into an AI tool and vibe coded interactive prototypes in under an hour. Proposal generators. <a href="interactive-ai-avatars.html">Onboarding avatar tools</a>. Customer feedback routers. All built from workflows that didn't exist that morning. The documentation wasn't prep work for the build. The documentation was the build spec.</div>
                 </div>
 
                 <h2>The Path to ROI</h2>
@@ -315,14 +315,14 @@
     <section class="post-nav-wrapper">
         <div class="container-narrow">
             <div class="post-nav">
-                <div class="post-nav-card">
+                <a class="post-nav-card" href="talent-system-that-scales.html">
                     <div class="post-nav-label">← Previous Post</div>
                     <h3 class="post-nav-title">How to Build a Talent System That Actually Scales</h3>
-                </div>
-                <div class="post-nav-card">
+                </a>
+                <a class="post-nav-card" href="hotel-ai-personalization-guest-experience.html">
                     <div class="post-nav-label">Next Post →</div>
-                    <h3 class="post-nav-title">View more posts</h3>
-                </div>
+                    <h3 class="post-nav-title">The Hotel AI Personalization Gap</h3>
+                </a>
             </div>
         </div>
     </section>
@@ -372,10 +372,12 @@
     <script>
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-            mobileMenuToggle.classList.toggle('active');
-        });
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+        }
     </script>
 </body>
 </html>

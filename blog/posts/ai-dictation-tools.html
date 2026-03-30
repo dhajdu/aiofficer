@@ -232,7 +232,7 @@
 
             <p>Dictation works best when you're moving. When you're thinking out loud. When you need speed over polish. Drafting client updates while walking to a meeting. Capturing takeaways from a call before you forget them. Writing code comments between builds. Expanding a rough idea into a proposal outline. Recording training content on the fly.</p>
 
-            <p>These are dictation moments. Your hands are busy or unavailable. Your brain is moving. Typing is friction. Dictation doesn't replace typing. It supplements it. You draft with voice. You edit with keyboard. The combination is faster than either alone, especially for content creation and brainstorming.</p>
+            <p>These are dictation moments. Your hands are busy or unavailable. Your brain is moving. Typing is friction. Dictation doesn't replace typing. It supplements it. You draft with voice. You edit with keyboard. The combination is faster than either alone, especially for content creation and brainstorming. If you are building structured AI workflows for your team, <a href="custom-gpts.html">Custom GPTs</a> pair well with dictation — speak a brief, let the GPT structure it.</p></p>
 
             <h2>How to Choose</h2>
 
@@ -353,10 +353,12 @@
     <script>
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-            mobileMenuToggle.classList.toggle('active');
-        });
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+        }
     </script>
 </body>
 </html>

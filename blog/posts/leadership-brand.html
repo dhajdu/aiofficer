@@ -131,6 +131,9 @@
         .post-content blockquote {
             animation-delay: 0.5s;
         }
+
+        /* Numbered list fix */
+        .post-content ol { list-style: none; }
     </style>
 </head>
 <body>
@@ -202,7 +205,7 @@
 
             <h3>Four: Build Infrastructure With AI as Mirror</h3>
 
-            <p>Once you understand your brand, create systems that reinforce it. AI can be a powerful tool to catch when you're defaulting to weaker habits under stress.</p>
+            <p>Once you understand your brand, create systems that reinforce it. AI can be a powerful tool to catch when you're defaulting to weaker habits under stress. The same principle applies to how you build and retain your team — read <a href="talent-system-that-scales.html">How to Build a Talent System That Actually Scales</a> for the structural side of this work.</p>
 
             <h2>My Leadership Brand Statement</h2>
 
@@ -334,10 +337,10 @@
                 </a>
             </div>
             <div class="nav-next">
-                <a href="iteration-secret-weapon.html">
+                <a href="8-marketing-trends-2026.html">
                     <div>
                         <span class="nav-label">Next post</span>
-                        <span class="nav-title">Iteration as Your Secret Weapon</span>
+                        <span class="nav-title">8 Marketing Trends for 2026 That Actually Matter</span>
                     </div>
                     <span class="nav-arrow">&rarr;</span>
                 </a>
@@ -394,10 +397,12 @@
     <script>
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-            mobileMenuToggle.classList.toggle('active');
-        });
+        if (mobileMenuToggle && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                mobileMenuToggle.classList.toggle('active');
+            });
+        }
     </script>
 </body>
 </html>
