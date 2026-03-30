@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide Deck — Mission 2: Clean Data, AI's Favorite Snack</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  :root {
+    --royal: #287BE8;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(4,16,45,0.07);
+    --shadow-hover: 0 6px 24px rgba(4,16,45,0.10);
+    --text-tertiary: #8b91ac;
+    --border-hover: #b0b6cc;
+  }
+
+  body { background: #0d1117; }
+
+  /* ── Header bar ── */
+  .slides-header {
+    position: fixed; top: 56px; left: 0; right: 0;
+    background: rgba(13,17,23,0.95); border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0 32px; height: 48px; display: flex; align-items: center; z-index: 50;
+    gap: 16px;
+  }
+  .slides-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5);
+    text-decoration: none; transition: color 0.12s;
+  }
+  .slides-back:hover { color: rgba(255,255,255,0.85); }
+  .slides-title {
+    font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.65);
+    margin-left: 8px;
+  }
+  .slides-counter {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: rgba(255,255,255,0.35); margin-left: auto;
+  }
+
+  /* ── Slide wrapper ── */
+  .slides-wrapper {
+    padding-top: 104px;
+    padding-bottom: 80px;
+    display: flex; flex-direction: column; align-items: center; gap: 0;
+  }
+
+  /* ── Individual slide ── */
+  .slide {
+    width: 100%; max-width: 900px; min-height: 520px;
+    margin: 0 auto 3px;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 60px 80px;
+    position: relative;
+  }
+
+  /* Slide variants */
+  .slide-title-card {
+    background: var(--navy);
+    min-height: 600px;
+  }
+  .slide-dark { background: #161b22; }
+  .slide-blue { background: rgba(40,123,232,0.12); border: 1px solid rgba(40,123,232,0.2); }
+  .slide-light { background: white; }
+  .slide-navy { background: var(--navy); }
+  .slide-mint { background: rgba(26,158,116,0.1); border: 1px solid rgba(26,158,116,0.2); }
+
+  /* Slide number */
+  .slide-num {
+    position: absolute; top: 28px; right: 32px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+    color: rgba(255,255,255,0.2);
+  }
+  .slide-light .slide-num { color: rgba(4,16,45,0.2); }
+
+  /* Typography in slides */
+  .slide-eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-bottom: 16px;
+    color: rgba(111,242,193,0.8);
+  }
+  .slide-eyebrow.blue { color: rgba(40,123,232,0.9); }
+  .slide-eyebrow.muted { color: rgba(255,255,255,0.4); }
+
+  .slide-h1 {
+    font-size: 52px; font-weight: 700; letter-spacing: -1.5px;
+    line-height: 1.05; color: white; margin-bottom: 24px;
+  }
+  .slide-h1 .accent { color: #6FF2C1; }
+  .slide-h2 {
+    font-size: 36px; font-weight: 700; letter-spacing: -0.8px;
+    line-height: 1.15; color: white; margin-bottom: 20px;
+  }
+  .slide-h2.dark { color: var(--navy); }
+  .slide-h3 {
+    font-size: 28px; font-weight: 700; letter-spacing: -0.5px;
+    line-height: 1.2; color: white; margin-bottom: 16px;
+  }
+
+  .slide-body {
+    font-size: 18px; line-height: 1.65;
+    color: rgba(255,255,255,0.75); max-width: 660px;
+  }
+  .slide-body.dark { color: rgba(4,16,45,0.7); }
+  .slide-body strong { color: white; font-weight: 700; }
+  .slide-body.dark strong { color: var(--navy); }
+
+  /* Two-column layout */
+  .slide-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .slide-col-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  /* Stat callout */
+  .stat-block {
+    display: flex; flex-direction: column; align-items: flex-start;
+    background: rgba(255,255,255,0.05); border-radius: 16px;
+    padding: 24px 28px; margin: 24px 0;
+  }
+  .stat-num {
+    font-size: 72px; font-weight: 700; letter-spacing: -3px;
+    line-height: 1; color: #6FF2C1; margin-bottom: 8px;
+  }
+  .stat-label { font-size: 16px; color: rgba(255,255,255,0.6); }
+
+  /* List styles */
+  .slide-list {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .slide-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 17px; line-height: 1.5;
+  }
+  .slide-list li .bullet {
+    width: 24px; height: 24px; border-radius: 6px; flex-shrink: 0;
+    background: rgba(40,123,232,0.2); color: #287BE8;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin-top: 2px;
+  }
+  .slide-list.mint li .bullet { background: rgba(26,158,116,0.2); color: #1a9e74; }
+  .slide-list li .text { color: rgba(255,255,255,0.8); }
+  .slide-list li .text strong { color: white; display: block; margin-bottom: 2px; }
+
+  /* Divider line */
+  .slide-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 24px 0; }
+
+  /* Quote */
+  .slide-quote {
+    font-size: 26px; font-weight: 700; letter-spacing: -0.3px;
+    color: white; line-height: 1.35; font-style: italic; margin-bottom: 20px;
+  }
+
+  /* Nav arrows */
+  .slide-nav {
+    position: fixed; bottom: 28px; right: 32px;
+    display: flex; gap: 8px; z-index: 60;
+  }
+  .slide-nav-btn {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7); font-size: 16px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.12s;
+  }
+  .slide-nav-btn:hover { background: rgba(255,255,255,0.18); color: white; }
+
+  /* Progress dots */
+  .slide-dots {
+    position: fixed; bottom: 36px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 6px; z-index: 60;
+  }
+  .slide-dot {
+    width: 6px; height: 6px; border-radius: 3px;
+    background: rgba(255,255,255,0.2); cursor: pointer;
+    transition: all 0.2s;
+  }
+  .slide-dot.active { width: 20px; background: #6FF2C1; }
+
+  @media (max-width: 760px) {
+    .slide { padding: 40px 28px; min-height: auto; }
+    .slide-h1 { font-size: 32px; }
+    .slide-h2 { font-size: 24px; }
+    .slide-cols { grid-template-columns: 1fr; }
+    .topbar-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ TOP BAR ═══════════════ -->
+<div class="topbar">
+  <a href="../index.html" class="topbar-brand">AIO <span>Labs</span></a>
+  <nav class="topbar-nav">
+    <a href="../index.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> Home</a>
+    <a href="../certification.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
+    <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+    <a href="../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="https://claude.ai" target="_blank" class="buddy-launch-btn">🤖 AI Buddy</a>
+    <div class="topbar-stat">🔥 7</div>
+    <div class="topbar-stat">⭐ 1,240</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-avatar">DH</div>
+  </div>
+</div>
+
+<!-- Slide sub-header -->
+<div class="slides-header">
+  <a href="mission-2.html" class="slides-back">← Mission 2</a>
+  <span class="slides-title">Clean Data, AI's Favorite Snack — Visual Summary</span>
+  <span class="slides-counter" id="slide-counter">1 / 20</span>
+</div>
+
+<!-- ═══════════════ SLIDES ═══════════════ -->
+<div class="slides-wrapper" id="slides-wrapper">
+
+  <!-- SLIDE 1: Title -->
+  <div class="slide slide-title-card" data-slide="1">
+    <span class="slide-num">01</span>
+    <div class="slide-eyebrow">Generative AI Essentials · Mission 02</div>
+    <h1 class="slide-h1">Clean Data,<br>AI's <span class="accent">Favorite Snack</span></h1>
+    <p class="slide-body">Fix the fuel before you build the program. The difference between AI programs that deliver and ones that burn budget.</p>
+  </div>
+
+  <!-- SLIDE 2: You Built the Mindset -->
+  <div class="slide slide-dark" data-slide="2">
+    <span class="slide-num">02</span>
+    <div class="slide-eyebrow">Mission 1 to Mission 2</div>
+    <h2 class="slide-h2">Mission 1: You learned to lead AI.<br>Mission 2: You learn to fuel it.</h2>
+    <div class="slide-divider" style="margin-top: 28px;"></div>
+    <p class="slide-body" style="margin-top: 24px;">You learned the 50/50 era. You learned the six beliefs and five daily moves. You used RACE and the AI Interview to prove that your input drives AI output. That was the mindset. Now we get operational.</p>
+  </div>
+
+  <!-- SLIDE 3: The Ferrari Problem -->
+  <div class="slide slide-navy" data-slide="3">
+    <span class="slide-num">03</span>
+    <div class="slide-eyebrow muted">The Core Problem</div>
+    <h2 class="slide-h2">They bought the Ferrari.<br>They filled it with swamp water.</h2>
+    <div class="stat-block">
+      <div class="stat-num">95%</div>
+      <div class="stat-label">of organizations investing in AI are getting zero measurable return</div>
+    </div>
+    <p class="slide-body">The technology is fine. The fuel is the problem. Companies feed AI messy, scattered, unorganized data and wonder why the output is wrong.</p>
+  </div>
+
+  <!-- SLIDE 4: Three Stories You Will Recognize -->
+  <div class="slide slide-dark" data-slide="4">
+    <span class="slide-num">04</span>
+    <div class="slide-eyebrow">Real Examples</div>
+    <h2 class="slide-h2">Three stories you will recognize</h2>
+    <ul class="slide-list" style="margin-top: 24px; gap: 18px;">
+      <li><div class="bullet">1</div><div class="text"><strong>The chatbot nobody used</strong>Trained on a messy FAQ. Generic, useless responses. Customers hated it.</div></li>
+      <li><div class="bullet">2</div><div class="text"><strong>The resume screener that missed everyone</strong>Inconsistent job titles in training data. Model learned the wrong patterns.</div></li>
+      <li><div class="bullet">3</div><div class="text"><strong>The report nobody trusted</strong>Data had duplicates. Numbers did not add up. Dana's credibility took the hit.</div></li>
+    </ul>
+    <div class="slide-divider" style="margin-top: 28px;"></div>
+    <p class="slide-body" style="font-size: 16px; color: rgba(255,255,255,0.55);">Same story every time: the tool worked. The data did not.</p>
+  </div>
+
+  <!-- SLIDE 5: Section Divider - How AI Actually Processes Data -->
+  <div class="slide slide-navy" data-slide="5">
+    <span class="slide-num">05</span>
+    <div class="slide-eyebrow muted">How AI Works</div>
+    <h2 class="slide-h2">How AI Actually Processes Data</h2>
+    <p class="slide-body">Three layers. One that matters most.</p>
+  </div>
+
+  <!-- SLIDE 6: The Three-Layer Sandwich -->
+  <div class="slide slide-dark" data-slide="6">
+    <span class="slide-num">06</span>
+    <div class="slide-eyebrow">The Foundation</div>
+    <h2 class="slide-h2">The Three-Layer Sandwich</h2>
+    <ul class="slide-list" style="margin-top: 28px; gap: 18px;">
+      <li><div class="bullet">1</div><div class="text"><strong>Layer 1: The Interface</strong>Where you work. Chat box, buttons, uploads. Where results come out.</div></li>
+      <li><div class="bullet">2</div><div class="text"><strong>Layer 2: The LLM</strong>Where it thinks. Pattern recognition and prediction.</div></li>
+      <li><div class="bullet">3</div><div class="text"><strong>Layer 3: The Data You Feed It Right Now</strong>Where results happen. What you paste, upload, and provide in context.</div></li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 7: Three Layers of Data -->
+  <div class="slide slide-dark" data-slide="7">
+    <span class="slide-num">07</span>
+    <div class="slide-eyebrow">Understanding Data</div>
+    <h2 class="slide-h2">Three layers of data at play</h2>
+    <ul class="slide-list" style="margin-top: 28px; gap: 18px;">
+      <li><div class="bullet">1</div><div class="text"><strong>Training Data</strong>Fixed. Billions of pages. You cannot change it.</div></li>
+      <li><div class="bullet">2</div><div class="text"><strong>Application Memory</strong>What the app remembers. Not the AI knowing you — the app knowing you.</div></li>
+      <li><div class="bullet">3</div><div class="text"><strong>What You Feed It Right Now</strong>The only layer you control. The one that determines your result.</div></li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 8: Your Advantage Nobody Can Buy -->
+  <div class="slide slide-dark" data-slide="8">
+    <span class="slide-num">08</span>
+    <div class="slide-eyebrow">Competitive Advantage</div>
+    <h2 class="slide-h2">Anyone can buy the same tools.<br>Nobody else has your data.</h2>
+    <div class="slide-divider"></div>
+    <p class="slide-body" style="margin-top: 24px;">When you organize that data and make it AI-ready, you build a moat nobody else can cross. That is your data moat. That is where competitive advantage lives.</p>
+  </div>
+
+  <!-- SLIDE 9: Exercise - Map Your Data Moat -->
+  <div class="slide slide-mint" data-slide="9">
+    <span class="slide-num">09</span>
+    <div class="slide-eyebrow mint">Exercise</div>
+    <h2 class="slide-h2">Map Your Data Moat</h2>
+    <ul class="slide-list mint" style="margin-top: 28px; gap: 16px;">
+      <li><div class="bullet">?</div><div class="text"><strong>What data does your organization collect</strong>that your competitors do not have?</div></li>
+      <li><div class="bullet">?</div><div class="text"><strong>Where does that data live right now?</strong>Organized or buried in inboxes and spreadsheets?</div></li>
+      <li><div class="bullet">?</div><div class="text"><strong>Pick one business outcome</strong>revenue, talent, operations, or innovation.</div></li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 10: Section Divider - Safety and Governance -->
+  <div class="slide slide-navy" data-slide="10">
+    <span class="slide-num">10</span>
+    <div class="slide-eyebrow muted">Data Safety</div>
+    <h2 class="slide-h2">Safety and Governance</h2>
+    <p class="slide-body">Know where your data goes before it goes there.</p>
+  </div>
+
+  <!-- SLIDE 11: The Three Tiers -->
+  <div class="slide slide-dark" data-slide="11">
+    <span class="slide-num">11</span>
+    <div class="slide-eyebrow">Data Privacy Tiers</div>
+    <h2 class="slide-h2">The Three Tiers</h2>
+    <ul class="slide-list" style="margin-top: 28px; gap: 18px;">
+      <li><div class="bullet">1</div><div class="text"><strong>Free</strong>Your data trains the model. Never use for work.</div></li>
+      <li><div class="bullet">2</div><div class="text"><strong>Paid</strong>Your data stays yours. Minimum for professional work.</div></li>
+      <li><div class="bullet">3</div><div class="text"><strong>Enterprise</strong>Your data has a contract. For sensitive company data.</div></li>
+    </ul>
+    <div class="slide-divider" style="margin-top: 28px;"></div>
+    <p class="slide-body" style="font-size: 16px; color: rgba(255,255,255,0.55);">Most people do not know which tier they are on. That is the first thing the AI Officer finds out.</p>
+  </div>
+
+  <!-- SLIDE 12: Check Your Settings -->
+  <div class="slide slide-blue" data-slide="12">
+    <span class="slide-num">12</span>
+    <div class="slide-eyebrow blue">Exercise</div>
+    <h2 class="slide-h2">Settings Audit</h2>
+    <p class="slide-body dark" style="margin-top: 20px;">Open your AI tool right now and find the privacy settings. Answer three questions:</p>
+    <ul class="slide-list dark" style="margin-top: 20px;">
+      <li><div class="bullet">1</div><div class="text">Is my chat history being saved?</div></li>
+      <li><div class="bullet">2</div><div class="text">Is my data training the model?</div></li>
+      <li><div class="bullet">3</div><div class="text">Are my uploads being stored?</div></li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 13: Section Divider - The Right AI for the Right Job -->
+  <div class="slide slide-navy" data-slide="13">
+    <span class="slide-num">13</span>
+    <div class="slide-eyebrow muted">Tool Selection</div>
+    <h2 class="slide-h2">The Right AI for the Right Job</h2>
+    <p class="slide-body">Four criteria. Every time.</p>
+  </div>
+
+  <!-- SLIDE 14: Four Selection Criteria -->
+  <div class="slide slide-dark" data-slide="14">
+    <span class="slide-num">14</span>
+    <div class="slide-eyebrow">How to Choose</div>
+    <h2 class="slide-h2">Four Selection Criteria</h2>
+    <ul class="slide-list" style="margin-top: 28px; gap: 18px;">
+      <li><div class="bullet">1</div><div class="text"><strong>The data behind the model</strong>What does it know best?</div></li>
+      <li><div class="bullet">2</div><div class="text"><strong>Interface features your team needs</strong>Context window? Languages? Integration?</div></li>
+      <li><div class="bullet">3</div><div class="text"><strong>Safety controls required</strong>Data agreements? Enterprise option?</div></li>
+      <li><div class="bullet">4</div><div class="text"><strong>Apps it integrates with</strong>What is already in your stack?</div></li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 15: The Wrapper Warning -->
+  <div class="slide slide-dark" data-slide="15">
+    <span class="slide-num">15</span>
+    <div class="slide-eyebrow">Be Careful</div>
+    <h2 class="slide-h2">99% of AI apps are wrappers</h2>
+    <div class="slide-divider"></div>
+    <p class="slide-body" style="margin-top: 24px;">For every Figma that is genuinely integrating AI, there are a thousand apps charging you monthly for a pretty interface built on top of the same model you already have. Know what is under the hood before your team signs up for anything.</p>
+  </div>
+
+  <!-- SLIDE 16: Worked Example -->
+  <div class="slide slide-dark" data-slide="16">
+    <span class="slide-num">16</span>
+    <div class="slide-eyebrow">Example</div>
+    <h2 class="slide-h2">Choosing a Tool for a Program</h2>
+    <p class="slide-body" style="margin-top: 20px;"><strong>Outcome:</strong> Automate monthly reporting</p>
+    <p class="slide-body"><strong>Data:</strong> Financial numbers, customer metrics, internal documents</p>
+    <p class="slide-body"><strong>Interface:</strong> Large Excel files, formatted outputs</p>
+    <p class="slide-body"><strong>Safety:</strong> Financial data = paid or enterprise tier</p>
+    <p class="slide-body"><strong>Integration:</strong> Team lives in Google Workspace? Then Gemini.</p>
+    <p class="slide-body" style="margin-top: 24px; font-size: 16px;">The answer is not "which AI is best." The answer is "which AI fits this program."</p>
+  </div>
+
+  <!-- SLIDE 17: The BOLT Challenge -->
+  <div class="slide slide-dark" data-slide="17">
+    <span class="slide-num">17</span>
+    <div class="slide-eyebrow">Your Assignment</div>
+    <h2 class="slide-h2">Dana needs clean data.<br>The BOLT launch is waiting.</h2>
+    <ul class="slide-list" style="margin-top: 28px; gap: 18px;">
+      <li><div class="bullet">1</div><div class="text"><strong>Challenge 1:</strong> Feed messy data to AI. Watch it confidently give you the wrong answer.</div></li>
+      <li><div class="bullet">2</div><div class="text"><strong>Challenge 2:</strong> Go row by row. Find every problem yourself.</div></li>
+      <li><div class="bullet">3</div><div class="text"><strong>Final Project:</strong> Clean at scale. Verify. Deliver analysis Dana can trust.</div></li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 18: Closing Reflection -->
+  <div class="slide slide-navy" data-slide="18">
+    <span class="slide-num">18</span>
+    <div class="slide-eyebrow muted">The Real Skill</div>
+    <h2 class="slide-h2">The leader who checks the numbers before they go to leadership is the leader who gets trusted with more numbers.</h2>
+  </div>
+
+  <!-- SLIDE 19: Your Commitment -->
+  <div class="slide slide-dark" data-slide="19">
+    <span class="slide-num">19</span>
+    <div class="slide-eyebrow">Your Turn</div>
+    <h2 class="slide-h2">Start, stop, or continue</h2>
+    <p class="slide-body" style="margin-top: 20px;">Name one behavior your manager would notice this week.</p>
+    <p class="slide-body">Maybe it is checking your AI tool's privacy settings. Maybe it is stopping your team from using free tier tools for work. Maybe it is starting to document your data sources before building any new AI program.</p>
+    <p class="slide-body" style="margin-top: 24px; font-size: 16px;">Write it down. Hold yourself to it.</p>
+  </div>
+
+  <!-- SLIDE 20: Thank You -->
+  <div class="slide slide-navy" data-slide="20">
+    <span class="slide-num">20</span>
+    <div class="slide-eyebrow muted">Complete</div>
+    <h2 class="slide-h2">Mission 2 Complete</h2>
+    <div class="slide-divider" style="margin-top: 32px;"></div>
+    <p class="slide-body" style="margin-top: 32px; font-size: 18px;">You now have the first operational skill of an AI Officer: fix the fuel first. Next: Advanced Prompt Frameworks in Mission 3.</p>
+    <div style="display: flex; gap: 12px; margin-top: 32px;">
+      <a href="mission-2.html" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 12px 20px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.8); text-decoration: none;">← Back to Mission 2</a>
+      <a href="https://claude.ai" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(111,242,193,0.2); border: 1px solid rgba(111,242,193,0.3); border-radius: 10px; padding: 12px 20px; font-size: 14px; font-weight: 600; color: #6FF2C1; text-decoration: none;">🤖 Open AI Buddy →</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- Navigation dots & arrows -->
+<div class="slide-dots" id="slide-dots"></div>
+<div class="slide-nav">
+  <button class="slide-nav-btn" id="prev-btn" onclick="prevSlide()">←</button>
+  <button class="slide-nav-btn" id="next-btn" onclick="nextSlide()">→</button>
+</div>
+
+<script>
+const totalSlides = 20;
+let currentSlide = 1;
+
+// Build dots
+const dotsEl = document.getElementById('slide-dots');
+for (let i = 1; i <= totalSlides; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'slide-dot' + (i === 1 ? ' active' : '');
+  dot.onclick = () => goToSlide(i);
+  dotsEl.appendChild(dot);
+}
+
+function goToSlide(n) {
+  currentSlide = n;
+  updateUI();
+  document.querySelector(`[data-slide="${n}"]`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function nextSlide() { if (currentSlide < totalSlides) goToSlide(currentSlide + 1); }
+function prevSlide() { if (currentSlide > 1) goToSlide(currentSlide - 1); }
+
+function updateUI() {
+  document.getElementById('slide-counter').textContent = `${currentSlide} / ${totalSlides}`;
+  document.querySelectorAll('.slide-dot').forEach((d, i) => {
+    d.classList.toggle('active', i + 1 === currentSlide);
+  });
+}
+
+// Keyboard nav
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextSlide();
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevSlide();
+});
+
+// Intersection observer to update current slide
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const n = parseInt(entry.target.dataset.slide);
+      currentSlide = n;
+      updateUI();
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

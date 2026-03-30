@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mission 2 Briefs — Clean Data, AI's Favorite Snack</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  :root {
+    --royal: #287BE8;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(4,16,45,0.07);
+    --shadow-hover: 0 6px 24px rgba(4,16,45,0.10);
+    --text-tertiary: #8b91ac;
+    --border-hover: #b0b6cc;
+  }
+  body { background: var(--surface); }
+
+  .page-wrap {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+    padding-top: 56px;
+  }
+
+  /* ── Sidebar ── */
+  .tb-sidebar {
+    position: sticky; top: 56px; height: calc(100vh - 56px);
+    overflow-y: auto; background: white;
+    border-right: 1px solid var(--border);
+    padding: 28px 0;
+  }
+  .tb-sidebar-inner { padding: 0 20px; }
+  .tb-sidebar-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 12px; padding: 0 4px;
+  }
+  .tb-nav-link {
+    display: block; padding: 8px 12px; border-radius: 8px;
+    font-size: 13px; font-weight: 500; color: var(--text-secondary);
+    text-decoration: none; transition: all 0.12s; margin-bottom: 2px;
+    line-height: 1.4;
+  }
+  .tb-nav-link:hover { background: var(--surface); color: var(--text-primary); }
+  .tb-nav-link.active { background: rgba(40,123,232,0.08); color: #287BE8; font-weight: 600; }
+  .tb-nav-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 1px;
+  }
+  .tb-nav-divider { height: 1px; background: var(--border); margin: 14px 0; }
+
+  .tb-buddy-btn {
+    display: flex; align-items: center; gap: 8px; width: 100%;
+    margin-top: 20px; padding: 10px 12px; border-radius: 8px;
+    background: rgba(40,123,232,0.07); border: 1px solid rgba(40,123,232,0.2);
+    color: #287BE8; font-size: 13px; font-weight: 600; cursor: pointer;
+    text-decoration: none; transition: all 0.15s;
+  }
+  .tb-buddy-btn:hover { background: rgba(40,123,232,0.12); }
+
+  /* ── Main content ── */
+  .tb-main { padding: 48px 60px 100px; max-width: 780px; }
+
+  .tb-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    text-decoration: none; margin-bottom: 32px; transition: color 0.12s;
+  }
+  .tb-back:hover { color: var(--text-primary); }
+
+  .tb-hero { margin-bottom: 48px; }
+  .tb-track-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.7px;
+    text-transform: uppercase; padding: 5px 12px; border-radius: 20px;
+    background: rgba(40,123,232,0.1); color: #287BE8;
+    border: 1px solid rgba(40,123,232,0.2); margin-bottom: 14px;
+  }
+  .tb-title {
+    font-size: 32px; font-weight: 700; color: var(--text-primary);
+    letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 10px;
+  }
+  .tb-sub { font-size: 15px; color: var(--text-secondary); line-height: 1.65; max-width: 560px; }
+
+  /* ── Brief section ── */
+  .brief-section { margin-bottom: 64px; scroll-margin-top: 80px; }
+  .brief-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; color: #287BE8;
+    margin-bottom: 6px;
+  }
+  .brief-title {
+    font-size: 24px; font-weight: 700; color: var(--text-primary);
+    letter-spacing: -0.3px; line-height: 1.2; margin-bottom: 20px;
+    padding-bottom: 16px; border-bottom: 2px solid var(--border);
+  }
+
+  /* ── Prose ── */
+  .prose { color: var(--text-secondary); line-height: 1.75; font-size: 15px; }
+  .prose p { margin-bottom: 18px; }
+  .prose h3 {
+    font-size: 17px; font-weight: 700; color: var(--text-primary);
+    letter-spacing: -0.2px; margin: 32px 0 10px;
+  }
+  .prose h4 {
+    font-size: 14px; font-weight: 700; color: var(--text-primary);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin: 24px 0 8px;
+  }
+  .prose ul, .prose ol {
+    padding-left: 20px; margin-bottom: 18px; display: flex; flex-direction: column; gap: 6px;
+  }
+  .prose li { font-size: 14.5px; line-height: 1.65; }
+  .prose strong { font-weight: 700; color: var(--text-primary); }
+
+  /* ── Key insight box ── */
+  .key-insight {
+    background: rgba(40,123,232,0.05); border: 1px solid rgba(40,123,232,0.15);
+    border-left: 3px solid #287BE8; border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 18px 22px; margin: 28px 0;
+  }
+  .key-insight-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: #287BE8; margin-bottom: 8px;
+  }
+  .key-insight p { font-size: 14px; color: var(--text-primary); line-height: 1.65; margin: 0; }
+
+  /* ── Starter prompt box ── */
+  .starter-prompt {
+    background: rgba(26,158,116,0.04); border: 1px solid rgba(26,158,116,0.18);
+    border-radius: var(--radius); padding: 20px 22px; margin: 24px 0;
+  }
+  .starter-prompt-label {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.7px;
+    text-transform: uppercase; color: #1a9e74; margin-bottom: 12px;
+  }
+  .starter-prompt-text {
+    font-size: 14px; color: var(--text-primary); line-height: 1.7;
+    font-style: italic; background: white; padding: 14px 16px;
+    border-radius: 8px; border: 1px solid rgba(26,158,116,0.15);
+  }
+
+  /* ── Belief / move cards ── */
+  .belief-grid { display: flex; flex-direction: column; gap: 10px; margin: 16px 0 24px; }
+  .belief-card {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: white; border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px 18px;
+  }
+  .belief-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+    color: white; background: #287BE8; border-radius: 6px;
+    padding: 3px 8px; flex-shrink: 0; margin-top: 1px;
+  }
+  .belief-num.move { background: #1a9e74; }
+  .belief-content strong { font-size: 14px; font-weight: 700; color: var(--text-primary); display: block; margin-bottom: 3px; }
+  .belief-content p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+
+  /* ── Back link at bottom ── */
+  .tb-bottom-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--border); padding-top: 32px; margin-top: 16px;
+  }
+  .tb-nav-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    text-decoration: none; padding: 8px 14px; border-radius: 8px;
+    border: 1px solid var(--border); transition: all 0.12s;
+  }
+  .tb-nav-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
+  .tb-nav-btn.primary {
+    background: #287BE8; color: white; border-color: #287BE8;
+  }
+  .tb-nav-btn.primary:hover { background: #1a6fd1; }
+
+  @media (max-width: 900px) {
+    .page-wrap { grid-template-columns: 1fr; }
+    .tb-sidebar { display: none; }
+    .tb-main { padding: 40px 24px 80px; }
+    .topbar-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ TOP BAR ═══════════════ -->
+<div class="topbar">
+  <a href="../index.html" class="topbar-brand">AIO <span>Labs</span></a>
+  <nav class="topbar-nav">
+    <a href="../index.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> Home</a>
+    <a href="../certification.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
+    <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+    <a href="../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="https://claude.ai" target="_blank" class="buddy-launch-btn">🤖 AI Buddy</a>
+    <div class="topbar-stat">🔥 7</div>
+    <div class="topbar-stat">⭐ 1,240</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-avatar">DH</div>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ══════ SIDEBAR ══════ -->
+  <aside class="tb-sidebar">
+    <div class="tb-sidebar-inner">
+      <div class="tb-sidebar-label">Mission 2 Briefs</div>
+
+      <a href="#brief-intro" class="tb-nav-link">
+        <span class="tb-nav-num">INTRO</span>Overview &amp; Learning Guide
+      </a>
+      <div class="tb-nav-divider"></div>
+      <a href="#brief-1" class="tb-nav-link">
+        <span class="tb-nav-num">BRIEF 1</span>The Truth About AI Failure
+      </a>
+      <a href="#brief-2" class="tb-nav-link">
+        <span class="tb-nav-num">BRIEF 2</span>How AI Actually Processes Your Data
+      </a>
+      <a href="#brief-3" class="tb-nav-link">
+        <span class="tb-nav-num">BRIEF 3</span>Implementation and Safety
+      </a>
+      <a href="#brief-4" class="tb-nav-link">
+        <span class="tb-nav-num">BRIEF 4</span>The Right AI for the Right Job
+      </a>
+      <a href="#brief-5" class="tb-nav-link">
+        <span class="tb-nav-num">BRIEF 5</span>The BOLT Data Challenge
+      </a>
+      <div class="tb-nav-divider"></div>
+      <a href="#wrap-up" class="tb-nav-link">
+        <span class="tb-nav-num">WRAP-UP</span>Key Takeaways
+      </a>
+
+      <a href="https://claude.ai" target="_blank" class="tb-buddy-btn">🤖 Open AI Buddy</a>
+    </div>
+  </aside>
+
+  <!-- ══════ MAIN ══════ -->
+  <main class="tb-main">
+
+    <a href="mission-2.html" class="tb-back">← Back to Mission 2</a>
+
+    <div class="tb-hero">
+      <div class="tb-track-pill">Generative AI Essentials · Mission 02</div>
+      <h1 class="tb-title">Clean Data, AI's Favorite Snack</h1>
+      <p class="tb-sub">Fix the fuel before you build the program. Five briefs that build your data intuition as an AI Officer — from why 95% of programs fail to how to clean a dataset at scale.</p>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         INTRO
+    ═══════════════════════════════════════ -->
+    <section class="brief-section" id="brief-intro">
+      <div class="brief-label">Introduction</div>
+      <h2 class="brief-title">Mission Goal &amp; How to Learn</h2>
+
+      <div class="prose">
+        <p>In Mission 1, you learned the mindset. You understand that half of leadership is now leading AI. You know the six beliefs and the five daily moves. You can structure a prompt with RACE and go deeper with the AI Interview.</p>
+        <p>Now here is the problem. None of that matters if the data is wrong.</p>
+        <p>This mission is where leading AI gets real. The root cause of AI failure is not bad technology. It is bad data. Companies invest millions in tools and get zero return because they skip the most important step: fixing the fuel first.</p>
+
+        <h3>By the end of this mission, you'll be able to:</h3>
+      </div>
+
+      <div class="belief-grid">
+        <div class="belief-card">
+          <span class="belief-num">01</span>
+          <div class="belief-content">
+            <strong>Explain why 95% of AI programs fail</strong>
+            <p>And what the AI Officer does differently</p>
+          </div>
+        </div>
+        <div class="belief-card">
+          <span class="belief-num">02</span>
+          <div class="belief-content">
+            <strong>Understand the three-layer sandwich</strong>
+            <p>Why the data layer is where results are made or broken</p>
+          </div>
+        </div>
+        <div class="belief-card">
+          <span class="belief-num">03</span>
+          <div class="belief-content">
+            <strong>Make governance decisions about safety</strong>
+            <p>Know which tier your team should be on before anything gets pasted</p>
+          </div>
+        </div>
+        <div class="belief-card">
+          <span class="belief-num">04</span>
+          <div class="belief-content">
+            <strong>Evaluate AI tools correctly</strong>
+            <p>Apply the four criteria that actually matter</p>
+          </div>
+        </div>
+        <div class="belief-card">
+          <span class="belief-num">05</span>
+          <div class="belief-content">
+            <strong>Clean a dataset and verify AI's work</strong>
+            <p>Before trusting a single number that goes to leadership</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h3>The AI Officer Difference</h3>
+        <p>When most people encounter bad data in an AI program, they blame the tool. They try another tool. Same problem. They give up.</p>
+        <p>The AI Officer does something different. The AI Officer checks the data before the program, verifies the output before it goes to leadership, and sets the standard for the team on what is safe to use. That habit — fix the fuel first — is what separates people who get noticed from people who wonder why their AI initiatives keep failing.</p>
+
+        <h3>The Rules of the Road</h3>
+        <ol>
+          <li><strong>Never use free AI tools for work.</strong> Your data is training someone else's model.</li>
+          <li><strong>Know your tier.</strong> Free, paid, or enterprise. If you do not know, find out today.</li>
+          <li><strong>Check your settings before you paste anything.</strong> Once your data is out there, you cannot take it back.</li>
+          <li><strong>Tell AI "do not make up numbers."</strong> AI fills in blanks confidently. Do not let it.</li>
+          <li><strong>Always verify the numbers.</strong> Only use information from the data you provided. Prevents hallucinations.</li>
+        </ol>
+      </div>
+
+      <div class="key-insight">
+        <div class="key-insight-label">Key Insight</div>
+        <p>The data is the fuel. The model knows how to think. The app remembers who you are. But what you feed it right now is what determines whether you get something useful or something wrong. This mission teaches you to control that layer.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         BRIEF 1
+    ═══════════════════════════════════════ -->
+    <section class="brief-section" id="brief-1">
+      <div class="brief-label">Brief 1</div>
+      <h2 class="brief-title">The Truth About AI Failure</h2>
+
+      <div class="prose">
+        <p>95% of organizations investing in AI are getting zero measurable return. Not because the technology does not work. Because leadership does not understand it, workflows are not documented, and data is not organized. That is the real story. And that is the problem the AI Officer is trained to fix.</p>
+
+        <h3>The Numbers Do Not Lie</h3>
+        <p>Despite $30–40 billion in enterprise AI investment, MIT research found that 95% of organizations are getting zero return. They bought the Ferrari and filled it with swamp water. The technology is not the problem. The fuel is.</p>
+
+        <h3>Three Stories You Will Recognize</h3>
+        <ul>
+          <li><strong>The chatbot nobody used:</strong> A company drops money on an AI chatbot for customer service. Customers hate it. Responses are generic and useless. Why? The chatbot was trained on a messy FAQ document full of outdated answers. The tool worked. The data did not.</li>
+          <li><strong>The resume screener that missed everyone:</strong> HR uses AI to screen resumes. It keeps missing great candidates. Why? The training data had inconsistent job titles across departments, so the model learned the wrong patterns. The tool worked. The data did not.</li>
+          <li><strong>The report nobody trusted:</strong> A team runs an analysis with AI and presents numbers to leadership. Someone notices the sample size is off. Three respondents appeared twice. The data had duplicates nobody caught. Dana's credibility took the hit. The tool worked. The data did not.</li>
+        </ul>
+
+        <h3>Worked Example: What Bad Data Does</h3>
+        <p>You will feed messy BOLT taste test data straight to AI and ask for an analysis. Watch what comes back. AI will give you a confident, professional summary. It looks great. But the data has duplicates, inconsistent ratings, missing fields, and wrong data types. AI does not flag any of it. It just works with what you gave it and delivers a polished answer built on garbage.</p>
+        <p>Now imagine that analysis goes to Dana. She presents it to leadership. Numbers do not add up. Ratings are inconsistent. Dana's credibility takes the hit. And yours too.</p>
+      </div>
+
+      <div class="key-insight">
+        <div class="key-insight-label">Key Insight</div>
+        <p>The AI Officer fixes the fuel first. This is not a technical skill. This is a leadership decision. The root cause of AI failure is not bad technology. It is that nobody in the room was trained to check the data before building the program. That is the gap you are learning to fill.</p>
+      </div>
+
+      <div class="starter-prompt">
+        <div class="starter-prompt-label">💬 Starter Prompt — AI Buddy</div>
+        <div class="starter-prompt-text">"Can you give me more examples of AI programs that failed because of bad data? I want examples from different industries and different company sizes so I can see the pattern."</div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         BRIEF 2
+    ═══════════════════════════════════════ -->
+    <section class="brief-section" id="brief-2">
+      <div class="brief-label">Brief 2</div>
+      <h2 class="brief-title">How AI Actually Processes Your Data</h2>
+
+      <div class="prose">
+        <p>You need to understand what happens under the hood. Not to become an engineer. To make better leadership decisions about which data matters, where it goes, and why your organization's data is the one advantage nobody else can buy.</p>
+
+        <h3>The Three-Layer Sandwich</h3>
+        <p>Every AI system works in three layers stacked on top of each other.</p>
+        <p><strong>Layer one is the user interface.</strong> The chat box, buttons, and upload tool. Where your prompts go in and results come out. This is also where your information gets stored: conversation history, uploaded files, preferences.</p>
+        <p><strong>Layer two is the LLM, the Large Language Model.</strong> The brain. It does not understand anything the way you and I do. It reads patterns and predicts what comes next. The better the data you feed it, the better the patterns it can work with.</p>
+        <p><strong>Layer three is the data.</strong> The fuel. What you feed it right now. Most people obsess over layers one and two. The AI Officer obsesses over layer three because that is where everything gets made or broken.</p>
+
+        <h3>Three Layers of Data</h3>
+        <p><strong>Training data:</strong> The massive dataset the LLM was built on. Billions of pages of text and code. You did not choose it, you cannot change it, and nothing you do updates it.</p>
+        <p><strong>Application memory:</strong> Tools like ChatGPT and Claude remember your past conversations and preferences. That is the app knowing you, not the AI knowing you. If you switched to a different app running the same model, it would have no idea who you are.</p>
+        <p><strong>The data you feed it right now:</strong> What you paste into the prompt, what you upload, what context you provide in the moment. That is the layer you have the most control over, and it is the one that matters most.</p>
+      </div>
+
+      <div class="key-insight">
+        <div class="key-insight-label">Key Insight</div>
+        <p>Your advantage is not the AI you buy. It is the data moat you build. Anyone can access the same models. Nobody else has your company's data. The AI Officer's job is to find it, organize it, connect it, and make it the foundation of every AI program.</p>
+      </div>
+
+      <div class="starter-prompt">
+        <div class="starter-prompt-label">💬 Starter Prompt — AI Buddy</div>
+        <div class="starter-prompt-text">"Help me identify what data in my organization could become our data moat. Ask me about my industry, my team, and the kind of work we do, then tell me what information we are probably sitting on that AI could use if we organized it."</div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         BRIEF 3
+    ═══════════════════════════════════════ -->
+    <section class="brief-section" id="brief-3">
+      <div class="brief-label">Brief 3</div>
+      <h2 class="brief-title">Implementation and Safety</h2>
+
+      <div class="prose">
+        <p>Before you feed AI anything else, you need to know where that data actually goes. This is a governance decision, not a personal preference.</p>
+
+        <h3>The Three Tiers</h3>
+        <p><strong>Free tier:</strong> Never use free AI tools for work. When you use the free version of ChatGPT or Gemini, your data is very likely being used to train the model. Whatever you paste in — client names, project details, financial numbers — could influence future outputs for other users. Your company's data is literally making someone else's product better. Do not do this.</p>
+        <p><strong>Paid tier:</strong> When you are paying for a subscription, most tools stop using your data for training. That is the minimum you should be working with. But your data is still going through their servers and may still be stored.</p>
+        <p><strong>Enterprise tier:</strong> Your IT department has negotiated a data agreement with contracts about how your data is handled, where it is stored, and what happens to it. This is where sensitive company data belongs.</p>
+
+        <h3>Check Your Settings</h3>
+        <p>Even within whatever tier you are on, your app has settings that matter and most people have never touched them. Is your chat history being saved? Is your data being used to improve the model? Are your file uploads being stored?</p>
+        <p>The AI Officer checks this before they paste a single thing because once your data is out there, you cannot take it back.</p>
+      </div>
+
+      <div class="key-insight">
+        <div class="key-insight-label">Key Insight</div>
+        <p>Data safety is a governance decision, not a personal preference. The AI Officer does not just use tools. The AI Officer decides which tools are safe for which data, and sets the standard for the team. This is one of the first things you will do when leading an AI program.</p>
+      </div>
+
+      <div class="starter-prompt">
+        <div class="starter-prompt-label">💬 Starter Prompt — AI Buddy</div>
+        <div class="starter-prompt-text">"Walk me through how to check my privacy settings in ChatGPT, Claude, or Gemini. Tell me exactly what to look for and what each setting means for my data. Then help me figure out what tier my organization is currently using and whether it is appropriate for the kind of data we work with."</div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         BRIEF 4
+    ═══════════════════════════════════════ -->
+    <section class="brief-section" id="brief-4">
+      <div class="brief-label">Brief 4</div>
+      <h2 class="brief-title">The Right AI for the Right Job</h2>
+
+      <div class="prose">
+        <p>When you are designing an AI program for your organization, tool selection is not about personal preference. It is about matching the right capabilities to the right outcomes. It comes down to four things.</p>
+
+        <h3>The Four Selection Criteria</h3>
+        <ol>
+          <li><strong>The data behind the model.</strong> ChatGPT is the all-rounder — funded by Microsoft, great for writing and business workflows. Gemini is the producer — Google has visual data dominance. Claude is the thoughtful pro — best at writing and coding. Follow the money behind the data.</li>
+          <li><strong>The user interface features.</strong> Do not start with the tool. Start with what your program needs. Large context window for big datasets? Multiple language support? Custom assistants?</li>
+          <li><strong>The safety controls.</strong> Does the tool let you control whether your data is used for training? Can you manage who has access? If the tool does not give you the safety controls you need, it is not the right tool.</li>
+          <li><strong>The apps it integrates with.</strong> Your AI tool needs to work with the systems your team uses every day. If it does not integrate, you are just creating more manual work.</li>
+        </ol>
+
+        <h3>Know Your Wrappers</h3>
+        <p>99% of AI apps are wrappers. For every tool that is genuinely integrating AI into a real workflow, there are a thousand apps that are just a pretty interface built on top of the exact same model you already have access to. They are charging you a monthly fee for something you could do yourself in two minutes with the right prompt. Know what is under the hood.</p>
+      </div>
+
+      <div class="key-insight">
+        <div class="key-insight-label">Key Insight</div>
+        <p>The AI Officer does not ask "what is the best AI?" The AI Officer asks "what is the best AI for this program?" Tool selection is a design decision, not a personal preference. Match the data advantage to the outcome you need.</p>
+      </div>
+
+      <div class="starter-prompt">
+        <div class="starter-prompt-label">💬 Starter Prompt — AI Buddy</div>
+        <div class="starter-prompt-text">"I am evaluating AI tools for a specific program at my organization. Ask me about the program goals, the data involved, the team's existing tools, and our security requirements. Then recommend which AI Kingdom and which tier is the best fit, and explain why using all four criteria."</div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         BRIEF 5
+    ═══════════════════════════════════════ -->
+    <section class="brief-section" id="brief-5">
+      <div class="brief-label">Brief 5</div>
+      <h2 class="brief-title">The BOLT Data Challenge</h2>
+
+      <div class="prose">
+        <p>Dana liked your work in Mission 1. She is bringing you onto the BOLT launch team. But before anyone builds a program, the data needs to be ready. An intern collected taste test feedback from 25 college students across three universities. It is a mess. Your job is to fix it.</p>
+
+        <h3>What You Will Do</h3>
+        <p><strong>Challenge 1:</strong> Feed the messy BOLT taste test data straight to AI. Ask for an analysis. Watch it give you a confident, completely wrong answer. This is what happens when you skip the data step.</p>
+        <p><strong>Challenge 2:</strong> Go through the data row by row. Find every problem. Categorize what you find: duplicates, inconsistent formats, missing fields, wrong data types. This is the skill that separates someone who uses AI from someone who leads an AI program.</p>
+        <p><strong>Final Project:</strong> The full 100-response survey just came in. Use AI to clean it, verify its work, and deliver an analysis report Dana can take to leadership. Clean the data. Verify AI's work. Deliver the analysis. Run your own quality check.</p>
+
+        <h3>The Data Checklist</h3>
+        <p>Use this every time you are preparing data for an AI program. If it is not all four, it is not ready.</p>
+        <ul>
+          <li><strong>Consistent:</strong> Same format, same labels, same structure throughout. "New York" and "NY" and "new york" are three different things to AI.</li>
+          <li><strong>Complete:</strong> No missing fields where data should exist. Gaps create blind spots AI will not flag.</li>
+          <li><strong>Labeled:</strong> Every column, category, and field has a clear name. If a human cannot tell what it means, AI definitely cannot.</li>
+          <li><strong>Connected:</strong> Related data is linked so the story makes sense.</li>
+        </ul>
+      </div>
+
+      <div class="key-insight">
+        <div class="key-insight-label">Key Insight</div>
+        <p>Think in programs, not prompts. Every challenge today builds toward an analysis Dana could put in front of leadership. That is what professional-grade AI output looks like. That is what leading an AI program looks like.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         WRAP-UP
+    ═══════════════════════════════════════ -->
+    <section class="brief-section" id="wrap-up">
+      <div class="brief-label">Wrap-Up</div>
+      <h2 class="brief-title">Key Takeaways</h2>
+
+      <div class="prose">
+        <h3>Five Things to Walk Away With</h3>
+        <ul>
+          <li><strong>AI is not failing because of the technology.</strong> It is failing because leadership does not understand it, workflows are not documented, and data is not organized. The AI Officer fixes the fuel first.</li>
+          <li><strong>AI does not check your data.</strong> It uses whatever you give it and delivers a confident answer — right or wrong. Garbage in, garbage out. Every time.</li>
+          <li><strong>Clean data means four things: consistent, complete, labeled, and connected.</strong> If it is not all four, it is not ready. And if the data is not ready, neither is your program.</li>
+          <li><strong>Your company's data is your competitive advantage.</strong> Anyone can buy the same tools. Nobody else has your data. Build your data moat: Capture, Clean, Connect, Reuse.</li>
+          <li><strong>Data safety is a governance decision, not a personal preference.</strong> Never use free AI tools for work. Know your tier. Check your settings. The AI Officer sets the standard for the team.</li>
+        </ul>
+
+        <h3>Your Commitment</h3>
+        <p>Before you close out: name one habit you will start, stop, or continue this week. Not a tool. A behavior. Something your manager would notice.</p>
+      </div>
+    </section>
+
+    <!-- Bottom nav -->
+    <div class="tb-bottom-nav">
+      <a href="mission-2.html" class="tb-nav-btn">← Back to Mission 2</a>
+      <a href="mission-2-prompts.html" class="tb-nav-btn primary">Prompt Library →</a>
+    </div>
+
+  </main>
+
+</div>
+
+</body>
+</html>

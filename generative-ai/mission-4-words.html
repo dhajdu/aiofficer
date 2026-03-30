@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Words to Know — Mission 4: Prompting Perfect Visuals</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  :root {
+    --royal: #287BE8;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(4,16,45,0.07);
+    --shadow-hover: 0 6px 24px rgba(4,16,45,0.10);
+    --text-tertiary: #8b91ac;
+    --border-hover: #b0b6cc;
+  }
+  body { background: var(--surface); }
+
+  .page-main { max-width: 760px; margin: 0 auto; padding: 80px 40px 100px; }
+
+  .wtk-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    text-decoration: none; margin-bottom: 32px; transition: color 0.12s;
+  }
+  .wtk-back:hover { color: var(--text-primary); }
+
+  .wtk-hero { margin-bottom: 40px; }
+  .wtk-track-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.7px;
+    text-transform: uppercase; padding: 5px 12px; border-radius: 20px;
+    background: rgba(4,16,45,0.06); color: var(--text-secondary);
+    border: 1px solid var(--border); margin-bottom: 14px;
+  }
+  .wtk-title {
+    font-size: 30px; font-weight: 700; color: var(--text-primary);
+    letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 10px;
+  }
+  .wtk-sub { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* Intro note */
+  .wtk-note {
+    background: white; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px 20px; margin-bottom: 40px;
+    font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+  }
+
+  /* Category label */
+  .wtk-category {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--text-muted);
+    padding-bottom: 10px; border-bottom: 1px solid var(--border);
+    margin-bottom: 16px; margin-top: 40px;
+  }
+  .wtk-category:first-of-type { margin-top: 0; }
+
+  /* Term cards */
+  .term-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px 22px;
+    margin-bottom: 10px; box-shadow: var(--shadow-sm);
+  }
+  .term-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+  .term-name {
+    font-size: 16px; font-weight: 700; color: var(--text-primary); line-height: 1.2;
+  }
+  .term-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+    padding: 3px 8px; border-radius: 5px; white-space: nowrap; flex-shrink: 0;
+    background: rgba(40,123,232,0.08); color: #287BE8;
+    border: 1px solid rgba(40,123,232,0.15);
+  }
+  .term-def {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+  }
+  .term-example {
+    margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--surface);
+    font-size: 13px; color: var(--text-muted); line-height: 1.6;
+    font-style: italic;
+  }
+  .term-example strong { color: var(--text-secondary); font-style: normal; }
+
+  /* Acronym breakdown */
+  .term-acronym {
+    display: grid; grid-template-columns: 24px 1fr; gap: 6px 12px;
+    margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--surface);
+  }
+  .term-acronym-letter {
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    color: #287BE8;
+  }
+  .term-acronym-def { font-size: 13.5px; color: var(--text-primary); line-height: 1.5; }
+
+  /* Buddy prompt at bottom */
+  .buddy-note {
+    background: rgba(40,123,232,0.05); border: 1px solid rgba(40,123,232,0.15);
+    border-radius: var(--radius); padding: 20px 22px; margin-top: 48px;
+    text-align: center;
+  }
+  .buddy-note p {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 12px;
+  }
+  .buddy-note .buddy-prompt-text {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-primary);
+    background: white; padding: 12px 16px; border-radius: 8px;
+    border: 1px solid rgba(40,123,232,0.15); line-height: 1.6;
+    font-style: italic; text-align: left;
+  }
+
+  /* Bottom nav */
+  .wtk-bottom-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--border); padding-top: 32px; margin-top: 16px;
+  }
+  .wtk-nav-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    text-decoration: none; padding: 8px 14px; border-radius: 8px;
+    border: 1px solid var(--border); transition: all 0.12s;
+  }
+  .wtk-nav-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
+  .wtk-nav-btn.primary {
+    background: var(--navy); color: white; border-color: var(--navy);
+  }
+  .wtk-nav-btn.primary:hover { opacity: 0.88; }
+
+  @media (max-width: 760px) {
+    .page-main { padding: 70px 20px 80px; }
+    .topbar-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ TOP BAR ═══════════════ -->
+<div class="topbar">
+  <a href="../index.html" class="topbar-brand">AIO <span>Labs</span></a>
+  <nav class="topbar-nav">
+    <a href="../index.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> Home</a>
+    <a href="../certification.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
+    <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+    <a href="../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="https://claude.ai" target="_blank" class="buddy-launch-btn">🤖 AI Buddy</a>
+    <div class="topbar-stat">🔥 7</div>
+    <div class="topbar-stat">⭐ 1,240</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-avatar">DH</div>
+  </div>
+</div>
+
+<main class="page-main">
+
+  <a href="mission-4.html" class="wtk-back">← Back to Mission 4</a>
+
+  <div class="wtk-hero">
+    <div class="wtk-track-pill">🔤 Words to Know</div>
+    <h1 class="wtk-title">Mission 4 — Key Terms</h1>
+    <p class="wtk-sub">Visual frameworks, prompt structures, and brand system concepts for the AI Officer's visual toolkit.</p>
+  </div>
+
+  <div class="wtk-note">
+    <strong>When a term is still unclear:</strong> Ask your AI Buddy — <em>"Explain [term] in plain language with an example from [your role or industry]."</em> That's what it's there for.
+  </div>
+
+
+  <!-- ═══ CATEGORY: Visual Frameworks ═══ -->
+  <div class="wtk-category">Visual Frameworks</div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">5-Element Framework</div>
+      <span class="term-badge">Framework</span>
+    </div>
+    <div class="term-def">The structured approach for directing AI image generation. Five components that must all be defined before generating any image: Subject (what is in the image — be specific), Style (what visual style — photorealistic, editorial, flat illustration, 3D render, cinematic), Environment (where is this — studio, outdoor, minimalist), Lighting and Mood (how does it feel — bright and clean, moody and dramatic, warm and inviting), and Details and Enhancements (finishing touches — depth of field, lens flare, grain, camera angle, negative space for copy). Same model, same tool — the framework is the difference between a stock-looking image and a professional visual.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">VISION Framework</div>
+      <span class="term-badge">Framework</span>
+    </div>
+    <div class="term-def">The structured approach for directing AI video generation. Six components: Visual Anchor (your controlled starting image — video starts from a still frame you already generated), Intention (the emotion or message that must land — product reveal, lifestyle moment, call to action), Sequence (the movement or action step by step), Immersion (the sensory layer — lighting shifts, sound design cues, texture details), Orbit (camera motion and perspective — static, slow zoom, pan, orbit, first-person POV), and Narrative Arc (how the story evolves from start to finish — even a 6-second clip has a beginning, a shift, and an end).</div>
+    <div class="term-acronym">
+      <span class="term-acronym-letter">V</span><span class="term-acronym-def"><strong>Visual Anchor</strong> — your controlled starting image</span>
+      <span class="term-acronym-letter">I</span><span class="term-acronym-def"><strong>Intention</strong> — the emotion or message that must land</span>
+      <span class="term-acronym-letter">S</span><span class="term-acronym-def"><strong>Sequence</strong> — the movement or action step by step</span>
+      <span class="term-acronym-letter">I</span><span class="term-acronym-def"><strong>Immersion</strong> — the sensory layer that makes it real</span>
+      <span class="term-acronym-letter">O</span><span class="term-acronym-def"><strong>Orbit</strong> — camera motion and perspective</span>
+      <span class="term-acronym-letter">N</span><span class="term-acronym-def"><strong>Narrative Arc</strong> — beginning, shift, and end</span>
+    </div>
+  </div>
+
+
+  <!-- ═══ CATEGORY: Brand Systems ═══ -->
+  <div class="wtk-category">Brand Systems</div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Style DNA</div>
+      <span class="term-badge">Brand System</span>
+    </div>
+    <div class="term-def">A document that locks your brand's visual identity so every image and video feels like it came from the same team. Style DNA defines what stays fixed across every visual (colors, typography style, logo treatment, overall mood, quality level) and what varies by audience and platform (composition, environment, energy level, camera angle, aspect ratio). With a Style DNA document, anyone on the team generates on-brand visuals without asking you a single question.</div>
+    <div class="term-example"><strong>In practice:</strong> The LinkedIn image feels different from the Instagram image. The training document header feels different from the TikTok thumbnail. But all of them stay within the fixed elements and remain unmistakably on-brand.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Fixed Elements</div>
+      <span class="term-badge">Brand System</span>
+    </div>
+    <div class="term-def">The components of Style DNA that stay the same across every image and video: color palette, typography style, logo treatment, overall mood, and quality level. Fixed elements are what make a visual unmistakably from your brand, regardless of who generated it or what platform it is for.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Variable Elements</div>
+      <span class="term-badge">Brand System</span>
+    </div>
+    <div class="term-def">The components of Style DNA that shift by audience and platform: composition, environment, energy level, camera angle, aspect ratio, and detail level. The LinkedIn image feels different from the Instagram image. The training document header feels different from the TikTok thumbnail. But all of them stay within the fixed elements and remain unmistakably on-brand.</div>
+  </div>
+
+
+  <!-- ═══ CATEGORY: Tools ═══ -->
+  <div class="wtk-category">Tools &amp; Technology</div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">LLMs with Image Generation</div>
+      <span class="term-badge">Technical</span>
+    </div>
+    <div class="term-def">The main AI tools (ChatGPT with DALL-E, Claude, Gemini with Imagen and Nano Banana) that can generate images from text prompts. Good for most business visuals — product shots, social graphics, presentation images. The place to start before moving to purpose-built tools.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Embedded AI</div>
+      <span class="term-badge">Technical</span>
+    </div>
+    <div class="term-def">AI that is built directly into design tools you already use — Canva, Figma, Adobe. You are paying for the AI feature as part of the tool subscription. Good when you need AI inside an existing design workflow. The underlying model is often one of the main LLMs with a specialized interface on top.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Purpose-Built Visual AI Tools</div>
+      <span class="term-badge">Technical</span>
+    </div>
+    <div class="term-def">Specialized tools designed specifically for high-end visual or video work. Midjourney for artistic, editorial-quality images. Runway and Google Flow for video generation. Flux and Stable Diffusion for specialized control. Use these when the LLMs cannot give you what the program needs.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">.json Prompt</div>
+      <span class="term-badge">Technical</span>
+    </div>
+    <div class="term-def">A structured, machine-readable format for writing AI image and video prompts. Organizing prompts as .json makes them repeatable, shareable, and consistent. When anyone on the team uses your .json prompt template, they get the same type of output without needing to know how you structured the original request. .json prompts are the difference between a one-time image and a reusable asset.</div>
+  </div>
+
+
+  <!-- ═══ CATEGORY: Visual Concepts ═══ -->
+  <div class="wtk-category">Visual Concepts</div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Visual Anchor</div>
+      <span class="term-badge">Visual</span>
+    </div>
+    <div class="term-def">The first element in the VISION Framework. The controlled starting image that video is built from. Video does not start from a text description. It starts from a still frame you already generated and approved using the 5-Element Framework. The visual anchor ensures the video begins on-brand and visually controlled.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Subject</div>
+      <span class="term-badge">Visual</span>
+    </div>
+    <div class="term-def">The first element of the 5-Element Framework. What is in the image? Be specific. Not "energy drink" but "a single can of BOLT energy drink, matte black with electric blue accent stripe, condensation on the surface." The more specific you are about the subject, the more professional the output.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Style</div>
+      <span class="term-badge">Visual</span>
+    </div>
+    <div class="term-def">The second element of the 5-Element Framework. What visual style? Photorealistic, editorial, flat illustration, 3D render, cinematic, hand-drawn, minimalist. If you do not know your options, ask AI. The style choice drives the entire look and feel.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Environment</div>
+      <span class="term-badge">Visual</span>
+    </div>
+    <div class="term-def">The third element of the 5-Element Framework. Where is this? Studio with white backdrop, outdoor gym setting, minimalist desk, neon-lit bar counter, home office, coffee shop, retail space. The environment sets the context and the feeling of the image.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Lighting and Mood</div>
+      <span class="term-badge">Visual</span>
+    </div>
+    <div class="term-def">The fourth element of the 5-Element Framework. How does it feel? Bright and clean for product shots. Moody and dramatic for lifestyle. Warm and inviting for social. Lighting is the single biggest lever for changing the feel of an image. It transforms the same subject into different emotions.</div>
+  </div>
+
+
+  <!-- ═══ CATEGORY: Leadership ═══ -->
+  <div class="wtk-category">Leadership</div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">The Leadership Test for Mission 4</div>
+      <span class="term-badge">Leadership</span>
+    </div>
+    <div class="term-def">The quality check that defines whether you built a system or just made some pictures: could Dana hand this entire visual package to a new associate on day one and get consistent, on-brand visuals without a single meeting? If yes, you built a system. If not, you made pictures. The AI Officer builds systems.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">The Four Offices (Visual Context)</div>
+      <span class="term-badge">Leadership</span>
+    </div>
+    <div class="term-def">In Mission 4, every visual in the BOLT campaign maps to one of the four business outcomes — Revenue, Talent, Operations, and Innovation. Revenue visuals go to retail partners and social channels. Talent visuals go to internal team communications. Innovation visuals support product development content. Operations visuals support process documentation. The AI Officer maps the visual system to business outcomes, not just aesthetics.</div>
+  </div>
+
+
+  <div class="buddy-note">
+    <p>If any term here is still unclear, open your AI Buddy and ask:</p>
+    <div class="buddy-prompt-text">"Explain [term] in plain language with an example from [your role or industry]."</div>
+  </div>
+
+  <!-- Bottom nav -->
+  <div class="wtk-bottom-nav">
+    <a href="mission-4-prompts.html" class="wtk-nav-btn">← Prompt Library</a>
+    <a href="mission-4-slides.html" class="wtk-nav-btn primary">Slide Deck →</a>
+  </div>
+
+</main>
+
+</body>
+</html>

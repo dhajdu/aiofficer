@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mission 4 Briefs — Prompting Perfect Visuals</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  :root {
+    --royal: #287BE8;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(4,16,45,0.07);
+    --shadow-hover: 0 6px 24px rgba(4,16,45,0.10);
+    --text-tertiary: #8b91ac;
+    --border-hover: #b0b6cc;
+  }
+  body { background: var(--surface); }
+
+  .page-wrap {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+    padding-top: 56px;
+  }
+
+  /* ── Sidebar ── */
+  .tb-sidebar {
+    position: sticky; top: 56px; height: calc(100vh - 56px);
+    overflow-y: auto; background: white;
+    border-right: 1px solid var(--border);
+    padding: 28px 0;
+  }
+  .tb-sidebar-inner { padding: 0 20px; }
+  .tb-sidebar-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 12px; padding: 0 4px;
+  }
+  .tb-nav-link {
+    display: block; padding: 8px 12px; border-radius: 8px;
+    font-size: 13px; font-weight: 500; color: var(--text-secondary);
+    text-decoration: none; transition: all 0.12s; margin-bottom: 2px;
+    line-height: 1.4;
+  }
+  .tb-nav-link:hover { background: var(--surface); color: var(--text-primary); }
+  .tb-nav-link.active { background: rgba(40,123,232,0.08); color: #287BE8; font-weight: 600; }
+  .tb-nav-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 1px;
+  }
+  .tb-nav-divider { height: 1px; background: var(--border); margin: 14px 0; }
+
+  .tb-buddy-btn {
+    display: flex; align-items: center; gap: 8px; width: 100%;
+    margin-top: 20px; padding: 10px 12px; border-radius: 8px;
+    background: rgba(40,123,232,0.07); border: 1px solid rgba(40,123,232,0.2);
+    color: #287BE8; font-size: 13px; font-weight: 600; cursor: pointer;
+    text-decoration: none; transition: all 0.15s;
+  }
+  .tb-buddy-btn:hover { background: rgba(40,123,232,0.12); }
+
+  /* ── Main content ── */
+  .tb-main { padding: 48px 60px 100px; max-width: 780px; }
+
+  .tb-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    text-decoration: none; margin-bottom: 32px; transition: color 0.12s;
+  }
+  .tb-back:hover { color: var(--text-primary); }
+
+  .tb-hero { margin-bottom: 48px; }
+  .tb-track-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.7px;
+    text-transform: uppercase; padding: 5px 12px; border-radius: 20px;
+    background: rgba(40,123,232,0.1); color: #287BE8;
+    border: 1px solid rgba(40,123,232,0.2); margin-bottom: 14px;
+  }
+  .tb-title {
+    font-size: 32px; font-weight: 700; color: var(--text-primary);
+    letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 10px;
+  }
+  .tb-sub { font-size: 15px; color: var(--text-secondary); line-height: 1.65; max-width: 560px; }
+
+  /* ── Brief section ── */
+  .brief-section { margin-bottom: 64px; scroll-margin-top: 80px; }
+  .brief-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; color: #287BE8;
+    margin-bottom: 6px;
+  }
+  .brief-title {
+    font-size: 24px; font-weight: 700; color: var(--text-primary);
+    letter-spacing: -0.3px; line-height: 1.2; margin-bottom: 20px;
+    padding-bottom: 16px; border-bottom: 2px solid var(--border);
+  }
+
+  /* ── Prose ── */
+  .prose { color: var(--text-secondary); line-height: 1.75; font-size: 15px; }
+  .prose p { margin-bottom: 18px; }
+  .prose h3 {
+    font-size: 17px; font-weight: 700; color: var(--text-primary);
+    letter-spacing: -0.2px; margin: 32px 0 10px;
+  }
+  .prose h4 {
+    font-size: 14px; font-weight: 700; color: var(--text-primary);
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin: 24px 0 8px;
+  }
+  .prose ul, .prose ol {
+    padding-left: 20px; margin-bottom: 18px; display: flex; flex-direction: column; gap: 6px;
+  }
+  .prose li { font-size: 14.5px; line-height: 1.65; }
+  .prose strong { font-weight: 700; color: var(--text-primary); }
+
+  /* ── Key insight box ── */
+  .key-insight {
+    background: rgba(40,123,232,0.05); border: 1px solid rgba(40,123,232,0.15);
+    border-left: 3px solid #287BE8; border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 18px 22px; margin: 28px 0;
+  }
+  .key-insight-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: #287BE8; margin-bottom: 8px;
+  }
+  .key-insight p { font-size: 14px; color: var(--text-primary); line-height: 1.65; margin: 0; }
+
+  /* ── Starter prompt box ── */
+  .starter-prompt {
+    background: rgba(26,158,116,0.04); border: 1px solid rgba(26,158,116,0.18);
+    border-radius: var(--radius); padding: 20px 22px; margin: 24px 0;
+  }
+  .starter-prompt-label {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.7px;
+    text-transform: uppercase; color: #1a9e74; margin-bottom: 12px;
+  }
+  .starter-prompt-text {
+    font-size: 14px; color: var(--text-primary); line-height: 1.7;
+    font-style: italic; background: white; padding: 14px 16px;
+    border-radius: 8px; border: 1px solid rgba(26,158,116,0.15);
+  }
+
+  /* ── Belief / move cards ── */
+  .belief-grid { display: flex; flex-direction: column; gap: 10px; margin: 16px 0 24px; }
+  .belief-card {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: white; border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px 18px;
+  }
+  .belief-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+    color: white; background: #287BE8; border-radius: 6px;
+    padding: 3px 8px; flex-shrink: 0; margin-top: 1px;
+  }
+  .belief-num.move { background: #1a9e74; }
+  .belief-content strong { font-size: 14px; font-weight: 700; color: var(--text-primary); display: block; margin-bottom: 3px; }
+  .belief-content p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+
+  /* ── Element breakdown ── */
+  .element-grid { display: flex; flex-direction: column; gap: 10px; margin: 16px 0 24px; }
+  .element-card {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: white; border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px 18px;
+  }
+  .element-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700;
+    color: white; background: #287BE8; border-radius: 6px;
+    padding: 6px 10px; flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* ── Worked example ── */
+  .worked-example {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px 22px; margin: 24px 0;
+  }
+  .worked-example-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px;
+  }
+
+  /* ── Back link at bottom ── */
+  .tb-bottom-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--border); padding-top: 32px; margin-top: 16px;
+  }
+  .tb-nav-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    text-decoration: none; padding: 8px 14px; border-radius: 8px;
+    border: 1px solid var(--border); transition: all 0.12s;
+  }
+  .tb-nav-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
+  .tb-nav-btn.primary {
+    background: #287BE8; color: white; border-color: #287BE8;
+  }
+  .tb-nav-btn.primary:hover { background: #1a6fd1; }
+
+  @media (max-width: 900px) {
+    .page-wrap { grid-template-columns: 1fr; }
+    .tb-sidebar { display: none; }
+    .tb-main { padding: 40px 24px 80px; }
+    .topbar-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ TOP BAR ═══════════════ -->
+<div class="topbar">
+  <a href="../index.html" class="topbar-brand">AIO <span>Labs</span></a>
+  <nav class="topbar-nav">
+    <a href="../index.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> Home</a>
+    <a href="../certification.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
+    <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+    <a href="../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="https://claude.ai" target="_blank" class="buddy-launch-btn">🤖 AI Buddy</a>
+    <div class="topbar-stat">🔥 7</div>
+    <div class="topbar-stat">⭐ 1,240</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-avatar">DH</div>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <!-- ══════ SIDEBAR ══════ -->
+  <aside class="tb-sidebar">
+    <div class="tb-sidebar-inner">
+      <div class="tb-sidebar-label">Mission 4 Briefs</div>
+
+      <a href="#brief-intro" class="tb-nav-link">
+        <span class="tb-nav-num">INTRO</span>Overview &amp; Learning Guide
+      </a>
+      <div class="tb-nav-divider"></div>
+      <a href="#brief-1" class="tb-nav-link">
+        <span class="tb-nav-num">BRIEF 1</span>From Ideas to Visuals
+      </a>
+      <a href="#brief-2" class="tb-nav-link">
+        <span class="tb-nav-num">BRIEF 2</span>The VISION Framework for Video
+      </a>
+      <a href="#brief-3" class="tb-nav-link">
+        <span class="tb-nav-num">BRIEF 3</span>Tools of the Trade
+      </a>
+      <a href="#brief-4" class="tb-nav-link">
+        <span class="tb-nav-num">BRIEF 4</span>Consistency at Scale: Style DNA
+      </a>
+      <a href="#brief-5" class="tb-nav-link">
+        <span class="tb-nav-num">BRIEF 5</span>The BOLT Visual Campaign
+      </a>
+      <div class="tb-nav-divider"></div>
+      <a href="#wrap-up" class="tb-nav-link">
+        <span class="tb-nav-num">WRAP-UP</span>Key Takeaways
+      </a>
+
+      <a href="https://claude.ai" target="_blank" class="tb-buddy-btn">🤖 Open AI Buddy</a>
+    </div>
+  </aside>
+
+  <!-- ══════ MAIN ══════ -->
+  <main class="tb-main">
+
+    <a href="mission-4.html" class="tb-back">← Back to Mission 4</a>
+
+    <div class="tb-hero">
+      <div class="tb-track-pill">Generative AI Essentials · Mission 04</div>
+      <h1 class="tb-title">Prompting Perfect Visuals</h1>
+      <p class="tb-sub">From bare image prompts to a complete visual system. Five briefs that build your visual AI toolkit — frameworks, tools, brand systems, and the BOLT campaign.</p>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         INTRO
+    ═══════════════════════════════════════ -->
+    <section class="brief-section" id="brief-intro">
+      <div class="brief-label">Introduction</div>
+      <h2 class="brief-title">Mission Goal &amp; How to Learn</h2>
+
+      <div class="prose">
+        <p>You have a go-to-market strategy. You have clean data. You have professional deliverables across four business outcomes. Leadership approved everything. But none of it goes to market without visuals. Product shots, social graphics, video content. Buddy Bevs does not have a design team. Dana cannot wait three weeks for a freelancer.</p>
+
+        <p>This is where the AI Officer builds a visual system. Not one image at a time. A system — with style rules, structured prompts, and templates anyone on the team can follow without asking you a single question.</p>
+
+        <h3>By the end of this mission, you'll be able to:</h3>
+      </div>
+
+      <div class="belief-grid">
+        <div class="belief-card">
+          <span class="belief-num">01</span>
+          <div class="belief-content">
+            <strong>Use the 5-Element Framework</strong>
+            <p>Direct any AI image with precision — subject, style, environment, lighting, and details</p>
+          </div>
+        </div>
+        <div class="belief-card">
+          <span class="belief-num">02</span>
+          <div class="belief-content">
+            <strong>Use the VISION Framework for Video</strong>
+            <p>Extend controlled images into motion with purpose — six decisions, defined before you generate</p>
+          </div>
+        </div>
+        <div class="belief-card">
+          <span class="belief-num">03</span>
+          <div class="belief-content">
+            <strong>Build a Style DNA Document</strong>
+            <p>Lock your brand's visual identity so every image feels like it came from the same team</p>
+          </div>
+        </div>
+        <div class="belief-card">
+          <span class="belief-num">04</span>
+          <div class="belief-content">
+            <strong>Generate Structured .json Prompts</strong>
+            <p>Create repeatable, shareable visual assets anyone on the team can use</p>
+          </div>
+        </div>
+        <div class="belief-card">
+          <span class="belief-num">05</span>
+          <div class="belief-content">
+            <strong>Produce the BOLT Visual Campaign</strong>
+            <p>Eleven images and two videos mapped to the Four Offices of business outcomes</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h3>The Most Important Thing to Know</h3>
+        <p>AI does not know what good looks like unless you tell it. The 5-Element Framework for images and the VISION Framework for video are how you tell it. Five decisions for stills. Six decisions for motion. Defined before you generate anything. Same principle as every mission: your input drives the output.</p>
+
+        <h3>How to Learn This Mission</h3>
+        <p>Every visual you build in this mission comes from content you already created. The press release from Mission 3. The blog post. The social posts. The training documents. You are not starting from scratch. You are turning existing deliverables into visuals. That is the system.</p>
+
+        <p>Complete the image workflow before the video workflow. VISION builds on 5-Element. Do them in order. Build your Style DNA before the final campaign. If you skip it, your eleven images will look like they came from eleven different companies. Use .json prompts for everything. Structured prompts are repeatable. Freeform prompts are one-time shots. Build the asset, not just the image.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         BRIEF 1
+    ═══════════════════════════════════════ -->
+    <section class="brief-section" id="brief-1">
+      <div class="brief-label">Brief 1</div>
+      <h2 class="brief-title">From Ideas to Visuals</h2>
+
+      <div class="prose">
+        <p>Most people open an AI image tool, type "professional product photo of an energy drink," and get something that looks like a stock photo from 2019. It is technically an image. It is not a visual system.</p>
+
+        <p>The gap between a generic AI image and a professional visual is the same gap you closed in Mission 3 between a bare prompt and a structured deliverable. Same principle. Different medium. Structure wins.</p>
+
+        <h3>The 5-Element Framework</h3>
+        <p>Five elements. Define all five before you generate anything.</p>
+      </div>
+
+      <div class="element-grid">
+        <div class="element-card">
+          <span class="element-num">1</span>
+          <div class="belief-content">
+            <strong>Subject</strong>
+            <p>What is in the image? Be specific. Not "energy drink" but "a single can of BOLT energy drink, matte black with electric blue accent stripe, condensation on the surface."</p>
+          </div>
+        </div>
+        <div class="element-card">
+          <span class="element-num">2</span>
+          <div class="belief-content">
+            <strong>Style</strong>
+            <p>What visual style? Photorealistic, editorial, flat illustration, 3D render, cinematic. If you do not know your options, ask AI.</p>
+          </div>
+        </div>
+        <div class="element-card">
+          <span class="element-num">3</span>
+          <div class="belief-content">
+            <strong>Environment</strong>
+            <p>Where is this? Studio with white backdrop, outdoor gym setting, minimalist desk, neon-lit bar counter. The environment sets the context.</p>
+          </div>
+        </div>
+        <div class="element-card">
+          <span class="element-num">4</span>
+          <div class="belief-content">
+            <strong>Lighting and Mood</strong>
+            <p>How does it feel? Bright and clean for product shots. Moody and dramatic for lifestyle. Warm and inviting for social. Lighting is the biggest lever for changing the feel.</p>
+          </div>
+        </div>
+        <div class="element-card">
+          <span class="element-num">5</span>
+          <div class="belief-content">
+            <strong>Details and Enhancements</strong>
+            <p>What finishing touches? Depth of field, lens flare, grain, specific camera angle, text overlay space, negative space for copy placement.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="worked-example">
+        <div class="worked-example-label">Worked Example — Bare Prompt vs. 5-Element</div>
+        <div class="prose">
+          <p><strong>Bare prompt:</strong> "Create an image of an energy drink."<br>
+          Result: Generic can, generic background, generic lighting. Could be any product from any company. You would never put this on a landing page.</p>
+
+          <p><strong>5-Element prompt:</strong><br>
+          Subject = single BOLT can with matte black finish and electric blue accent, condensation visible. Style = photorealistic product photography. Environment = dark studio with single spotlight from above. Lighting and Mood = dramatic, high contrast, premium feel. Details = shallow depth of field, slight reflection on surface below, negative space on right for headline text.<br>
+          Result: Looks like it came from a professional photo shoot. On-brand. Ready for the press release.</p>
+
+          <p style="margin-bottom:0"><strong>Same model. Same tool. The framework is the difference.</strong></p>
+        </div>
+      </div>
+
+      <div class="key-insight">
+        <div class="key-insight-label">Key Insight</div>
+        <p>AI does not know what good looks like unless you tell it. The 5-Element Framework is how you tell it. Five decisions, defined before you generate, produce results that look professional instead of generic. Your input drives the output. In Mission 3 it was RACE and CRA. Here it is the 5-Element Framework. Different framework, same discipline.</p>
+      </div>
+
+      <div class="starter-prompt">
+        <div class="starter-prompt-label">💬 Starter Prompt — AI Buddy</div>
+        <div class="starter-prompt-text">"I need to create a professional product image for BOLT energy drink. Before I write any prompt, walk me through the 5-Element Framework. For each element, give me three options that would work for a premium energy drink targeting health-conscious millennials. Then help me choose and write the .json prompt."</div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         BRIEF 2
+    ═══════════════════════════════════════ -->
+    <section class="brief-section" id="brief-2">
+      <div class="brief-label">Brief 2</div>
+      <h2 class="brief-title">The VISION Framework for Video</h2>
+
+      <div class="prose">
+        <p>Video starts with a controlled image. You do not describe a video from scratch. You take an image you already generated using the 5-Element Framework and extend it into motion with purpose.</p>
+
+        <h3>VISION: Six Elements for Video</h3>
+      </div>
+
+      <div class="element-grid">
+        <div class="element-card">
+          <span class="element-num">V</span>
+          <div class="belief-content">
+            <strong>Visual Anchor</strong>
+            <p>Your starting image. This is what the viewer sees in frame one. It must be a controlled, on-brand image you already generated using the 5-Element Framework.</p>
+          </div>
+        </div>
+        <div class="element-card">
+          <span class="element-num">I</span>
+          <div class="belief-content">
+            <strong>Intention</strong>
+            <p>What emotion or message must land? Is this a product reveal? A lifestyle moment? A call to action? The intention drives every other decision.</p>
+          </div>
+        </div>
+        <div class="element-card">
+          <span class="element-num">S</span>
+          <div class="belief-content">
+            <strong>Sequence</strong>
+            <p>The movement or action, step by step. Camera pulls back to reveal the environment. Hand reaches for the can. Condensation drips. Define the sequence before you generate.</p>
+          </div>
+        </div>
+        <div class="element-card">
+          <span class="element-num">I</span>
+          <div class="belief-content">
+            <strong>Immersion</strong>
+            <p>The sensory layer. Lighting shifts, sound design cues, texture details. What makes this feel real? What makes the viewer stop scrolling?</p>
+          </div>
+        </div>
+        <div class="element-card">
+          <span class="element-num">O</span>
+          <div class="belief-content">
+            <strong>Orbit</strong>
+            <p>Camera motion and perspective. Static, slow zoom, pan left, orbit around subject, first-person POV. The camera movement carries the story.</p>
+          </div>
+        </div>
+        <div class="element-card">
+          <span class="element-num">N</span>
+          <div class="belief-content">
+            <strong>Narrative Arc</strong>
+            <p>How does the story evolve from start to finish? Even in a 6-second clip, there is a beginning, a shift, and an end.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="worked-example">
+        <div class="worked-example-label">Worked Example — From Image to Video</div>
+        <div class="prose">
+          <p>You have your BOLT product shot from Brief 1. Now you extend it using VISION:</p>
+
+          <p><strong>Visual Anchor:</strong> The dramatic product shot — BOLT can, dark studio, spotlight from above.<br>
+          <strong>Intention:</strong> Premium product reveal. The viewer should feel "I want that."<br>
+          <strong>Sequence:</strong> Camera starts tight on condensation dripping down the can. Slowly pulls back to reveal the full can in the spotlight. Final frame: BOLT brand in the lower third.<br>
+          <strong>Immersion:</strong> Sound of condensation drip. Low ambient hum. Spotlight intensifies as the camera pulls back.<br>
+          <strong>Orbit:</strong> Slow dolly back, slight upward tilt to make the can feel heroic.<br>
+          <strong>Narrative Arc:</strong> Mystery (what am I looking at?) to reveal (BOLT) to desire (I want that).</p>
+
+          <p style="margin-bottom:0"><strong>Six decisions. Made before you generate. The result is a 6-second clip that feels intentional, not random.</strong></p>
+        </div>
+      </div>
+
+      <div class="key-insight">
+        <div class="key-insight-label">Key Insight</div>
+        <p>Video without structure is just moving noise. VISION gives you six decisions to make before you generate, so the output has purpose. Do not write the prompt from scratch. Define the elements, let AI write the structured prompt, review it, run it. The AI Officer builds repeatable visual systems, not one-off clips.</p>
+      </div>
+
+      <div class="starter-prompt">
+        <div class="starter-prompt-label">💬 Starter Prompt — AI Buddy</div>
+        <div class="starter-prompt-text">"I have a product image for BOLT energy drink that I want to turn into a short video clip. Walk me through the VISION Framework. For each of the six elements, give me options that would work for a premium product reveal on social media. Then help me choose and write the .json video prompt for Google Flow."</div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         BRIEF 3
+    ═══════════════════════════════════════ -->
+    <section class="brief-section" id="brief-3">
+      <div class="brief-label">Brief 3</div>
+      <h2 class="brief-title">Tools of the Trade</h2>
+
+      <div class="prose">
+        <p>You need to know what is under the hood. Not to become a designer. To make the right tool decision for your program.</p>
+
+        <h3>Three Types of Visual AI Tools</h3>
+
+        <p><strong>LLMs with image generation.</strong> ChatGPT (DALL-E), Claude, Gemini (Imagen, Nano Banana). You are already using these. They generate images from text prompts and they are getting better fast. Good for most business visuals.</p>
+
+        <p><strong>Embedded AI.</strong> Canva, Figma, Adobe — AI built into design tools you already use. Good when you need AI inside an existing workflow. But you are often paying for the wrapper, not just the model.</p>
+
+        <p><strong>Purpose-built tools.</strong> Midjourney for artistic images. Runway for video. Google Flow for video generation. Flux and Stable Diffusion for specialized control. Use these when the LLMs cannot give you what you need.</p>
+
+        <h3>When to Use What</h3>
+
+        <p>For most business visuals — product shots, social graphics, presentation images — the LLMs are enough. Start there. For video, Google Flow or Runway. For brand-level artistic work, Midjourney.</p>
+
+        <p>The AI Officer's question is always the same: what does the program need? Match the tool to the outcome, not the hype.</p>
+
+        <h3>Key Insight</h3>
+        <p>99% of visual AI apps are just wrappers around the same models. Before your team signs up for another subscription, ask what is under the hood. If it is DALL-E with a pretty interface, you can do the same thing for free in ChatGPT. The AI Officer knows the difference.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         BRIEF 4
+    ═══════════════════════════════════════ -->
+    <section class="brief-section" id="brief-4">
+      <div class="brief-label">Brief 4</div>
+      <h2 class="brief-title">Consistency at Scale: Style DNA</h2>
+
+      <div class="prose">
+        <p>One good image is easy. Eleven images and two videos that all look like they came from the same brand? That is a system.</p>
+
+        <h3>What Is Style DNA?</h3>
+
+        <p>Style DNA is a document that locks your brand's visual identity. It defines what stays fixed across every visual (colors, typography style, overall mood) and what varies by audience and platform (composition, environment, energy level).</p>
+
+        <p>Think of it like brand guidelines, but for AI-generated visuals. Anyone on the team picks up the Style DNA document, plugs it into a prompt, and gets on-brand output without asking you a single question.</p>
+
+        <h3>Fixed vs. Variable</h3>
+
+        <p><strong>Fixed elements</strong> stay the same across every image and video: color palette, typography style, logo treatment, overall mood, quality level.</p>
+
+        <p><strong>Variable elements</strong> shift by audience and platform: composition, environment, energy level, camera angle, aspect ratio, details.</p>
+
+        <p>The LinkedIn image feels different from the Instagram image. The training document header feels different from the TikTok thumbnail. But all of them are unmistakably BOLT. That is what Style DNA does.</p>
+
+        <h3>Worked Example: Building BOLT's Style DNA</h3>
+
+        <div class="worked-example">
+          <div class="prose">
+            <p><strong>Fixed:</strong> Matte black primary, electric blue accent, clean sans-serif typography, premium and aspirational mood, photorealistic style.</p>
+
+            <p><strong>Variable by platform:</strong></p>
+            <ul>
+              <li><strong>LinkedIn</strong> = professional, clean, studio setting</li>
+              <li><strong>Instagram</strong> = lifestyle, vibrant, environmental</li>
+              <li><strong>TikTok</strong> = dynamic, close-up, high energy</li>
+              <li><strong>Internal documents</strong> = minimal, structured, informational</li>
+            </ul>
+
+            <p style="margin-bottom:0;">With this document, anyone on Dana's team generates visuals that feel like BOLT. Without it, every image looks like it came from a different company.</p>
+          </div>
+        </div>
+
+        <h3>Key Insight</h3>
+        <p>The leadership test for Mission 4 is not "can you make a good image?" It is "could Dana hand this entire visual system to a new marketing associate on day one and get consistent, on-brand visuals without a single meeting?" If the answer is yes, you built a system. If not, you made some pictures. The AI Officer builds systems.</p>
+      </div>
+
+      <div class="starter-prompt">
+        <div class="starter-prompt-label">💬 Starter Prompt — AI Buddy</div>
+        <div class="starter-prompt-text">"I need to build a Style DNA document for BOLT energy drink. Ask me about the brand's personality, target audience, visual preferences, and the platforms we will be publishing on. Then create a Style DNA template that defines what stays fixed and what varies by audience and platform."</div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         BRIEF 5
+    ═══════════════════════════════════════ -->
+    <section class="brief-section" id="brief-5">
+      <div class="brief-label">Brief 5</div>
+      <h2 class="brief-title">The BOLT Visual Campaign</h2>
+
+      <div class="prose">
+        <p>Everything from Missions 1 through 3 becomes visual. Dana has the strategy, the data, the go-to-market brief, and the content pack. Now she needs the visuals to take BOLT to market.</p>
+
+        <h3>What You're Building</h3>
+
+        <p>Thirteen deliverables: eleven images and two videos mapped to the Four Offices of business outcomes.</p>
+
+        <p><strong>Office of Revenue (6 images):</strong> Press release hero, blog post graphic, LinkedIn image, Instagram image, Facebook image, TikTok/X image.</p>
+
+        <p><strong>Office of Talent (2 images):</strong> Internal training document header, team memo header.</p>
+
+        <p><strong>Office of Innovation (2 images):</strong> Product storyboard scene, user story concept visual.</p>
+
+        <p><strong>Office of Operations (1 image):</strong> Customer complaint response catalog header.</p>
+
+        <p><strong>Videos (2 clips):</strong> Blog post video clip and internal training video clip. Both using VISION Framework and Google Flow.</p>
+
+        <h3>For Each Image</h3>
+
+        <p>Submit: The image, the .json prompt, your 5-Element decisions and why, how fixed elements held while variables shifted.</p>
+
+        <h3>For Each Video</h3>
+
+        <p>Submit: The video, the starting image, the .json VISION prompt, your six VISION element decisions and why.</p>
+
+        <h3>Before You Submit: Three Questions</h3>
+
+        <p>If the answer to all three is yes, you built a system.</p>
+
+        <ol>
+          <li>Does every visual stay within BOLT's Style DNA?</li>
+          <li>Does every visual feel right for its specific audience?</li>
+          <li>Could Dana hand this entire package to a new associate on day one and get on-brand visuals without a single meeting?</li>
+        </ol>
+
+        <h3>Key Insight</h3>
+        <p>The AI Officer builds systems, not images. The test is never "can I make something that looks good?" The test is "can someone else follow my system and get the same quality without me in the room?"</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         WRAP-UP
+    ═══════════════════════════════════════ -->
+    <section class="brief-section" id="wrap-up">
+      <div class="brief-label">Wrap-Up</div>
+      <h2 class="brief-title">Key Takeaways</h2>
+
+      <div class="belief-grid">
+        <div class="belief-card">
+          <span class="belief-num">→</span>
+          <div class="belief-content">
+            <strong>AI does not know what good looks like unless you tell it</strong>
+            <p>The 5-Element Framework for images and the VISION Framework for video are how you tell it. Five decisions for stills. Six decisions for motion. Defined before you generate.</p>
+          </div>
+        </div>
+        <div class="belief-card">
+          <span class="belief-num">→</span>
+          <div class="belief-content">
+            <strong>Your input drives the output</strong>
+            <p>Same principle, every mission. In Mission 1 it was mindset. In Mission 2 it was data. In Mission 3 it was logic frameworks. Here it is visual frameworks. The discipline is always the same: structure before generation.</p>
+          </div>
+        </div>
+        <div class="belief-card">
+          <span class="belief-num">→</span>
+          <div class="belief-content">
+            <strong>One good image is easy. A system is leadership</strong>
+            <p>Style DNA is the document that makes it possible. When anyone on the team can generate on-brand visuals without asking you, that is a system. That is what you built.</p>
+          </div>
+        </div>
+        <div class="belief-card">
+          <span class="belief-num">→</span>
+          <div class="belief-content">
+            <strong>The AI Officer builds systems, not images</strong>
+            <p>The test is never "can I make something that looks good?" The test is "can someone else follow my system and get the same quality without me in the room?"</p>
+          </div>
+        </div>
+        <div class="belief-card">
+          <span class="belief-num">→</span>
+          <div class="belief-content">
+            <strong>You have completed the Generative AI Essentials series</strong>
+            <p>Four missions. Mindset. Data. Logic. Visuals. You have built the personal foundation for leading AI. Next: the Agentic AI series, where you scale it to your team.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h3>Your Commitment</h3>
+        <p>Before you close out: name one habit you will start, stop, or continue this week. Not a tool. A behavior. Something your manager would notice.</p>
+      </div>
+    </section>
+
+    <!-- Bottom nav -->
+    <div class="tb-bottom-nav">
+      <a href="mission-4.html" class="tb-nav-btn">← Back to Mission 4</a>
+      <a href="mission-4-prompts.html" class="tb-nav-btn primary">Prompt Library →</a>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

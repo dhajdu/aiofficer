@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAIO Coaching — AIO Labs</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/styles.css">
+<style>
+  :root {
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(4,16,45,0.07);
+    --shadow-hover: 0 6px 24px rgba(4,16,45,0.10);
+    --border-hover: #b0b6cc;
+  }
+
+  body { background: var(--surface); }
+
+  .page-main { max-width: 1060px; margin: 0 auto; padding: 80px 40px 100px; }
+
+  /* ── Hero ── */
+  .coaching-hero {
+    background: var(--navy); border-radius: 16px;
+    padding: 48px 52px; margin-bottom: 48px;
+    display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center;
+  }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--mint); margin-bottom: 12px;
+  }
+  .hero-title {
+    font-size: 38px; font-weight: 700; letter-spacing: -0.8px;
+    line-height: 1.1; color: white; margin-bottom: 14px;
+  }
+  .hero-title span { color: var(--mint); }
+  .hero-desc {
+    font-size: 15px; color: rgba(255,255,255,0.55);
+    line-height: 1.7; max-width: 520px; margin-bottom: 28px;
+  }
+  .hero-schedule {
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .schedule-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px; padding: 10px 16px;
+  }
+  .schedule-badge-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #6FF2C1;
+    flex-shrink: 0; animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .schedule-badge-text {
+    font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.8);
+  }
+  .schedule-badge-sub {
+    font-size: 11px; color: rgba(255,255,255,0.4);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Next session countdown card */
+  .hero-countdown {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px; padding: 28px 32px; text-align: center; min-width: 200px;
+    flex-shrink: 0;
+  }
+  .countdown-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--mint); margin-bottom: 12px;
+  }
+  .countdown-day {
+    font-size: 42px; font-weight: 700; color: white;
+    font-family: 'JetBrains Mono', monospace; letter-spacing: -2px;
+    line-height: 1; margin-bottom: 4px;
+  }
+  .countdown-day span { font-size: 20px; color: rgba(255,255,255,0.4); }
+  .countdown-date {
+    font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.65); margin-bottom: 16px;
+  }
+  .countdown-time {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: rgba(255,255,255,0.4); line-height: 1.5;
+  }
+
+  /* ── Two-column layout ── */
+  .coaching-body {
+    display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start;
+  }
+
+  /* ── Section headers ── */
+  .section-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .section-head-title {
+    font-size: 18px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.2px;
+  }
+  .section-head-meta {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted);
+  }
+
+  /* ── Upcoming session banner ── */
+  .upcoming-banner {
+    background: white; border: 2px solid rgba(40,123,232,0.25);
+    border-radius: var(--radius); padding: 24px 26px;
+    margin-bottom: 24px;
+  }
+  .upcoming-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: #287BE8; background: rgba(40,123,232,0.08);
+    border: 1px solid rgba(40,123,232,0.2); border-radius: 5px;
+    padding: 3px 10px; margin-bottom: 14px;
+  }
+  .upcoming-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: #287BE8; animation: pulse 2s infinite; }
+  .upcoming-date {
+    font-size: 12px; font-weight: 700; color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace; margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .upcoming-title {
+    font-size: 20px; font-weight: 700; color: var(--text-primary);
+    letter-spacing: -0.3px; line-height: 1.25; margin-bottom: 10px;
+  }
+  .upcoming-desc {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 18px;
+  }
+  .upcoming-submitter {
+    display: flex; align-items: center; gap: 10px;
+    padding-top: 14px; border-top: 1px solid var(--surface);
+  }
+  .submitter-label {
+    font-size: 11px; color: var(--text-muted); margin-right: 4px;
+  }
+
+  /* ── Session cards (past sessions) ── */
+  .sessions-grid { display: flex; flex-direction: column; gap: 12px; }
+  .session-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px 22px;
+    display: flex; flex-direction: column; gap: 10px;
+    box-shadow: var(--shadow-sm);
+    text-decoration: none; color: inherit;
+    transition: all 0.15s var(--ease);
+  }
+  .session-card:hover {
+    border-color: rgba(40,123,232,0.3);
+    box-shadow: var(--shadow-hover); transform: translateY(-1px);
+  }
+  .session-card-top {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .session-date-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+    color: var(--text-muted); background: var(--surface);
+    border: 1px solid var(--border); border-radius: 5px; padding: 3px 8px;
+    white-space: nowrap;
+  }
+  .session-track-pill {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.5px;
+    text-transform: uppercase; padding: 3px 8px; border-radius: 5px;
+  }
+  .session-track-pill.gen { background: rgba(209,69,139,0.1); color: #D1458B; }
+  .session-track-pill.age { background: rgba(40,123,232,0.1); color: #287BE8; }
+  .session-track-pill.lead { background: rgba(26,158,116,0.1); color: #1a9e74; }
+  .session-title {
+    font-size: 15px; font-weight: 700; color: var(--text-primary);
+    letter-spacing: -0.2px; line-height: 1.3;
+  }
+  .session-desc {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.6;
+  }
+  .session-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 10px; border-top: 1px solid var(--surface);
+  }
+  .session-arrow { font-size: 13px; color: var(--text-muted); transition: color 0.12s; }
+  .session-card:hover .session-arrow { color: #287BE8; }
+
+  /* ── Student avatar ── */
+  .student-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; color: white; flex-shrink: 0;
+  }
+  .student-info { display: flex; align-items: center; gap: 7px; }
+  .student-name { font-size: 12px; font-weight: 600; color: var(--text-secondary); }
+  .student-role { font-size: 11px; color: var(--text-muted); }
+
+  /* Large avatar for upcoming banner */
+  .student-avatar.lg {
+    width: 34px; height: 34px; font-size: 12px;
+  }
+
+  /* ── Sidebar ── */
+  .sidebar-panel {
+    background: white; border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: var(--shadow-sm); position: sticky; top: 76px;
+  }
+
+  /* Submit form */
+  .submit-panel-header {
+    background: var(--navy); padding: 22px 24px;
+  }
+  .submit-panel-title {
+    font-size: 16px; font-weight: 700; color: white; margin-bottom: 4px;
+  }
+  .submit-panel-sub {
+    font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5;
+  }
+  .submit-panel-body { padding: 20px 24px; }
+
+  .submit-deadline {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(40,123,232,0.06); border: 1px solid rgba(40,123,232,0.15);
+    border-radius: 8px; padding: 10px 14px; margin-bottom: 18px;
+  }
+  .submit-deadline-icon { font-size: 14px; }
+  .submit-deadline-text {
+    font-size: 12px; font-weight: 600; color: #287BE8; line-height: 1.4;
+  }
+  .submit-deadline-sub { font-size: 11px; color: var(--text-muted); }
+
+  .form-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; display: block;
+  }
+  .form-input {
+    width: 100%; border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 12px; font-family: 'DM Sans', sans-serif;
+    font-size: 13px; color: var(--text-primary); background: var(--surface);
+    transition: border-color 0.12s, background 0.12s; margin-bottom: 12px;
+    resize: none; outline: none;
+  }
+  .form-input:focus { border-color: #287BE8; background: white; }
+  .form-input::placeholder { color: var(--text-muted); }
+  .form-textarea { height: 100px; }
+  .form-input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  .submit-btn {
+    width: 100%; background: #287BE8; color: white;
+    border: none; border-radius: 8px; padding: 11px 16px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700;
+    cursor: pointer; transition: background 0.15s;
+  }
+  .submit-btn:hover { background: #1a6fd1; }
+
+  .submit-note {
+    font-size: 11px; color: var(--text-muted); text-align: center;
+    margin-top: 10px; line-height: 1.5;
+  }
+
+  /* Schedule info */
+  .schedule-info { padding: 20px 24px; border-top: 1px solid var(--border); }
+  .schedule-info-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 14px;
+  }
+  .schedule-row {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 13px; margin-bottom: 10px;
+  }
+  .schedule-row-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+  .schedule-row-text { color: var(--text-secondary); line-height: 1.5; }
+  .schedule-row-text strong { color: var(--text-primary); font-weight: 700; }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .page-main { padding: 70px 20px 80px; }
+    .coaching-hero { grid-template-columns: 1fr; }
+    .hero-countdown { display: none; }
+    .coaching-body { grid-template-columns: 1fr; }
+    .sidebar-panel { position: static; }
+    .topbar-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ TOP BAR ═══════════════ -->
+<div class="topbar">
+  <a href="index.html" class="topbar-brand">AIO <span>Labs</span></a>
+  <nav class="topbar-nav">
+    <a href="index.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> Home</a>
+    <a href="certification.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
+    <a href="coaching.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+    <a href="micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+    <a href="my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="https://claude.ai" target="_blank" class="buddy-launch-btn">🤖 AI Buddy</a>
+    <div class="topbar-stat">🔥 7</div>
+    <div class="topbar-stat">⭐ 1,240</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-avatar">DH</div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">CAIO Coaching &middot; Live Sessions</p>
+    <h1>Every Thursday, <span class="accent">Your Toughest AI Problems — Solved</span></h1>
+    <p class="hero-subtitle">Bring your real challenges. Every week, the CAIO works through submitted problems live. Submit yours before the session.</p>
+    <div class="hero-pills">
+    <span class="pill pill-blue">Live Coaching</span>
+    <span class="pill pill-mint">Every Thursday</span>
+    <span class="pill pill-navy">11:30 AM GMT+7</span>
+    </div>
+  </div>
+</section>
+<main class="page-main">
+
+  <!-- ── Hero ── -->
+  <div class="coaching-hero">
+    <div>
+      <div class="hero-eyebrow">AIO Labs · Live Coaching</div>
+      <h1 class="hero-title">CAIO <span>Coaching</span></h1>
+      <p class="hero-desc">Bring your real AI challenges. Every Thursday, Dave works through submitted problems live — no slides, no theory, just real solutions you can use the same day.</p>
+      <div class="hero-schedule">
+        <div class="schedule-badge">
+          <div class="schedule-badge-dot"></div>
+          <div>
+            <div class="schedule-badge-text">Every Thursday</div>
+            <div class="schedule-badge-sub">11:30 AM – 1:30 PM · GMT+7</div>
+          </div>
+        </div>
+        <div class="schedule-badge">
+          <div style="font-size:16px">🎙️</div>
+          <div>
+            <div class="schedule-badge-text">Live + Recorded</div>
+            <div class="schedule-badge-sub">Submit problems in advance</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Countdown -->
+    <div class="hero-countdown">
+      <div class="countdown-label">Next Session</div>
+      <div class="countdown-day" id="days-left">—<span>d</span></div>
+      <div class="countdown-date" id="next-thursday">Loading…</div>
+      <div class="countdown-time">Thu · 11:30 AM<br>GMT+7</div>
+    </div>
+  </div>
+
+
+  <!-- ── Body ── -->
+  <div class="coaching-body">
+
+    <!-- ═══ Main column ═══ -->
+    <div>
+
+      <!-- Upcoming -->
+      <div class="section-head">
+        <span class="section-head-title">Up Next</span>
+        <span class="section-head-meta">This Thursday</span>
+      </div>
+
+      <div class="upcoming-banner">
+        <div class="upcoming-tag">
+          <span class="upcoming-tag-dot"></span> Next Session
+        </div>
+        <div class="upcoming-date">Thursday, 3 Apr 2026 · 11:30 AM GMT+7</div>
+        <h2 class="upcoming-title">Building Your First AI Workflow Without Writing Code</h2>
+        <p class="upcoming-desc">How to map a real business process, identify the right trigger, and connect tools like Make or Zapier — starting from a blank screen with no technical background.</p>
+        <div class="upcoming-submitter">
+          <span class="submitter-label">Submitted by</span>
+          <div class="student-info">
+            <div class="student-avatar lg" style="background: #7C3AED;">SM</div>
+            <div>
+              <div class="student-name">Sarah M.</div>
+              <div class="student-role">Operations Lead · Singapore</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Past Sessions -->
+      <div class="section-head" style="margin-top: 40px;">
+        <span class="section-head-title">Past Sessions</span>
+        <span class="section-head-meta">12 sessions recorded</span>
+      </div>
+
+      <div class="sessions-grid">
+
+        <a href="#" class="session-card">
+          <div class="session-card-top">
+            <span class="session-date-badge">27 Mar 2026</span>
+            <span class="session-track-pill age">Agentic AI</span>
+          </div>
+          <div class="session-title">How to Debug an AI Agent That Keeps Getting the Wrong Answer</div>
+          <div class="session-desc">Diagnosing prompt failures, context drift, and decision-logic gaps in agentic workflows — with a live teardown of a real agent build.</div>
+          <div class="session-footer">
+            <div class="student-info">
+              <div class="student-avatar" style="background: #D1458B;">JK</div>
+              <div>
+                <div class="student-name">James K.</div>
+                <div class="student-role">Product Manager · Manila</div>
+              </div>
+            </div>
+            <span class="session-arrow">→</span>
+          </div>
+        </a>
+
+        <a href="#" class="session-card">
+          <div class="session-card-top">
+            <span class="session-date-badge">20 Mar 2026</span>
+            <span class="session-track-pill gen">Generative AI</span>
+          </div>
+          <div class="session-title">Writing a Prompt That Sounds Like Your Brand Every Time</div>
+          <div class="session-desc">How to encode tone, vocabulary, and example outputs into a reusable prompt template your whole team can use — without it sounding generic.</div>
+          <div class="session-footer">
+            <div class="student-info">
+              <div class="student-avatar" style="background: #0891B2;">LT</div>
+              <div>
+                <div class="student-name">Linh T.</div>
+                <div class="student-role">Marketing Director · HCMC</div>
+              </div>
+            </div>
+            <span class="session-arrow">→</span>
+          </div>
+        </a>
+
+        <a href="#" class="session-card">
+          <div class="session-card-top">
+            <span class="session-date-badge">13 Mar 2026</span>
+            <span class="session-track-pill lead">Leadership</span>
+          </div>
+          <div class="session-title">How to Present an AI Business Case to a Skeptical CEO</div>
+          <div class="session-desc">Structuring the ROI argument, pre-empting the "what could go wrong" questions, and getting buy-in without overpromising on what AI will deliver.</div>
+          <div class="session-footer">
+            <div class="student-info">
+              <div class="student-avatar" style="background: #059669;">RA</div>
+              <div>
+                <div class="student-name">Raj A.</div>
+                <div class="student-role">COO · Jakarta</div>
+              </div>
+            </div>
+            <span class="session-arrow">→</span>
+          </div>
+        </a>
+
+        <a href="#" class="session-card">
+          <div class="session-card-top">
+            <span class="session-date-badge">6 Mar 2026</span>
+            <span class="session-track-pill age">Agentic AI</span>
+          </div>
+          <div class="session-title">Setting Up Claude Projects for Your Whole Team</div>
+          <div class="session-desc">Using Claude Projects as a shared context layer — team instructions, shared files, and how to onboard colleagues who have never used it before.</div>
+          <div class="session-footer">
+            <div class="student-info">
+              <div class="student-avatar" style="background: #EA580C;">NW</div>
+              <div>
+                <div class="student-name">Natalie W.</div>
+                <div class="student-role">Team Lead · Bangkok</div>
+              </div>
+            </div>
+            <span class="session-arrow">→</span>
+          </div>
+        </a>
+
+        <a href="#" class="session-card">
+          <div class="session-card-top">
+            <span class="session-date-badge">27 Feb 2026</span>
+            <span class="session-track-pill gen">Generative AI</span>
+          </div>
+          <div class="session-title">Turning Meeting Notes Into Action in Under 5 Minutes</div>
+          <div class="session-desc">Building a repeatable prompt workflow that converts raw meeting notes into formatted decisions, action items, and follow-up emails — with no manual editing.</div>
+          <div class="session-footer">
+            <div class="student-info">
+              <div class="student-avatar" style="background: #7C3AED;">MC</div>
+              <div>
+                <div class="student-name">Michael C.</div>
+                <div class="student-role">Sales Director · KL</div>
+              </div>
+            </div>
+            <span class="session-arrow">→</span>
+          </div>
+        </a>
+
+        <a href="#" class="session-card">
+          <div class="session-card-top">
+            <span class="session-date-badge">20 Feb 2026</span>
+            <span class="session-track-pill lead">Leadership</span>
+          </div>
+          <div class="session-title">Choosing Between ChatGPT, Claude, and Gemini for Your Team</div>
+          <div class="session-desc">A live evaluation framework walkthrough — matching AI Kingdom data advantages to real use cases across sales, ops, and marketing teams.</div>
+          <div class="session-footer">
+            <div class="student-info">
+              <div class="student-avatar" style="background: #BE123C;">YP</div>
+              <div>
+                <div class="student-name">Yui P.</div>
+                <div class="student-role">Head of Digital · Chiang Mai</div>
+              </div>
+            </div>
+            <span class="session-arrow">→</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+
+    <!-- ═══ Sidebar ═══ -->
+    <div>
+      <div class="sidebar-panel">
+
+        <!-- Submit form -->
+        <div class="submit-panel-header">
+          <div class="submit-panel-title">Submit Your Problem</div>
+          <div class="submit-panel-sub">Every submission gets reviewed. The most broadly applicable problems get worked live on Thursday.</div>
+        </div>
+
+        <div class="submit-panel-body">
+          <div class="submit-deadline">
+            <div class="submit-deadline-icon">⏰</div>
+            <div>
+              <div class="submit-deadline-text">Submit by Wednesday midnight</div>
+              <div class="submit-deadline-sub">GMT+7 · Problems reviewed Thursday AM</div>
+            </div>
+          </div>
+
+          <form onsubmit="handleSubmit(event)">
+            <label class="form-label">Your name</label>
+            <div class="form-input-row">
+              <input type="text" class="form-input" placeholder="First name" required>
+              <input type="text" class="form-input" placeholder="Last name">
+            </div>
+
+            <label class="form-label">Your role</label>
+            <input type="text" class="form-input" placeholder="e.g. Marketing Manager, Bangkok" required>
+
+            <label class="form-label">The problem you're facing</label>
+            <textarea class="form-input form-textarea" placeholder="Describe the challenge in plain language. What are you trying to do? Where are you stuck? The more specific, the better." required></textarea>
+
+            <label class="form-label">What have you already tried?</label>
+            <textarea class="form-input" style="height:72px;" placeholder="Tools, prompts, or approaches you've attempted…"></textarea>
+
+            <button type="submit" class="submit-btn">Submit for Thursday →</button>
+          </form>
+
+          <div class="submit-note" id="submit-confirm" style="display:none; color:#1a9e74; font-weight:600;">
+            ✓ Submitted! We'll review it before Thursday's session.
+          </div>
+          <div class="submit-note">
+            Problems are reviewed by Dave personally. You'll get a reply if yours is selected for Thursday.
+          </div>
+        </div>
+
+        <!-- Schedule info -->
+        <div class="schedule-info">
+          <div class="schedule-info-title">Session Details</div>
+          <div class="schedule-row">
+            <span class="schedule-row-icon">📅</span>
+            <div class="schedule-row-text"><strong>Every Thursday</strong><br>Weekly, no breaks</div>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-row-icon">🕐</span>
+            <div class="schedule-row-text"><strong>11:30 AM – 1:30 PM</strong><br>GMT+7 (Bangkok / Hanoi / Jakarta)</div>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-row-icon">🎙️</span>
+            <div class="schedule-row-text"><strong>Live on AIO Labs</strong><br>Recorded — watch back anytime</div>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-row-icon">📬</span>
+            <div class="schedule-row-text"><strong>Submit by Wed midnight</strong><br>GMT+7 to be considered</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<script>
+// Calculate next Thursday countdown
+function getNextThursday() {
+  const now = new Date();
+  // Convert to GMT+7
+  const gmt7 = new Date(now.getTime() + (7 * 60 * 60 * 1000) - (now.getTimezoneOffset() * 60 * 1000));
+  const day = gmt7.getDay(); // 0=Sun, 4=Thu
+  let daysUntil = (4 - day + 7) % 7;
+  if (daysUntil === 0) {
+    // It's Thursday — check if session has started (11:30 AM)
+    const hours = gmt7.getHours();
+    const mins = gmt7.getMinutes();
+    if (hours > 13 || (hours === 13 && mins >= 30)) {
+      daysUntil = 7; // Session over, next Thursday
+    }
+  }
+  const next = new Date(gmt7);
+  next.setDate(gmt7.getDate() + daysUntil);
+  return { days: daysUntil, date: next };
+}
+
+const { days, date } = getNextThursday();
+const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+document.getElementById('days-left').innerHTML = `${days}<span>d</span>`;
+document.getElementById('next-thursday').textContent = `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+
+// Form submit
+function handleSubmit(e) {
+  e.preventDefault();
+  e.target.style.display = 'none';
+  document.getElementById('submit-confirm').style.display = 'block';
+}
+</script>
+
+</body>
+</html>

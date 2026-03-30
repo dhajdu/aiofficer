@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide Deck — Mission 4: Prompting Perfect Visuals</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  :root {
+    --royal: #287BE8;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(4,16,45,0.07);
+    --shadow-hover: 0 6px 24px rgba(4,16,45,0.10);
+    --text-tertiary: #8b91ac;
+    --border-hover: #b0b6cc;
+  }
+
+  body { background: #0d1117; }
+
+  /* ── Header bar ── */
+  .slides-header {
+    position: fixed; top: 56px; left: 0; right: 0;
+    background: rgba(13,17,23,0.95); border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0 32px; height: 48px; display: flex; align-items: center; z-index: 50;
+    gap: 16px;
+  }
+  .slides-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5);
+    text-decoration: none; transition: color 0.12s;
+  }
+  .slides-back:hover { color: rgba(255,255,255,0.85); }
+  .slides-title {
+    font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.65);
+    margin-left: 8px;
+  }
+  .slides-counter {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: rgba(255,255,255,0.35); margin-left: auto;
+  }
+
+  /* ── Slide wrapper ── */
+  .slides-wrapper {
+    padding-top: 104px;
+    padding-bottom: 80px;
+    display: flex; flex-direction: column; align-items: center; gap: 0;
+  }
+
+  /* ── Individual slide ── */
+  .slide {
+    width: 100%; max-width: 900px; min-height: 520px;
+    margin: 0 auto 3px;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 60px 80px;
+    position: relative;
+  }
+
+  /* Slide variants */
+  .slide-title-card {
+    background: var(--navy);
+    min-height: 600px;
+  }
+  .slide-dark { background: #161b22; }
+  .slide-blue { background: rgba(40,123,232,0.12); border: 1px solid rgba(40,123,232,0.2); }
+  .slide-light { background: white; }
+  .slide-navy { background: var(--navy); }
+  .slide-mint { background: rgba(26,158,116,0.1); border: 1px solid rgba(26,158,116,0.2); }
+
+  /* Slide number */
+  .slide-num {
+    position: absolute; top: 28px; right: 32px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+    color: rgba(255,255,255,0.2);
+  }
+  .slide-light .slide-num { color: rgba(4,16,45,0.2); }
+
+  /* Typography in slides */
+  .slide-eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; margin-bottom: 16px;
+    color: rgba(111,242,193,0.8);
+  }
+  .slide-eyebrow.blue { color: rgba(40,123,232,0.9); }
+  .slide-eyebrow.muted { color: rgba(255,255,255,0.4); }
+  .slide-eyebrow.dark-muted { color: rgba(4,16,45,0.4); }
+  .slide-eyebrow.mint { color: #1a9e74; }
+
+  .slide-h1 {
+    font-size: 52px; font-weight: 700; letter-spacing: -1.5px;
+    line-height: 1.05; color: white; margin-bottom: 24px;
+  }
+  .slide-h1 .accent { color: #6FF2C1; }
+  .slide-h2 {
+    font-size: 36px; font-weight: 700; letter-spacing: -0.8px;
+    line-height: 1.15; color: white; margin-bottom: 20px;
+  }
+  .slide-h2.dark { color: var(--navy); }
+  .slide-h3 {
+    font-size: 28px; font-weight: 700; letter-spacing: -0.5px;
+    line-height: 1.2; color: white; margin-bottom: 16px;
+  }
+  .slide-h3.dark { color: var(--navy); }
+
+  .slide-body {
+    font-size: 18px; line-height: 1.65;
+    color: rgba(255,255,255,0.75); max-width: 660px;
+  }
+  .slide-body.dark { color: rgba(4,16,45,0.7); }
+  .slide-body strong { color: white; font-weight: 700; }
+  .slide-body.dark strong { color: var(--navy); }
+
+  /* Two-column layout */
+  .slide-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .slide-col-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  /* Stat callout */
+  .stat-block {
+    display: flex; flex-direction: column; align-items: flex-start;
+    background: rgba(255,255,255,0.05); border-radius: 16px;
+    padding: 24px 28px; margin: 24px 0;
+  }
+  .stat-num {
+    font-size: 72px; font-weight: 700; letter-spacing: -3px;
+    line-height: 1; color: #6FF2C1; margin-bottom: 8px;
+  }
+  .stat-label { font-size: 16px; color: rgba(255,255,255,0.6); }
+
+  /* List styles */
+  .slide-list {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .slide-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 17px; line-height: 1.5;
+  }
+  .slide-list li .bullet {
+    width: 24px; height: 24px; border-radius: 6px; flex-shrink: 0;
+    background: rgba(40,123,232,0.2); color: #287BE8;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin-top: 2px;
+  }
+  .slide-list.mint li .bullet { background: rgba(26,158,116,0.2); color: #1a9e74; }
+  .slide-list li .text { color: rgba(255,255,255,0.8); }
+  .slide-list li .text strong { color: white; display: block; margin-bottom: 2px; }
+  .slide-list.dark li .text { color: rgba(4,16,45,0.75); }
+  .slide-list.dark li .text strong { color: var(--navy); }
+  .slide-list.dark li .bullet { background: rgba(40,123,232,0.1); }
+
+  /* Element breakdown */
+  .element-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr; gap: 10px; margin-top: 24px; }
+  .element-box {
+    background: rgba(255,255,255,0.06); border-radius: 10px; padding: 16px 14px;
+    text-align: center; border: 1px solid rgba(255,255,255,0.08);
+  }
+  .element-big-num {
+    font-size: 28px; font-weight: 700; letter-spacing: -1px;
+    color: #6FF2C1; line-height: 1; margin-bottom: 6px;
+  }
+  .element-box-name { font-size: 12px; font-weight: 700; color: white; margin-bottom: 4px; }
+  .element-box-desc { font-size: 11px; color: rgba(255,255,255,0.5); line-height: 1.3; }
+
+  /* Vision framework */
+  .vision-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 24px; }
+  .vision-box {
+    background: rgba(255,255,255,0.06); border-radius: 10px; padding: 18px 14px;
+    text-align: center; border: 1px solid rgba(255,255,255,0.08);
+  }
+  .vision-big-letter {
+    font-size: 32px; font-weight: 700; letter-spacing: -1px;
+    color: #6FF2C1; line-height: 1; margin-bottom: 8px;
+  }
+  .vision-box-name { font-size: 12px; font-weight: 700; color: white; margin-bottom: 4px; }
+  .vision-box-desc { font-size: 11px; color: rgba(255,255,255,0.5); line-height: 1.4; }
+
+  /* Divider line */
+  .slide-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 24px 0; }
+  .slide-divider.dark { background: rgba(4,16,45,0.1); }
+
+  /* Quote */
+  .slide-quote {
+    font-size: 26px; font-weight: 700; letter-spacing: -0.3px;
+    color: white; line-height: 1.35; font-style: italic; margin-bottom: 20px;
+  }
+  .slide-quote-attr { font-size: 14px; color: rgba(255,255,255,0.4); }
+
+  /* Belief row */
+  .belief-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+  .belief-box {
+    background: rgba(255,255,255,0.05); border-radius: 10px; padding: 16px 18px;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .belief-box-num {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+    color: #6FF2C1; margin-bottom: 6px;
+  }
+  .belief-box-text { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); line-height: 1.4; }
+  .belief-box-sub { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; margin-top: 3px; }
+
+  /* Nav arrows */
+  .slide-nav {
+    position: fixed; bottom: 28px; right: 32px;
+    display: flex; gap: 8px; z-index: 60;
+  }
+  .slide-nav-btn {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7); font-size: 16px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.12s;
+  }
+  .slide-nav-btn:hover { background: rgba(255,255,255,0.18); color: white; }
+
+  /* Progress dots */
+  .slide-dots {
+    position: fixed; bottom: 36px; left: 50%; transform: translateX(-50%);
+    display: flex; gap: 6px; z-index: 60;
+  }
+  .slide-dot {
+    width: 6px; height: 6px; border-radius: 3px;
+    background: rgba(255,255,255,0.2); cursor: pointer;
+    transition: all 0.2s;
+  }
+  .slide-dot.active { width: 20px; background: #6FF2C1; }
+
+  @media (max-width: 760px) {
+    .slide { padding: 40px 28px; min-height: auto; }
+    .slide-h1 { font-size: 32px; }
+    .slide-h2 { font-size: 24px; }
+    .element-row { grid-template-columns: 1fr 1fr; }
+    .vision-row { grid-template-columns: 1fr; }
+    .slide-cols { grid-template-columns: 1fr; }
+    .belief-row { grid-template-columns: 1fr; }
+    .topbar-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ TOP BAR ═══════════════ -->
+<div class="topbar">
+  <a href="../index.html" class="topbar-brand">AIO <span>Labs</span></a>
+  <nav class="topbar-nav">
+    <a href="../index.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> Home</a>
+    <a href="../certification.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
+    <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+    <a href="../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="https://claude.ai" target="_blank" class="buddy-launch-btn">🤖 AI Buddy</a>
+    <div class="topbar-stat">🔥 7</div>
+    <div class="topbar-stat">⭐ 1,240</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-avatar">DH</div>
+  </div>
+</div>
+
+<!-- Slide sub-header -->
+<div class="slides-header">
+  <a href="mission-4.html" class="slides-back">← Mission 4</a>
+  <span class="slides-title">Prompting Perfect Visuals — Visual Summary</span>
+  <span class="slides-counter" id="slide-counter">1 / 20</span>
+</div>
+
+<!-- ═══════════════ SLIDES ═══════════════ -->
+<div class="slides-wrapper" id="slides-wrapper">
+
+  <!-- SLIDE 1: Title -->
+  <div class="slide slide-title-card" data-slide="1">
+    <span class="slide-num">01</span>
+    <div class="slide-eyebrow">Generative AI Essentials · Mission 04</div>
+    <h1 class="slide-h1">Prompting<br><span class="accent">Perfect Visuals</span></h1>
+    <p class="slide-body">Same model. Same tool. The framework is the difference.</p>
+  </div>
+
+  <!-- SLIDE 2: Track recap -->
+  <div class="slide slide-dark" data-slide="2">
+    <span class="slide-num">02</span>
+    <div class="slide-eyebrow">Four Missions</div>
+    <h2 class="slide-h2">You've built your foundation.</h2>
+    <div class="slide-cols" style="margin-top: 28px;">
+      <div>
+        <ul class="slide-list">
+          <li><div class="bullet">1</div><div class="text"><strong>Mission 1</strong>The AI Officer Mindset</div></li>
+          <li><div class="bullet">2</div><div class="text"><strong>Mission 2</strong>Clean Data Wins</div></li>
+          <li><div class="bullet">3</div><div class="text"><strong>Mission 3</strong>Logic &amp; Frameworks</div></li>
+        </ul>
+      </div>
+      <div>
+        <ul class="slide-list mint">
+          <li><div class="bullet">4</div><div class="text"><strong>Mission 4</strong>Prompting Perfect Visuals</div></li>
+          <li style="margin-top: 20px;"><div style="opacity: 0.5;">✓ Mindset</div><div class="text" style="opacity: 0.5;">You think like an AI Officer</div></li>
+          <li><div style="opacity: 0.5;">✓ Data</div><div class="text" style="opacity: 0.5;">Your fuel is clean</div></li>
+          <li><div style="opacity: 0.5;">✓ Logic</div><div class="text" style="opacity: 0.5;">You build professional deliverables</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: The gap -->
+  <div class="slide slide-dark" data-slide="3">
+    <span class="slide-num">03</span>
+    <div class="slide-eyebrow">The challenge</div>
+    <h2 class="slide-h2">One good image is easy.<br>Eleven on-brand images is a system.</h2>
+    <p class="slide-body" style="margin-top: 28px;">Most people type "make me a professional image" and hope for the best. That is not a system. That is a guess.</p>
+    <p class="slide-body" style="margin-top: 20px;"><strong>The gap:</strong> Between a generic AI image and a professional visual is the same gap you closed in Mission 3. Structure wins. Always.</p>
+  </div>
+
+  <!-- SLIDE 4: The 5-Element Framework -->
+  <div class="slide slide-dark" data-slide="4">
+    <span class="slide-num">04</span>
+    <div class="slide-eyebrow">Brief 1</div>
+    <h2 class="slide-h2">The 5-Element Framework</h2>
+    <p class="slide-body" style="margin-bottom: 24px;">Five elements. Define all five before you generate anything.</p>
+    <div class="element-row">
+      <div class="element-box">
+        <div class="element-big-num">1</div>
+        <div class="element-box-name">Subject</div>
+        <div class="element-box-desc">What is in the image?</div>
+      </div>
+      <div class="element-box">
+        <div class="element-big-num">2</div>
+        <div class="element-box-name">Style</div>
+        <div class="element-box-desc">What visual style?</div>
+      </div>
+      <div class="element-box">
+        <div class="element-big-num">3</div>
+        <div class="element-box-name">Environment</div>
+        <div class="element-box-desc">Where is this?</div>
+      </div>
+      <div class="element-box">
+        <div class="element-big-num">4</div>
+        <div class="element-box-name">Lighting</div>
+        <div class="element-box-desc">How does it feel?</div>
+      </div>
+      <div class="element-box">
+        <div class="element-big-num">5</div>
+        <div class="element-box-name">Details</div>
+        <div class="element-box-desc">Finishing touches?</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: Bare vs Framework -->
+  <div class="slide slide-navy" data-slide="5">
+    <span class="slide-num">05</span>
+    <div class="slide-eyebrow">Same model, different inputs</div>
+    <h2 class="slide-h2">Bare prompt vs. 5-Element</h2>
+    <ul class="slide-list" style="margin-top: 28px; gap: 20px;">
+      <li><div class="bullet">Bare</div><div class="text"><strong>"Create an image of an energy drink."</strong><br>Generic can. Generic background. You'd never send it.</div></li>
+      <li><div class="bullet" style="background: rgba(26,158,116,0.2); color: #1a9e74;">5E</div><div class="text"><strong>All five elements defined.</strong><br>Looks professional. On-brand. Ready to ship.</div></li>
+    </ul>
+    <div class="slide-divider"></div>
+    <p class="slide-body" style="font-size: 16px; color: rgba(255,255,255,0.55); margin-top: 20px;">The difference is not the AI. The difference is you.</p>
+  </div>
+
+  <!-- SLIDE 6: VISION Framework -->
+  <div class="slide slide-dark" data-slide="6">
+    <span class="slide-num">06</span>
+    <div class="slide-eyebrow">Brief 2</div>
+    <h2 class="slide-h2">The VISION Framework</h2>
+    <p class="slide-body" style="margin-bottom: 24px;">Video starts with a controlled image. Extend it with six decisions.</p>
+    <div class="vision-row">
+      <div class="vision-box">
+        <div class="vision-big-letter">V</div>
+        <div class="vision-box-name">Visual Anchor</div>
+        <div class="vision-box-desc">Your controlled starting image</div>
+      </div>
+      <div class="vision-box">
+        <div class="vision-big-letter">I</div>
+        <div class="vision-box-name">Intention</div>
+        <div class="vision-box-desc">The emotion that must land</div>
+      </div>
+      <div class="vision-box">
+        <div class="vision-big-letter">S</div>
+        <div class="vision-box-name">Sequence</div>
+        <div class="vision-box-desc">Movement step by step</div>
+      </div>
+      <div class="vision-box">
+        <div class="vision-big-letter">I</div>
+        <div class="vision-box-name">Immersion</div>
+        <div class="vision-box-desc">Sensory layer &amp; details</div>
+      </div>
+      <div class="vision-box">
+        <div class="vision-big-letter">O</div>
+        <div class="vision-box-name">Orbit</div>
+        <div class="vision-box-desc">Camera motion &amp; angle</div>
+      </div>
+      <div class="vision-box">
+        <div class="vision-big-letter">N</div>
+        <div class="vision-box-name">Narrative Arc</div>
+        <div class="vision-box-desc">Beginning, shift, end</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: Video example -->
+  <div class="slide slide-navy" data-slide="7">
+    <span class="slide-num">07</span>
+    <div class="slide-eyebrow">From image to motion</div>
+    <h2 class="slide-h2">A 6-second product reveal</h2>
+    <ul class="slide-list" style="margin-top: 24px; gap: 16px;">
+      <li><div class="bullet">1</div><div class="text"><strong>Start tight</strong>on condensation dripping</div></li>
+      <li><div class="bullet">2</div><div class="text"><strong>Slow pull back</strong>reveal the full can</div></li>
+      <li><div class="bullet">3</div><div class="text"><strong>Final frame</strong>BOLT brand in lower third</div></li>
+    </ul>
+    <div class="slide-divider"></div>
+    <div class="slide-quote" style="font-size: 20px; margin-bottom: 0;">Six decisions. Defined before you generate. The result is intentional, not random.</div>
+  </div>
+
+  <!-- SLIDE 8: Tools -->
+  <div class="slide slide-dark" data-slide="8">
+    <span class="slide-num">08</span>
+    <div class="slide-eyebrow">Brief 3</div>
+    <h2 class="slide-h2">Three types of visual AI tools</h2>
+    <ul class="slide-list" style="margin-top: 24px; gap: 18px;">
+      <li><div class="bullet">LLM</div><div class="text"><strong>ChatGPT, Claude, Gemini</strong>Good for most business visuals. Start here.</div></li>
+      <li><div class="bullet">E</div><div class="text"><strong>Embedded: Canva, Adobe</strong>AI inside tools you already use.</div></li>
+      <li><div class="bullet">P</div><div class="text"><strong>Purpose-Built: Midjourney, Runway, Google Flow</strong>When LLMs cannot deliver.</div></li>
+    </ul>
+    <div class="slide-divider"></div>
+    <p class="slide-body" style="font-size: 16px; color: rgba(255,255,255,0.55);">Most "new" tools are just wrappers around the same models. Know what is under the hood.</p>
+  </div>
+
+  <!-- SLIDE 9: Style DNA -->
+  <div class="slide slide-dark" data-slide="9">
+    <span class="slide-num">09</span>
+    <div class="slide-eyebrow">Brief 4</div>
+    <h2 class="slide-h2">Style DNA: Lock your brand</h2>
+    <div class="slide-cols" style="margin-top: 24px;">
+      <div>
+        <div class="slide-col-label" style="color: rgba(255,255,255,0.4);">Fixed Elements</div>
+        <ul class="slide-list">
+          <li><div class="bullet">✓</div><div class="text">Color palette</div></li>
+          <li><div class="bullet">✓</div><div class="text">Typography style</div></li>
+          <li><div class="bullet">✓</div><div class="text">Overall mood</div></li>
+          <li><div class="bullet">✓</div><div class="text">Quality level</div></li>
+        </ul>
+      </div>
+      <div>
+        <div class="slide-col-label" style="color: #6FF2C1;">Variable Elements</div>
+        <ul class="slide-list mint">
+          <li><div class="bullet">→</div><div class="text">Composition</div></li>
+          <li><div class="bullet">→</div><div class="text">Environment</div></li>
+          <li><div class="bullet">→</div><div class="text">Energy level</div></li>
+          <li><div class="bullet">→</div><div class="text">Camera angle</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 10: Style DNA platform variation -->
+  <div class="slide slide-navy" data-slide="10">
+    <span class="slide-num">10</span>
+    <div class="slide-eyebrow">Same brand, different platforms</div>
+    <h2 class="slide-h2">How variables shift by audience</h2>
+    <div class="belief-row">
+      <div class="belief-box">
+        <div class="belief-box-num">LINKEDIN</div>
+        <div class="belief-box-text">Professional, clean, studio setting</div>
+      </div>
+      <div class="belief-box">
+        <div class="belief-box-num">INSTAGRAM</div>
+        <div class="belief-box-text">Lifestyle, vibrant, environmental</div>
+      </div>
+      <div class="belief-box">
+        <div class="belief-box-num">TIKTOK</div>
+        <div class="belief-box-text">Dynamic, close-up, high energy</div>
+      </div>
+      <div class="belief-box">
+        <div class="belief-box-num">INTERNAL</div>
+        <div class="belief-box-text">Minimal, structured, professional</div>
+      </div>
+    </div>
+    <div class="slide-divider"></div>
+    <p class="slide-body" style="font-size: 16px; color: rgba(255,255,255,0.55);">Same brand. Different feels. All unmistakably on-brand.</p>
+  </div>
+
+  <!-- SLIDE 11: .json prompts -->
+  <div class="slide slide-dark" data-slide="11">
+    <span class="slide-num">11</span>
+    <div class="slide-eyebrow">Repeatable assets</div>
+    <h2 class="slide-h2">.json prompts</h2>
+    <ul class="slide-list" style="margin-top: 24px; gap: 18px;">
+      <li><div class="bullet">R</div><div class="text"><strong>Repeatable</strong>Anyone on the team runs the same prompt</div></li>
+      <li><div class="bullet">S</div><div class="text"><strong>Shareable</strong>Pass it to the next person</div></li>
+      <li><div class="bullet">C</div><div class="text"><strong>Consistent</strong>Same quality every time</div></li>
+    </ul>
+    <div class="slide-divider"></div>
+    <p class="slide-body" style="font-size: 16px; color: rgba(255,255,255,0.55);">Structured prompts are assets. Freeform prompts are one-time shots.</p>
+  </div>
+
+  <!-- SLIDE 12: The campaign -->
+  <div class="slide slide-dark" data-slide="12">
+    <span class="slide-num">12</span>
+    <div class="slide-eyebrow">Brief 5</div>
+    <h2 class="slide-h2">The BOLT Visual Campaign</h2>
+    <div class="stat-block" style="margin-top: 24px;">
+      <div class="stat-num">13</div>
+      <div class="stat-label">deliverables: 11 images + 2 videos</div>
+    </div>
+    <ul class="slide-list" style="margin-top: 20px; gap: 14px;">
+      <li><div class="bullet">R</div><div class="text">Office of <strong>Revenue</strong> — 6 images (press release, social, ads)</div></li>
+      <li><div class="bullet">T</div><div class="text">Office of <strong>Talent</strong> — 2 images (internal communications)</div></li>
+      <li><div class="bullet">I</div><div class="text">Office of <strong>Innovation</strong> — 2 images (product development)</div></li>
+      <li><div class="bullet">O</div><div class="text">Office of <strong>Operations</strong> — 1 image (customer experience)</div></li>
+      <li><div class="bullet">V</div><div class="text"><strong>Videos</strong> — 2 clips (blog + training)</div></li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 13: The workflow -->
+  <div class="slide slide-navy" data-slide="13">
+    <span class="slide-num">13</span>
+    <div class="slide-eyebrow">How it works</div>
+    <h2 class="slide-h2">The image workflow</h2>
+    <ul class="slide-list" style="margin-top: 24px; gap: 18px;">
+      <li><div class="bullet">1</div><div class="text"><strong>Describe the outcome</strong>What is this for? Who sees it?</div></li>
+      <li><div class="bullet">2</div><div class="text"><strong>Apply 5-Element</strong>Define all five elements</div></li>
+      <li><div class="bullet">3</div><div class="text"><strong>Ask AI for .json</strong>Let AI write the structured prompt</div></li>
+      <li><div class="bullet">4</div><div class="text"><strong>Review it</strong>Make sure all five elements are clear</div></li>
+      <li><div class="bullet">5</div><div class="text"><strong>Generate</strong>Run the prompt. Evaluate. Iterate once if needed.</div></li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 14: Video workflow -->
+  <div class="slide slide-dark" data-slide="14">
+    <span class="slide-num">14</span>
+    <div class="slide-eyebrow">Motion in six steps</div>
+    <h2 class="slide-h2">The video workflow</h2>
+    <ul class="slide-list" style="margin-top: 24px; gap: 18px;">
+      <li><div class="bullet">1</div><div class="text"><strong>Pick a starting image</strong>Video begins with your 5-Element image</div></li>
+      <li><div class="bullet">2</div><div class="text"><strong>Apply VISION</strong>Define all six elements</div></li>
+      <li><div class="bullet">3</div><div class="text"><strong>Ask AI for .json</strong>Structured video prompt</div></li>
+      <li><div class="bullet">4</div><div class="text"><strong>Review it</strong>Does the motion fit the platform?</div></li>
+      <li><div class="bullet">5</div><div class="text"><strong>Generate</strong>Run in Google Flow or your tool</div></li>
+      <li><div class="bullet">6</div><div class="text"><strong>Evaluate</strong>Does it feel intentional?</div></li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 15: The test -->
+  <div class="slide slide-navy" data-slide="15">
+    <span class="slide-num">15</span>
+    <div class="slide-eyebrow">Did you build a system?</div>
+    <h2 class="slide-h2">Three questions</h2>
+    <ul class="slide-list" style="margin-top: 24px; gap: 20px;">
+      <li><div class="bullet">1</div><div class="text"><strong>Does every visual stay within BOLT's Style DNA?</strong></div></li>
+      <li><div class="bullet">2</div><div class="text"><strong>Does every visual feel right for its audience?</strong></div></li>
+      <li><div class="bullet">3</div><div class="text"><strong>Could Dana hand this to a new associate on day one?</strong></div></li>
+    </ul>
+    <div class="slide-divider"></div>
+    <p class="slide-body" style="font-size: 16px; color: rgba(255,255,255,0.55);">If yes to all three, you built a system. If not, you made pictures.</p>
+  </div>
+
+  <!-- SLIDE 16: Key insight -->
+  <div class="slide slide-dark" data-slide="16">
+    <span class="slide-num">16</span>
+    <div class="slide-eyebrow">The big picture</div>
+    <h2 class="slide-h2">Four missions. Same principle.</h2>
+    <ul class="slide-list" style="margin-top: 28px; gap: 20px;">
+      <li><div class="bullet">M1</div><div class="text"><strong>Mindset</strong>You think like an AI Officer</div></li>
+      <li><div class="bullet">M2</div><div class="text"><strong>Data</strong>Your fuel is clean</div></li>
+      <li><div class="bullet">M3</div><div class="text"><strong>Logic</strong>You build professional deliverables</div></li>
+      <li><div class="bullet">M4</div><div class="text"><strong>Visuals</strong>You build repeatable visual systems</div></li>
+    </ul>
+    <div class="slide-divider"></div>
+    <p class="slide-body" style="font-size: 16px; color: rgba(255,255,255,0.55);">Your input drives the output. Always. Structure wins.</p>
+  </div>
+
+  <!-- SLIDE 17: Takeaways -->
+  <div class="slide slide-dark" data-slide="17">
+    <span class="slide-num">17</span>
+    <div class="slide-eyebrow">Remember</div>
+    <h2 class="slide-h2">AI does not know what good<br>looks like unless you tell it.</h2>
+    <ul class="slide-list" style="margin-top: 28px; gap: 14px; font-size: 16px;">
+      <li><div class="bullet">→</div><div class="text">5-Element Framework for images</div></li>
+      <li><div class="bullet">→</div><div class="text">VISION Framework for video</div></li>
+      <li><div class="bullet">→</div><div class="text">Style DNA for consistency</div></li>
+      <li><div class="bullet">→</div><div class="text">.json prompts for repeatability</div></li>
+      <li><div class="bullet">→</div><div class="text">Systems over shortcuts</div></li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 18: Next steps -->
+  <div class="slide slide-navy" data-slide="18">
+    <span class="slide-num">18</span>
+    <div class="slide-eyebrow">You're ready</div>
+    <h2 class="slide-h2">What's next?</h2>
+    <ul class="slide-list" style="margin-top: 28px; gap: 20px;">
+      <li><div class="bullet">✓</div><div class="text"><strong>Build the 5-Element Framework</strong>for BOLT's visual campaign</div></li>
+      <li><div class="bullet">✓</div><div class="text"><strong>Create the VISION Framework</strong>for your video clips</div></li>
+      <li><div class="bullet">✓</div><div class="text"><strong>Build Style DNA</strong>that Dana's team can follow</div></li>
+      <li><div class="bullet">✓</div><div class="text"><strong>Generate all 13 deliverables</strong>using your .json prompts</div></li>
+    </ul>
+  </div>
+
+  <!-- SLIDE 19: Your commitment -->
+  <div class="slide slide-dark" data-slide="19">
+    <span class="slide-num">19</span>
+    <div class="slide-eyebrow">Before you close out</div>
+    <h2 class="slide-h2">Name one habit to build this week.</h2>
+    <div class="slide-divider"></div>
+    <p class="slide-body" style="font-size: 18px; margin-top: 28px;">Not a tool. A behavior. Something your manager will notice.</p>
+  </div>
+
+  <!-- SLIDE 20: Complete -->
+  <div class="slide slide-title-card" data-slide="20">
+    <span class="slide-num">20</span>
+    <div class="slide-eyebrow">Mission 4 Complete</div>
+    <h1 class="slide-h1">You're a visual<br><span class="accent">AI Officer.</span></h1>
+    <p class="slide-body">From mindset to data to logic to visuals. The foundation is built. Now scale it to your team.</p>
+  </div>
+
+</div>
+
+<!-- Navigation dots & arrows -->
+<div class="slide-dots" id="slide-dots"></div>
+<div class="slide-nav">
+  <button class="slide-nav-btn" id="prev-btn" onclick="prevSlide()">←</button>
+  <button class="slide-nav-btn" id="next-btn" onclick="nextSlide()">→</button>
+</div>
+
+<script>
+const totalSlides = 20;
+let currentSlide = 1;
+
+// Build dots
+const dotsEl = document.getElementById('slide-dots');
+for (let i = 1; i <= totalSlides; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'slide-dot' + (i === 1 ? ' active' : '');
+  dot.onclick = () => goToSlide(i);
+  dotsEl.appendChild(dot);
+}
+
+function goToSlide(n) {
+  currentSlide = n;
+  updateUI();
+  document.querySelector(`[data-slide="${n}"]`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function nextSlide() { if (currentSlide < totalSlides) goToSlide(currentSlide + 1); }
+function prevSlide() { if (currentSlide > 1) goToSlide(currentSlide - 1); }
+
+function updateUI() {
+  document.getElementById('slide-counter').textContent = `${currentSlide} / ${totalSlides}`;
+  document.querySelectorAll('.slide-dot').forEach((d, i) => {
+    d.classList.toggle('active', i + 1 === currentSlide);
+  });
+}
+
+// Keyboard nav
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextSlide();
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevSlide();
+});
+
+// Intersection observer to update current slide
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const n = parseInt(entry.target.dataset.slide);
+      currentSlide = n;
+      updateUI();
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

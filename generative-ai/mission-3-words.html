@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Words to Know — Mission 3: Advanced Prompt Frameworks</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  :root {
+    --royal: #287BE8;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(4,16,45,0.07);
+    --shadow-hover: 0 6px 24px rgba(4,16,45,0.10);
+    --text-tertiary: #8b91ac;
+    --border-hover: #b0b6cc;
+  }
+  body { background: var(--surface); }
+
+  .page-main { max-width: 760px; margin: 0 auto; padding: 80px 40px 100px; }
+
+  .wtk-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    text-decoration: none; margin-bottom: 32px; transition: color 0.12s;
+  }
+  .wtk-back:hover { color: var(--text-primary); }
+
+  .wtk-hero { margin-bottom: 40px; }
+  .wtk-track-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.7px;
+    text-transform: uppercase; padding: 5px 12px; border-radius: 20px;
+    background: rgba(4,16,45,0.06); color: var(--text-secondary);
+    border: 1px solid var(--border); margin-bottom: 14px;
+  }
+  .wtk-title {
+    font-size: 30px; font-weight: 700; color: var(--text-primary);
+    letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 10px;
+  }
+  .wtk-sub { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* Intro note */
+  .wtk-note {
+    background: white; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 16px 20px; margin-bottom: 40px;
+    font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+  }
+
+  /* Category label */
+  .wtk-category {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--text-muted);
+    padding-bottom: 10px; border-bottom: 1px solid var(--border);
+    margin-bottom: 16px; margin-top: 40px;
+  }
+  .wtk-category:first-of-type { margin-top: 0; }
+
+  /* Term cards */
+  .term-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px 22px;
+    margin-bottom: 10px; box-shadow: var(--shadow-sm);
+  }
+  .term-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 8px; }
+  .term-name {
+    font-size: 16px; font-weight: 700; color: var(--text-primary); line-height: 1.2;
+  }
+  .term-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+    padding: 3px 8px; border-radius: 5px; white-space: nowrap; flex-shrink: 0;
+    background: rgba(40,123,232,0.08); color: #287BE8;
+    border: 1px solid rgba(40,123,232,0.15);
+  }
+  .term-def {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.7;
+  }
+  .term-example {
+    margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--surface);
+    font-size: 13px; color: var(--text-muted); line-height: 1.6;
+    font-style: italic;
+  }
+  .term-example strong { color: var(--text-secondary); font-style: normal; }
+
+  /* Acronym breakdown */
+  .term-acronym {
+    display: grid; grid-template-columns: 24px 1fr; gap: 6px 12px;
+    margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--surface);
+  }
+  .term-acronym-letter {
+    font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700;
+    color: #287BE8;
+  }
+  .term-acronym-def { font-size: 13.5px; color: var(--text-primary); line-height: 1.5; }
+
+  /* Buddy prompt at bottom */
+  .buddy-note {
+    background: rgba(40,123,232,0.05); border: 1px solid rgba(40,123,232,0.15);
+    border-radius: var(--radius); padding: 20px 22px; margin-top: 48px;
+    text-align: center;
+  }
+  .buddy-note p {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 12px;
+  }
+  .buddy-note .buddy-prompt-text {
+    font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--text-primary);
+    background: white; padding: 12px 16px; border-radius: 8px;
+    border: 1px solid rgba(40,123,232,0.15); line-height: 1.6;
+    font-style: italic; text-align: left;
+  }
+
+  /* Bottom nav */
+  .wtk-bottom-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--border); padding-top: 32px; margin-top: 16px;
+  }
+  .wtk-nav-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    text-decoration: none; padding: 8px 14px; border-radius: 8px;
+    border: 1px solid var(--border); transition: all 0.12s;
+  }
+  .wtk-nav-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
+  .wtk-nav-btn.primary {
+    background: var(--navy); color: white; border-color: var(--navy);
+  }
+  .wtk-nav-btn.primary:hover { opacity: 0.88; }
+
+  @media (max-width: 760px) {
+    .page-main { padding: 70px 20px 80px; }
+    .topbar-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ TOP BAR ═══════════════ -->
+<div class="topbar">
+  <a href="../index.html" class="topbar-brand">AIO <span>Labs</span></a>
+  <nav class="topbar-nav">
+    <a href="../index.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> Home</a>
+    <a href="../certification.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
+    <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+    <a href="../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="https://claude.ai" target="_blank" class="buddy-launch-btn">🤖 AI Buddy</a>
+    <div class="topbar-stat">🔥 7</div>
+    <div class="topbar-stat">⭐ 1,240</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-avatar">DH</div>
+  </div>
+</div>
+
+<main class="page-main">
+
+  <a href="mission-3.html" class="wtk-back">← Back to Mission 3</a>
+
+  <div class="wtk-hero">
+    <div class="wtk-track-pill">🔤 Words to Know</div>
+    <h1 class="wtk-title">Mission 3 — Key Terms</h1>
+    <p class="wtk-sub">Frameworks, techniques, and concepts you need to produce professional-grade AI output.</p>
+  </div>
+
+  <div class="wtk-note">
+    <strong>When a term is still unclear:</strong> Ask your AI Buddy — <em>"Explain [term] in plain language with an example from [your role or industry]."</em> That's what it's there for.
+  </div>
+
+
+  <!-- ═══ CATEGORY: Prompt Frameworks ═══ -->
+  <div class="wtk-category">Prompt Frameworks</div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">RACE Framework</div>
+      <span class="term-badge">Framework</span>
+    </div>
+    <div class="term-def">Your foundation for any structured AI task from Mission 1. In Mission 3, RACE becomes the first pass in a two-pass system: Role (who is AI acting as), Action (what should it do), Context (what is the situation), Example (what does good look like). RACE alone gets you 70% of the way to a usable output.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">CRA Framework</div>
+      <span class="term-badge">Framework</span>
+    </div>
+    <div class="term-def">The quality control layer stacked on top of a RACE draft. Three components: Constraints (what are the limits - budget, time, brand rules, scope), Requirements (what must be included - the non-negotiables), Acceptance Criteria (how do you know it is good enough - specific pass-fail checks). RACE gets you 70% of the way. RACE + CRA gets you something your boss can use.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Framework Stacking</div>
+      <span class="term-badge">Technique</span>
+    </div>
+    <div class="term-def">Using two or more frameworks together in sequence to produce better output. In Mission 3, you stack RACE (for the first draft) and CRA (to tighten it). The concept applies throughout the AI Officer program: each framework does a specific job, and combining them in the right order compounds the result.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">AI Interview</div>
+      <span class="term-badge">Technique</span>
+    </div>
+    <div class="term-def">The highest-leverage thing in Mission 3. Instead of writing a structured prompt yourself, you tell AI your goal and ask it to ask you questions before starting. AI surfaces gaps in your thinking you did not know were there. The output stops being generic and starts being yours. The AI Interview is not just a prompting technique—it is also the discipline of scoping an AI program before building it.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">On-Demand Framework Learning</div>
+      <span class="term-badge">Technique</span>
+    </div>
+    <div class="term-def">The habit of asking AI to teach you the right framework for the problem in front of you, then applying it immediately. You do not need to memorize hundreds of business frameworks. You need the habit of asking AI: "What framework should I use for this?" then "Explain it simply, then apply it to my situation." This skill compounds with every session.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Brand Positioning Statement</div>
+      <span class="term-badge">Framework</span>
+    </div>
+    <div class="term-def">A framework for defining a product's position in the market. Template: "For [target audience] who [need or opportunity], [brand name] is the [category] that [key benefit] because [reason to believe]." In Mission 3, AI teaches you this framework on demand and applies it to BOLT.</div>
+  </div>
+
+
+  <!-- ═══ CATEGORY: Evaluation & Quality ═══ -->
+  <div class="wtk-category">Evaluation &amp; Quality</div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">VRC Framework</div>
+      <span class="term-badge">Quality Control</span>
+    </div>
+    <div class="term-def">Your evaluation discipline before any output goes to your manager, a client, or a leadership meeting. Three components: Value (where does the benefit come from - is the payoff clear and specific), Risk (what are the top two ways this fails or misleads), Checkpoint (what is the earliest real-world signal that this output is actually working). VRC scales from a single prompt output to an entire AI initiative.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Acceptance Criteria</div>
+      <span class="term-badge">Standard</span>
+    </div>
+    <div class="term-def">The specific pass-fail standards that define whether output is good enough to use. Part of the CRA framework. Example: "Dana should be able to read any single competitor entry and immediately know what BOLT does differently." Acceptance criteria shift AI from producing generic output to meeting your actual standard.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Professional-Grade Output</div>
+      <span class="term-badge">Standard</span>
+    </div>
+    <div class="term-def">Output that has your name on it and deserves to. The standard in Mission 3 is: could you hand this to your manager, a client, or a leadership meeting right now? Not "is it good enough?" but "would you be comfortable with your name on it?" That standard is what separates prompt users from AI program leaders.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">VRC at Scale</div>
+      <span class="term-badge">Quality Control</span>
+    </div>
+    <div class="term-def">Using the VRC framework to evaluate an entire AI initiative—not just a single prompt output. When you are leading an AI program, VRC becomes the discipline you apply before a program gets budget, headcount, or a launch date. Value: where does the ROI come from? Risk: what are the top ways this program fails? Checkpoint: what is the early signal it is working before you are too far in?</div>
+  </div>
+
+
+  <!-- ═══ CATEGORY: Output Standards ═══ -->
+  <div class="wtk-category">Output &amp; Deliverables</div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Go-to-Market Brief</div>
+      <span class="term-badge">Deliverable</span>
+    </div>
+    <div class="term-def">A structured document that captures everything needed to take a product to market. In Mission 3, the go-to-market brief for BOLT has seven sections: executive summary, market opportunity, competitor analysis, customer profiles, brand positioning, risks, and next steps. This is the final project for Mission 3 certification.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Context Window</div>
+      <span class="term-badge">Technical</span>
+    </div>
+    <div class="term-def">The amount of information an AI model can hold and process in one session. In Mission 3, managing your context well means starting a fresh thread for each major task, uploading your cleaned BOLT dataset at the start so AI has accurate data, and not letting unrelated conversation pollute the context.</div>
+  </div>
+
+  <div class="term-card">
+    <div class="term-header">
+      <div class="term-name">Two-Pass System</div>
+      <span class="term-badge">Technique</span>
+    </div>
+    <div class="term-def">The workflow of RACE (first pass) and CRA (second pass) stacked together. First pass gets the content. Second pass locks the quality to the standard you need. Two passes, not two separate processes. When you define what good looks like before you look at the output, you will know if AI got there.</div>
+  </div>
+
+  <div class="buddy-note">
+    <p>If any term here is still unclear, open your AI Buddy and ask:</p>
+    <div class="buddy-prompt-text">"Explain [term] in plain language with an example from [your role or industry]."</div>
+  </div>
+
+  <!-- Bottom nav -->
+  <div class="wtk-bottom-nav">
+    <a href="mission-3-prompts.html" class="wtk-nav-btn">← Prompt Library</a>
+    <a href="mission-3-slides.html" class="wtk-nav-btn primary">Slide Deck →</a>
+  </div>
+
+</main>
+
+</body>
+</html>

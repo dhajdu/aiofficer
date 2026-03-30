@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt Library — Mission 3: Advanced Prompt Frameworks</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  :root {
+    --royal: #287BE8;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(4,16,45,0.07);
+    --shadow-hover: 0 6px 24px rgba(4,16,45,0.10);
+    --text-tertiary: #8b91ac;
+    --border-hover: #b0b6cc;
+  }
+  body { background: var(--surface); }
+
+  .page-main { max-width: 760px; margin: 0 auto; padding: 80px 40px 100px; }
+
+  .pl-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    text-decoration: none; margin-bottom: 32px; transition: color 0.12s;
+  }
+  .pl-back:hover { color: var(--text-primary); }
+
+  .pl-hero { margin-bottom: 40px; }
+  .pl-track-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.7px;
+    text-transform: uppercase; padding: 5px 12px; border-radius: 20px;
+    background: rgba(26,158,116,0.1); color: #1a9e74;
+    border: 1px solid rgba(26,158,116,0.2); margin-bottom: 14px;
+  }
+  .pl-title {
+    font-size: 30px; font-weight: 700; color: var(--text-primary);
+    letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 10px;
+  }
+  .pl-sub { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* Intro note */
+  .pl-intro-note {
+    background: rgba(26,158,116,0.05); border: 1px solid rgba(26,158,116,0.18);
+    border-radius: var(--radius); padding: 16px 20px; margin-bottom: 40px;
+    font-size: 14px; color: var(--text-secondary); line-height: 1.6;
+  }
+
+  /* Section heading */
+  .pl-section { margin-bottom: 48px; }
+  .pl-section-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--text-muted);
+    margin-bottom: 4px; padding-bottom: 10px;
+    border-bottom: 1px solid var(--border); margin-bottom: 20px;
+  }
+
+  /* Prompt card */
+  .prompt-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: var(--radius); overflow: hidden;
+    margin-bottom: 16px; box-shadow: var(--shadow-sm);
+  }
+  .prompt-card-header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 16px; padding: 16px 20px 12px;
+  }
+  .prompt-card-meta { flex: 1; }
+  .prompt-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 4px;
+    color: #1a9e74;
+  }
+  .prompt-name { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 3px; }
+  .prompt-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+  .copy-btn {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 7px; padding: 6px 12px;
+    font-size: 12px; font-weight: 600; color: var(--text-muted);
+    cursor: pointer; transition: all 0.12s; white-space: nowrap; flex-shrink: 0;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .copy-btn:hover { border-color: #1a9e74; color: #1a9e74; background: rgba(26,158,116,0.05); }
+  .copy-btn.copied { border-color: #1a9e74; color: #1a9e74; background: rgba(26,158,116,0.08); }
+
+  .prompt-text-block {
+    background: #f8f9fc; border-top: 1px solid var(--border);
+    padding: 16px 20px;
+    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    color: var(--text-primary); line-height: 1.65;
+    white-space: pre-wrap; word-break: break-word;
+  }
+  .prompt-text-block .bracket { color: #287BE8; font-weight: 700; }
+
+  /* Bottom nav */
+  .pl-bottom-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--border); padding-top: 32px; margin-top: 16px;
+  }
+  .pl-nav-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    text-decoration: none; padding: 8px 14px; border-radius: 8px;
+    border: 1px solid var(--border); transition: all 0.12s;
+  }
+  .pl-nav-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
+  .pl-nav-btn.primary { background: #1a9e74; color: white; border-color: #1a9e74; }
+  .pl-nav-btn.primary:hover { background: #178a65; }
+
+  @media (max-width: 760px) {
+    .page-main { padding: 70px 20px 80px; }
+    .topbar-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ TOP BAR ═══════════════ -->
+<div class="topbar">
+  <a href="../index.html" class="topbar-brand">AIO <span>Labs</span></a>
+  <nav class="topbar-nav">
+    <a href="../index.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> Home</a>
+    <a href="../certification.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
+    <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+    <a href="../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="https://claude.ai" target="_blank" class="buddy-launch-btn">🤖 AI Buddy</a>
+    <div class="topbar-stat">🔥 7</div>
+    <div class="topbar-stat">⭐ 1,240</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-avatar">DH</div>
+  </div>
+</div>
+
+<main class="page-main">
+
+  <a href="mission-3.html" class="pl-back">← Back to Mission 3</a>
+
+  <div class="pl-hero">
+    <div class="pl-track-pill">💬 Prompt Library</div>
+    <h1 class="pl-title">Mission 3 — Challenge Prompts</h1>
+    <p class="pl-sub">Every prompt is copy-paste ready. Replace anything in <strong style="color:#287BE8;">[brackets]</strong> with your specific information. Use these with any AI tool — ChatGPT, Claude, or Gemini.</p>
+  </div>
+
+  <div class="pl-intro-note">
+    💡 <strong>How to use these:</strong> Copy any prompt, paste it into your AI tool, fill in the brackets with your real context. The more specific you are in the brackets, the better the output. Generic answers get generic results. Don't write prompts. Buddy it.
+  </div>
+
+
+  <!-- ─── RACE + CRA: TWO-PASS SYSTEM ─── -->
+  <div class="pl-section">
+    <div class="pl-section-label">RACE + CRA: Two-Pass System</div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-card-meta">
+          <div class="prompt-tag">Pass 1 — RACE</div>
+          <div class="prompt-name">Stack Your Frameworks</div>
+          <div class="prompt-desc">Use RACE to draft your first version. Gets you 70% of the way there.</div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <pre class="prompt-text-block">You are a <span class="bracket">[role relevant to this task]</span>. I need you to <span class="bracket">[specific action]</span>. Here is the context: <span class="bracket">[full situation, relevant data, audience, constraints]</span>. Here is an example of what good looks like: <span class="bracket">[paste an example or describe the format, tone, and structure]</span>.
+
+Produce a first draft.</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-card-meta">
+          <div class="prompt-tag">Pass 2 — CRA</div>
+          <div class="prompt-name">Tighten With CRA</div>
+          <div class="prompt-desc">Apply CRA on top of your RACE draft to lock the quality. Gets you to something your boss can use.</div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <pre class="prompt-text-block">Now tighten this draft using CRA.
+
+Constraints: <span class="bracket">[specific limits - length, scope, budget, brand rules, things to avoid]</span>
+Requirements: <span class="bracket">[non-negotiables that must appear - specific data points, key messages, required sections]</span>
+Acceptance Criteria: <span class="bracket">[how will I know this is good enough? Give me specific pass-fail checks]</span>
+
+Revise the draft to meet all three criteria. Show me only the revised version.</pre>
+    </div>
+  </div>
+
+
+  <!-- ─── THE AI INTERVIEW ─── -->
+  <div class="pl-section">
+    <div class="pl-section-label">The AI Interview - Master Prompt</div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-card-meta">
+          <div class="prompt-tag">Framework Prompt</div>
+          <div class="prompt-name">The AI Interview</div>
+          <div class="prompt-desc">Before starting any important deliverable, let AI ask you questions first. Finds gaps in your thinking you didn't know existed.</div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <pre class="prompt-text-block">I need to produce <span class="bracket">[describe the deliverable]</span>. This will be reviewed by <span class="bracket">[who will see it]</span> and needs to <span class="bracket">[what it must accomplish]</span>.
+
+Before you write anything, ask me every question you need answered first. I want you to understand my situation, my audience, and my constraints before you produce any output. Ask at least 5 questions. Make them specific.</pre>
+    </div>
+  </div>
+
+
+  <!-- ─── LEARN A FRAMEWORK ON DEMAND ─── -->
+  <div class="pl-section">
+    <div class="pl-section-label">Learn a Framework On Demand</div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-card-meta">
+          <div class="prompt-tag">Framework Prompt</div>
+          <div class="prompt-name">On-Demand Framework Learning</div>
+          <div class="prompt-desc">Ask AI to teach you the right framework for your problem, then apply it immediately to your situation.</div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <pre class="prompt-text-block">I need to <span class="bracket">[describe the business problem or deliverable you are working on]</span>.
+
+Recommend the best framework for this type of work. Explain the framework simply so I understand how it works. Then apply it directly to my situation using the information I have provided.
+
+After you apply it, suggest two alternative frameworks I could have used instead and explain when each one is better suited than the one you chose.</pre>
+    </div>
+  </div>
+
+
+  <!-- ─── COMPETITOR ANALYSIS ─── -->
+  <div class="pl-section">
+    <div class="pl-section-label">Competitor Analysis: RACE + CRA</div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-card-meta">
+          <div class="prompt-tag">Pass 1 — RACE</div>
+          <div class="prompt-name">Build Competitor Analysis</div>
+          <div class="prompt-desc">Use RACE to create a detailed competitor analysis for your product or service.</div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <pre class="prompt-text-block">You are a market analyst specializing in <span class="bracket">[industry]</span>. I need a competitor analysis for <span class="bracket">[product/service]</span>, a <span class="bracket">[description]</span> targeting <span class="bracket">[target audience]</span>.
+
+Use only the data I provide. Do not make up competitors, pricing, or market share numbers.
+
+For the RACE draft: identify the top <span class="bracket">[number]</span> direct competitors in the <span class="bracket">[price range / market segment]</span>, compare their positioning, pricing, and distribution, and highlight one weakness per competitor that <span class="bracket">[product]</span> can exploit.
+
+Keep the total analysis under <span class="bracket">[word count]</span>.</pre>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-card-meta">
+          <div class="prompt-tag">Pass 2 — CRA</div>
+          <div class="prompt-name">Tighten Competitor Analysis</div>
+          <div class="prompt-desc">Apply CRA to make the competitor analysis focused and leadership-ready.</div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <pre class="prompt-text-block">Now apply CRA to tighten this analysis.
+
+Constraints: <span class="bracket">[limit to specific competitors, exclude certain segments, maximum length]</span>
+Requirements: <span class="bracket">[must include pricing, must include distribution channel, must include one specific weakness]</span>
+Acceptance Criteria: <span class="bracket">[describe what a good competitor entry looks like - e.g., "I should be able to read any entry and immediately know what we do differently"]</span></pre>
+    </div>
+  </div>
+
+
+  <!-- ─── CUSTOMER PROFILES ─── -->
+  <div class="pl-section">
+    <div class="pl-section-label">Customer Profile: AI Interview Approach</div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-card-meta">
+          <div class="prompt-tag">Framework Prompt</div>
+          <div class="prompt-name">Build Customer Profiles</div>
+          <div class="prompt-desc">Let AI interview you before creating customer profiles. Gets specific profiles tied to your actual business.</div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <pre class="prompt-text-block">I need to build customer profiles for <span class="bracket">[product/service]</span>. These profiles will be used for <span class="bracket">[purpose - e.g., a go-to-market brief, a leadership presentation, a sales team deck]</span>.
+
+Before you write anything, ask me every question you need answered. I want you to understand our current customers, our aspirational customers, our pricing, our distribution, and any past experiments that failed.
+
+Ask at least 6 questions. Make them specific to the information a product launch team would actually need.</pre>
+    </div>
+  </div>
+
+
+  <!-- ─── BRAND POSITIONING ─── -->
+  <div class="pl-section">
+    <div class="pl-section-label">Brand Positioning on Demand</div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-card-meta">
+          <div class="prompt-tag">Framework Prompt</div>
+          <div class="prompt-name">Generate Brand Positioning</div>
+          <div class="prompt-desc">Ask AI to teach you the right brand positioning framework, then apply it immediately to your product.</div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <pre class="prompt-text-block">I need to develop brand positioning for <span class="bracket">[product/service]</span>. I am not sure which framework to use.
+
+Recommend the best brand positioning framework for a <span class="bracket">[type of product/market]</span>. Explain the framework simply so I understand how it works. Then apply it directly to <span class="bracket">[product]</span> using the data I have provided.
+
+After you apply it, suggest two alternative frameworks I could have used and explain when each one works better.
+
+Use only the information I have provided. Do not invent claims or statistics.</pre>
+    </div>
+  </div>
+
+
+  <!-- ─── VRC EVALUATION ─── -->
+  <div class="pl-section">
+    <div class="pl-section-label">VRC Evaluation</div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-card-meta">
+          <div class="prompt-tag">Evaluation Prompt</div>
+          <div class="prompt-name">Check Before You Send</div>
+          <div class="prompt-desc">Run VRC before any output goes to your manager, a client, or a leadership meeting. Value, Risk, Checkpoint.</div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <pre class="prompt-text-block">I am going to paste my output below. I need you to evaluate it using the VRC framework before I send it.
+
+V - Value: Where does the benefit come from? Is the payoff clear and specific? Who gets value from this and how?
+
+R - Risk: What are the top two ways this output fails or misleads? Be honest. I need to know before my manager sees this.
+
+C - Checkpoint: What is the earliest real-world signal that this output is actually working?
+
+After your evaluation, give me a clear recommendation: send it as-is, fix specific things (list them), or start over. Explain why.
+
+Here is the output: <span class="bracket">[paste your output]</span></pre>
+    </div>
+  </div>
+
+
+  <!-- ─── GO-TO-MARKET BRIEF ASSEMBLY ─── -->
+  <div class="pl-section">
+    <div class="pl-section-label">Go-to-Market Brief Assembly</div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-card-meta">
+          <div class="prompt-tag">Final Project</div>
+          <div class="prompt-name">Assemble Your Brief</div>
+          <div class="prompt-desc">Combine all your sections into a single, coherent seven-section go-to-market brief.</div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <pre class="prompt-text-block">I have completed the following sections for a go-to-market brief: <span class="bracket">[list which sections you have]</span>. I am going to paste them below.
+
+Assemble them into a single, coherent go-to-market brief with these sections:
+1. Executive Summary (brief overview - one page or less)
+2. Market Opportunity (the case for this product)
+3. Competitor Analysis
+4. Customer Profiles
+5. Brand Positioning
+6. Risks (VRC applied at scale)
+7. Next Steps (what leadership needs to decide)
+
+Make sure the sections flow together logically. The executive summary should be a standalone summary of the full brief, not just an introduction. Flag any gaps or inconsistencies between sections.
+
+<span class="bracket">[Paste your sections here]</span></pre>
+    </div>
+  </div>
+
+
+  <!-- ─── VRC AT SCALE ─── -->
+  <div class="pl-section">
+    <div class="pl-section-label">VRC at Scale: AI Initiative Review</div>
+
+    <div class="prompt-card">
+      <div class="prompt-card-header">
+        <div class="prompt-card-meta">
+          <div class="prompt-tag">Evaluation Prompt</div>
+          <div class="prompt-name">Evaluate an AI Program</div>
+          <div class="prompt-desc">Use VRC to evaluate an entire AI initiative before it gets budget or headcount.</div>
+        </div>
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>
+      </div>
+      <pre class="prompt-text-block">I want to evaluate an AI initiative I am planning using the VRC framework at the program level.
+
+The initiative: <span class="bracket">[describe the AI program - what it is designed to do, who uses it, what data it requires]</span>
+
+V - Value: Where does the ROI come from? How much time, money, or quality does this program improve, and can that be measured?
+R - Risk: What are the top two ways this entire program fails before it delivers value? Think about data quality, adoption, technical complexity, and governance.
+C - Checkpoint: What is the earliest signal - in the first 30 days - that this program is on track before I am too far in to change direction?
+
+Give me a complete VRC evaluation and tell me whether I should proceed, revise, or reconsider the scope.</pre>
+    </div>
+  </div>
+
+
+  <!-- Bottom nav -->
+  <div class="pl-bottom-nav">
+    <a href="mission-3-textbook.html" class="pl-nav-btn">← Text Book</a>
+    <a href="mission-3-words.html" class="pl-nav-btn primary">Words to Know →</a>
+  </div>
+
+</main>
+
+<script>
+function copyPrompt(btn) {
+  const pre = btn.closest('.prompt-card').querySelector('.prompt-text-block');
+  const text = pre.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
