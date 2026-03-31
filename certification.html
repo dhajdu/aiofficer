@@ -39,14 +39,15 @@
 
   /* ── Page ── */
   
-  .journey-hero-inner { max-width: 1040px; margin: 0 auto; width: 100%; display: flex; align-items: flex-start; gap: 48px; }
+  /* .journey-hero-inner alignment handled by .site-wrap in shared/styles.css */
+  .journey-hero-inner { width: 100%; display: flex; align-items: flex-start; gap: 48px; }
 
   /* ── Personal hero (full-width page hero) ── */
   .journey-hero {
     background: var(--navy);
     position: relative; overflow: hidden;
     margin-top: 56px; /* clear fixed topbar */
-    padding: 48px 48px 48px;
+    padding: 56px 0;
     max-width: 100%;
   }
   .journey-hero::before {
@@ -309,7 +310,7 @@
   /* ── Responsive ── */
   @media (max-width: 900px) {
     .page-main { padding: 70px 20px 80px; }
-    .journey-hero { padding: 36px 20px; }
+    .journey-hero { padding: 36px 0; }
     .journey-hero-inner { flex-direction: column; gap: 24px; }
     .journey-hero h1 { font-size: 26px; }
     .mgrid, .support-grid { grid-template-columns: 1fr; }
@@ -339,7 +340,7 @@
 
 <!-- ═══════════════════ PAGE ═══════ -->
 <div class="journey-hero">
-<div class="journey-hero-inner">
+<div class="journey-hero-inner site-wrap">
   <div class="journey-hero-body">
     <div class="journey-hero-label">Certification Journey · Dave Hajdu</div>
     <h1>You're 36% of the way to<br><em>AI Officer Certified</em></h1>
