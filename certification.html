@@ -39,37 +39,7 @@
   }
 
   /* ── Page ── */
-  
-  /* .journey-hero-inner alignment handled by .site-wrap in shared/styles.css */
-  .journey-hero-inner { width: 100%; display: flex; align-items: flex-start; gap: 48px; }
 
-  /* ── Personal hero (full-width page hero) ── */
-  .journey-hero {
-    background: var(--navy);
-    position: relative; overflow: hidden;
-    margin-top: 56px; /* clear fixed topbar */
-    padding: 56px 0;
-    max-width: 100%;
-  }
-  .journey-hero::before {
-    content: ''; position: absolute; inset: 0; pointer-events: none;
-    background:
-      radial-gradient(ellipse 55% 90% at 90% 40%, rgba(40,123,232,0.22) 0%, transparent 65%),
-      radial-gradient(ellipse 45% 70% at 5% 85%, rgba(209,69,139,0.18) 0%, transparent 60%),
-      radial-gradient(ellipse 30% 50% at 50% 0%, rgba(111,242,193,0.06) 0%, transparent 50%);
-  }
-  .journey-hero > * { position: relative; }
-  .journey-hero-body { flex: 1; }
-
-  .journey-hero h1 {
-    font-size: clamp(28px, 4.5vw, 50px); font-weight: 800; color: white;
-    line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 10px;
-  }
-  .journey-hero h1 em { font-style: normal; color: var(--blue); }
-  .journey-hero-sub {
-    font-size: 14px; color: rgba(255,255,255,0.5);
-    line-height: 1.65; margin-bottom: 28px; max-width: 500px;
-  }
   .journey-cta { display: flex; align-items: center; gap: 12px; }
   .btn {
     display: inline-flex; align-items: center; gap: 6px;
@@ -308,9 +278,6 @@
   /* ── Responsive ── */
   @media (max-width: 900px) {
     .page-main { padding: 70px 20px 80px; }
-    .journey-hero { padding: 36px 0; }
-    .journey-hero-inner { flex-direction: column; gap: 24px; }
-    .journey-hero h1 { font-size: 26px; }
     .mgrid, .support-grid { grid-template-columns: 1fr; }
     .topbar-nav { display: none; }
   }
@@ -338,18 +305,16 @@
 </div>
 
 <!-- ═══════════════════ PAGE ═══════ -->
-<div class="journey-hero">
-<div class="journey-hero-inner site-wrap">
-  <div class="journey-hero-body">
+<section class="hero">
+  <div class="hero-content site-wrap">
     <p class="hero-eyebrow">Certification Journey &middot; AI Officer Institute</p>
     <h1>You're 36% of the way to<br><em>AI Officer Certified</em></h1>
-    <p class="journey-hero-sub">You're on Mission 3 of Generative AI. Complete it to unlock Mission 4 — then continue into Agentic AI to earn your full AI Officer certification.</p>
+    <p class="hero-subtitle">You're on Mission 3 of Generative AI. Complete it to unlock Mission 4 — then continue into Agentic AI to earn your full AI Officer certification.</p>
     <div class="journey-cta">
       <a href="generative-ai/mission-3.html" class="btn btn-white">Continue Mission 3 →</a>
     </div>
   </div>
-</div><!-- /.journey-hero-inner -->
-</div><!-- /.journey-hero -->
+</section>
 
 <main class="page-main site-wrap">
 
