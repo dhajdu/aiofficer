@@ -389,6 +389,9 @@ p strong { color: var(--text-primary); font-weight: 600; }
 .hero h1 .accent {
   color: var(--white);
 }
+.hero h1 .accent-blue {
+  color: var(--blue);
+}
 .hero-subtitle {
   font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.60);
   max-width: 500px; line-height: 1.75; margin-bottom: 32px;
