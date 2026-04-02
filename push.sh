@@ -22,11 +22,10 @@ git add \
   micro-sessions/ \
   blog/ \
   shared/ \
-  coaching-sessions/ \
   index.html \
   certification.html \
   coaching.html \
-  my-team.html
+  community.html
 
 echo ""
 echo "📝 Changes to commit:"
@@ -42,4 +41,4 @@ echo "🚀 Force pushing local to GitHub (overwrites remote)..."
 git push origin main --force
 
 echo ""
-echo "✅ Done. Live at https://ai-officer.com"
+echo "✅ Done. Live at https://caiocoach.com"

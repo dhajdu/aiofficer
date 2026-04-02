@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community — CAIO Coach</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/styles.css">
+<style>
+
+:root {
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --radius: 12px;
+  --shadow-sm: 0 1px 3px rgba(4,16,45,0.07);
+  --shadow-hover: 0 6px 24px rgba(4,16,45,0.10);
+  --border-hover: #b0b6cc;
+}
+body { background: var(--surface); }
+
+/* ── Layout ── */
+.hub-main {
+  max-width: 1060px; margin: 0 auto;
+  padding: 48px 40px 100px;
+}
+
+/* ── Section headers ── */
+.section-header {
+  display: flex; align-items: center; gap: 10px;
+  margin: 52px 0 20px;
+}
+.section-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.8px;
+  text-transform: uppercase; padding: 4px 10px;
+  border-radius: 20px; flex-shrink: 0;
+}
+.section-pill .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.section-pill.green { background: rgba(26,158,116,0.1); color: #1a9e74; border: 1px solid rgba(26,158,116,0.2); }
+.section-pill.blue  { background: rgba(40,123,232,0.1); color: #287BE8; border: 1px solid rgba(40,123,232,0.2); }
+.section-title {
+  font-size: 18px; font-weight: 700;
+  color: var(--text-primary); letter-spacing: -0.2px;
+}
+.section-meta { margin-left: auto; font-size: 13px; color: var(--text-muted); }
+.section-meta a { color: var(--text-muted); text-decoration: none; }
+.section-meta a:hover { color: var(--blue); }
+
+/* ── Membership tiers ── */
+.tiers-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin-bottom: 8px;
+}
+.tier-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 30px;
+  box-shadow: var(--shadow-sm);
+}
+.tier-card.premium {
+  border-color: rgba(40,123,232,0.3);
+  background: linear-gradient(160deg, #ffffff 0%, rgba(40,123,232,0.03) 100%);
+}
+.tier-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.tier-label.free-label { color: #1a9e74; }
+.tier-label.premium-label { color: #287BE8; }
+.tier-name {
+  font-size: 20px; font-weight: 700;
+  color: var(--text-primary); margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+.tier-price {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 24px; font-weight: 700;
+  color: var(--text-primary); margin-bottom: 14px;
+}
+.tier-price .period { font-size: 13px; font-weight: 400; color: var(--text-muted); margin-left: 2px; }
+.tier-desc {
+  font-size: 14px; color: var(--text-secondary);
+  line-height: 1.65; margin-bottom: 18px;
+}
+.tier-list {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-bottom: 22px;
+}
+.tier-item {
+  display: flex; align-items: baseline; gap: 10px;
+  font-size: 13px; color: var(--text-secondary);
+}
+.tier-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  flex-shrink: 0; margin-top: 6px;
+}
+.tier-dot.green { background: #1a9e74; }
+.tier-dot.blue  { background: #287BE8; }
+
+.btn-join {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--navy); color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 600;
+  padding: 11px 22px; border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.15s var(--ease);
+}
+.btn-join:hover { background: #287BE8; transform: translateY(-1px); }
+.btn-join.secondary {
+  background: var(--surface); color: var(--text-secondary);
+  border: 1px solid var(--border);
+}
+.btn-join.secondary:hover { border-color: var(--blue); color: var(--blue); background: var(--surface); }
+
+/* ── Advisor cards ── */
+.advisors-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+}
+.advisor-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 26px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.15s var(--ease);
+}
+.advisor-card:hover {
+  border-color: rgba(26,158,116,0.3);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-1px);
+}
+.advisor-avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700; color: white;
+  margin-bottom: 14px; flex-shrink: 0;
+}
+.advisor-name {
+  font-size: 15px; font-weight: 700;
+  color: var(--text-primary); margin-bottom: 3px;
+  letter-spacing: -0.2px;
+}
+.advisor-role {
+  font-size: 12px; font-weight: 600; color: var(--blue);
+  margin-bottom: 12px; line-height: 1.4;
+}
+.advisor-bio {
+  font-size: 13px; color: var(--text-secondary);
+  line-height: 1.65;
+}
+.advisor-tag {
+  display: inline-flex; align-items: center;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.6px;
+  text-transform: uppercase; padding: 3px 9px;
+  border-radius: 5px; margin-top: 12px;
+  background: rgba(26,158,116,0.1); color: #1a9e74;
+  border: 1px solid rgba(26,158,116,0.2);
+}
+
+/* ── What to expect ── */
+.expect-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;
+}
+.expect-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-sm);
+}
+.expect-icon { font-size: 24px; margin-bottom: 10px; }
+.expect-heading {
+  font-size: 14px; font-weight: 700;
+  color: var(--text-primary); margin-bottom: 8px;
+}
+.expect-desc {
+  font-size: 13px; color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ── Footer ── */
+.page-footer {
+  margin-top: 64px; padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 13px; color: var(--text-muted);
+}
+.page-footer a { color: var(--text-muted); text-decoration: none; }
+.page-footer a:hover { color: var(--blue); }
+.footer-brand { font-weight: 600; color: var(--text-secondary); }
+.footer-brand span { color: var(--blue); }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .hub-main { padding: 32px 20px 80px; }
+  .tiers-grid { grid-template-columns: 1fr; }
+  .advisors-grid { grid-template-columns: 1fr; }
+  .expect-grid { grid-template-columns: 1fr; }
+  .topbar-nav { display: none; }
+  .topbar-right { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TOPBAR                                      -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="topbar">
+  <a href="index.html" class="topbar-brand">CAIO <span>Coach</span></a>
+  <button class="nav-toggle" id="navToggle" onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.textContent=n.classList.contains('open')?'✕':'☰';" aria-label="Toggle navigation">☰</button>
+  <nav class="topbar-nav">
+    <a href="coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+    <a href="blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Thought Leadership</a>
+    <a href="certification.html" class="tnav-link"><span class="tnav-dot" style="background:#D1458B"></span> Certification</a>
+    <a href="community.html" class="tnav-link active"><span class="tnav-dot" style="background:#1A9E74"></span> Community</a>
+  </nav>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- HERO                                        -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-content site-wrap">
+    <p class="hero-eyebrow">Community &middot; CAIO Coach</p>
+    <h1>Learn Alongside<br><span class="accent">People Doing It</span></h1>
+    <p class="hero-subtitle">A global community of executives, operators, and advisors navigating the AI era together. Free access to thought leadership and micro-sessions. Premium for coaching.</p>
+    <div class="hero-pills">
+      <span class="pill pill-mint">Free Tier Available</span>
+      <span class="pill pill-navy">30+ Countries</span>
+      <a href="https://community.ai-officer.com/checkout/ai-officer-certification-program?affiliate_code=ab0cd6" target="_blank" class="pill pill-blue">Join the Community →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PAGE MAIN                                   -->
+<!-- ═══════════════════════════════════════════ -->
+<main class="hub-main site-wrap">
+
+  <!-- ── MEMBERSHIP TIERS ── -->
+  <div class="section-header" style="margin-top: 0;">
+    <span class="section-pill blue"><span class="dot"></span> Membership</span>
+    <span class="section-title">Free and Premium Access</span>
+  </div>
+
+  <div class="tiers-grid">
+
+    <div class="tier-card">
+      <div class="tier-label free-label">Free</div>
+      <div class="tier-name">Community Member</div>
+      <div class="tier-price">$0 <span class="period">forever</span></div>
+      <div class="tier-desc">Everything you need to follow along, learn at your own pace, and engage with the community. No credit card required.</div>
+      <div class="tier-list">
+        <div class="tier-item"><div class="tier-dot green"></div><span>All thought leadership articles</span></div>
+        <div class="tier-item"><div class="tier-dot green"></div><span>Full micro-session library</span></div>
+        <div class="tier-item"><div class="tier-dot green"></div><span>Community forum access</span></div>
+        <div class="tier-item"><div class="tier-dot green"></div><span>Weekly newsletter</span></div>
+      </div>
+      <a href="https://community.ai-officer.com" target="_blank" class="btn-join secondary">Join Free →</a>
+    </div>
+
+    <div class="tier-card premium">
+      <div class="tier-label premium-label">Premium</div>
+      <div class="tier-name">Coached Member</div>
+      <div class="tier-price">$99 <span class="period">/ month</span></div>
+      <div class="tier-desc">Live weekly coaching, certification access, and direct connection to Dave and the advisor network. Built for leaders who want to move faster.</div>
+      <div class="tier-list">
+        <div class="tier-item"><div class="tier-dot blue"></div><span>Everything in Free</span></div>
+        <div class="tier-item"><div class="tier-dot blue"></div><span>Weekly live group coaching with Dave</span></div>
+        <div class="tier-item"><div class="tier-dot blue"></div><span>Submit topics and ask questions live</span></div>
+        <div class="tier-item"><div class="tier-dot blue"></div><span>AI Officer Certification program</span></div>
+        <div class="tier-item"><div class="tier-dot blue"></div><span>Access to guest advisor sessions</span></div>
+        <div class="tier-item"><div class="tier-dot blue"></div><span>Private coaching available separately</span></div>
+      </div>
+      <a href="https://community.ai-officer.com/checkout/ai-officer-certification-program?affiliate_code=ab0cd6" target="_blank" class="btn-join">Join for $99/month →</a>
+    </div>
+
+  </div>
+
+  <!-- ── ADVISORS ── -->
+  <div class="section-header">
+    <span class="section-pill green"><span class="dot"></span> The Network</span>
+    <span class="section-title">Advisors &amp; Community Leaders</span>
+  </div>
+
+  <div class="advisors-grid">
+
+    <div class="advisor-card">
+      <div class="advisor-avatar" style="background: linear-gradient(135deg, #287BE8, #1A9E74);">BH</div>
+      <div class="advisor-name">Dr. Brooks Holtom</div>
+      <div class="advisor-role">Professor of Management, Georgetown University McDonough School of Business</div>
+      <div class="advisor-bio">Brooks is a leading researcher in organisational behaviour and human capital development. His consulting work spans Microsoft, Capital One, and the U.S. Air Force. He brings deep expertise in talent strategy and how organisations build capability at scale.</div>
+      <span class="advisor-tag">Leadership &amp; Talent</span>
+    </div>
+
+    <div class="advisor-card">
+      <div class="advisor-avatar" style="background: linear-gradient(135deg, #1A9E74, #287BE8);">DN</div>
+      <div class="advisor-name">David Nilssen</div>
+      <div class="advisor-role">CEO, DOXA Talent · Co-founder &amp; Chairman, Guidant Financial</div>
+      <div class="advisor-bio">David co-founded Guidant Financial, which has helped 30,000 entrepreneurs secure $7 billion in funding. He now leads DOXA Talent, a global HR platform. Named SBA National Young Entrepreneur of the Year, he has built companies that have appeared on the Inc 500/5000 list six times.</div>
+      <span class="advisor-tag">Entrepreneurship &amp; Talent</span>
+    </div>
+
+    <div class="advisor-card">
+      <div class="advisor-avatar" style="background: linear-gradient(135deg, #D1458B, #287BE8);">GL</div>
+      <div class="advisor-name">Dato' George Lim</div>
+      <div class="advisor-role">Chair, Vistage Malaysia · Founder &amp; CEO, G&amp;A Group</div>
+      <div class="advisor-bio">George leads Vistage Malaysia and has spent 28+ years in business advisory, building G&A Group to 100+ team members. He founded GA Space to mentor over 200,000 entrepreneurs and is a Chartered Accountant with credentials from Malaysia and New Zealand. A 15+ year Rotary International member.</div>
+      <span class="advisor-tag">Executive Coaching</span>
+    </div>
+
+    <div class="advisor-card">
+      <div class="advisor-avatar" style="background: linear-gradient(135deg, #6FF2C1, #1A9E74); color: var(--navy);">TK</div>
+      <div class="advisor-name">TK Nguyen</div>
+      <div class="advisor-role">CEO, GAM Esports Vietnam</div>
+      <div class="advisor-bio">TK leads GAM Esports, one of Vietnam's top competitive gaming organisations, and has been instrumental in building the country's esports ecosystem. A serial entrepreneur who moved from Hollywood's nightlife scene to become a major figure in Vietnam's emerging tech and entertainment sector.</div>
+      <span class="advisor-tag">Entrepreneurship · Vietnam</span>
+    </div>
+
+    <div class="advisor-card">
+      <div class="advisor-avatar" style="background: linear-gradient(135deg, #287BE8, #D1458B);">Dr</div>
+      <div class="advisor-name">Dru Nguyen</div>
+      <div class="advisor-role">Managing Partner, Tictag Vietnam · Former COO, GAM Entertainment</div>
+      <div class="advisor-bio">Dru leads AI-powered transformation at Tictag Vietnam, applying computer vision and data annotation to retail, e-commerce, and manufacturing. With a decade of operational leadership across hospitality, entertainment, and technology, he specialises in scaling businesses across Southeast Asia.</div>
+      <span class="advisor-tag">AI &amp; Operations · SEA</span>
+    </div>
+
+    <div class="advisor-card">
+      <div class="advisor-avatar" style="background: linear-gradient(135deg, #04102D, #287BE8);">TD</div>
+      <div class="advisor-name">Tommy Dan</div>
+      <div class="advisor-role">Entrepreneur &amp; Community Leader</div>
+      <div class="advisor-bio">Tommy is an entrepreneur and active member of the CAIO Coach community. His experience spans business operations and leadership development, and he contributes to the community as a practitioner bringing real-world context to the conversations.</div>
+      <span class="advisor-tag">Entrepreneurship</span>
+    </div>
+
+  </div>
+
+  <!-- ── WHAT TO EXPECT ── -->
+  <div class="section-header">
+    <span class="section-pill blue"><span class="dot"></span> Inside the Community</span>
+    <span class="section-title">What You Get</span>
+  </div>
+
+  <div class="expect-grid">
+    <div class="expect-card">
+      <div class="expect-icon">📡</div>
+      <div class="expect-heading">Weekly Live Coaching</div>
+      <div class="expect-desc">Every week, Dave coaches the topics members are actually wrestling with. Submit your challenge, join live, and get real answers in real time.</div>
+    </div>
+    <div class="expect-card">
+      <div class="expect-icon">🎬</div>
+      <div class="expect-heading">Micro-Sessions Library</div>
+      <div class="expect-desc">Short, practical sessions on the AI tools and strategies making a difference right now. New sessions released regularly, all available to free members.</div>
+    </div>
+    <div class="expect-card">
+      <div class="expect-icon">✍️</div>
+      <div class="expect-heading">Thought Leadership</div>
+      <div class="expect-desc">Dave's writing on AI leadership, strategy, and the real-world implications of the 50/50 era. Direct, practical, and globally relevant.</div>
+    </div>
+    <div class="expect-card">
+      <div class="expect-icon">🌏</div>
+      <div class="expect-heading">Global Peers</div>
+      <div class="expect-desc">Connect with executives and operators from 30+ countries who are navigating the same transition. The community is the curriculum.</div>
+    </div>
+    <div class="expect-card">
+      <div class="expect-icon">🎓</div>
+      <div class="expect-heading">Certification Path</div>
+      <div class="expect-desc">Premium members get full access to the AI Officer Certification program — three tracks, from Generative AI to CAIO Certified.</div>
+    </div>
+    <div class="expect-card">
+      <div class="expect-icon">🤝</div>
+      <div class="expect-heading">Advisor Access</div>
+      <div class="expect-desc">Guest sessions with community advisors — practitioners, investors, and domain experts who bring real context to the coaching conversations.</div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="page-footer">
+    <div class="footer-brand">CAIO <span>Coach</span></div>
+    <div>© 2026 Edge8 AI &nbsp;·&nbsp; <a href="coaching.html">Coaching</a> &nbsp;·&nbsp; <a href="certification.html">Certification</a></div>
+  </div>
+
+</main>
+</body>
+</html>
