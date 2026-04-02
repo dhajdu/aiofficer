@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mission 3 Briefs — Advanced Prompt Frameworks — AI Officer Institute</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  :root {
+    --royal: #287BE8;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(4,16,45,0.07);
+    --shadow-hover: 0 6px 24px rgba(4,16,45,0.10);
+    --text-tertiary: #8b91ac;
+    --border-hover: #b0b6cc;
+  }
+  body { background: var(--surface); }
+
+  /* .page-main layout handled by shared/styles.css + .site-wrap */
+  .tb-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; margin-bottom: 32px; transition: color 0.12s; }
+  .tb-back:hover { color: var(--text-primary); }
+  .tb-hero { margin-bottom: 48px; }
+  .tb-track-pill { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; background: rgba(40,123,232,0.1); color: #287be8; border: 1px solid rgba(40,123,232,0.2); margin-bottom: 14px; }
+  .tb-title { font-size: 32px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 10px; }
+  .tb-sub { font-size: 15px; color: var(--text-secondary); line-height: 1.65; max-width: 560px; }
+  .brief-section { margin-bottom: 64px; scroll-margin-top: 80px; }
+  .brief-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #287be8; margin-bottom: 6px; }
+  .brief-title { font-size: 24px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.3px; line-height: 1.2; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px solid var(--border); }
+  .prose { color: var(--text-secondary); line-height: 1.75; font-size: 15px; }
+  .prose p { margin-bottom: 18px; }
+  .prose h3 { font-size: 17px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.2px; margin: 32px 0 10px; }
+  .prose h4 { font-size: 14px; font-weight: 700; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.5px; margin: 24px 0 8px; }
+  .prose ul, .prose ol { padding-left: 20px; margin-bottom: 18px; display: flex; flex-direction: column; gap: 6px; }
+  .prose li { font-size: 14.5px; line-height: 1.65; }
+  .prose strong { font-weight: 700; color: var(--text-primary); }
+  .prose code { font-family: 'JetBrains Mono', monospace; font-size: 13px; background: var(--surface); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border); }
+  .key-insight { background: rgba(40,123,232,0.05); border: 1px solid rgba(40,123,232,0.15); border-left: 3px solid #287be8; border-radius: 0 var(--radius) var(--radius) 0; padding: 18px 22px; margin: 28px 0; }
+  .key-insight-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #287be8; margin-bottom: 8px; }
+  .key-insight p { font-size: 14px; color: var(--text-primary); line-height: 1.65; margin: 0; }
+  .starter-prompt { background: rgba(40,123,232,0.04); border: 1px solid rgba(40,123,232,0.18); border-radius: var(--radius); padding: 20px 22px; margin: 24px 0; }
+  .starter-prompt-label { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; color: #287BE8; margin-bottom: 12px; }
+  .starter-prompt-text { font-size: 14px; color: var(--text-primary); line-height: 1.7; font-style: italic; background: white; padding: 14px 16px; border-radius: 8px; border: 1px solid rgba(40,123,232,0.15); }
+  .worked-example { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; margin: 24px 0; }
+  .worked-example-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+  .tb-bottom-nav { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 32px; margin-top: 16px; }
+  .tb-nav-btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border); transition: all 0.12s; }
+  .tb-nav-btn:hover { border-color: var(--border-hover); color: var(--text-primary); }
+  .tb-nav-btn.primary { background: #287be8; color: white; border-color: #287be8; }
+  .tb-nav-btn.primary:hover { background: #1a6fd4; }
+
+  .mission-body { display: grid; grid-template-columns: 1fr 300px; gap: 24px; align-items: start; }
+  .resource-stack { display: flex; flex-direction: column; gap: 8px; }
+  .resource-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; text-decoration: none; color: inherit; display: flex; align-items: center; gap: 14px; box-shadow: var(--shadow-sm); transition: all 0.15s var(--ease); }
+  .resource-card:hover { border-color: rgba(40,123,232,0.35); box-shadow: 0 4px 16px rgba(4,16,45,0.09); transform: translateY(-1px); }
+  .resource-card.active { border-color: rgba(40,123,232,0.4); background: rgba(40,123,232,0.04); }
+  .resource-icon { width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 17px; }
+  .resource-info { flex: 1; min-width: 0; }
+  .resource-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px; }
+  .resource-title { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+  .resource-desc { font-size: 11.5px; color: var(--text-secondary); margin-top: 1px; }
+  .resource-arrow { font-size: 14px; color: var(--text-muted); flex-shrink: 0; }
+  .resource-card.active .resource-arrow { color: #287BE8; }
+  .mission-divider { height: 1px; background: var(--border); margin: 32px 0; }
+  @media (max-width: 900px) { .mission-body { grid-template-columns: 1fr; } }
+
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="../index.html" class="topbar-brand">AI Officer <span>Institute</span></a>
+  <button class="nav-toggle" id="navToggle" onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.textContent=n.classList.contains('open')?'✕':'☰';" aria-label="Toggle navigation">☰</button>
+  <nav class="topbar-nav">
+    <a href="../certification.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
+    <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+    <a href="../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="../ai-buddy.html" class="buddy-launch-btn">AI Buddy</a>
+    <div class="topbar-stat">🔥 7</div>
+    <div class="topbar-stat">1,240 xp</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-avatar">DH</div>
+  </div>
+</div>
+
+<main class="page-main site-wrap">
+
+  <a href="mission-3.html" class="tb-back">← Back to Mission 3</a>
+
+  <div class="tb-hero">
+    <div class="tb-track-pill">Generative AI for Business · Mission 03</div>
+    <h1 class="tb-title">Advanced Prompt Frameworks</h1>
+    <p class="tb-sub">This is where prompts become professional deliverables. Stack RACE and CRA, master the AI Interview, and assemble a complete go-to-market brief that leadership can trust.</p>
+  </div>
+
+  <div class="mission-divider"></div>
+
+  <div class="mission-body">
+    <div>
+
+      
+    <section class="brief-section" id="brief-1">
+      <div class="brief-label">Brief 1</div>
+      <h2 class="brief-title">RACE: Defines the Task</h2>
+      <div class="prose">
+        <p>You already have RACE from Mission 1. Today you add CRA, and learn how stacking them transforms a decent result into something you would actually send.</p>
+<h4>RACE: Defines the Task</h4>
+<p>Use whenever you want AI to perform something specific.</p>
+<p><strong>R - Role:</strong> Who is the AI acting as?
+<strong>A - Action:</strong> What should it do?
+<strong>C - Context:</strong> What is the situation?
+<strong>E - Example:</strong> What does good look like?</p>
+<h4>CRA: Locks the Quality</h4>
+<p>Use as a quality control layer on top of your RACE draft.</p>
+<p><strong>C - Constraints:</strong> What are the limits? Budget, time, brand rules, scope restrictions.
+<strong>R - Requirements:</strong> What must be included? The non-negotiables.
+<strong>A - Acceptance Criteria:</strong> How do you know it is good enough? Specific pass-fail checks.</p>
+<h4>Worked Example: BOLT Competitor Analysis</h4>
+<p>Here is what the two-pass system looks like in practice.</p>
+<p><strong>Pass 1: RACE only.</strong> You prompt AI with a role (market analyst), an action (write a competitor analysis for BOLT), context (energy drink market, targeting health-conscious millennials), and an example (include a comparison table). The output you get back is decent. It lists competitors, describes their positioning, and gives you a table. But it reads like it could be about any energy drink. The tone is generic. It includes competitors that are not actually relevant to BOLT's price point. It is a B-minus.</p>
+<p><strong>Pass 2: RACE + CRA.</strong> You take that same output and add CRA on top. Constraints: limit to five direct competitors in the $3-5 premium range, exclude legacy brands like Monster and Red Bull that compete on volume not wellness. Requirements: each competitor entry must include pricing, distribution channel, and one weakness BOLT can exploit. Acceptance Criteria: Dana should be able to read any single competitor entry and immediately know what BOLT does differently.</p>
+<p>Now the output is specific. It is focused on the five competitors that actually matter. Every entry has the three data points Dana needs. That is the jump from 70% to something your boss can use.</p>
+<h4>Want to go deeper? Ask your AI Buddy:</h4>
+<p><em>"You are a market analyst specializing in the premium beverage industry. I need a competitor analysis for BOLT, a new energy drink from Buddy Bevs targeting health-conscious millennials. Use only the data I have uploaded. Do not make up numbers or invent competitors. Start with a RACE-structured first draft. Then I will ask you to apply CRA to tighten it. For the RACE draft: identify the top 5 direct competitors in the $3-5 premium energy drink range, compare their positioning, pricing, and distribution, and highlight one weakness per competitor that BOLT can exploit. Keep the total analysis under 800 words."</em></p>
+<h4>Key Insight</h4>
+<p>RACE alone gets you 70% there. RACE + CRA gets you something your boss can use. Think of them as two passes, not two separate processes. First pass gets the content. Second pass tightens it to the standard you need. If you cannot define what good looks like before you start, you will never know if AI got there. This is what separates someone who uses AI from someone who leads an AI program.</p>
+      </div>
+    </section>
+    <section class="brief-section" id="brief-2">
+      <div class="brief-label">Brief 2</div>
+      <h2 class="brief-title">What Is the AI Interview?</h2>
+      <div class="prose">
+        <p>This is the most important thing you will learn today. Not the most important thing in this brief. The most important thing in the entire session.</p>
+<p>Here is why. AI programs fail when leadership cannot articulate what they need. They say "use AI to improve marketing" and wonder why the output is generic. The AI Interview is the discipline of getting specific before you build. It is the same skill you will use when scoping an AI initiative, defining a workflow, or briefing a team. Master it here on a prompt. Apply it everywhere else.</p>
+<h4>What Is the AI Interview?</h4>
+<p>Instead of trying to write the perfect prompt, you tell AI what you want to accomplish and say: "Before you start, ask me every question you need answered."</p>
+<p>AI asks you questions. You answer them. AI uses your answers to build something specific to your situation. Not generic. Yours.</p>
+<h4>Why This Changes Everything</h4>
+<p><strong>Without it:</strong> You guess what AI needs. Output is generic. It could have come from anyone.</p>
+<p><strong>With it:</strong> AI finds the gaps you did not know you had. Output sounds like it came from someone who actually knows your business.</p>
+<p>The AI Interview flips the whole process. Instead of you anticipating everything AI needs to know, AI asks you the questions you did not think to answer: who is the audience, what tone, what to avoid, what has already been tried.</p>
+<h4>Worked Example: What an AI Interview Actually Looks Like</h4>
+<p>You tell your AI Buddy: "I need to build customer profiles for BOLT's launch. Before you start, ask me every question you need answered."</p>
+<p>Here is what AI comes back with:</p>
+<ol><li>Who is buying BOLT today vs. who do you want buying it in 12 months?</li><li>What is the price point, and does that filter out any segments?</li><li>Are these profiles for the sales team, for marketing creative, or for a leadership presentation?</li><li>What distribution channels are confirmed?</li><li>What has Buddy Bevs tried before that did not land?</li><li>Are there any segments Dana has explicitly said to avoid?</li></ol>
+<p>Notice what just happened. You were going to write "create customer profiles for a health-conscious millennial audience." That would have gotten you something generic. Instead, AI asked about the difference between current and aspirational customers, about distribution, about what failed before. Those are the questions that make the output specific to Buddy Bevs, not just any beverage company.</p>
+<p>You answer honestly. Now AI builds profiles that reflect your actual business, your actual pricing, and your actual failed experiment. The college student insight alone changes the entire output. That is what you would have missed.</p>
+<h4>Want to go deeper? Ask your AI Buddy:</h4>
+<p><em>"I need to build customer profiles for BOLT, a new premium energy drink from Buddy Bevs. These profiles will go into a go-to-market brief that my manager Dana Reyes will present to leadership. Before you write anything, ask me every question you need answered first. I want you to understand my business, my audience, and my constraints before you produce any output. Use only the data I have uploaded. Do not invent demographics or market data."</em></p>
+<h4>Key Insight</h4>
+<p>The gap between what you would have written and what AI asks. That is exactly what makes this the master skill. AI finds what you did not know was missing. When you lead an AI program, this gap is where the ROI lives. Companies that skip this step map AI to departments instead of outcomes. The AI Interview forces you to map to outcomes first.</p>
+      </div>
+    </section>
+    <section class="brief-section" id="brief-3">
+      <div class="brief-label">Brief 3</div>
+      <h2 class="brief-title">The AI Officer Does Not Memorize. The AI Officer Asks.</h2>
+      <div class="prose">
+        <p>You do not need to memorize frameworks. You need to know how to ask for the right one.</p>
+<p>There are hundreds of business frameworks. You will never memorize them all and you do not need to. What you need is the habit of asking AI to teach you the right one for the problem in front of you, and then applying it immediately.</p>
+<p>This is one of the most powerful habits of someone who leads AI programs. When your CEO asks you to evaluate a new market, you do not need to already know Porter's Five Forces by heart. You need to know that AI can teach it to you in two minutes and apply it to your data in five. The AI Officer's advantage is not knowing more frameworks. It is accessing the right framework faster than anyone in the room.</p>
+<h4>The AI Officer Does Not Memorize. The AI Officer Asks.</h4>
+<ol><li>Ask AI: "What framework should I use for this problem?"</li><li>Ask AI: "Explain it simply, then apply it to my situation."</li><li>You learn the framework and get the deliverable at the same time.</li></ol>
+<h4>Worked Example: Learning a Brand Positioning Framework Live</h4>
+<p>You need brand positioning for BOLT. You do not know which framework to use. Watch what happens when you ask.</p>
+<p>You: "I need to write brand positioning for a new premium energy drink. What is the best framework for this? Explain it simply, then apply it to my product."</p>
+<p>AI recommends the Brand Positioning Statement framework:</p>
+<p><em>"For [target audience] who [need or opportunity], [brand name] is the [category] that [key benefit] because [reason to believe]."</em></p>
+<p>Then AI applies it to BOLT:</p>
+<p><em>"For health-conscious professionals aged 25-40 who want sustained energy without the crash or the chemicals, BOLT is the premium clean energy drink that delivers steady focus through natural ingredients, backed by a transparent formula and real pilot data from 500+ users."</em></p>
+<p>That took two minutes. You now know a framework you did not know before, and you have a working positioning statement you can refine. Then ask a follow-up: "What are two other frameworks I could have used instead, and why might they work better?" AI might suggest Perceptual Mapping for competitive differentiation or the Brand Key model for a deeper strategic foundation. You just learned three frameworks in the time it would have taken to half-learn one.</p>
+<h4>Want to go deeper? Ask your AI Buddy:</h4>
+<p><em>"I need to develop brand positioning for BOLT, a new premium energy drink from Buddy Bevs. I am not sure which framework to use. Recommend the best brand positioning framework for a product launch. Explain the framework simply so I understand how it works. Then apply it directly to BOLT using the data I have uploaded. After you apply it, suggest two alternative frameworks I could have used and explain when each one works better. Use only the data I have uploaded. Do not invent claims or statistics."</em></p>
+<h4>Key Insight</h4>
+<p>Every time you use AI, you have the opportunity to learn something. The AI Officer who asks "what framework should I use for this?" and then applies it immediately is learning faster than anyone in a traditional training program. This skill compounds. Every session you leave knowing something new. And every framework you learn becomes a tool you can deploy across your AI program.</p>
+      </div>
+    </section>
+    <section class="brief-section" id="brief-4">
+      <div class="brief-label">Brief 4</div>
+      <h2 class="brief-title">VRC: Value, Risk, Checkpoint</h2>
+      <div class="prose">
+        <p>You have learned to create. Now you learn to evaluate. This is the section that separates people who generate from people who lead.</p>
+<p>Here is the truth about AI programs. Everyone says AI is working. They feel more productive. But there is no measurable return on investment. That is because nobody is evaluating the output before it ships. VRC is your evaluation discipline. It works on a single prompt output today. It works on an entire AI initiative tomorrow. The habit is the same: before anything goes out, you check the value, name the risks, and define what success looks like early.</p>
+<h4>VRC: Value, Risk, Checkpoint</h4>
+<p>Run VRC before you put your name on anything.</p>
+<p><strong>V - Value:</strong> Where does the benefit come from? Is the payoff clear?</p>
+<p><strong>R - Risk:</strong> What are the top two ways this fails?</p>
+<p><strong>C - Checkpoint:</strong> What is the early signal it is working, before you are too far in?</p>
+<h4>Worked Example: Running VRC on Your Competitor Analysis</h4>
+<p>You finished your BOLT competitor analysis from Challenge 1. It looks good. Before you send it to Dana, you run VRC. You paste the competitor analysis into your AI Buddy and say: "Evaluate this output using the VRC framework."</p>
+<p><strong>Value:</strong> The analysis clearly identifies five direct competitors and highlights a specific weakness for each that BOLT can exploit. The strongest value is the pricing gap analysis showing that no competitor in the $3-5 range is leading with a clean-ingredient story. Dana can use this to justify BOLT's positioning in one slide.</p>
+<p><strong>Risk 1:</strong> The analysis assumes BOLT's pilot data from 500 users is representative of the broader market. If the pilot skewed toward early adopters, the competitive advantages may not hold when selling to mainstream buyers.</p>
+<p><strong>Risk 2:</strong> Two of the five competitors were founded in the last 18 months. Their positioning and pricing could shift before BOLT's retail launch. The analysis treats their current strategy as fixed.</p>
+<p><strong>Checkpoint:</strong> Track whether BOLT's first 90 days of retail sales match the customer segments predicted in the analysis. If the actual buyer profile diverges, the entire analysis needs revisiting.</p>
+<p>Now you have a decision to make. The value is clear. Risk 1 is real but manageable if you add a one-line caveat about the pilot sample. Risk 2 means you should flag the two newer competitors as "watch closely." The checkpoint gives Dana a concrete milestone to revisit the analysis. Your call: fix the two risks and send it. That took five minutes and saved you from sending something that would have gotten picked apart in the leadership meeting.</p>
+<h4>Want to go deeper? Ask your AI Buddy:</h4>
+<p><em>"I am going to paste my best output from today's challenges. I need you to evaluate it using the VRC framework. V - Value: Where does the benefit come from? Is the payoff clear and specific? R - Risk: What are the top two ways this output fails or misleads? Be honest. I need to know before my manager sees this. C - Checkpoint: What is the earliest signal that this output is actually working in the real world? After your evaluation, give me a clear recommendation: send it as-is, fix specific things (list them), or start over. Explain why."</em></p>
+<h4>Key Insight</h4>
+<p>RACE and CRA help you create. VRC helps you decide. Should you trust this output? What could go wrong? Every AI Officer runs VRC before putting anything in front of their manager. The question is always: send it, fix it, or start over. This same discipline scales. When you are leading an AI program, VRC becomes the framework you use to evaluate every AI initiative before it gets budget, headcount, or a launch date.</p>
+      </div>
+    </section>
+    <section class="brief-section" id="brief-5">
+      <div class="brief-label">Brief 5</div>
+      <h2 class="brief-title">Practice Challenges</h2>
+      <div class="prose">
+        <p>Everything you have learned in this mission comes together here. Dana Reyes needs the complete go-to-market package before leadership finalizes the BOLT launch plan. This is not a practice run. This is the job.</p>
+<h4>Practice Challenges</h4>
+<p><strong>Challenge 1: Stack Your Frameworks (10 min)</strong>
+Use RACE to draft a competitor analysis for BOLT, then apply CRA to tighten it.</p>
+<p><strong>Challenge 2: The AI Interview (15 min)</strong>
+Build BOLT customer profiles by letting AI interview you first. No structured prompt.</p>
+<p><strong>Challenge 3: Let AI Teach You a Framework (10 min)</strong>
+Ask AI to recommend and teach you the right brand positioning framework, then apply it to BOLT.</p>
+<p><strong>Challenge 4: The Decision Filter - VRC (10 min)</strong>
+Pick your best output from Challenges 1-3 and run VRC. Then decide: send it, fix it, or start over.</p>
+<p><strong>Start the Practice Challenges:</strong> https://lab.ai-officer.com/program/785403/mission/2267520</p>
+<p><strong>Downloads:</strong>
+- Download: Mission 3 Challenge Guide
+- Download: Mission 3 Words to Know
+- Download: Mission 3 Prompt Library</p>
+<h4>REQUIRED FOR CERTIFICATION</h4>
+<h4>Final Project: The BOLT Go-to-Market Brief</h4>
+<p>This is the work that earns your Mission 3 certification. Two deliverables, each built using every framework from this session. These are not practice exercises. They are professional deliverables Dana could present to leadership.</p>
+<p><strong>Part 1: The Go-to-Market Brief (60-90 min)</strong>
+Assemble a complete seven-section brief for BOLT using your cleaned dataset and every framework from this mission: Executive summary, Market opportunity, Competitor analysis (RACE + CRA), Customer profiles (AI Interview), Brand positioning (framework learned on demand), Risks (VRC applied at scale), Next steps.</p>
+<p><strong>Part 2: The BOLT Content Pack (60-90 min)</strong>
+Turn your go-to-market brief into a content package ready for execution. Choose at least four content pieces from the content pack list and produce them using the frameworks from this mission.</p>
+<p><strong>Before You Submit:</strong> Run VRC on the full brief, not just individual sections. Ask yourself: where does the value come from, what are the top two ways this fails, and what is the early signal it is working? Only submit when you would be comfortable if Dana sent this to leadership with your name on it.</p>
+<p><strong>Launch Final Project:</strong> https://lab.ai-officer.com/program/785403/mission/2267520</p>
+<h2>SECTION 3: WRAP-UP</h2>
+<h3>Key Takeaways</h3>
+<p><strong>Anyone can type a prompt. Not everyone can produce something worth trusting.</strong> That is the difference between using AI and leading it.</p>
+<p><strong>Stack your frameworks.</strong> RACE defines the task. CRA locks the quality. VRC evaluates the impact. They work as a system. The same system scales from a single prompt to an entire AI program.</p>
+<p><strong>The AI Interview is the master skill.</strong> Tell AI your goal. Let AI ask you the questions. The gap between what you would have written and what AI asks is where the value lives. This is also why AI programs fail: leadership cannot articulate what they need. The AI Interview is the discipline that fixes that.</p>
+<p><strong>You do not need to memorize frameworks.</strong> You need the habit of asking for the right one. AI is your instructor. This skill compounds every session.</p>
+<p><strong>Evaluate before you send.</strong> Creating output is only half the job. VRC is the habit that earns trust. Everyone says AI is working, but without evaluation, there is no ROI. VRC is how you prove it.</p>
+<p><strong>Think in deliverables, not prompts.</strong> Every challenge today builds one piece of a brief Dana could put in front of leadership. That is what professional-grade AI output looks like. That is what leading an AI program looks like.</p>
+<h4>Your Commitment</h4>
+<p>Before you close out: name one habit you will start, stop, or continue this week. Not a tool. A behavior. Something your manager would notice.</p>
+<h3>Checkpoint</h3>
+<p><strong>Question 1:</strong> What is the purpose of CRA in the two-pass system?</p>
+<p>A) CRA replaces RACE for more advanced tasks
+B) CRA is applied before RACE to define the problem
+C) CRA is a quality control layer stacked on top of a RACE draft to tighten it to the standard required
+D) CRA stands for Create, Review, Approve - the three approval steps before publishing</p>
+<p><em>Correct answer: C. RACE gets you 70% of the way to a usable output. CRA gets you the rest by adding Constraints, Requirements, and Acceptance Criteria. Two passes, not two separate processes.</em></p>
+<p><strong>Question 2:</strong> You are about to write a structured prompt for a complex deliverable. What does the AI Officer do first?</p>
+<p>A) Choose the right RACE components for the task
+B) Tell AI the goal and ask AI to ask you questions before starting
+C) Look up the right framework to use
+D) Write the full RACE + CRA prompt from scratch</p>
+<p><em>Correct answer: B. The AI Interview comes first. Before any structure, you let AI identify what it needs to know. The questions AI asks reveal gaps in your thinking that no framework alone would catch.</em></p>
+<p><strong>Question 3:</strong> What does VRC stand for and when do you use it?</p>
+<p>A) Verify, Review, Confirm - used when you finish a project
+B) Value, Risk, Checkpoint - used before any output goes to your manager, a client, or a leadership meeting
+C) Vision, Requirements, Criteria - used at the start of a project to define success
+D) Validate, Run, Confirm - used to test an AI prompt before building from it</p>
+<p><em>Correct answer: B. VRC is your evaluation discipline. Value: where does the benefit come from? Risk: what are the top two ways this fails? Checkpoint: what is the early signal it is working? Run this before anything goes out.</em></p>
+<p><strong>Question 4:</strong> You need to build competitive positioning for your product but you do not know which framework to use. What does the AI Officer do?</p>
+<p>A) Look up business frameworks online
+B) Use RACE to figure out which framework fits
+C) Ask AI to recommend and teach you the right framework for this type of problem, then apply it immediately
+D) Use the most well-known framework by default</p>
+<p><em>Correct answer: C. The AI Officer does not memorize frameworks. The AI Officer asks for the right one on demand. "What framework should I use for this? Explain it simply, then apply it to my situation." This skill compounds every session.</em></p>
+<p><strong>Question 5:</strong> Your BOLT competitor analysis looks great. You are about to send it to Dana for her leadership presentation. What is the last thing you do?</p>
+<p>A) Read it one more time and fix any typos
+B) Run VRC: identify where the value comes from, name the top two risks, and define the early checkpoint - then decide to send, fix, or start over
+C) Ask AI to review it for grammar and tone
+D) Show it to a colleague for a second opinion</p>
+<p><em>Correct answer: B. Creating output is only half the job. VRC is what separates someone who generates from someone who leads. Send it, fix it, or start over - but decide before Dana sees it.</em></p>
+<h3>Certificate of Completion</h3>
+<p><strong>AI Essentials Program</strong>
+<strong>Advanced Prompt Frameworks - Mission 3 Checkpoint Reached</strong></p>
+<p>Solid work, Cadet. You have completed Mission 3 of Generative AI Essentials and built the skills that separate prompt writers from AI program leaders: frameworks that guide quality output, the AI Interview that finds your blind spots, and VRC that tells you whether to trust what you have made.</p>
+<p>You now know how to produce output your leadership trusts. Output that has your name on it and deserves to. More importantly, you have started building the operational habits of someone who leads AI programs, not just someone who uses AI tools.</p>
+<p>Keep going. One more mission stands between you and the AI Specialist Certification.</p>
+<p><strong>Progress:</strong> Mission 1 (done) | Mission 2 (done) | Mission 3 (current) | Mission 4</p>
+<p><strong>Your Next Mission:</strong> Prompting Perfect Visuals</p>
+<p><em>Issued by AI Officer Institute</em>
+<em>Instructors: Dave Hajdu and David Nilssen</em>
+<em>dave@ai-officer.com | ai-officer.com</em></p>
+<h3>Course Experience Survey</h3>
+<p>[Survey placeholder - link to be added by Kate]</p>
+<h3>Words to Know</h3>
+<p>For definitions of all key terms from this mission, see Mission 3 Words to Know or visit:
+https://aiofficer.sg.larksuite.com/sync/[Mission3_Words_Link]</p>
+<p>You can always ask your AI Buddy to explain any of these concepts in more detail. That is what he is there for.</p>
+<h3>Prompt Library</h3>
+<p>For copy-paste prompts from this mission, see Mission 3 Prompt Library or visit:
+https://aiofficer.sg.larksuite.com/sync/[Mission3_Prompts_Link]</p>
+<p>Don't write prompts. Buddy it.</p>
+      </div>
+    </section>
+
+      <div class="tb-bottom-nav">
+        <a href="mission-3.html" class="tb-nav-btn">← Mission 3 Hub</a>
+        <a href="mission-3-prompts.html" class="tb-nav-btn primary">Prompt Library →</a>
+      </div>
+
+    </div>
+    
+      <div>
+        <div class="resource-stack">
+          
+        <a href="mission-3-textbook.html" class="resource-card active">
+          <div class="resource-icon" style="background:rgba(40,123,232,0.1);">📖</div>
+          <div class="resource-info">
+            <div class="resource-tag">Text Book</div>
+            <div class="resource-title">Mission Briefs</div>
+            <div class="resource-desc">All the briefs for this mission</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-3-prompts.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(40,123,232,0.1);">💬</div>
+          <div class="resource-info">
+            <div class="resource-tag">Prompt Library</div>
+            <div class="resource-title">Challenge Prompts</div>
+            <div class="resource-desc">Copy-paste prompts for every challenge</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-3-words.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(4,16,45,0.06);">🔤</div>
+          <div class="resource-info">
+            <div class="resource-tag">Words to Know</div>
+            <div class="resource-title">Key Terms</div>
+            <div class="resource-desc">Definitions for every key concept</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="mission-3-slides.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(111,242,193,0.2);">📊</div>
+          <div class="resource-info">
+            <div class="resource-tag">Slides</div>
+            <div class="resource-title">Slide Deck</div>
+            <div class="resource-desc">Visual summary of key concepts</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        </div>
+      </div>
+  </div>
+
+</main>
+</body>
+</html>

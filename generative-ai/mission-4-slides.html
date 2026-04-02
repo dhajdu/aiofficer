@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide Deck — Mission 4: Prompting Perfect Visuals — AI Officer Institute</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  :root {
+    --royal: #287BE8;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(4,16,45,0.07);
+    --shadow-hover: 0 6px 24px rgba(4,16,45,0.10);
+    --text-tertiary: #8b91ac;
+    --border-hover: #b0b6cc;
+  }
+  body { background: var(--surface); }
+
+  body { background: #0d1117; }
+  .slides-header { position: fixed; top: 56px; left: 0; right: 0; background: rgba(13,17,23,0.95); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 32px; height: 48px; display: flex; align-items: center; z-index: 50; gap: 16px; }
+  .slides-back { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.12s; }
+  .slides-back:hover { color: rgba(255,255,255,0.85); }
+  .slides-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.65); margin-left: 8px; }
+  .slides-counter { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.35); margin-left: 16px; }
+  .slides-wrapper { padding-top: 104px; padding-bottom: 80px; display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .slide { width: 100%; max-width: 900px; min-height: 520px; margin: 0 auto 3px; display: flex; flex-direction: column; justify-content: center; padding: 60px 80px; position: relative; }
+  .slide-title-card { background: var(--navy); min-height: 600px; }
+  .slide-dark { background: #161b22; }
+  .slide-light { background: white; }
+  .slide-mint { background: rgba(40,123,232,0.1); border: 1px solid rgba(40,123,232,0.2); }
+  .slide-blue { background: rgba(40,123,232,0.12); border: 1px solid rgba(40,123,232,0.2); }
+  .slide-num { position: absolute; top: 28px; right: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.2); }
+  .slide-light .slide-num { color: rgba(4,16,45,0.2); }
+  .slide-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; color: rgba(111,242,193,0.8); }
+  .slide-eyebrow.mint { color: #287be8; }
+  .slide-eyebrow.blue { color: rgba(40,123,232,0.9); }
+  .slide-eyebrow.muted { color: rgba(255,255,255,0.4); }
+  .slide-h1 { font-size: 52px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.05; color: white; margin-bottom: 24px; }
+  .slide-h1 .accent { color: #6FF2C1; }
+  .slide-h2 { font-size: 36px; font-weight: 700; letter-spacing: -0.8px; line-height: 1.15; color: white; margin-bottom: 20px; }
+  .slide-h2.dark { color: var(--navy); }
+  .slide-h3 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.2; color: white; margin-bottom: 16px; }
+  .slide-h3.dark { color: var(--navy); }
+  .slide-body { font-size: 18px; line-height: 1.65; color: rgba(255,255,255,0.75); max-width: 660px; }
+  .slide-body.dark { color: rgba(4,16,45,0.7); }
+  .slide-body strong { color: white; font-weight: 700; }
+  .slide-body.dark strong { color: var(--navy); }
+  .slide-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+  .slide-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 17px; line-height: 1.5; }
+  .slide-list li .bullet { width: 24px; height: 24px; border-radius: 6px; flex-shrink: 0; background: rgba(40,123,232,0.2); color: #287be8; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+  .slide-list li .text { color: rgba(255,255,255,0.8); }
+  .slide-list li .text strong { color: white; display: block; margin-bottom: 2px; }
+  .slides-res-footer { background: rgba(255,255,255,0.04); border-top: 1px solid rgba(255,255,255,0.08); padding: 24px 40px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .slides-res-label { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-right: 8px; }
+  .slides-res-link { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); text-decoration: none; padding: 7px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.12s; }
+  .slides-res-link:hover { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.05); }
+  .slides-res-link.active { color: #6FF2C1; border-color: rgba(111,242,193,0.3); background: rgba(111,242,193,0.06); }
+
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="../index.html" class="topbar-brand">AI Officer <span>Institute</span></a>
+  <button class="nav-toggle" id="navToggle" onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.textContent=n.classList.contains('open')?'✕':'☰';" aria-label="Toggle navigation">☰</button>
+  <nav class="topbar-nav">
+    <a href="../certification.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
+    <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+    <a href="../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="../ai-buddy.html" class="buddy-launch-btn">AI Buddy</a>
+    <div class="topbar-stat">🔥 7</div>
+    <div class="topbar-stat">1,240 xp</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-avatar">DH</div>
+  </div>
+</div>
+
+<div class="slides-header">
+  <a href="mission-4.html" class="slides-back">← Mission 4</a>
+  <span class="slides-title">Prompting Perfect Visuals</span>
+  <span class="slides-counter">21 slides</span>
+</div>
+
+<div class="slides-wrapper">
+  
+  <div class="slide slide-title-card">
+    <span class="slide-num">1 / 21</span>
+    <div class="slide-eyebrow">Generative AI for Business — Mission 4</div>
+    <h1 class="slide-h1">Title Slide</h1>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Generative AI Essentials</span></li><li><span class="bullet">2</span><span class="text">Prompting Perfect Visuals</span></li><li><span class="bullet">3</span><span class="text">Mission 4</span></li><li><span class="bullet">4</span><span class="text">Anyone can type a prompt. Not everyone can build a visual system.</span></li><li><span class="bullet">5</span><span class="text">#AIOfficerCertification | Dave Hajdu | dave@ai-officer.com</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">2 / 21</span>
+    
+    <h2 class="slide-h2">You Built the Logic. Now Build the Look.</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Mission 1: You learned to lead AI.</span></li><li><span class="bullet">2</span><span class="text">Mission 2: You fixed the fuel.</span></li><li><span class="bullet">3</span><span class="text">Mission 3: You produced what leadership trusts.</span></li><li><span class="bullet">4</span><span class="text">Mission 4: You make it visual.</span></li></ul>
+  </div>
+  <div class="slide slide-mint">
+    <span class="slide-num">3 / 21</span>
+    
+    <h2 class="slide-h2">The Visual Gap</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Without visuals: The brief sits in a folder.</span></li><li><span class="bullet">2</span><span class="text">With visuals: The brief becomes a campaign.</span></li></ul>
+  </div>
+  <div class="slide slide-light">
+    <span class="slide-num">4 / 21</span>
+    
+    <h2 class="slide-h2 dark">Section Divider - The 5-Element Framework</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">The 5-Element Framework</span></li><li><span class="bullet">2</span><span class="text">Same model. Same tool. The framework is the difference.</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">5 / 21</span>
+    
+    <h2 class="slide-h2">What AI Needs to Make a Good Image</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Subject. Style. Environment. Lighting and Mood. Details.</span></li><li><span class="bullet">2</span><span class="text">Five elements. Every image.</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">6 / 21</span>
+    
+    <h2 class="slide-h2">The Jump One Element Makes</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">&quot;Create an image of an energy drink.&quot;</span></li><li><span class="bullet">2</span><span class="text">&quot;Single matte black can. Spotlight from above. Condensation. Dramatic high contrast. Negative space for copy.&quot;</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">7 / 21</span>
+    
+    <h2 class="slide-h2">Exercise: Build a BOLT Image</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Exercise: Your Turn</span></li><li><span class="bullet">2</span><span class="text">Run the bare prompt. Then run the 5-Element prompt. Place them side by side.</span></li></ul>
+  </div>
+  <div class="slide slide-mint">
+    <span class="slide-num">8 / 21</span>
+    
+    <h2 class="slide-h2">Section Divider - VISION: From Still to Moving</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">VISION</span></li><li><span class="bullet">2</span><span class="text">Video does not start with a prompt. It starts with a controlled image.</span></li></ul>
+  </div>
+  <div class="slide slide-light">
+    <span class="slide-num">9 / 21</span>
+    
+    <h2 class="slide-h2 dark">Video Starts with a Visual Anchor</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Without it: Text prompt. Random motion. Off-brand output.</span></li><li><span class="bullet">2</span><span class="text">With it: Controlled starting image. Intentional movement. On-brand result.</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">10 / 21</span>
+    
+    <h2 class="slide-h2">The Six VISION Elements</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">V - Visual Anchor. I - Intention. S - Sequence.</span></li><li><span class="bullet">2</span><span class="text">I - Immersion. O - Orbit. N - Narrative Arc.</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">11 / 21</span>
+    
+    <h2 class="slide-h2">BOLT Product Reveal - Worked Example</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Six seconds. One product. One emotion: &quot;I want that.&quot;</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">12 / 21</span>
+    
+    <h2 class="slide-h2">Section Divider - Tools of the Trade</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Tools of the Trade</span></li><li><span class="bullet">2</span><span class="text">The best tool is the one that fits the program.</span></li></ul>
+  </div>
+  <div class="slide slide-mint">
+    <span class="slide-num">13 / 21</span>
+    
+    <h2 class="slide-h2">Three Types of Visual AI Tools</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">LLMs with image generation. Embedded AI. Purpose-built tools.</span></li></ul>
+  </div>
+  <div class="slide slide-light">
+    <span class="slide-num">14 / 21</span>
+    
+    <h2 class="slide-h2 dark">The Question That Guides the Choice</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">What does the program need? What can the team run without you?</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">15 / 21</span>
+    
+    <h2 class="slide-h2">Section Divider - Style DNA</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Style DNA</span></li><li><span class="bullet">2</span><span class="text">One good image is easy. Eleven consistent images is a system.</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">16 / 21</span>
+    
+    <h2 class="slide-h2">Fixed and Variable</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Fixed: What never changes.</span></li><li><span class="bullet">2</span><span class="text">Variable: What shifts by audience and platform.</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">17 / 21</span>
+    
+    <h2 class="slide-h2">The Leadership Test</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Could Dana hand this to a new associate on day one and get consistent visuals without a single meeting?</span></li></ul>
+  </div>
+  <div class="slide slide-mint">
+    <span class="slide-num">18 / 21</span>
+    
+    <h2 class="slide-h2">The BOLT Visual Campaign</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Thirteen deliverables. Four Offices. One consistent system.</span></li></ul>
+  </div>
+  <div class="slide slide-light">
+    <span class="slide-num">19 / 21</span>
+    
+    <h2 class="slide-h2 dark">Closing Reflection</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">The AI Officer does not make visuals. The AI Officer builds the system that makes visuals.</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">20 / 21</span>
+    
+    <h2 class="slide-h2">Your Commitment</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Start, stop, or continue.</span></li><li><span class="bullet">2</span><span class="text">Name one visual system your team could run without you this week.</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">21 / 21</span>
+    
+    <h2 class="slide-h2">Thank You</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Mission 4 Complete. Generative AI Essentials Complete.</span></li><li><span class="bullet">2</span><span class="text">Generative AI Specialist - Certified.</span></li><li><span class="bullet">3</span><span class="text">[QR Code - Session Feedback]</span></li><li><span class="bullet">4</span><span class="text">#AIOfficerCertification | dave@ai-officer.com | ai-officer.com</span></li></ul>
+  </div>
+</div>
+
+<div class="slides-res-footer">
+  <a href="mission-4-textbook.html" class="slides-res-link">📖 Mission Briefs</a>
+  <a href="mission-4-prompts.html" class="slides-res-link">💬 Prompt Library</a>
+  <a href="mission-4-words.html" class="slides-res-link">🔤 Words to Know</a>
+  <a href="mission-4-slides.html" class="slides-res-link active">📊 Slide Deck</a>
+</div>
+
+</body>
+</html>

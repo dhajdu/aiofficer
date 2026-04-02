@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAIO Coaching Recap — Power BI Dashboard Migration</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #04102D;
+    --blue: #287BE8;
+    --mint: #6FF2C1;
+    --magenta: #D1458B;
+    --light-gray: #EAEEF2;
+    --bg: #FFFFFF;
+    --text: #04102D;
+    --text-secondary: #4B5563;
+    --text-muted: #6B7280;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 40px 20px;
+  }
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 2px solid var(--light-gray);
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--navy);
+    padding: 6px 14px;
+    border-radius: 4px;
+  }
+  .date {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+  .subtitle {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .context {
+    background: #F8F9FB;
+    border-left: 3px solid var(--navy);
+    padding: 20px 24px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 40px;
+  }
+  .context-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .context p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+  .context p:last-child { margin-bottom: 0; }
+  .section { margin-bottom: 40px; }
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .section-desc {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .step {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 24px;
+    align-items: flex-start;
+  }
+  .step-number {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--bg);
+    background: var(--navy);
+    margin-top: 2px;
+  }
+  .step-content h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .step-content p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+  .step-content p:last-child { margin-bottom: 0; }
+  .divider {
+    height: 1px;
+    background: var(--light-gray);
+    margin: 40px 0;
+  }
+  .insight {
+    background: #EEFDF6;
+    border-left: 3px solid var(--mint);
+    padding: 20px 24px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 24px;
+  }
+  .insight-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .insight p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+  .insight p:last-child { margin-bottom: 0; }
+  .warning {
+    background: #FDF2F7;
+    border-left: 3px solid var(--magenta);
+    padding: 20px 24px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 24px;
+  }
+  .warning-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--magenta);
+    margin-bottom: 8px;
+  }
+  .warning p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+  .warning p:last-child { margin-bottom: 0; }
+  .prompt-block {
+    background: #F8F9FB;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+  .prompt-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 10px;
+  }
+  .prompt-text {
+    font-size: 14px;
+    color: var(--navy);
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .prompt-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    font-style: normal;
+  }
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 2px solid var(--light-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+  .footer-tags {
+    font-size: 12px;
+    color: #9CA3AF;
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header reveal">
+    <div class="header-top">
+      <span class="badge">CAIO Coaching Session 1</span>
+      <span class="date">April 2026</span>
+    </div>
+    <h1>Power BI dashboard migration</h1>
+    <p class="subtitle">How to move from a static Excel dashboard to a live, auto-refreshing Power BI dashboard using Claude as your co-pilot. From Julian's first CAIO coaching session.</p>
+  </div>
+
+  <div class="context reveal">
+    <div class="context-label">Julian's starting point</div>
+    <p>"I want Claude to design my Power BI dashboard. I'm trying to get Cowork to work directly into Power BI but error messages keep coming up. It's too slow through the browser and doesn't seem able to access it."</p>
+  </div>
+
+  <div class="warning reveal">
+    <div class="warning-label">Why browser automation doesn't work here</div>
+    <p>Julian was trying to have Claude control Power BI through the browser using Cowork's computer use feature. This approach is too slow and unreliable for Power BI. The interface is complex, with nested menus and drag-and-drop interactions that browser-based AI control can't handle well.</p>
+    <p>The better approach: use Claude as a thinking partner and instruction generator, not as a remote control for your screen.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section reveal">
+    <h2>Lesson 1: Define the workflow first</h2>
+    <p class="section-desc">Before asking Claude to do anything, talk through the process so Claude understands what you're trying to accomplish. Then let Claude generate the workflow from the conversation.</p>
+
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <h3>Talk through your steps out loud</h3>
+        <p>Dave had Julian walk through his process in plain language: Where is the source data? How does it get updated? What KPIs matter? What does the end dashboard look like?</p>
+        <p>Julian already knew the answers. The source data is an Excel file acting as a simple database. He already has a static HTML-based report he likes. The gap is making it dynamic, not redesigning it from scratch.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <h3>Let Claude generate the workflow</h3>
+        <p>From that conversation, Claude mapped the full process: define the source data, automate the refresh cycle (decide on daily, weekly, or monthly), map KPIs to visuals, connect the pipe so it's no longer static, then validate and iterate.</p>
+        <p>The important thing: Julian didn't have to write these steps. He talked, Claude organized.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section reveal">
+    <h2>Lesson 2: Create a visual diagram</h2>
+    <p class="section-desc">Once the workflow is mapped in text, ask Claude to generate a visual diagram. This is for the human, not for the AI.</p>
+
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <h3>Ask Claude to visualize the workflow</h3>
+        <p>Dave showed how to ask Claude to generate a visual diagram directly in chat. The diagram broke the process into four phases: data prep, connection setup, building the model, and going live.</p>
+        <p>The visual is a sanity check. If a step looks wrong or out of order, fix it before you start building. The diagram is cheap. Rebuilding a Power BI model is not.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight reveal">
+    <div class="insight-label">Key principle</div>
+    <p>The workflow and the diagram are for the human, not for the AI. You're using Claude to think through and document your process so you can check it, share it, and refer back to it. Claude doesn't need to execute every step. You need to see the steps clearly.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section reveal">
+    <h2>Lesson 3: Look for MCP connectors instead of browser automation</h2>
+    <p class="section-desc">When Claude can't reliably control an app through the browser, the next question is: does a direct connector exist?</p>
+
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <h3>Check Claude's integrations menu for MCP connectors</h3>
+        <p>MCP (Model Context Protocol) connectors let Claude talk directly to external tools without going through the browser. Cowork currently has 38+ connectors including Slack, Google Drive, Salesforce, Notion, Jira, and Microsoft 365.</p>
+        <p><strong>Reality check: Power BI is not in the Cowork connector directory today.</strong> This may change, but as of April 2026 it's not there.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">5</div>
+      <div class="step-content">
+        <h3>Explore third-party options</h3>
+        <p>Third-party MCP servers exist for Power BI, including Microsoft's Power BI Modeling MCP Server (a VS Code extension) and CData Connect AI. These work with Claude Desktop's developer mode and Claude Code, not with Cowork's one-click connector system. They require manual JSON config and technical setup.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">6</div>
+      <div class="step-content">
+        <h3>The fallback: Claude generates instructions, you execute</h3>
+        <p>If no direct connector exists, have Claude generate detailed step-by-step instructions you implement manually in Power BI. Claude writes the DAX measures, designs the data model, and maps the KPIs. You paste and build.</p>
+        <p>This is still an 80% time saver. Claude does the thinking. You do the clicking.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight reveal">
+    <div class="insight-label">The hierarchy of AI assistance</div>
+    <p><strong>Best case:</strong> Direct MCP connector. Claude talks to the tool natively. Minimal human clicking.</p>
+    <p><strong>Middle case:</strong> Third-party MCP server. Works but requires developer-level setup. Best for technical users.</p>
+    <p><strong>Fallback (most common today):</strong> Claude generates step-by-step instructions and code. You execute in the tool. Still saves 80% of the work.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section reveal">
+    <h2>Lesson 4: Store workflows in a catalog</h2>
+    <p class="section-desc">Once you've built a workflow, don't let it die in a chat thread. Save it, publish it, share it with your team.</p>
+
+    <div class="step">
+      <div class="step-number">7</div>
+      <div class="step-content">
+        <h3>Save workflows to a shared folder and publish</h3>
+        <p>Dave showed how his team saves workflows to a folder structure, publishes them to the web via GitHub and Vercel, and shares them across the team. Claude effectively replaces a CMS for maintaining this catalog.</p>
+        <p>The next person who hits the same problem can pull up the documented workflow instead of starting from scratch.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">8</div>
+      <div class="step-content">
+        <h3>Think about access governance early</h3>
+        <p>Julian asked about who can access and edit shared workflows. Dave's current approach: folder-level permissions within Claude Teams shared projects. Team members can publish to specific folders but can't touch other parts of the catalog. Still early-stage but the principle matters. Define who can publish what, and where.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section reveal">
+    <h2>Prompts you can use</h2>
+    <p class="section-desc">Copy-paste these into Claude to work through each phase of the Power BI migration. Adapt the specifics (file names, KPIs, column names) to your situation.</p>
+
+    <div class="prompt-block reveal">
+      <div class="prompt-label">Prompt 1 — Map the workflow</div>
+      <div class="prompt-text">"I want to move my company's data from a static Excel file into a live Power BI dashboard. Walk me through the process step by step. The source data is [describe your Excel file: what tabs, what columns, how often it's updated]. I already have a report layout I like that shows [describe your KPIs]. I need the dashboard to auto-refresh [daily/weekly/monthly]. Ask me clarifying questions before generating the workflow."</div>
+    </div>
+
+    <div class="prompt-block reveal">
+      <div class="prompt-label">Prompt 2 — Generate a visual diagram</div>
+      <div class="prompt-text">"Now create a visual diagram of this workflow. Show the phases and steps so I can check whether the order makes sense before I start building."</div>
+      <div class="prompt-note">Use this after Prompt 1. The diagram is your sanity check. Review it, flag anything that looks wrong, and iterate before moving on.</div>
+    </div>
+
+    <div class="prompt-block reveal">
+      <div class="prompt-label">Prompt 3 — Structure the Excel for Power BI</div>
+      <div class="prompt-text">"Review this Excel file and tell me what I need to clean up before connecting it to Power BI. Check for: merged cells, inconsistent data types, missing headers, duplicate columns, and anything else that would cause problems during import. Give me a checklist of fixes."</div>
+      <div class="prompt-note">Upload your Excel file with this prompt. Claude will flag structural issues before they become Power BI errors.</div>
+    </div>
+
+    <div class="prompt-block reveal">
+      <div class="prompt-label">Prompt 4 — Write DAX measures</div>
+      <div class="prompt-text">"I'm building a Power BI dashboard. My data model has these tables and columns: [list them]. I need DAX measures for the following KPIs: [list your KPIs, e.g., 'total revenue by month', 'year-over-year growth rate', 'average deal size by client category']. Write the DAX for each measure and explain where to paste it in Power BI."</div>
+      <div class="prompt-note">This is where the 80% time savings happens. Claude writes the DAX. You paste it into Power BI's measure editor.</div>
+    </div>
+
+    <div class="prompt-block reveal">
+      <div class="prompt-label">Prompt 5 — Design the dashboard layout</div>
+      <div class="prompt-text">"I have these KPIs ready in my Power BI model: [list your measures]. Design a dashboard layout for me. Tell me which visual type to use for each KPI (bar chart, card, line chart, table, etc.), how to arrange them on the canvas, and what filters or slicers to add. I want the dashboard to be clean and scannable for [describe your audience: leadership team, operations, sales, etc.]."</div>
+      <div class="prompt-note">Claude can't drag visuals onto the Power BI canvas, but it can design the layout and tell you exactly what to build.</div>
+    </div>
+
+    <div class="prompt-block reveal">
+      <div class="prompt-label">Prompt 6 — Set up auto-refresh</div>
+      <div class="prompt-text">"Walk me through setting up scheduled refresh for my Power BI dashboard. My Excel source file is stored on [OneDrive/SharePoint/local]. I want it to refresh [daily/weekly/monthly]. Give me the exact steps in Power BI Service to configure this, including any gateway setup if needed."</div>
+    </div>
+
+    <div class="prompt-block reveal">
+      <div class="prompt-label">Prompt 7 — Validate the dashboard</div>
+      <div class="prompt-text">"I've built my Power BI dashboard. Here are the numbers it's showing: [paste key figures]. Here are the numbers from my original static report: [paste the same figures from your old report]. Compare them and tell me if anything doesn't match. If there are discrepancies, help me figure out where the data is diverging."</div>
+    </div>
+
+    <div class="prompt-block reveal">
+      <div class="prompt-label">Prompt 8 — Document the workflow for the team</div>
+      <div class="prompt-text">"Create a step-by-step guide documenting everything we just built: the data source, the refresh setup, the DAX measures, and the dashboard layout. Format it so someone on my team who wasn't part of this process can maintain and update the dashboard without my help. Include a troubleshooting section for common issues."</div>
+      <div class="prompt-note">This becomes the catalog entry. Save the output and publish it to your team's shared folder.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section reveal">
+    <h2>The four moves</h2>
+    <p class="section-desc">When you want Claude to help you set up something in a complex tool like Power BI, this is the playbook.</p>
+
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <h3>Define the workflow with Claude</h3>
+        <p>Talk through the process. Let Claude map the steps. Generate a visual diagram to sanity-check it.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <h3>Check for MCP connectors</h3>
+        <p>Look in Claude's integrations for a direct connector. If one exists, use it. If not, check for third-party MCP servers.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <h3>Fall back to Claude-generated instructions</h3>
+        <p>No connector? Have Claude write the step-by-step guide, the DAX measures, the data model. You execute in Power BI. Still saves 80% of the work.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <h3>Save the workflow to your catalog</h3>
+        <p>Don't let it die in a chat. Save it, publish it, share it with the team.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer reveal">
+    <div class="footer-brand">AI Officer Institute — Lead AI Programs</div>
+    <div class="footer-tags">#aiofficercertification #leadershipintheaiera #theother50%</div>
+  </div>
+
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

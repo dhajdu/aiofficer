@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coaching Recap — AI Officer Institute</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  :root {
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(4,16,45,0.07);
+    --shadow-hover: 0 6px 24px rgba(4,16,45,0.10);
+    --text-tertiary: #8b91ac;
+  }
+
+  body { background: var(--surface); }
+
+  /* ── Topbar ── */
+  .topbar { justify-content: space-between; padding: 0 28px; gap: 16px; }
+  .topbar-nav { margin-left: 8px; }
+  .topbar-right {
+    display: flex; align-items: center; gap: 10px;
+    margin-left: auto; flex-shrink: 0;
+  }
+  .topbar-stat {
+    display: flex; align-items: center; gap: 5px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 600;
+    color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.07);
+    padding: 5px 12px; border-radius: 6px;
+  }
+  .topbar-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: white; flex-shrink: 0;
+  }
+
+  /* ── Page layout ── */
+  .page-main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 36px 40px 100px;
+  }
+
+  /* ── Hero ── */
+  .coaching-hero {
+    background: var(--navy); border-radius: 16px;
+    padding: 48px 52px; margin-bottom: 48px;
+    display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center;
+  }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 12px;
+  }
+  .hero-title {
+    font-size: 36px; font-weight: 700; letter-spacing: -0.8px;
+    line-height: 1.1; color: white; margin-bottom: 14px;
+  }
+  .hero-title span { color: var(--mint); }
+  .hero-desc {
+    font-size: 15px; color: rgba(255,255,255,0.55);
+    line-height: 1.7; max-width: 480px;
+  }
+  .hero-stat-box {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 14px; padding: 28px 32px; text-align: center; min-width: 180px;
+    flex-shrink: 0;
+  }
+  .hero-stat-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: var(--mint); margin-bottom: 12px;
+  }
+  .hero-stat-number {
+    font-size: 48px; font-weight: 700; color: white;
+    font-family: 'JetBrains Mono', monospace; letter-spacing: -2px;
+    line-height: 1; margin-bottom: 6px;
+  }
+  .hero-stat-sub {
+    font-size: 13px; color: rgba(255,255,255,0.4);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── Section header ── */
+  .section-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .section-head-title {
+    font-size: 17px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.2px;
+  }
+
+  /* ── Session card ── */
+  .sessions-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; }
+
+  .session-card {
+    background: white; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px 26px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.15s var(--ease);
+  }
+  .session-card:hover {
+    border-color: rgba(40,123,232,0.25);
+    box-shadow: var(--shadow-hover); transform: translateY(-1px);
+  }
+
+  /* card top row */
+  .session-card-top {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .session-number {
+    font-size: 13px; font-weight: 700; color: var(--navy);
+    letter-spacing: -0.2px;
+  }
+  .session-date-badge {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600;
+    color: var(--text-tertiary); background: var(--surface);
+    border: 1px solid var(--border); border-radius: 5px; padding: 3px 10px;
+  }
+
+  /* topics list */
+  .session-topics { display: flex; flex-direction: column; gap: 0; }
+
+  .topic-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 12px 0;
+    border-top: 1px solid var(--surface);
+    text-decoration: none; color: inherit;
+    transition: background 0.12s;
+    border-radius: 6px;
+    padding-left: 4px; padding-right: 4px;
+    margin: 0 -4px;
+  }
+  .topic-row:hover .topic-name { color: var(--blue); }
+  .topic-row:hover .topic-arrow { color: var(--blue); }
+
+  .topic-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .topic-body { flex: 1; min-width: 0; }
+  .topic-who {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.8px;
+    text-transform: uppercase; color: var(--text-tertiary);
+    margin-bottom: 1px;
+  }
+  .topic-name {
+    font-size: 14px; font-weight: 600; color: var(--text-primary);
+    line-height: 1.3; transition: color 0.12s;
+  }
+  .topic-arrow {
+    font-size: 14px; color: var(--text-tertiary);
+    transition: color 0.12s; flex-shrink: 0;
+  }
+
+  /* ── Page footer ── */
+  .page-footer {
+    padding-top: 20px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; color: var(--text-tertiary);
+  }
+
+  @media (max-width: 700px) {
+    .page-main { padding: 20px 20px 80px; }
+    .coaching-hero { grid-template-columns: 1fr; padding: 32px 28px; }
+    .hero-stat-box { display: none; }
+    .topbar-nav, .topbar-right { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TOP BAR                                     -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="topbar">
+  <a href="../index.html" class="topbar-brand">AI Officer <span>Institute</span></a>
+  <button class="nav-toggle" id="navToggle" onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.textContent=n.classList.contains('open')?'✕':'☰';" aria-label="Toggle navigation">☰</button>
+  <nav class="topbar-nav">
+    <a href="../certification.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
+    <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+    <a href="../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="../ai-buddy.html" class="buddy-launch-btn">AI Buddy</a>
+    <div class="topbar-stat"><span>🔥</span> 7</div>
+    <div class="topbar-stat">1,240 xp</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-avatar">DH</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PAGE                                        -->
+<!-- ═══════════════════════════════════════════ -->
+<main class="page-main">
+
+  <!-- ── Hero ── -->
+  <div class="coaching-hero">
+    <div>
+      <p class="hero-eyebrow">CAIO · Dave Hajdu</p>
+      <h1 class="hero-title">Coaching <span>Sessions</span></h1>
+      <p class="hero-desc">A running record of every one-on-one coaching session — who we worked with, what we covered, and the key takeaways. A new session drops every week.</p>
+    </div>
+    <div class="hero-stat-box">
+      <div class="hero-stat-label">Sessions</div>
+      <div class="hero-stat-number">2</div>
+      <div class="hero-stat-sub">completed</div>
+    </div>
+  </div>
+
+  <!-- ── Sessions list ── -->
+  <div class="section-head">
+    <div class="section-head-title">All Sessions</div>
+  </div>
+
+  <div class="sessions-list">
+
+    <!-- ── Session 2 (most recent first) ── -->
+    <div class="session-card">
+      <div class="session-card-top">
+        <div class="session-number">Session 2</div>
+        <div class="session-date-badge">April 9, 2026</div>
+      </div>
+      <div class="session-topics">
+
+        <a class="topic-row" href="#">
+          <div class="topic-icon">✍️</div>
+          <div class="topic-body">
+            <div class="topic-who">Sarah</div>
+            <div class="topic-name">Building an AI Content Pipeline for Weekly Newsletters</div>
+          </div>
+          <div class="topic-arrow">→</div>
+        </a>
+
+        <a class="topic-row" href="#">
+          <div class="topic-icon">📈</div>
+          <div class="topic-body">
+            <div class="topic-who">Marcus</div>
+            <div class="topic-name">Automating Client Reports with Claude and Cowork</div>
+          </div>
+          <div class="topic-arrow">→</div>
+        </a>
+
+        <a class="topic-row" href="#">
+          <div class="topic-icon">🏥</div>
+          <div class="topic-body">
+            <div class="topic-who">Priya</div>
+            <div class="topic-name">AI Strategy for a Healthcare Startup — Where to Begin</div>
+          </div>
+          <div class="topic-arrow">→</div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- ── Session 1 ── -->
+    <div class="session-card">
+      <div class="session-card-top">
+        <div class="session-number">Session 1</div>
+        <div class="session-date-badge">April 2, 2026</div>
+      </div>
+      <div class="session-topics">
+
+        <a class="topic-row" href="C01/C01-Eric-Bhutan-Project.html">
+          <div class="topic-icon">🏔</div>
+          <div class="topic-body">
+            <div class="topic-who">Eric</div>
+            <div class="topic-name">Building a Website with AI — Bhutan Travel Project</div>
+          </div>
+          <div class="topic-arrow">→</div>
+        </a>
+
+        <a class="topic-row" href="C01/C01-Julien-PowerBI-Cowork.html">
+          <div class="topic-icon">📊</div>
+          <div class="topic-body">
+            <div class="topic-who">Julien</div>
+            <div class="topic-name">Power BI Dashboard Migration with Cowork</div>
+          </div>
+          <div class="topic-arrow">→</div>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── Footer ── -->
+  <div class="page-footer">
+    <div>AI Officer Institute</div>
+    <div>Coaching Recap · 2026</div>
+  </div>
+
+</main>
+</body>
+</html>

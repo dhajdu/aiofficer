@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompting 101: Video: Micro-Session — AI Officer Institute</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+
+  :root {
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(4,16,45,0.07);
+    --text-primary: #1a1f36;
+    --text-secondary: #4a5068;
+    --text-muted: #6b7194;
+    --border: #d8dce8;
+    --surface: #f4f6fa;
+    --card-bg: #ffffff;
+  }
+
+  body { background: var(--surface); font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; color: var(--text-primary); line-height: 1.7; }
+
+  
+
+  .mission-back {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    text-decoration: none; margin-bottom: 28px; transition: color 0.12s;
+  }
+  .mission-back:hover { color: var(--text-primary); }
+
+  .mission-header { margin-bottom: 32px; }
+  .mission-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .mission-track-pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 20px;
+  }
+  .mission-track-pill .dot { width: 5px; height: 5px; border-radius: 50%; }
+  .mission-title { font-size: 34px; font-weight: 700; color: var(--text-primary); letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 10px; }
+  .mission-sub { font-size: 15px; color: var(--text-secondary); line-height: 1.6; max-width: 620px; }
+
+  .mission-body { display: grid; grid-template-columns: 1fr 300px; gap: 24px; align-items: start; }
+
+  .content-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px 28px;
+    box-shadow: var(--shadow-sm); margin-bottom: 16px;
+  }
+  .card-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #287BE8; margin-bottom: 14px; }
+  .card-heading { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 14px; letter-spacing: -0.2px; }
+  .card-text { font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 12px; }
+  .card-text:last-child { margin-bottom: 0; }
+
+  /* Resource sidebar */
+  .resource-stack { display: flex; flex-direction: column; gap: 8px; }
+  .resource-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 14px 16px;
+    text-decoration: none; color: inherit;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: var(--shadow-sm); transition: all 0.15s var(--ease);
+  }
+  .resource-card:hover { border-color: rgba(40,123,232,0.35); box-shadow: 0 4px 16px rgba(4,16,45,0.09); transform: translateY(-1px); }
+  .resource-card.active { border-color: rgba(40,123,232,0.4); background: rgba(40,123,232,0.04); }
+  .resource-icon { width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .resource-info { flex: 1; min-width: 0; }
+  .resource-tag { font-size: 10px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1px; }
+  .resource-title { font-size: 13px; font-weight: 700; color: var(--text-primary); }
+  .resource-arrow { font-size: 13px; color: var(--text-muted); flex-shrink: 0; }
+  .resource-card.active .resource-arrow { color: #287BE8; }
+
+  @media (max-width: 900px) {
+    .page-main { padding: 70px 20px 80px; }
+    .mission-body { grid-template-columns: 1fr; }
+  }
+
+
+  .objective-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; box-shadow: var(--shadow-sm); margin-bottom: 16px; }
+  .challenge-card { display: block; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; box-shadow: var(--shadow-sm); margin-bottom: 16px; }
+  .step-list { display: flex; flex-direction: column; gap: 16px; margin-top: 4px; }
+  .step-item { display: flex; gap: 14px; }
+  .step-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: #287BE8; background: rgba(40,123,232,0.08); padding: 4px 10px; border-radius: 6px; flex-shrink: 0; margin-top: 2px; white-space: nowrap; }
+  .step-body {}
+  .step-title { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+  .step-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .submit-box { background: #04102D; border-radius: 10px; padding: 20px 24px; margin-top: 16px; }
+  .submit-box-title { font-size: 12px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 12px; }
+  .submit-list { display: flex; flex-direction: column; gap: 8px; }
+  .submit-item { display: flex; align-items: baseline; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.8); }
+  .submit-dot { width: 5px; height: 5px; border-radius: 50%; background: #6FF2C1; flex-shrink: 0; margin-top: 6px; }
+  .grading-section { margin-top: 20px; }
+  .grading-title { font-size: 12px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
+  .grade-list { display: flex; flex-direction: column; gap: 8px; }
+  .grade-item { display: flex; align-items: flex-start; gap: 10px; }
+  .grade-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 5px; flex-shrink: 0; margin-top: 3px; background: rgba(40,123,232,0.08); color: #287BE8; min-width: 80px; text-align: center; white-space: nowrap; }
+  .grade-text { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
+  .grade-text strong { color: var(--text-primary); font-weight: 600; }
+  .session-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+  .session-nav-item { display: flex; flex-direction: column; gap: 4px; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; text-decoration: none; color: inherit; box-shadow: var(--shadow-sm); transition: all 0.15s var(--ease); }
+  .session-nav-item:hover { border-color: rgba(40,123,232,0.3); box-shadow: 0 4px 16px rgba(4,16,45,0.09); transform: translateY(-1px); }
+  .session-nav-item.next { align-items: flex-end; text-align: right; }
+  .nav-dir { font-size: 10px; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase; color: var(--text-muted); }
+  .nav-title { font-size: 13px; font-weight: 700; color: var(--text-primary); line-height: 1.35; }
+
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="../index.html" class="topbar-brand">AI Officer <span>Institute</span></a>
+  <button class="nav-toggle" id="navToggle" onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.textContent=n.classList.contains('open')?'✕':'☰';" aria-label="Toggle navigation">☰</button>
+  <nav class="topbar-nav">
+    <a href="../certification.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
+    <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+    <a href="index.html" class="tnav-link active"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+    <a href="../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="../ai-buddy.html" class="buddy-launch-btn">AI Buddy</a>
+    <div class="topbar-stat">🔥 7</div>
+    <div class="topbar-stat">1,240 xp</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-avatar">DH</div>
+  </div>
+</div>
+
+<main class="page-main site-wrap">
+
+  <a href="index.html" class="mission-back">← Micro-Sessions</a>
+
+  <div class="mission-header">
+    <div class="mission-meta">
+      <span class="mission-track-pill" style="background:rgba(40,123,232,0.1); color:#287BE8; border: 1px solid rgba(40,123,232,0.2);"><span class="dot" style="background:#287BE8;"></span> Gen AI</span>
+    </div>
+    <h1 class="mission-title">Prompting 101: Video</h1>
+    <p class="mission-sub">Generative AI Essentials · Hands-on micro-session</p>
+  </div>
+
+  <div class="mission-body">
+
+    <div>
+
+      <!-- Objective -->
+      <div class="objective-card content-card">
+        <div class="card-label">Session Objective</div>
+        <p class="card-text">We took the image skills from last week and turned them into video. The key tool was Google Flow - specifically the Frames to Video mode, which lets you upload a reference image as your first frame and then prompt the motion from there. The main framework was VISION: Visual anchor, Intention, Sequence, Immersion, Orbit, and Narrative. Together, these six elements give you director-level control over short AI video clips without a production team or editing skills.</p>
+      </div>
+
+      <!-- Challenge -->
+      <div class="challenge-card">
+        <div class="card-label">Your Challenge</div>
+        <div class="card-heading">Complete the following steps</div>
+        <div class="step-list">
+          <div class="step-item">
+            <div class="step-num">STEP 1</div>
+            <div class="step-body">
+              <div class="step-title">Build your reference image (3 min)</div>
+              <div class="step-desc">Use any AI image tool (Google Labs, ChatGPT, Gemini, or similar). Apply the 5-element image framework: subject, style, setting, composition, details. Create a single image that could serve as the opening frame of your…</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">STEP 2</div>
+            <div class="step-body">
+              <div class="step-title">Write a VISION prompt (4 min)</div>
+              <div class="step-desc">Write a video prompt using the VISION framework. Your prompt must include all six elements: - V - Visual anchor: Describe the reference image and what to lock in - I - Intention: Why does this scene exist? What is it…</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">STEP 3</div>
+            <div class="step-body">
+              <div class="step-title">Generate in Google Flow (3 min)</div>
+              <div class="step-desc">Open lab.google.com/flow. Create a new project. Choose Frames to Video. Upload your image as the first frame. Paste your VISION prompt. Generate one or two variations. Export the clip.</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="submit-box">
+          <div class="submit-box-title">What to Submit to Your AI Buddy</div>
+          <div class="submit-list">
+              <div class="submit-item"><div class="submit-dot"></div><span><strong>Your full VISION prompt (all six elements, labeled)</strong></span></div>
+              <div class="submit-item"><div class="submit-dot"></div><span><strong>The name of the tool you used to create the reference image</strong></span></div>
+              <div class="submit-item"><div class="submit-dot"></div><span><strong>A one-sentence description of the work scenario this video is for</strong></span></div>
+              <div class="submit-item"><div class="submit-dot"></div><span><strong>One thing you would change about the output if you ran it again</strong></span></div>
+          </div>
+        </div>
+        
+        <div class="grading-section">
+          <div class="grading-title">Grading Criteria</div>
+          <div class="grade-list">
+            <div class="grade-item">
+              <div class="grade-badge">All six VISION elements are </div>
+              <div class="grade-text">V, I, S, I, O, N each appear clearly in the prompt. Missing elements = incomplete submission.</div>
+            </div>
+            <div class="grade-item">
+              <div class="grade-badge">The sequence has 3 or more d</div>
+              <div class="grade-text">The S element must describe specific actions that happen step by step, not a vague summary. &quot;People talk&quot; is not a beat. &quot;The employee looks at the manager nervously, then the manager slides a document across the desk, then the employee rea</div>
+            </div>
+            <div class="grade-item">
+              <div class="grade-badge">Camera language is specific</div>
+              <div class="grade-text">The orbit element uses real camera terms: pan, dolly-in, dolly-out, tilt up, tilt down, rack focus, slow zoom, static wide shot, tracking shot. &quot;The camera moves&quot; is not specific.</div>
+            </div>
+            <div class="grade-item">
+              <div class="grade-badge">The scenario is grounded in </div>
+              <div class="grade-text">The intention element connects to an actual professional use case: a team announcement, a product demo, a client communication, a training clip, a weekly briefing. Personal or abstract scenarios do not qualify.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prev/Next -->
+      
+      <div class="session-nav">
+        <a href="from-one-post-to-every-platform.html" class="session-nav-item prev">
+            <span class="nav-dir">← Previous</span>
+            <span class="nav-title">From One Post To Every Platform</span>
+          </a>
+        <a href="seo-or-geo.html" class="session-nav-item next">
+            <span class="nav-dir">Next →</span>
+            <span class="nav-title">SEO or GEO: Write Content AI Will Cite</span>
+          </a>
+      </div>
+
+    </div>
+
+    <!-- Resource sidebar -->
+    <div>
+      
+      <div class="resource-stack-label">Micro-Session Resources</div>
+      <div class="resource-stack">
+        <a href="prompting-101-video-video.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(40,123,232,0.1);">▶️</div>
+          <div class="resource-info">
+            <div class="resource-tag">01 · Video</div>
+            <div class="resource-title">Session Recording</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="prompting-101-video-recap.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(111,242,193,0.15);">📋</div>
+          <div class="resource-info">
+            <div class="resource-tag">02 · Recap</div>
+            <div class="resource-title">Session Recap</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="prompting-101-video-prompts.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(40,123,232,0.08);">💬</div>
+          <div class="resource-info">
+            <div class="resource-tag">03 · Prompts</div>
+            <div class="resource-title">Prompt Library</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="prompting-101-video-slides.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(209,69,139,0.1);">🖼️</div>
+          <div class="resource-info">
+            <div class="resource-tag">04 · Slides</div>
+            <div class="resource-title">Session Slides</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+        <a href="prompting-101-video-resources.html" class="resource-card">
+          <div class="resource-icon" style="background:rgba(111,242,193,0.1);">📚</div>
+          <div class="resource-info">
+            <div class="resource-tag">05 · Resources</div>
+            <div class="resource-title">Tools &amp; Links</div>
+          </div>
+          <div class="resource-arrow">→</div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+</body>
+</html>

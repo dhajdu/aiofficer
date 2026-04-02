@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eric: Bhutan Project | CAIO Coaching</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/styles.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--navy:#04102D;
+--blue:#287BE8;
+--mint:#6FF2C1;
+--magenta:#D1458B;
+--light-gray:#EAEEF2;
+--white:#FFFFFF;
+}
+body{
+font-family:'Inter',sans-serif;
+background:var(--white);
+color:var(--navy);
+line-height:1.7;
+font-size:16px;
+-webkit-font-smoothing:antialiased;
+}
+.container{
+max-width:880px;
+margin:0 auto;
+padding:0 24px;
+}
+
+/* HEADER */
+.header{
+background:var(--navy);
+padding:64px 24px 56px;
+text-align:center;
+}
+.header-inner{
+max-width:880px;
+margin:0 auto;
+}
+.header-label{
+font-size:12px;
+font-weight:600;
+letter-spacing:3px;
+text-transform:uppercase;
+color:var(--mint);
+margin-bottom:12px;
+}
+.header-name{
+font-size:42px;
+font-weight:700;
+color:var(--white);
+margin-bottom:8px;
+line-height:1.2;
+}
+.header-sub{
+font-size:18px;
+font-weight:400;
+color:rgba(255,255,255,0.6);
+}
+.header-date{
+font-size:14px;
+font-weight:500;
+color:rgba(255,255,255,0.4);
+margin-top:16px;
+}
+
+/* SECTIONS */
+.section{
+padding:48px 0;
+}
+.section+.section{
+border-top:1px solid var(--light-gray);
+}
+
+/* CALLOUT: STARTING QUESTION */
+.callout-question{
+background:var(--light-gray);
+border-left:4px solid var(--navy);
+border-radius:0 8px 8px 0;
+padding:24px 28px;
+margin:32px 0;
+}
+.callout-question-label{
+font-size:11px;
+font-weight:700;
+letter-spacing:2px;
+text-transform:uppercase;
+color:var(--blue);
+margin-bottom:8px;
+}
+.callout-question p{
+font-size:16px;
+color:var(--navy);
+line-height:1.7;
+}
+
+/* CALLOUT: WARNING */
+.callout-warning{
+background:var(--white);
+border-left:4px solid var(--magenta);
+border-radius:0 8px 8px 0;
+padding:24px 28px;
+margin:32px 0;
+}
+.callout-warning-label{
+font-size:11px;
+font-weight:700;
+letter-spacing:2px;
+text-transform:uppercase;
+color:var(--magenta);
+margin-bottom:8px;
+}
+.callout-warning p{
+font-size:15px;
+color:var(--navy);
+line-height:1.7;
+}
+
+/* CALLOUT: INSIGHT */
+.callout-insight{
+background:var(--white);
+border-left:4px solid var(--mint);
+border-radius:0 8px 8px 0;
+padding:24px 28px;
+margin:32px 0;
+}
+.callout-insight-label{
+font-size:11px;
+font-weight:700;
+letter-spacing:2px;
+text-transform:uppercase;
+color:var(--navy);
+margin-bottom:8px;
+}
+.callout-insight p{
+font-size:15px;
+color:var(--navy);
+line-height:1.7;
+}
+
+/* LESSONS */
+.lesson{
+margin-bottom:48px;
+}
+.lesson-header{
+display:flex;
+align-items:flex-start;
+gap:16px;
+margin-bottom:20px;
+}
+.lesson-number{
+flex-shrink:0;
+width:40px;
+height:40px;
+background:var(--navy);
+color:var(--white);
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:16px;
+font-weight:700;
+margin-top:2px;
+}
+.lesson-title{
+font-size:22px;
+font-weight:700;
+color:var(--navy);
+line-height:1.3;
+}
+.lesson-body{
+padding-left:56px;
+}
+.lesson-body p{
+margin-bottom:12px;
+color:var(--navy);
+}
+
+/* STEPS */
+.steps{
+list-style:none;
+padding:0;
+margin:16px 0 0;
+}
+.steps li{
+display:flex;
+align-items:flex-start;
+gap:12px;
+margin-bottom:14px;
+font-size:15px;
+color:var(--navy);
+line-height:1.6;
+}
+.step-num{
+flex-shrink:0;
+width:24px;
+height:24px;
+background:var(--light-gray);
+color:var(--navy);
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+font-weight:700;
+margin-top:2px;
+}
+
+/* PROMPTS */
+.prompt-block{
+background:var(--light-gray);
+border-radius:8px;
+padding:24px 28px;
+margin-bottom:20px;
+}
+.prompt-label{
+font-size:13px;
+font-weight:700;
+color:var(--blue);
+margin-bottom:8px;
+text-transform:uppercase;
+letter-spacing:1px;
+}
+.prompt-text{
+font-style:italic;
+font-size:15px;
+color:var(--navy);
+line-height:1.7;
+margin-bottom:10px;
+padding:12px 16px;
+background:var(--white);
+border-radius:6px;
+border:1px solid rgba(4,16,45,0.08);
+}
+.prompt-note{
+font-size:13px;
+color:rgba(4,16,45,0.6);
+line-height:1.5;
+}
+
+/* SUMMARY */
+.summary-list{
+list-style:none;
+padding:0;
+}
+.summary-list li{
+display:flex;
+align-items:flex-start;
+gap:12px;
+margin-bottom:12px;
+font-size:15px;
+color:var(--navy);
+line-height:1.6;
+}
+.summary-check{
+flex-shrink:0;
+width:22px;
+height:22px;
+background:var(--mint);
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin-top:2px;
+}
+.summary-check svg{
+width:12px;
+height:12px;
+}
+
+/* SECTION TITLES */
+h2{
+font-size:28px;
+font-weight:700;
+color:var(--navy);
+margin-bottom:24px;
+}
+
+/* PROJECT FILES */
+.files-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:16px;
+margin-top:8px;
+}
+.file-card{
+display:flex;
+align-items:center;
+gap:16px;
+background:var(--light-gray);
+border-radius:10px;
+padding:20px 22px;
+text-decoration:none;
+color:var(--navy);
+transition:background 0.2s ease, transform 0.2s ease;
+}
+.file-card:hover{
+background:#dde4ec;
+transform:translateY(-2px);
+}
+.file-icon{
+flex-shrink:0;
+width:40px;
+height:40px;
+border-radius:8px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+.file-icon-html{ background:var(--navy); }
+.file-icon-gantt{ background:var(--blue); }
+.file-icon-docx{ background:var(--magenta); }
+.file-icon svg{
+width:20px;
+height:20px;
+}
+.file-meta{}
+.file-title{
+font-size:14px;
+font-weight:700;
+color:var(--navy);
+line-height:1.3;
+margin-bottom:2px;
+}
+.file-type{
+font-size:12px;
+font-weight:500;
+color:rgba(4,16,45,0.45);
+text-transform:uppercase;
+letter-spacing:0.5px;
+}
+
+/* FOOTER */
+.footer{
+background:var(--navy);
+padding:32px 24px;
+margin-top:48px;
+}
+.footer-inner{
+max-width:880px;
+margin:0 auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:12px;
+}
+.footer-brand{
+font-size:14px;
+font-weight:600;
+color:var(--white);
+}
+.footer-tags{
+font-size:12px;
+color:rgba(255,255,255,0.45);
+letter-spacing:0.5px;
+}
+
+/* REVEAL ANIMATION */
+.reveal{
+opacity:0;
+transform:translateY(24px);
+transition:opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+@media(max-width:600px){
+.header-name{font-size:28px}
+.lesson-header{gap:12px}
+.lesson-body{padding-left:0;margin-top:12px}
+.footer-inner{flex-direction:column;text-align:center}
+h2{font-size:22px}
+.files-grid{grid-template-columns:1fr}
+}
+
+/* ── Topbar overrides ── */
+.topbar { justify-content: space-between; padding: 0 28px; gap: 16px; }
+.topbar-nav { margin-left: 8px; }
+.topbar-right { display: flex; align-items: center; gap: 10px; margin-left: auto; flex-shrink: 0; }
+.topbar-stat {
+  display: flex; align-items: center; gap: 5px;
+  font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.07);
+  padding: 5px 12px; border-radius: 6px;
+}
+.topbar-avatar {
+  width: 32px; height: 32px; border-radius: 50%; background: #287BE8;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: white; flex-shrink: 0;
+}
+
+/* ── Breadcrumb ── */
+.breadcrumb {
+  background: #ffffff;
+  border-bottom: 1px solid #E4E8F0;
+  padding: 10px 28px;
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; font-family: 'DM Sans', sans-serif;
+}
+.breadcrumb a {
+  color: #287BE8; text-decoration: none; font-weight: 500;
+}
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb-sep { color: #8b91ac; }
+.breadcrumb-current { color: #8b91ac; }
+
+@media(max-width:600px){
+  .topbar-nav, .topbar-right { display: none; }
+  .breadcrumb { padding: 10px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <a href="../../index.html" class="topbar-brand">AI Officer <span>Institute</span></a>
+  <button class="nav-toggle" id="navToggle" onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.textContent=n.classList.contains('open')?'✕':'☰';" aria-label="Toggle navigation">☰</button>
+  <nav class="topbar-nav">
+    <a href="../../certification.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
+    <a href="../../coaching.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+    <a href="../../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+    <a href="../../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="../../ai-buddy.html" class="buddy-launch-btn">AI Buddy</a>
+    <div class="topbar-stat"><span>🔥</span> 7</div>
+    <div class="topbar-stat">1,240 xp</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-avatar">DH</div>
+  </div>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="../../coaching.html">Coaching</a>
+  <span class="breadcrumb-sep">›</span>
+  <span class="breadcrumb-current">Session 1 · Eric · Bhutan Project</span>
+</div>
+
+<div class="header">
+<div class="header-inner">
+<div class="header-label">AI Officer Institute · C01</div>
+<div class="header-name">Eric: Bhutan Project</div>
+<div class="header-sub">Bhutan Luxury Tour Website Build</div>
+<div class="header-date">April 2026</div>
+</div>
+</div>
+
+<div class="container">
+
+<!-- STARTING QUESTION -->
+<div class="section">
+<div class="callout-question reveal">
+<div class="callout-question-label">Starting question</div>
+<p>I'm launching a high-end tour company for bespoke private journeys to Bhutan, targeting high-net-worth individuals in Texas. I need a website. How would I actually use Claude and Cowork to design, build, and maintain it?</p>
+</div>
+</div>
+
+<!-- WARNING -->
+<div class="section">
+<div class="callout-warning reveal">
+<div class="callout-warning-label">Watch out</div>
+<p>Don't jump straight into having Claude build artifacts or code. If you skip the strategy step (defining the customer journey, creating a style guide, building a persona), Claude will produce generic output that misses your positioning entirely. "Answer in chat first" is how you keep Claude in thinking mode before it starts building.</p>
+</div>
+</div>
+
+<!-- LESSON 1 -->
+<div class="section">
+<div class="lesson reveal">
+<div class="lesson-header">
+<div class="lesson-number">1</div>
+<div class="lesson-title">Define the problem and customer journey before touching code</div>
+</div>
+<div class="lesson-body">
+<p>Before any build work, we mapped the full business model and website interaction in plain conversation with Claude.</p>
+<ol class="steps">
+<li><span class="step-num">1</span>Described the business model: curated Bhutan experiences with rare access, helicopter transfers to remote regions, tiered pricing up to ~$25K per person for 10 days.</li>
+<li><span class="step-num">2</span>Defined the customer journey on the site: arouse curiosity with a hook, showcase experience tiers as a menu, capture interest through a concierge-style form.</li>
+<li><span class="step-num">3</span>Had Claude map the full website structure (hero, desire section, tier cards, trust section, form, footer) as a chat response, not as code.</li>
+<li><span class="step-num">4</span>Validated the structure before moving to the next step. This conversation becomes a reusable context document.</li>
+</ol>
+</div>
+</div>
+
+<div class="callout-insight reveal">
+<div class="callout-insight-label">Insight</div>
+<p>Use "answer in chat first" to keep Claude in strategy mode. This prevents it from prematurely building artifacts or code before the thinking is done. The chat output becomes your project brief.</p>
+</div>
+</div>
+
+<!-- LESSON 2 -->
+<div class="section">
+<div class="lesson reveal">
+<div class="lesson-header">
+<div class="lesson-number">2</div>
+<div class="lesson-title">Create a style guide as a permanent data asset</div>
+</div>
+<div class="lesson-body">
+<p>We built a complete brand style guide using the Bhutan flag as the color palette foundation, then refined it for luxury positioning.</p>
+<ol class="steps">
+<li><span class="step-num">1</span>Told Claude to use the Bhutan flag colors (saffron, crimson, forest green) as the palette, adapted for a high-end feel.</li>
+<li><span class="step-num">2</span>Claude generated the full palette with hex codes, typography specs, photography direction, voice and tone rules, and layout principles.</li>
+<li><span class="step-num">3</span>Had Claude visualize the palette inline for quick review, then produce a downloadable Word document as the formal brief.</li>
+<li><span class="step-num">4</span>Saved the style guide to the project folder. This becomes a permanent context file that Claude references on every future task.</li>
+</ol>
+</div>
+</div>
+
+<div class="callout-insight reveal">
+<div class="callout-insight-label">Insight</div>
+<p>A style guide isn't just for designers. It's a data asset for AI. Once saved to your Cowork project folder, Claude will apply it consistently across every output: website code, marketing copy, social posts, email templates. Create it once, use it forever.</p>
+</div>
+</div>
+
+<!-- LESSON 3 -->
+<div class="section">
+<div class="lesson reveal">
+<div class="lesson-header">
+<div class="lesson-number">3</div>
+<div class="lesson-title">Build a persona using business frameworks</div>
+</div>
+<div class="lesson-body">
+<p>Instead of asking Claude for a generic persona, we taught it Harvard Business School frameworks and applied them to the Bhutan buyer.</p>
+<ol class="steps">
+<li><span class="step-num">1</span>Asked Claude to teach three Harvard persona frameworks: Jobs to Be Done (Christensen), Empathy Map (d.school/HBS), and Purchase Decision Journey (HBS Marketing).</li>
+<li><span class="step-num">2</span>Applied all three frameworks to the target customer: 50-65 year old Texas HNWI, $10M+ net worth, "done everything" mindset.</li>
+<li><span class="step-num">3</span>Key finding: the website isn't the acquisition channel. The Texas network is. The website is the credibility checkpoint someone pulls up on their phone after hearing about you at dinner.</li>
+<li><span class="step-num">4</span>The persona output becomes another context document saved to the project folder.</li>
+</ol>
+</div>
+</div>
+
+<div class="callout-insight reveal">
+<div class="callout-insight-label">Insight</div>
+<p>Educating yourself on business frameworks while prompting produces dramatically better output. Don't just say "create a persona." Say "teach me Jobs to Be Done, then apply it to my customer." You learn the framework and get a superior deliverable in the same conversation.</p>
+</div>
+</div>
+
+<!-- LESSON 4 -->
+<div class="section">
+<div class="lesson reveal">
+<div class="lesson-header">
+<div class="lesson-number">4</div>
+<div class="lesson-title">Set up the project in Cowork and build the skeleton</div>
+</div>
+<div class="lesson-body">
+<p>With strategy, style guide, and persona complete, we moved into Cowork to build the actual site.</p>
+<ol class="steps">
+<li><span class="step-num">1</span>Created a folder structure: Bhutan > context (for style guide, persona, and brief documents).</li>
+<li><span class="step-num">2</span>Set up a new Cowork project linked to that folder so Claude has persistent access to all context files.</li>
+<li><span class="step-num">3</span>Had Cowork build a skeletal HTML website structure using the style guide as the reference. Full structure in about 15 minutes.</li>
+<li><span class="step-num">4</span>From here, you iterate: refine copy, swap placeholder images, adjust tier details, test the form endpoint.</li>
+</ol>
+</div>
+</div>
+
+<div class="callout-insight reveal">
+<div class="callout-insight-label">Insight</div>
+<p>Cowork's power is persistent context. When the style guide, persona, and brief all live in the project folder, every task Claude performs is automatically informed by your brand, your customer, and your strategy. No re-explaining.</p>
+</div>
+</div>
+
+<!-- LESSON 5 -->
+<div class="section">
+<div class="lesson reveal">
+<div class="lesson-header">
+<div class="lesson-number">5</div>
+<div class="lesson-title">Use Claude for project management, not just creation</div>
+</div>
+<div class="lesson-body">
+<p>Beyond building the site, Claude can manage the project timeline and automate follow-ups.</p>
+<ol class="steps">
+<li><span class="step-num">1</span>Had Claude create an interactive Gantt chart for tracking project milestones (design, content, development, launch).</li>
+<li><span class="step-num">2</span>Discussed scheduling automated follow-up emails from milestone dates.</li>
+<li><span class="step-num">3</span>This turns Claude from a one-off tool into an ongoing project management layer.</li>
+</ol>
+</div>
+</div>
+</div>
+
+<!-- PRACTICAL TIPS -->
+<div class="container">
+<div class="section">
+<div class="callout-warning reveal">
+<div class="callout-warning-label">Practical tips from this session</div>
+<p><strong>Model selection:</strong> Use Sonnet for most work (faster, cheaper). Switch to Opus for complex or accuracy-critical tasks.</p>
+<p style="margin-top:8px"><strong>Images:</strong> Connect to Google's Imagen model for AI-generated images rather than relying on Claude natively. Be aware that stock photos pulled from the web likely have copyright issues.</p>
+<p style="margin-top:8px"><strong>Slides and Canva:</strong> Claude isn't good enough yet at applying style guides to visual design tools. You still need a human designer for that last 10%.</p>
+</div>
+</div>
+</div>
+
+<!-- PROMPTS -->
+<div class="container">
+<div class="section">
+<h2 class="reveal">Prompts you can use</h2>
+
+<div class="prompt-block reveal">
+<div class="prompt-label">Map the customer journey</div>
+<div class="prompt-text">I'm building a [type of business] targeting [audience]. The price range is [range]. Map the full customer journey from first awareness to purchase. Then recommend a website structure that supports that journey. Answer in chat first.</div>
+<div class="prompt-note">Use at the start of any new project to get Claude thinking about strategy before code. The "answer in chat first" instruction keeps it in planning mode.</div>
+</div>
+
+<div class="prompt-block reveal">
+<div class="prompt-label">Create a style guide from a reference</div>
+<div class="prompt-text">Use [reference source, e.g., "the Bhutan national flag"] as the color palette foundation. Create a complete brand style guide including: color palette with hex codes and usage rules, typography recommendations, photography direction, layout principles, and voice/tone guidelines. Adapt the palette for a [luxury / playful / corporate / etc.] positioning. Visualize the palette, then create a downloadable brief.</div>
+<div class="prompt-note">Use whenever you're starting a brand from scratch. Replace the reference source with anything that captures the vibe: a flag, a building, a painting, a competitor's site.</div>
+</div>
+
+<div class="prompt-block reveal">
+<div class="prompt-label">Build a persona with frameworks</div>
+<div class="prompt-text">Teach me 3 Harvard persona frameworks. Then apply all three to my target customer: [describe your customer in 2-3 sentences]. Show me what they say vs. what they actually think and feel, what job they're hiring my product to do, and how their purchase decision journey works. Answer in chat first.</div>
+<div class="prompt-note">Use when you need to deeply understand your buyer. The "teach me" framing means you learn the frameworks while getting the deliverable.</div>
+</div>
+
+<div class="prompt-block reveal">
+<div class="prompt-label">Skeleton site from style guide</div>
+<div class="prompt-text">Using the style guide in [folder/file name], build a single-page HTML website with these sections: [list your sections]. Use placeholder text and image slots. Make it responsive. Follow the style guide exactly for colors, fonts, and layout rules.</div>
+<div class="prompt-note">Use in Cowork after your style guide is saved to the project folder. Claude will reference it automatically and build a consistent first draft.</div>
+</div>
+
+<div class="prompt-block reveal">
+<div class="prompt-label">Project Gantt chart</div>
+<div class="prompt-text">Create an interactive Gantt chart for this project. Milestones: [list your milestones with target dates]. Make it visual and easy to update. Include dependencies where relevant.</div>
+<div class="prompt-note">Use for any multi-week project. You can ask Claude to update it as milestones shift or add automated reminder logic.</div>
+</div>
+
+</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="container">
+<div class="section">
+<h2 class="reveal">Summary: key moves from this session</h2>
+<ul class="summary-list reveal">
+<li>
+<span class="summary-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#04102D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<span>Start every project in chat, not in code. Map the business model, customer journey, and site structure as a conversation first.</span>
+</li>
+<li>
+<span class="summary-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#04102D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<span>Create a style guide early and save it to your project folder. It becomes a permanent data asset that keeps every output on-brand.</span>
+</li>
+<li>
+<span class="summary-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#04102D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<span>Use business frameworks (Jobs to Be Done, Empathy Map, Decision Journey) to build personas. Learn the framework and get the deliverable in one conversation.</span>
+</li>
+<li>
+<span class="summary-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#04102D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<span>Set up Cowork with a folder structure and persistent context. Claude gets smarter on your project with every file you save.</span>
+</li>
+<li>
+<span class="summary-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#04102D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<span>Use Sonnet for speed, Opus for accuracy. Use "answer in chat first" to control when Claude thinks vs. when it builds.</span>
+</li>
+<li>
+<span class="summary-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#04102D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+<span>The full workflow (strategy, style guide, persona, skeleton site, Gantt chart) took about 15-20 minutes. That's the power of structured AI prompting.</span>
+</li>
+</ul>
+</div>
+</div>
+
+<!-- PROJECT FILES -->
+<div class="container">
+<div class="section">
+<h2 class="reveal">Project files</h2>
+<div class="files-grid reveal">
+
+  <a href="bhutan/index.html" class="file-card" target="_blank">
+    <div class="file-icon file-icon-html">
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4z" fill="rgba(255,255,255,0.3)"/>
+        <path d="M3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6z" fill="rgba(255,255,255,0.3)"/>
+        <path d="M14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" fill="white"/>
+      </svg>
+    </div>
+    <div class="file-meta">
+      <div class="file-title">Bhutan Website</div>
+      <div class="file-type">HTML · Live site</div>
+    </div>
+  </a>
+
+  <a href="bhutan/gantt.html" class="file-card" target="_blank">
+    <div class="file-icon file-icon-gantt">
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="5" width="8" height="3" rx="1" fill="rgba(255,255,255,0.4)"/>
+        <rect x="3" y="10" width="12" height="3" rx="1" fill="rgba(255,255,255,0.4)"/>
+        <rect x="3" y="15" width="5" height="2" rx="1" fill="white"/>
+      </svg>
+    </div>
+    <div class="file-meta">
+      <div class="file-title">Project Gantt Chart</div>
+      <div class="file-type">HTML · Interactive</div>
+    </div>
+  </a>
+
+  <a href="bhutan/bhutan-brand-style-guide.docx" class="file-card" download>
+    <div class="file-icon file-icon-docx">
+      <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 3a1 1 0 011-1h7l4 4v11a1 1 0 01-1 1H5a1 1 0 01-1-1V3z" fill="rgba(255,255,255,0.25)"/>
+        <path d="M11 2v4h4" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M7 10h6M7 13h4" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="file-meta">
+      <div class="file-title">Brand Style Guide</div>
+      <div class="file-type">DOCX · Download</div>
+    </div>
+  </a>
+
+</div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+<div class="footer-inner">
+<div class="footer-brand">AI Officer Institute</div>
+<div class="footer-tags">CAIO Coaching · Session 1 · April 2026</div>
+</div>
+</div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

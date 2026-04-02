@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workflows | AI Officer Institute</title>
+  <meta name="description" content="Internal workflows and operating procedures for the AI Officer Institute.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #04102D;
+      --blue: #287BE8;
+      --magenta: #D1458B;
+      --mint: #6FF2C1;
+      --gray: #EAEEF2;
+      --ink: #3A4A60;
+      --mid: #8A9BB0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F4F7FB;
+      color: var(--ink);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      padding: 72px 24px 64px;
+      text-align: center;
+    }
+    .hero .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .hero .eyebrow::before,
+    .hero .eyebrow::after {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--mint);
+      opacity: 0.5;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--mid);
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── GRID ── */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #DDE3EC;
+      padding: 28px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: box-shadow 0.18s ease, transform 0.18s ease;
+    }
+    .card:hover {
+      box-shadow: 0 8px 28px rgba(4,16,45,0.10);
+      transform: translateY(-2px);
+    }
+    .card-icon {
+      font-size: 28px;
+      line-height: 1;
+    }
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.55;
+    }
+    .card-arrow {
+      margin-top: auto;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .card-arrow::after {
+      content: '→';
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="eyebrow">AI Officer Institute</div>
+    <h1>Workflows</h1>
+    <p>Internal operating procedures for publishing, content, and production.</p>
+  </section>
+
+  <div class="container">
+    <div class="grid">
+
+      <a href="blog-workflow.html" class="card">
+        <div class="card-icon">📝</div>
+        <div class="card-title">How We Publish</div>
+        <div class="card-desc">The end-to-end blog publishing workflow — from content creation and image optimisation to git and going live.</div>
+        <div class="card-arrow">View workflow</div>
+      </a>
+
+      <a href="workflow-doc-1.html" class="card">
+        <div class="card-icon">📅</div>
+        <div class="card-title">AIO Daily Post Workflow</div>
+        <div class="card-desc">Step-by-step daily post production process for the AI Officer Institute content team.</div>
+        <div class="card-arrow">View workflow</div>
+      </a>
+
+      <a href="coaching-workflow.html" class="card">
+        <div class="card-icon">🎯</div>
+        <div class="card-title">Coaching Session Workflow</div>
+        <div class="card-desc">Operating procedure for running and managing AI Officer coaching sessions.</div>
+        <div class="card-arrow">View workflow</div>
+      </a>
+
+    </div>
+  </div>
+
+</body>
+</html>

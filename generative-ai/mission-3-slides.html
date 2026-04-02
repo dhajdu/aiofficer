@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide Deck — Mission 3: Advanced Prompt Frameworks — AI Officer Institute</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  :root {
+    --royal: #287BE8;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(4,16,45,0.07);
+    --shadow-hover: 0 6px 24px rgba(4,16,45,0.10);
+    --text-tertiary: #8b91ac;
+    --border-hover: #b0b6cc;
+  }
+  body { background: var(--surface); }
+
+  body { background: #0d1117; }
+  .slides-header { position: fixed; top: 56px; left: 0; right: 0; background: rgba(13,17,23,0.95); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 32px; height: 48px; display: flex; align-items: center; z-index: 50; gap: 16px; }
+  .slides-back { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.12s; }
+  .slides-back:hover { color: rgba(255,255,255,0.85); }
+  .slides-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.65); margin-left: 8px; }
+  .slides-counter { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.35); margin-left: 16px; }
+  .slides-wrapper { padding-top: 104px; padding-bottom: 80px; display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .slide { width: 100%; max-width: 900px; min-height: 520px; margin: 0 auto 3px; display: flex; flex-direction: column; justify-content: center; padding: 60px 80px; position: relative; }
+  .slide-title-card { background: var(--navy); min-height: 600px; }
+  .slide-dark { background: #161b22; }
+  .slide-light { background: white; }
+  .slide-mint { background: rgba(40,123,232,0.1); border: 1px solid rgba(40,123,232,0.2); }
+  .slide-blue { background: rgba(40,123,232,0.12); border: 1px solid rgba(40,123,232,0.2); }
+  .slide-num { position: absolute; top: 28px; right: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.2); }
+  .slide-light .slide-num { color: rgba(4,16,45,0.2); }
+  .slide-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; color: rgba(111,242,193,0.8); }
+  .slide-eyebrow.mint { color: #287be8; }
+  .slide-eyebrow.blue { color: rgba(40,123,232,0.9); }
+  .slide-eyebrow.muted { color: rgba(255,255,255,0.4); }
+  .slide-h1 { font-size: 52px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.05; color: white; margin-bottom: 24px; }
+  .slide-h1 .accent { color: #6FF2C1; }
+  .slide-h2 { font-size: 36px; font-weight: 700; letter-spacing: -0.8px; line-height: 1.15; color: white; margin-bottom: 20px; }
+  .slide-h2.dark { color: var(--navy); }
+  .slide-h3 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; line-height: 1.2; color: white; margin-bottom: 16px; }
+  .slide-h3.dark { color: var(--navy); }
+  .slide-body { font-size: 18px; line-height: 1.65; color: rgba(255,255,255,0.75); max-width: 660px; }
+  .slide-body.dark { color: rgba(4,16,45,0.7); }
+  .slide-body strong { color: white; font-weight: 700; }
+  .slide-body.dark strong { color: var(--navy); }
+  .slide-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+  .slide-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 17px; line-height: 1.5; }
+  .slide-list li .bullet { width: 24px; height: 24px; border-radius: 6px; flex-shrink: 0; background: rgba(40,123,232,0.2); color: #287be8; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+  .slide-list li .text { color: rgba(255,255,255,0.8); }
+  .slide-list li .text strong { color: white; display: block; margin-bottom: 2px; }
+  .slides-res-footer { background: rgba(255,255,255,0.04); border-top: 1px solid rgba(255,255,255,0.08); padding: 24px 40px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .slides-res-label { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-right: 8px; }
+  .slides-res-link { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.5); text-decoration: none; padding: 7px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); transition: all 0.12s; }
+  .slides-res-link:hover { color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.05); }
+  .slides-res-link.active { color: #6FF2C1; border-color: rgba(111,242,193,0.3); background: rgba(111,242,193,0.06); }
+
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a href="../index.html" class="topbar-brand">AI Officer <span>Institute</span></a>
+  <button class="nav-toggle" id="navToggle" onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.textContent=n.classList.contains('open')?'✕':'☰';" aria-label="Toggle navigation">☰</button>
+  <nav class="topbar-nav">
+    <a href="../certification.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
+    <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+    <a href="../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
+    <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+    <a href="../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
+  </nav>
+  <div class="topbar-right">
+    <a href="../ai-buddy.html" class="buddy-launch-btn">AI Buddy</a>
+    <div class="topbar-stat">🔥 7</div>
+    <div class="topbar-stat">1,240 xp</div>
+    <div class="topbar-divider"></div>
+    <div class="topbar-avatar">DH</div>
+  </div>
+</div>
+
+<div class="slides-header">
+  <a href="mission-3.html" class="slides-back">← Mission 3</a>
+  <span class="slides-title">Advanced Prompt Frameworks</span>
+  <span class="slides-counter">20 slides</span>
+</div>
+
+<div class="slides-wrapper">
+  
+  <div class="slide slide-title-card">
+    <span class="slide-num">1 / 20</span>
+    <div class="slide-eyebrow">Generative AI for Business — Mission 3</div>
+    <h1 class="slide-h1">Title Slide</h1>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Generative AI Essentials</span></li><li><span class="bullet">2</span><span class="text">Advanced Prompt Frameworks</span></li><li><span class="bullet">3</span><span class="text">Mission 3</span></li><li><span class="bullet">4</span><span class="text">Anyone can type a prompt. Not everyone can produce something worth trusting.</span></li><li><span class="bullet">5</span><span class="text">#AIOfficerCertification | Dave Hajdu | dave@ai-officer.com</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">2 / 20</span>
+    
+    <h2 class="slide-h2">You Have the Mindset and the Data</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Mission 1: You learned to lead AI.</span></li><li><span class="bullet">2</span><span class="text">Mission 2: You fixed the fuel.</span></li><li><span class="bullet">3</span><span class="text">Mission 3: You produce what leadership trusts.</span></li></ul>
+  </div>
+  <div class="slide slide-mint">
+    <span class="slide-num">3 / 20</span>
+    
+    <h2 class="slide-h2">The Passable Problem</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Passable is enough for personal tasks.</span></li><li><span class="bullet">2</span><span class="text">It is not enough for programs.</span></li></ul>
+  </div>
+  <div class="slide slide-light">
+    <span class="slide-num">4 / 20</span>
+    
+    <h2 class="slide-h2 dark">Section Divider - RACE + CRA: The Two-Pass System</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">RACE + CRA</span></li><li><span class="bullet">2</span><span class="text">First pass gets the content. Second pass meets the standard.</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">5 / 20</span>
+    
+    <h2 class="slide-h2">RACE: You Know This</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">R - Role.</span></li><li><span class="bullet">2</span><span class="text">A - Action.</span></li><li><span class="bullet">3</span><span class="text">C - Context.</span></li><li><span class="bullet">4</span><span class="text">E - Example.</span></li><li><span class="bullet">5</span><span class="text">RACE gets you 70%.</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">6 / 20</span>
+    
+    <h2 class="slide-h2">CRA: The Quality Lock</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">C - Constraints. What are the limits?</span></li><li><span class="bullet">2</span><span class="text">R - Requirements. What must be included?</span></li><li><span class="bullet">3</span><span class="text">A - Acceptance Criteria. How do you know it is good enough?</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">7 / 20</span>
+    
+    <h2 class="slide-h2">The Jump from 70% to Your Name On It</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">RACE: &quot;Decent. Could be about any energy drink.&quot;</span></li><li><span class="bullet">2</span><span class="text">RACE + CRA: &quot;Dana could walk into a meeting with this.&quot;</span></li></ul>
+  </div>
+  <div class="slide slide-mint">
+    <span class="slide-num">8 / 20</span>
+    
+    <h2 class="slide-h2">Section Divider - The AI Interview: The Master Skill</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">The AI Interview</span></li><li><span class="bullet">2</span><span class="text">The gap between what you would have written and what AI asks. That gap is the value.</span></li></ul>
+  </div>
+  <div class="slide slide-light">
+    <span class="slide-num">9 / 20</span>
+    
+    <h2 class="slide-h2 dark">Stop Guessing. Start Asking.</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Without it: You guess what AI needs.</span></li><li><span class="bullet">2</span><span class="text">With it: AI finds what you did not know was missing.</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">10 / 20</span>
+    
+    <h2 class="slide-h2">Live Example: Customer Profiles</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">&quot;I need to build customer profiles for BOLT&#x27;s launch.&quot;</span></li><li><span class="bullet">2</span><span class="text">AI: &quot;Before I start, let me ask you some questions.&quot;</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">11 / 20</span>
+    
+    <h2 class="slide-h2">Exercise: Run the AI Interview</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Exercise: Your Turn</span></li><li><span class="bullet">2</span><span class="text">Pick a deliverable from your real work or from the BOLT challenge.</span></li><li><span class="bullet">3</span><span class="text">Tell AI what you want. Ask AI to ask you questions. Answer honestly.</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">12 / 20</span>
+    
+    <h2 class="slide-h2">Section Divider - Let AI Teach You Frameworks On Demand</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">On-Demand Learning</span></li><li><span class="bullet">2</span><span class="text">You do not memorize frameworks. You access them.</span></li></ul>
+  </div>
+  <div class="slide slide-mint">
+    <span class="slide-num">13 / 20</span>
+    
+    <h2 class="slide-h2">The Habit That Compounds</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Ask AI: &quot;What framework should I use for this?&quot;</span></li><li><span class="bullet">2</span><span class="text">Apply it. Learn it. Keep it.</span></li></ul>
+  </div>
+  <div class="slide slide-light">
+    <span class="slide-num">14 / 20</span>
+    
+    <h2 class="slide-h2 dark">Section Divider - VRC: Check Before You Send</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">VRC</span></li><li><span class="bullet">2</span><span class="text">Creating output is only half the job.</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">15 / 20</span>
+    
+    <h2 class="slide-h2">Value. Risk. Checkpoint.</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">V - Value. Where does the benefit come from?</span></li><li><span class="bullet">2</span><span class="text">R - Risk. What are the top two ways this fails?</span></li><li><span class="bullet">3</span><span class="text">C - Checkpoint. What is the early signal it is working?</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">16 / 20</span>
+    
+    <h2 class="slide-h2">VRC Scales Up</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">One prompt. One program. Same discipline.</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">17 / 20</span>
+    
+    <h2 class="slide-h2">The BOLT Go-to-Market Brief</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Seven sections.</span></li><li><span class="bullet">2</span><span class="text">Everything from Missions 1, 2, and 3.</span></li><li><span class="bullet">3</span><span class="text">The standard: Dana walks into a leadership meeting with this.</span></li></ul>
+  </div>
+  <div class="slide slide-mint">
+    <span class="slide-num">18 / 20</span>
+    
+    <h2 class="slide-h2">Closing Reflection</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">The person trusted with bigger things is the person who proves they can produce what bigger things require.</span></li></ul>
+  </div>
+  <div class="slide slide-light">
+    <span class="slide-num">19 / 20</span>
+    
+    <h2 class="slide-h2 dark">Your Commitment</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Start, stop, or continue.</span></li><li><span class="bullet">2</span><span class="text">Name one behavior your manager would notice this week.</span></li></ul>
+  </div>
+  <div class="slide slide-dark">
+    <span class="slide-num">20 / 20</span>
+    
+    <h2 class="slide-h2">Thank You</h2>
+    
+    <ul class="slide-list"><li><span class="bullet">1</span><span class="text">Mission 3 Complete.</span></li><li><span class="bullet">2</span><span class="text">Next: Prompting Perfect Visuals.</span></li><li><span class="bullet">3</span><span class="text">[QR Code - Session Feedback]</span></li><li><span class="bullet">4</span><span class="text">#AIOfficerCertification | dave@ai-officer.com | ai-officer.com</span></li></ul>
+  </div>
+</div>
+
+<div class="slides-res-footer">
+  <a href="mission-3-textbook.html" class="slides-res-link">📖 Mission Briefs</a>
+  <a href="mission-3-prompts.html" class="slides-res-link">💬 Prompt Library</a>
+  <a href="mission-3-words.html" class="slides-res-link">🔤 Words to Know</a>
+  <a href="mission-3-slides.html" class="slides-res-link active">📊 Slide Deck</a>
+</div>
+
+</body>
+</html>
