@@ -192,6 +192,70 @@ body { background: var(--surface); }
 .footer-brand { font-weight: 600; color: var(--text-secondary); }
 .footer-brand span { color: var(--blue); }
 
+/* ── Carousel ── */
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 460px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 48px;
+  box-shadow: 0 4px 32px rgba(4,16,45,0.15);
+}
+.carousel-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+  pointer-events: none;
+}
+.carousel-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.carousel-slide img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
+}
+.carousel-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 48px 32px 24px;
+  background: linear-gradient(to top, rgba(4,16,45,0.75) 0%, transparent 100%);
+  color: white;
+}
+.carousel-caption-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase;
+  color: #6FF2C1; margin-bottom: 4px;
+}
+.carousel-caption-text {
+  font-size: 16px; font-weight: 600;
+  color: rgba(255,255,255,0.92); line-height: 1.4;
+}
+.carousel-dots {
+  position: absolute;
+  bottom: 18px; right: 24px;
+  display: flex; gap: 7px; align-items: center;
+}
+.carousel-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  border: none; padding: 0;
+}
+.carousel-dot.active {
+  background: #6FF2C1;
+  transform: scale(1.2);
+}
+@media (max-width: 900px) {
+  .carousel { height: 260px; }
+  .carousel-caption-text { font-size: 14px; }
+}
+
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .hub-main { padding: 32px 20px 80px; }
@@ -239,6 +303,52 @@ body { background: var(--surface); }
 <!-- PAGE MAIN                                   -->
 <!-- ═══════════════════════════════════════════ -->
 <main class="hub-main site-wrap">
+
+  <!-- ── CAROUSEL ── -->
+  <div class="carousel" id="communityCarousel">
+
+    <div class="carousel-slide active">
+      <img src="../images/dave-coaching-room.webp" alt="Dave Hajdu coaching executives on AI leadership">
+      <div class="carousel-caption">
+        <div class="carousel-caption-label">Weekly Live Coaching</div>
+        <div class="carousel-caption-text">Real sessions, real questions, real answers — Danang, Vietnam</div>
+      </div>
+    </div>
+
+    <div class="carousel-slide">
+      <img src="../images/community-laughing.webp" alt="Community members engaged and learning">
+      <div class="carousel-caption">
+        <div class="carousel-caption-label">Community Energy</div>
+        <div class="carousel-caption-text">The moment it clicks — learners from 30+ countries in every session</div>
+      </div>
+    </div>
+
+    <div class="carousel-slide">
+      <img src="../images/community-1on1.webp" alt="Dave Hajdu in a 1-on-1 coaching session">
+      <div class="carousel-caption">
+        <div class="carousel-caption-label">Private Coaching</div>
+        <div class="carousel-caption-text">When you need focused attention on your specific AI strategy</div>
+      </div>
+    </div>
+
+    <div class="carousel-slide">
+      <img src="../images/community-social.webp" alt="CAIO Coach community members at AI After Dark event">
+      <div class="carousel-caption">
+        <div class="carousel-caption-label">AI After Dark</div>
+        <div class="carousel-caption-text">The community extends beyond the screen — Ho Chi Minh City</div>
+      </div>
+    </div>
+
+    <div class="carousel-slide">
+      <img src="../images/community-room.webp" alt="Full room of executives learning AI leadership">
+      <div class="carousel-caption">
+        <div class="carousel-caption-label">The Four Offices of the Future</div>
+        <div class="carousel-caption-text">Executives raising their hand — because the answer changes everything</div>
+      </div>
+    </div>
+
+    <div class="carousel-dots" id="carouselDots"></div>
+  </div>
 
   <!-- ── MEMBERSHIP TIERS ── -->
   <div class="section-header" style="margin-top: 0;">
@@ -384,5 +494,46 @@ body { background: var(--surface); }
   </div>
 
 </main>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dotsContainer = document.getElementById('carouselDots');
+  let current = 0;
+  let timer;
+
+  // Build dots
+  slides.forEach(function(_, i) {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+    dot.addEventListener('click', function() { goTo(i); resetTimer(); });
+    dotsContainer.appendChild(dot);
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsContainer.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsContainer.children[current].classList.add('active');
+  }
+
+  function next() { goTo(current + 1); }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(next, 5000);
+  }
+
+  // Pause on hover
+  const carousel = document.getElementById('communityCarousel');
+  carousel.addEventListener('mouseenter', function() { clearInterval(timer); });
+  carousel.addEventListener('mouseleave', resetTimer);
+
+  resetTimer();
+})();
+</script>
+
 </body>
 </html>
