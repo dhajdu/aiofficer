@@ -25,27 +25,6 @@ body { background: var(--surface); }
   padding: 48px 40px 100px;
 }
 
-.mission-back {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 13px; font-weight: 600; color: var(--text-muted);
-  text-decoration: none; margin-bottom: 28px; transition: color 0.12s;
-}
-.mission-back:hover { color: var(--text-primary); }
-
-.cert-header { margin-bottom: 40px; }
-.cert-eyebrow {
-  font-size: 11px; font-weight: 700; letter-spacing: 1px;
-  text-transform: uppercase; color: #D1458B; margin-bottom: 12px;
-}
-.cert-title {
-  font-size: 38px; font-weight: 700;
-  color: var(--text-primary); letter-spacing: -0.5px;
-  line-height: 1.1; margin-bottom: 14px;
-}
-.cert-sub {
-  font-size: 16px; color: var(--text-secondary);
-  line-height: 1.65; max-width: 580px;
-}
 
 .tracks-grid {
   display: grid; grid-template-columns: 1fr 1fr 1fr;
@@ -180,15 +159,20 @@ body { background: var(--surface); }
   </nav>
 </div>
 
-<main class="page-main site-wrap">
-
-  <a href="index.html" class="mission-back">← CAIO Coach</a>
-
-  <div class="cert-header">
-    <div class="cert-eyebrow">AI Officer Institute · Certification Program</div>
-    <h1 class="cert-title">Become a Certified<br>AI Officer</h1>
-    <p class="cert-sub">A structured, practical certification for leaders who want to move from AI awareness to AI authority. Three tracks, real-world challenges, recognised credential.</p>
+<section class="hero">
+  <div class="hero-content site-wrap">
+    <p class="hero-eyebrow">Certification &middot; CAIO Coach</p>
+    <h1>Become a Certified<br><span class="accent">AI Officer</span></h1>
+    <p class="hero-subtitle">Move from AI awareness to AI authority. Three tracks, real-world challenges, and a recognised credential that proves you can lead — not just use — AI.</p>
+    <div class="hero-pills">
+      <span class="pill pill-mag">3 Certification Tracks</span>
+      <span class="pill pill-navy">$99 / month</span>
+      <a href="https://community.ai-officer.com/checkout/ai-officer-certification-program?affiliate_code=ab0cd6" target="_blank" class="pill pill-blue">Enroll Now →</a>
+    </div>
   </div>
+</section>
+
+<main class="page-main site-wrap">
 
   <div class="tracks-grid">
     <div class="track-card">
