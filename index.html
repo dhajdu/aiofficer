@@ -5,7 +5,24 @@
   <meta charset="UTF-8">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CAIO Coach — Lead the AI Era</title>
+  <title>CAIO Coach — AI Leadership Certification for Executives</title>
+  <meta name="description"
+    content="CAIO Coach is the AI Officer certification program for executives and HR leaders who want to lead AI, not just use it. Three tracks. Live coaching. $99/month.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="CAIO Coach — Lead the AI Era">
+  <meta property="og:description"
+    content="Executive AI coaching for leaders ready to close the gap between strategy and AI. Group sessions, private 1:1, and certification included.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.caiocoach.com/">
+  <meta property="og:image" content="https://www.caiocoach.com/images/og-home.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CAIO Coach — Lead the AI Era">
+  <meta name="twitter:description"
+    content="Executive AI coaching for leaders ready to close the gap between strategy and AI.">
+  <meta name="twitter:image" content="https://www.caiocoach.com/images/og-home.png">
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
     rel="stylesheet">
@@ -24,10 +41,9 @@
     }
 
     /* ── Page layout ── */
+    /* max-width and centering are handled by site-wrap — only vertical padding here */
     .page-main {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 48px 40px 100px;
+      padding: 48px 0 100px;
     }
 
     /* ── Section headers ── */
@@ -100,15 +116,25 @@
 
     /* ── Hero image ── */
     .hero-img-wrap {
-      position: absolute; top: 0; right: 0;
-      width: 42%; height: 100%; overflow: hidden;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 42%;
+      height: 100%;
+      overflow: hidden;
     }
+
     .hero-img-wrap img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center top; opacity: 0.75;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0.75;
     }
+
     .hero-img-fade {
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
       background: linear-gradient(to right, var(--navy) 5%, transparent 55%);
     }
 
@@ -127,9 +153,11 @@
     }
 
     .about-photo {
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       min-height: 280px;
-      object-fit: cover; object-position: center top;
+      object-fit: cover;
+      object-position: center top;
       display: block;
     }
 
@@ -385,36 +413,6 @@
       color: var(--blue);
     }
 
-    /* ── Page footer ── */
-    .page-footer {
-      margin-top: 64px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-
-    .page-footer a {
-      color: var(--text-muted);
-      text-decoration: none;
-    }
-
-    .page-footer a:hover {
-      color: var(--blue);
-    }
-
-    .footer-brand {
-      font-weight: 600;
-      color: var(--text-secondary);
-    }
-
-    .footer-brand span {
-      color: var(--blue);
-    }
-
     /* ── Responsive ── */
     @media (max-width: 900px) {
       .page-main {
@@ -441,6 +439,106 @@
         display: none;
       }
     }
+
+    /* ── Dark site footer ── */
+    .footer {
+      margin-top: 80px;
+      background: var(--navy);
+      border-top: 1px solid rgba(111, 242, 193, 0.12);
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 56px 48px 32px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr;
+      gap: 36px;
+      margin-bottom: 44px;
+    }
+
+    .footer-brand h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--mint);
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.40);
+      line-height: 1.65;
+      max-width: 200px;
+    }
+
+    .footer-section h5 {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.40);
+      margin-bottom: 16px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-section ul li a,
+    .footer-section p,
+    .footer-section p a {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.62);
+      text-decoration: none;
+      transition: color 0.18s ease;
+    }
+
+    .footer-section ul li a:hover,
+    .footer-section p a:hover {
+      color: var(--mint);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: 11.5px;
+      color: rgba(255, 255, 255, 0.30);
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 900px) {
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-container {
+        padding: 40px 24px 28px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 
@@ -450,14 +548,23 @@
   <!-- TOPBAR                                      -->
   <!-- ═══════════════════════════════════════════ -->
   <div class="topbar">
-    <a href="index.html" class="topbar-brand">CAIO <span>Coach</span></a>
+    <a href="index.html" class="topbar-brand">CAIO <span>COACH</span></a>
     <button class="nav-toggle" id="navToggle"
-      onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.textContent=n.classList.contains('open')?'✕':'☰';"
-      aria-label="Toggle navigation">☰</button>
+      onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.classList.toggle('open');"
+      aria-label="Toggle navigation"><svg class="nav-icon-menu" xmlns="http://www.w3.org/2000/svg" width="20"
+        height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="4" y1="6" x2="20" y2="6" />
+        <line x1="4" y1="12" x2="20" y2="12" />
+        <line x1="4" y1="18" x2="20" y2="18" />
+      </svg><svg class="nav-icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg></button>
     <nav class="topbar-nav">
       <a href="coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
-      <a href="blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Thought
-        Leadership</a>
+      <a href="blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
       <a href="certification.html" class="tnav-link"><span class="tnav-dot" style="background:#D1458B"></span>
         Certification</a>
       <a href="community.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Community</a>
@@ -474,8 +581,8 @@
     </div>
     <div class="hero-content site-wrap" style="position:relative;z-index:1;">
       <p class="hero-eyebrow">CAIO Coach &middot; Dave Hajdu</p>
-      <h1>Lead the Other <span style="color:#6FF2C1">50%</span></h1>
-      <p class="hero-subtitle">You already know how to lead people. Now master the other half of every modern workflow — AI. Weekly live coaching, real strategies, no theory.</p>
+      <h1>Leading AI Is Easier With A <span style="color:#6FF2C1">Coach</span></h1>
+      <p class="hero-subtitle">Expert coaching to help you design, launch, and lead AI programs that actually work.</p>
       <div class="hero-pills">
         <span class="pill pill-navy">Weekly Live Sessions</span>
         <span class="pill pill-navy">$99 / month</span>
@@ -492,7 +599,6 @@
     <!-- ── ABOUT DAVE ── -->
     <div class="section-header">
       <span class="section-pill blue"><span class="dot"></span> Your Coach</span>
-      <span class="section-title">Dave Hajdu</span>
     </div>
 
     <div class="about-card">
@@ -501,9 +607,14 @@
         <div class="about-name">Dave Hajdu</div>
         <div class="about-title">Founder &amp; Chief AI Officer, Edge8 AI</div>
         <div class="about-bio">
-          <p>I raised $9.5 million for TINYpulse. Had Baseline Venture Capital behind us, a real board, and a real team. And for most of that journey, I couldn't tell you the difference between a repository and a folder.</p>
-          <p>That wasn't laziness. That was just how it worked — until AI made it inefficient. Now every executive faces the same inflection point I did. The wall between leadership and the technical side of the business is coming down, whether you're ready or not.</p>
-          <p>I coach leaders to get ready. Not to code. Not to become data scientists. To lead the AI half of every workflow they're already responsible for.</p>
+          <p>We raised $9.5 million for TINYpulse. Had Baseline Venture Capital behind us, a real board, and a real
+            team. And for most of that journey, I couldn't tell you the difference between a repository and a folder.
+          </p>
+          <p>That wasn't laziness. That was just how it worked — until AI made it inefficient. Now every executive faces
+            the same inflection point I did. The wall between leadership and the technical side of the business is
+            coming down, whether you're ready or not.</p>
+          <p>I coach leaders to get ready. Not to code. Not to become data scientists. To lead the AI half of every
+            workflow they're already responsible for.</p>
         </div>
         <div class="about-chips">
           <span class="about-chip">TINYpulse · $9.5M raised</span>
@@ -580,7 +691,7 @@
 
     <!-- ── THOUGHT LEADERSHIP ── -->
     <div class="section-header" style="margin-top: 56px;">
-      <span class="section-pill mint"><span class="dot"></span> Thought Leadership</span>
+      <span class="section-pill mint"><span class="dot"></span> Blog</span>
       <span class="section-title">Latest Insights</span>
       <span class="section-meta"><a href="blog/index.html">View all →</a></span>
     </div>
@@ -614,14 +725,67 @@
     </div>
 
     <!-- ── FOOTER ── -->
-    <div class="page-footer">
-      <div class="footer-brand">CAIO <span>Coach</span></div>
-      <div>© 2026 Edge8 AI &nbsp;·&nbsp; <a href="community.html">Community</a> &nbsp;·&nbsp; <a
-          href="coaching.html">Coaching</a></div>
-    </div>
 
-  </main>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-content">
 
+          <!-- Brand -->
+          <div class="footer-brand">
+            <h4>CAIO Coach</h4>
+            <p>Expert AI coaching for executives ready to lead the AI era.</p>
+          </div>
+
+          <!-- Main Menu -->
+          <div class="footer-section">
+            <h5>Menu</h5>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="coaching.html">Coaching</a></li>
+              <li><a href="blog/index.html">Blog</a></li>
+              <li><a href="certification.html">Certification</a></li>
+              <li><a href="community.html">Community</a></li>
+            </ul>
+          </div>
+
+          <!-- AI-Officer -->
+          <div class="footer-section">
+            <h5>AI-Officer</h5>
+            <ul>
+              <li><a href="https://www.ai-officer.com/about" target="_blank">About</a></li>
+              <li><a href="https://www.ai-officer.com/keynotes" target="_blank">Keynotes</a></li>
+              <li><a href="https://www.ai-officer.com/leadership-training" target="_blank">Leadership Training</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div class="footer-section">
+            <h5>Contact</h5>
+            <p><a href="tel:+84909958581">+84 90 995 8581</a> (VN)</p>
+            <p style="margin-top:8px;"><a href="tel:+12063958872">+1 206 395 8872</a> (US)</p>
+            <p style="margin-top:8px;"><a href="mailto:dave@edge8.ai">dave@edge8.ai</a></p>
+          </div>
+
+          <!-- Social -->
+          <div class="footer-section">
+            <h5>Social</h5>
+            <ul>
+              <li><a href="https://community.ai-officer.com" target="_blank">Community</a></li>
+              <li><a href="https://www.linkedin.com/company/aiofficerinstitute/" target="_blank">LinkedIn</a></li>
+              <li><a href="https://www.facebook.com/aiofficerinstitute" target="_blank">Facebook</a></li>
+              <li><a href="https://www.instagram.com/aiofficerinstitute/" target="_blank">Instagram</a></li>
+            </ul>
+          </div>
+
+        </div>
+        <div class="footer-bottom">
+          <p>Copyright, 2025 | AI Officer Institute LLC | USA</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>lucide.createIcons();</script>
 </body>
 
 </html>

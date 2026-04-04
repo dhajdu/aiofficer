@@ -8,8 +8,8 @@
   <meta name="description" content="How the AI Officer Institute blog goes from idea to live — content creation, photo sourcing, AI-powered optimization, and automated publishing.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="shared/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/styles.css">
   <style>
     :root {
       --navy: #04102D;
@@ -22,11 +22,15 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       background: #F4F7FB;
       color: var(--ink);
       padding-top: 56px;
     }
+
+    /* ── Breadcrumb ── */
+    .mission-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; margin-bottom: 28px; transition: color 0.12s; }
+    .mission-back:hover { color: var(--text-primary); }
 
     /* ── HERO ── */
     .wf-hero {
@@ -334,20 +338,35 @@
       .pipeline { grid-template-columns: 1fr; }
       .git-callout { flex-direction: column; }
     }
+  
+        /* ── Dark site footer ── */
+    .footer { margin-top: 80px; background: var(--navy); border-top: 1px solid rgba(111,242,193,0.12); }
+    .footer-container { max-width: 1200px; margin: 0 auto; padding: 56px 48px 32px; }
+    .footer-content { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 44px; }
+    .footer-brand h4 { font-size: 15px; font-weight: 700; color: var(--mint); margin-bottom: 8px; letter-spacing: -0.2px; }
+    .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.40); line-height: 1.65; max-width: 200px; }
+    .footer-section h5 { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.40); margin-bottom: 16px; }
+    .footer-section ul { list-style: none; padding: 0; margin: 0; }
+    .footer-section ul li { margin-bottom: 10px; }
+    .footer-section ul li a, .footer-section p, .footer-section p a { font-size: 13px; color: rgba(255,255,255,0.62); text-decoration: none; transition: color 0.18s ease; }
+    .footer-section ul li a:hover, .footer-section p a:hover { color: var(--mint); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 11.5px; color: rgba(255,255,255,0.30); letter-spacing: 0.02em; }
+    @media (max-width: 900px) { .footer-content { grid-template-columns: 1fr 1fr; } .footer-container { padding: 40px 24px 28px; } }
+    @media (max-width: 480px) { .footer-content { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 
   <!-- Nav -->
   <div class="topbar">
-    <a href="index.html" class="topbar-brand">AI Officer <span>Institute</span></a>
-  <button class="nav-toggle" id="navToggle" onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.textContent=n.classList.contains('open')?'✕':'☰';" aria-label="Toggle navigation">☰</button>
-    <div class="topbar-divider"></div>
+    <a href="../index.html" class="topbar-brand">CAIO <span>COACH</span></a>
+    <button class="nav-toggle" id="navToggle" onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.classList.toggle('open');" aria-label="Toggle navigation"><svg class="nav-icon-menu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg><svg class="nav-icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <nav class="topbar-nav">
-      <a href="index.html" class="tnav-link">Hub</a>
-      <a href="generative-ai/index.html" class="tnav-link"><span class="tnav-dot" style="background:#D1458B"></span>Generative AI</a>
-      <a href="agentic-ai/index.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span>Agentic AI</a>
-      <a href="blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span>Blog</a>
+      <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+      <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+      <a href="../certification.html" class="tnav-link"><span class="tnav-dot" style="background:#D1458B"></span> Certification</a>
+      <a href="../community.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Community</a>
     </nav>
   </div>
 
@@ -360,6 +379,8 @@
 
   <div class="wf-body">
 
+    <a href="workflows.html" class="mission-back">← Workflows</a>
+
     <p class="section-label">The four-stage pipeline</p>
 
     <!-- PIPELINE -->
@@ -370,12 +391,12 @@
         <div class="stage-card top-blue">
           <div class="stage-name">Content Creation</div>
           <ul class="task-list">
-            <li><span class="task-icon">📅</span><span>Routine weekly schedule or ad hoc post</span></li>
-            <li><span class="task-icon">✍️</span><span>Draft written in Dave's World Posts folder</span></li>
-            <li><span class="task-icon">📁</span><span>Folder named YYYY-MM-DD Post Title</span></li>
-            <li><span class="task-icon">🔁</span><span>Iterated until the AIO is satisfied</span></li>
+            <li><span class="task-icon"><i data-lucide="calendar"></i></span><span>Routine weekly schedule or ad hoc post</span></li>
+            <li><span class="task-icon"><i data-lucide="pen-line"></i></span><span>Draft written in Dave's World Posts folder</span></li>
+            <li><span class="task-icon"><i data-lucide="folder"></i></span><span>Folder named YYYY-MM-DD Post Title</span></li>
+            <li><span class="task-icon"><i data-lucide="rotate-ccw"></i></span><span>Iterated until the AIO is satisfied</span></li>
           </ul>
-          <span class="badge badge-human">👤 Human-led</span>
+          <span class="badge badge-human"><i data-lucide="user"></i> Human-led</span>
         </div>
       </div>
 
@@ -384,11 +405,11 @@
         <div class="stage-card top-mag">
           <div class="stage-name">Content Approval</div>
           <ul class="task-list">
-            <li><span class="task-icon">✅</span><span>AIO reviews and approves draft for publishing</span></li>
-            <li><span class="task-icon">📸</span><span>Real photos dropped into the source folder</span></li>
-            <li><span class="task-icon">💬</span><span>Claude Cowork told: "Photos are in. Build the post."</span></li>
+            <li><span class="task-icon"><i data-lucide="circle-check"></i></span><span>AIO reviews and approves draft for publishing</span></li>
+            <li><span class="task-icon"><i data-lucide="camera"></i></span><span>Real photos dropped into the source folder</span></li>
+            <li><span class="task-icon"><i data-lucide="message-circle"></i></span><span>Claude Cowork told: "Photos are in. Build the post."</span></li>
           </ul>
-          <span class="badge badge-human">👤 Human trigger</span>
+          <span class="badge badge-human"><i data-lucide="user"></i> Human trigger</span>
         </div>
       </div>
 
@@ -397,12 +418,12 @@
         <div class="stage-card top-mint">
           <div class="stage-name">Website Creation</div>
           <ul class="task-list">
-            <li><span class="task-icon">🖼️</span><span>Images optimized to WebP, renamed, resized</span></li>
-            <li><span class="task-icon">🏗️</span><span>Post HTML built with images at break points</span></li>
-            <li><span class="task-icon">🔗</span><span>Blog index updated, new card added</span></li>
-            <li><span class="task-icon">🚀</span><span>Git commit staged, push queued</span></li>
+            <li><span class="task-icon"><i data-lucide="image"></i></span><span>Images optimized to WebP, renamed, resized</span></li>
+            <li><span class="task-icon"><i data-lucide="hard-hat"></i></span><span>Post HTML built with images at break points</span></li>
+            <li><span class="task-icon"><i data-lucide="link"></i></span><span>Blog index updated, new card added</span></li>
+            <li><span class="task-icon"><i data-lucide="rocket"></i></span><span>Git commit staged, push queued</span></li>
           </ul>
-          <span class="badge badge-auto">⚡ Claude-automated</span>
+          <span class="badge badge-auto"><i data-lucide="zap"></i> Claude-automated</span>
         </div>
       </div>
 
@@ -411,12 +432,12 @@
         <div class="stage-card top-navy">
           <div class="stage-name">Log &amp; Done</div>
           <ul class="task-list">
-            <li><span class="task-icon">📝</span><span>Entry written to Blog_Publishing_Log.md</span></li>
-            <li><span class="task-icon">🔍</span><span>Slug, images, placement, commit hash recorded</span></li>
-            <li><span class="task-icon">⚠️</span><span>Any issues noted for the next session</span></li>
-            <li><span class="task-icon">🌐</span><span>Post live at aiofficer.com/blog/</span></li>
+            <li><span class="task-icon"><i data-lucide="file-text"></i></span><span>Entry written to Blog_Publishing_Log.md</span></li>
+            <li><span class="task-icon"><i data-lucide="search"></i></span><span>Slug, images, placement, commit hash recorded</span></li>
+            <li><span class="task-icon"><i data-lucide="triangle-alert"></i></span><span>Any issues noted for the next session</span></li>
+            <li><span class="task-icon"><i data-lucide="globe"></i></span><span>Post live at aiofficer.com/blog/</span></li>
           </ul>
-          <span class="badge badge-auto">⚡ Claude-automated</span>
+          <span class="badge badge-auto"><i data-lucide="zap"></i> Claude-automated</span>
         </div>
       </div>
 
@@ -427,7 +448,7 @@
 
     <div class="detail-grid">
       <div class="detail-card">
-        <h3>🖼️ Image Optimization</h3>
+        <h3><i data-lucide="image"></i> Image Optimization</h3>
         <p class="sub">Raw iPhone photos in, web-ready WebP out</p>
         <ul class="detail-list">
           <li>Reads source images from the post's folder in Dave's World Posts</li>
@@ -438,7 +459,7 @@
         </ul>
       </div>
       <div class="detail-card">
-        <h3>🏗️ Post Construction</h3>
+        <h3><i data-lucide="hard-hat"></i> Post Construction</h3>
         <p class="sub">HTML built to the AIO blog style guide</p>
         <ul class="detail-list">
           <li>Topbar nav, post hero, meta section, article, FAQ, footer</li>
@@ -448,7 +469,7 @@
         </ul>
       </div>
       <div class="detail-card">
-        <h3>✅ Quality Checks</h3>
+        <h3><i data-lucide="circle-check"></i> Quality Checks</h3>
         <p class="sub">Runs before staging for git</p>
         <ul class="detail-list">
           <li>Images load correctly with correct relative paths</li>
@@ -459,7 +480,7 @@
         </ul>
       </div>
       <div class="detail-card">
-        <h3>📝 Publish Log</h3>
+        <h3><i data-lucide="file-text"></i> Publish Log</h3>
         <p class="sub">Every post gets a log entry</p>
         <ul class="detail-list">
           <li>Post slug, category, publish date</li>
@@ -472,7 +493,7 @@
 
     <!-- GIT CALLOUT -->
     <div class="git-callout">
-      <div class="git-callout-icon">⚡</div>
+      <div class="git-callout-icon"><i data-lucide="zap"></i></div>
       <div>
         <h3>Git workflow</h3>
         <p>
@@ -526,34 +547,65 @@
   </div>
 
   <!-- Footer -->
-  <footer class="footer">
+  
+    <footer class="footer">
     <div class="footer-container">
       <div class="footer-content">
-        <div class="footer-section">
-          <div class="footer-logo">
-            <h4>AI Officer Institute</h4>
-            <p>Problem first. AI second. ROI always.</p>
-          </div>
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <h4>CAIO Coach</h4>
+          <p>Expert AI coaching for executives ready to lead the AI era.</p>
         </div>
+
+        <!-- Main Menu -->
         <div class="footer-section">
           <h5>Menu</h5>
           <ul>
-            <li><a href="index.html">Hub</a></li>
-            <li><a href="blog/index.html">Blog</a></li>
-            <li><a href="generative-ai/index.html">Generative AI</a></li>
-            <li><a href="agentic-ai/index.html">Agentic AI</a></li>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../coaching.html">Coaching</a></li>
+            <li><a href="../blog/index.html">Blog</a></li>
+            <li><a href="../certification.html">Certification</a></li>
+            <li><a href="../community.html">Community</a></li>
           </ul>
         </div>
+
+        <!-- AI-Officer -->
+        <div class="footer-section">
+          <h5>AI-Officer</h5>
+          <ul>
+            <li><a href="https://www.ai-officer.com/about" target="_blank">About</a></li>
+            <li><a href="https://www.ai-officer.com/keynotes" target="_blank">Keynotes</a></li>
+            <li><a href="https://www.ai-officer.com/leadership-training" target="_blank">Leadership Training</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
         <div class="footer-section">
           <h5>Contact</h5>
-          <p><a href="mailto:hello@ai-officer.com">hello@ai-officer.com</a></p>
+          <p><a href="tel:+84909958581">+84 90 995 8581</a> (VN)</p>
+          <p style="margin-top:8px;"><a href="tel:+12063958872">+1 206 395 8872</a> (US)</p>
+          <p style="margin-top:8px;"><a href="mailto:dave@edge8.ai">dave@edge8.ai</a></p>
         </div>
+
+        <!-- Social -->
+        <div class="footer-section">
+          <h5>Social</h5>
+          <ul>
+            <li><a href="https://community.ai-officer.com" target="_blank">Community</a></li>
+            <li><a href="https://www.linkedin.com/company/aiofficerinstitute/" target="_blank">LinkedIn</a></li>
+            <li><a href="https://www.facebook.com/aiofficerinstitute" target="_blank">Facebook</a></li>
+            <li><a href="https://www.instagram.com/aiofficerinstitute/" target="_blank">Instagram</a></li>
+          </ul>
+        </div>
+
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 AI Officer Institute. All rights reserved.</p>
+        <p>Copyright, 2025 | AI Officer Institute LLC | USA</p>
       </div>
     </div>
   </footer>
 
+<script>lucide.createIcons();</script>
 </body>
 </html>

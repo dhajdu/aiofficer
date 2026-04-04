@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to Build a Talent System That Actually Scales | AI Officer Institute</title>
-    <meta name="description" content="Step-by-step framework: build talent systems that scale from hiring to retention. Learn structured interviewing, culture design, and AI tools that work.">
+    <title>How to Build an AI-Ready Talent System That Actually Scales — CAIO Coach</title>
+    <meta name="description" content="Step-by-step framework: build an AI-ready talent system that scales from hiring to retention. Structured interviewing, culture design, and AI tools that work.">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph Tags -->
@@ -13,8 +13,8 @@
     <meta property="og:title" content="How to Build a Talent System That Actually Scales">
     <meta property="og:description" content="Learn Ray Chou's step-by-step framework for building talent systems that scale. Move from instinct to structure, and watch your retention and culture transform.">
     <meta property="og:url" content="https://www.ai-officer.com/blog/posts/talent-system-that-scales.html">
-    <meta property="og:image" content="https://www.ai-officer.com/og-image.jpg">
-    <meta name="twitter:image" content="https://www.ai-officer.com/og-image.jpg">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1765020553552-6286dde23660?w=1200&h=630&fit=crop&crop=entropy&auto=format&q=80">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1765020553552-6286dde23660?w=1200&h=630&fit=crop&crop=entropy&auto=format&q=80">
     <meta property="og:site_name" content="AI Officer Institute">
 
     <!-- Twitter Card Tags -->
@@ -137,27 +137,6 @@
     <link rel="stylesheet" href="../styles.css">
 
     <style>
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .post-content > * {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-
-        .post-content h2:nth-of-type(1) { animation-delay: 0.1s; }
-        .post-content h2:nth-of-type(2) { animation-delay: 0.2s; }
-        .post-content h2:nth-of-type(3) { animation-delay: 0.3s; }
-        .post-content h2:nth-of-type(4) { animation-delay: 0.4s; }
-        .post-content h2:nth-of-type(5) { animation-delay: 0.5s; }
-
         /* HOW-TO FORMAT */
         .post-layout { max-width: 760px; margin: 0 auto; padding: 0 24px; }
         .learn-box { background: #f0f7ff; border: 1px solid #287BE8; border-radius: 12px; padding: 24px 28px; margin: 32px 0; }
@@ -194,26 +173,26 @@
         .post-nav-card:hover { border-color: var(--blue); }
         .post-nav-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.1em; }
         .post-nav-title { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); }
+        @media (max-width: 900px) {
+            .topbar-nav { display: none; }
+            .topbar-right { display: none; }
+        }
     </style>
 </head>
 <body>
     <!-- Header Navigation -->
     <div class="topbar">
-  <a href="../../index.html" class="topbar-brand">AI Officer <span>Institute</span></a>
-  <button class="nav-toggle" id="navToggle" onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.textContent=n.classList.contains('open')?'✕':'☰';" aria-label="Toggle navigation">☰</button>
-  <nav class="topbar-nav">
-    <a href="../../certification.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
-    <a href="../../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
-    <a href="../../micro-sessions/index.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Micro-Sessions</a>
-    <a href="../index.html" class="tnav-link active"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
-    <a href="../../my-team.html" class="tnav-link"><span class="tnav-dot" style="background:#8b91ac"></span> My Team</a>
-  </nav>
-  <div class="topbar-right">
-    <a href="../../ai-buddy.html" class="buddy-launch-btn">AI Buddy</a>
-    <div class="topbar-stat">🔥 7</div>
-    <div class="topbar-stat">1,240 xp</div>
-    <div class="topbar-divider"></div>
-    <div class="topbar-avatar">DH</div>
+    <a href="../../index.html" class="topbar-brand">CAIO <span>COACH</span></a>
+    <button class="nav-toggle" id="navToggle"
+      onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.classList.toggle('open');"
+      aria-label="Toggle navigation"><svg class="nav-icon-menu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg><svg class="nav-icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <nav class="topbar-nav">
+        <a href="../../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+        <a href="../index.html" class="tnav-link active"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+        <a href="../../certification.html" class="tnav-link"><span class="tnav-dot" style="background:#D1458B"></span> Certification</a>
+        <a href="../../community.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Community</a>
+    </nav>
+</div>
   </div>
 </div>
 <!-- Post Hero Section -->
@@ -469,6 +448,38 @@
         </div>
     </section>
 
+    
+    <!-- Related Reads -->
+    <section class="post-nav-wrapper" style="padding-bottom: 0;">
+        <div class="post-layout">
+            <div style="margin-bottom: 32px;">
+                <p style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#6b7194; margin-bottom:14px;">Related Reads</p>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                <a href="four-offices-of-the-future.html" style="background:var(--card-bg,#fff); border:1px solid var(--border,#d8dce8); border-radius:10px; padding:16px 18px; text-decoration:none; color:inherit; display:block;">
+                    <div style="font-size:10px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:#287BE8; margin-bottom:6px;">Strategy</div>
+                    <div style="font-size:14px; font-weight:600; color:#1a1f36; line-height:1.4;">The Four Offices of the Future</div>
+                </a>
+                <a href="jack-dorsey-layoffs.html" style="background:var(--card-bg,#fff); border:1px solid var(--border,#d8dce8); border-radius:10px; padding:16px 18px; text-decoration:none; color:inherit; display:block;">
+                    <div style="font-size:10px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; color:#287BE8; margin-bottom:6px;">AI & SaaS</div>
+                    <div style="font-size:14px; font-weight:600; color:#1a1f36; line-height:1.4;">Jack Dorsey Layoffs: What 4,000 Cuts Reveal About AI and SaaS</div>
+                </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coaching CTA -->
+    <section class="post-nav-wrapper" style="padding-bottom: 0;">
+        <div class="post-layout">
+            <a href="../../coaching.html" style="display:block; background:#04102D; border-radius:12px; padding:28px 32px; text-decoration:none; color:inherit; margin-bottom: 40px;">
+                <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#6FF2C1; margin-bottom:10px;">CAIO Coach</div>
+                <div style="font-size:20px; font-weight:700; color:#fff; line-height:1.2; margin-bottom:8px;">Bring your real AI challenges. Get coached live.</div>
+                <div style="font-size:14px; color:rgba(255,255,255,0.6); margin-bottom:16px;">Weekly live AI coaching sessions with Dave Hajdu. Included with your CAIO Coach membership.</div>
+                <span style="display:inline-flex; align-items:center; gap:6px; background:#1a9e74; color:#fff; font-size:14px; font-weight:700; padding:10px 20px; border-radius:8px;">Learn About Coaching →</span>
+            </a>
+        </div>
+    </section>
+
     <!-- Previous/Next Navigation -->
     <section class="post-nav-wrapper">
         <div class="container-narrow">
@@ -486,46 +497,63 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <h4>AI Officer Institute</h4>
-                        <p>Problem first. AI second. ROI always.</p>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h5>Menu</h5>
-                    <ul>
-                        <li><a href="/certification">Certification</a></li>
-                        <li><a href="/leadership-training">Leadership Training</a></li>
-                        <li><a href="/about">About</a></li>
-                        <li><a href="../index.html">Blog</a></li>
-                        <li><a href="/keynotes">Keynotes</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h5>Contact</h5>
-                    <p><a href="tel:+84909958581">+84 90 995 8581</a> (VN)</p>
-                    <p><a href="tel:+12063958872">+1 206 395 8872</a> (US)</p>
-                    <p><a href="mailto:hello@ai-officer.com">hello@ai-officer.com</a></p>
-                </div>
-                <div class="footer-section">
-                    <h5>Social</h5>
-                    <ul>
-                        <li><a href="https://community.ai-officer.com" target="_blank">Community</a></li>
-                        <li><a href="https://linkedin.com/company/ai-officer-institute" target="_blank">LinkedIn</a></li>
-                        <li><a href="https://facebook.com/aiofficer" target="_blank">Facebook</a></li>
-                        <li><a href="https://instagram.com/aiofficer" target="_blank">Instagram</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 by AI Officer Institute. All rights reserved.</p>
-            </div>
+      <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <h4>CAIO Coach</h4>
+          <p>Expert AI coaching for executives ready to lead the AI era.</p>
         </div>
-    </footer>
+
+        <!-- Main Menu -->
+        <div class="footer-section">
+          <h5>Menu</h5>
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../../coaching.html">Coaching</a></li>
+            <li><a href="../../blog/index.html">Blog</a></li>
+            <li><a href="../../certification.html">Certification</a></li>
+            <li><a href="../../community.html">Community</a></li>
+          </ul>
+        </div>
+
+        <!-- AI-Officer -->
+        <div class="footer-section">
+          <h5>AI-Officer</h5>
+          <ul>
+            <li><a href="https://www.ai-officer.com/about" target="_blank">About</a></li>
+            <li><a href="https://www.ai-officer.com/keynotes" target="_blank">Keynotes</a></li>
+            <li><a href="https://www.ai-officer.com/leadership-training" target="_blank">Leadership Training</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-section">
+          <h5>Contact</h5>
+          <p><a href="tel:+84909958581">+84 90 995 8581</a> (VN)</p>
+          <p style="margin-top:8px;"><a href="tel:+12063958872">+1 206 395 8872</a> (US)</p>
+          <p style="margin-top:8px;"><a href="mailto:dave@edge8.ai">dave@edge8.ai</a></p>
+        </div>
+
+        <!-- Social -->
+        <div class="footer-section">
+          <h5>Social</h5>
+          <ul>
+            <li><a href="https://community.ai-officer.com" target="_blank">Community</a></li>
+            <li><a href="https://www.linkedin.com/company/aiofficerinstitute/" target="_blank">LinkedIn</a></li>
+            <li><a href="https://www.facebook.com/aiofficerinstitute" target="_blank">Facebook</a></li>
+            <li><a href="https://www.instagram.com/aiofficerinstitute/" target="_blank">Instagram</a></li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="footer-bottom">
+        <p>Copyright, 2025 | AI Officer Institute LLC | USA</p>
+      </div>
+    </div>
+  </footer>
 
     <script>
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -537,5 +565,8 @@
             });
         }
     </script>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>lucide.createIcons();</script>
 </body>
 </html>

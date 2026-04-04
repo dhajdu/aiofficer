@@ -97,7 +97,9 @@
 <!-- TOP BAR -->
 <div class="topbar">
   <a href="../../index.html" class="topbar-brand">AI Officer <span>Institute</span></a>
-  <button class="nav-toggle" id="navToggle" onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.textContent=n.classList.contains('open')?'✕':'☰';" aria-label="Toggle navigation">☰</button>
+  <button class="nav-toggle" id="navToggle"
+      onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.classList.toggle('open');"
+      aria-label="Toggle navigation"><svg class="nav-icon-menu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg><svg class="nav-icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
   <nav class="topbar-nav">
     <a href="../../certification.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
     <a href="../../coaching.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
@@ -107,7 +109,7 @@
   </nav>
   <div class="topbar-right">
     <a href="../../ai-buddy.html" class="buddy-launch-btn">AI Buddy</a>
-    <div class="topbar-stat">🔥 7</div>
+    <div class="topbar-stat"><i data-lucide="flame"></i> 7</div>
     <div class="topbar-stat">1,240 xp</div>
     <div class="topbar-divider"></div>
     <div class="topbar-avatar">DH</div>
@@ -354,7 +356,7 @@
       <div class="resource-stack">
 
         <a href="#prompts" class="resource-card">
-          <div class="resource-icon" style="background:rgba(40,123,232,0.08);">💬</div>
+          <div class="resource-icon" style="background:rgba(40,123,232,0.08);"><i data-lucide="message-circle"></i></div>
           <div class="resource-info">
             <div class="resource-tag">On This Page</div>
             <div class="resource-title">8 Prompts to Use</div>
@@ -363,7 +365,7 @@
         </a>
 
         <a href="https://app.powerbi.com" class="resource-card" target="_blank">
-          <div class="resource-icon" style="background:rgba(40,123,232,0.1);">📊</div>
+          <div class="resource-icon" style="background:rgba(40,123,232,0.1);"><i data-lucide="bar-chart-2"></i></div>
           <div class="resource-info">
             <div class="resource-tag">Tool · External</div>
             <div class="resource-title">Power BI Service</div>
@@ -372,7 +374,7 @@
         </a>
 
         <a href="https://notebooklm.google.com" class="resource-card" target="_blank">
-          <div class="resource-icon" style="background:rgba(111,242,193,0.15);">🗂️</div>
+          <div class="resource-icon" style="background:rgba(111,242,193,0.15);"><i data-lucide="folder-open"></i></div>
           <div class="resource-info">
             <div class="resource-tag">Tool · External</div>
             <div class="resource-title">NotebookLM</div>
@@ -381,7 +383,7 @@
         </a>
 
         <a href="https://marketplace.visualstudio.com/items?itemName=analysis-services.powerbi-modeling-mcp" class="resource-card" target="_blank">
-          <div class="resource-icon" style="background:rgba(209,69,139,0.1);">🔌</div>
+          <div class="resource-icon" style="background:rgba(209,69,139,0.1);"><i data-lucide="plug"></i></div>
           <div class="resource-info">
             <div class="resource-tag">MCP · Technical</div>
             <div class="resource-title">Power BI Modeling MCP</div>
@@ -397,5 +399,6 @@
 
 </main>
 
+<script>lucide.createIcons();</script>
 </body>
 </html>

@@ -145,6 +145,30 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans
   /* max-width / margin / padding handled by .site-wrap in shared/styles.css */
 }
 
+/* ── Hero image ── */
+.hero-img-wrap {
+  position: absolute;
+  top: 0; right: 0;
+  width: 45%;
+  height: 100%;
+  overflow: hidden;
+}
+.hero-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 0.75;
+}
+.hero-img-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--navy) 5%, transparent 60%);
+}
+@media (max-width: 900px) {
+  .hero-img-wrap { display: none; }
+}
+
 .hero h1 {
   font-size: clamp(28px, 4.5vw, 50px);
   font-weight: 800;
@@ -277,6 +301,17 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans
   box-shadow: 0 12px 32px rgba(40,123,232,0.18);
 }
 
+/* Featured card background image (subtle overlay) */
+.featured-card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
 .featured-content { position: relative; }
 
 .featured-card .category-pill {
@@ -398,6 +433,24 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans
 
 .posts-grid.three-column { grid-template-columns: repeat(3, 1fr); }
 .posts-grid.two-column   { grid-template-columns: repeat(2, 1fr); }
+
+/* Post card thumbnail image */
+.post-card-img {
+  width: 100%;
+  height: 190px;
+  overflow: hidden;
+  background: #eaeef2;
+}
+.post-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+.post-card:hover .post-card-img img {
+  transform: scale(1.04);
+}
 
 /* Post card */
 .post-card {
@@ -1011,6 +1064,7 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans
    ================================================================ */
 
 .footer {
+  margin-top: 80px;
   background: var(--navy);
   border-top: 1px solid rgba(111,242,193,0.12);
 }

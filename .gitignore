@@ -1,0 +1,22 @@
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Raw source images — only optimised .webp files belong in the repo
+images/*.jpg
+images/*.JPG
+images/*.jpeg
+images/*.JPEG
+images/*.png
+images/*.PNG
+images/*.avif
+images/*.AVIF
+images/*.heic
+images/*.HEIC
+images/*.tiff
+images/*.TIFF
+
+# Docs / templates (internal use only)
+Website HTML Style Guide.md
+Website Instructions.md
+_templates/

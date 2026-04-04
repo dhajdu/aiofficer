@@ -97,7 +97,9 @@
 <!-- TOP BAR -->
 <div class="topbar">
   <a href="../../index.html" class="topbar-brand">AI Officer <span>Institute</span></a>
-  <button class="nav-toggle" id="navToggle" onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.textContent=n.classList.contains('open')?'✕':'☰';" aria-label="Toggle navigation">☰</button>
+  <button class="nav-toggle" id="navToggle"
+      onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.classList.toggle('open');"
+      aria-label="Toggle navigation"><svg class="nav-icon-menu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg><svg class="nav-icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
   <nav class="topbar-nav">
     <a href="../../certification.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Certification</a>
     <a href="../../coaching.html" class="tnav-link active"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
@@ -107,7 +109,7 @@
   </nav>
   <div class="topbar-right">
     <a href="../../ai-buddy.html" class="buddy-launch-btn">AI Buddy</a>
-    <div class="topbar-stat">🔥 7</div>
+    <div class="topbar-stat"><i data-lucide="flame"></i> 7</div>
     <div class="topbar-stat">1,240 xp</div>
     <div class="topbar-divider"></div>
     <div class="topbar-avatar">DH</div>
@@ -394,27 +396,27 @@
         <div class="card-label">Key Moves from This Session</div>
         <div class="summary-list">
           <div class="summary-item">
-            <div class="summary-check">✓</div>
+            <div class="summary-check"><i data-lucide="check"></i></div>
             <span>Start every project in chat, not in code. Map the business model, customer journey, and site structure as a conversation first.</span>
           </div>
           <div class="summary-item">
-            <div class="summary-check">✓</div>
+            <div class="summary-check"><i data-lucide="check"></i></div>
             <span>Create a style guide early and save it to your project folder. It becomes a permanent data asset that keeps every output on-brand.</span>
           </div>
           <div class="summary-item">
-            <div class="summary-check">✓</div>
+            <div class="summary-check"><i data-lucide="check"></i></div>
             <span>Use business frameworks (Jobs to Be Done, Empathy Map, Decision Journey) to build personas. Learn the framework and get the deliverable in one conversation.</span>
           </div>
           <div class="summary-item">
-            <div class="summary-check">✓</div>
+            <div class="summary-check"><i data-lucide="check"></i></div>
             <span>Set up Cowork with a folder structure and persistent context. Claude gets smarter on your project with every file you save.</span>
           </div>
           <div class="summary-item">
-            <div class="summary-check">✓</div>
+            <div class="summary-check"><i data-lucide="check"></i></div>
             <span>Use Sonnet for speed, Opus for accuracy. Use "answer in chat first" to control when Claude thinks vs. when it builds.</span>
           </div>
           <div class="summary-item">
-            <div class="summary-check">✓</div>
+            <div class="summary-check"><i data-lucide="check"></i></div>
             <span>The full workflow — strategy, style guide, persona, skeleton site, Gantt chart — took about 15–20 minutes. That's the power of structured AI prompting.</span>
           </div>
         </div>
@@ -428,7 +430,7 @@
       <div class="resource-stack">
 
         <a href="bhutan/index.html" class="resource-card" target="_blank">
-          <div class="resource-icon" style="background:rgba(40,123,232,0.1);">🌐</div>
+          <div class="resource-icon" style="background:rgba(40,123,232,0.1);"><i data-lucide="globe"></i></div>
           <div class="resource-info">
             <div class="resource-tag">Live Site</div>
             <div class="resource-title">Bhutan Website</div>
@@ -437,7 +439,7 @@
         </a>
 
         <a href="bhutan/gantt.html" class="resource-card" target="_blank">
-          <div class="resource-icon" style="background:rgba(111,242,193,0.15);">📅</div>
+          <div class="resource-icon" style="background:rgba(111,242,193,0.15);"><i data-lucide="calendar"></i></div>
           <div class="resource-info">
             <div class="resource-tag">Interactive</div>
             <div class="resource-title">Project Gantt Chart</div>
@@ -446,7 +448,7 @@
         </a>
 
         <a href="bhutan/bhutan-brand-style-guide.docx" class="resource-card" download>
-          <div class="resource-icon" style="background:rgba(209,69,139,0.1);">📄</div>
+          <div class="resource-icon" style="background:rgba(209,69,139,0.1);"><i data-lucide="file"></i></div>
           <div class="resource-info">
             <div class="resource-tag">Download · DOCX</div>
             <div class="resource-title">Brand Style Guide</div>
@@ -455,7 +457,7 @@
         </a>
 
         <a href="#prompts" class="resource-card">
-          <div class="resource-icon" style="background:rgba(40,123,232,0.08);">💬</div>
+          <div class="resource-icon" style="background:rgba(40,123,232,0.08);"><i data-lucide="message-circle"></i></div>
           <div class="resource-info">
             <div class="resource-tag">On This Page</div>
             <div class="resource-title">Prompts You Can Use</div>
@@ -470,5 +472,6 @@
 
 </main>
 
+<script>lucide.createIcons();</script>
 </body>
 </html>

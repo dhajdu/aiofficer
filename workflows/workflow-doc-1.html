@@ -4,9 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AIO Daily Post Workflow — AI Officer Institute</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/styles.css">
   <style>
     :root {
       --bg-dark:       #04102D;
@@ -21,8 +23,8 @@
       --text-muted:    #9CA3AF;
       --border:        #E5E7EB;
       --white:         #FFFFFF;
-      --font-body:     'Inter', sans-serif;
-      --font-display:  'Space Grotesk', sans-serif;
+      --font-body:     'DM Sans', sans-serif;
+      --font-display:  'DM Sans', sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -461,9 +463,40 @@
       .fw-when    { grid-column: 2; }
       .hero { padding: 48px 20px 40px; }
     }
+
+    /* ── Breadcrumb ── */
+    .mission-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--text-muted); text-decoration: none; margin-bottom: 28px; transition: color 0.12s; }
+    .mission-back:hover { color: var(--text-primary); }
+  
+        /* ── Dark site footer ── */
+    .footer { margin-top: 80px; background: var(--navy); border-top: 1px solid rgba(111,242,193,0.12); }
+    .footer-container { max-width: 1200px; margin: 0 auto; padding: 56px 48px 32px; }
+    .footer-content { display: grid; grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 44px; }
+    .footer-brand h4 { font-size: 15px; font-weight: 700; color: var(--mint); margin-bottom: 8px; letter-spacing: -0.2px; }
+    .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.40); line-height: 1.65; max-width: 200px; }
+    .footer-section h5 { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.40); margin-bottom: 16px; }
+    .footer-section ul { list-style: none; padding: 0; margin: 0; }
+    .footer-section ul li { margin-bottom: 10px; }
+    .footer-section ul li a, .footer-section p, .footer-section p a { font-size: 13px; color: rgba(255,255,255,0.62); text-decoration: none; transition: color 0.18s ease; }
+    .footer-section ul li a:hover, .footer-section p a:hover { color: var(--mint); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 11.5px; color: rgba(255,255,255,0.30); letter-spacing: 0.02em; }
+    @media (max-width: 900px) { .footer-content { grid-template-columns: 1fr 1fr; } .footer-container { padding: 40px 24px 28px; } }
+    @media (max-width: 480px) { .footer-content { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
+
+<div class="topbar">
+  <a href="../index.html" class="topbar-brand">CAIO <span>COACH</span></a>
+  <button class="nav-toggle" id="navToggle" onclick="var n=this.closest('div.topbar').querySelector('.topbar-nav');n.classList.toggle('open');this.classList.toggle('open');" aria-label="Toggle navigation"><svg class="nav-icon-menu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg><svg class="nav-icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  <nav class="topbar-nav">
+    <a href="../coaching.html" class="tnav-link"><span class="tnav-dot" style="background:#287BE8"></span> Coaching</a>
+    <a href="../blog/index.html" class="tnav-link"><span class="tnav-dot" style="background:#6FF2C1"></span> Blog</a>
+    <a href="../certification.html" class="tnav-link"><span class="tnav-dot" style="background:#D1458B"></span> Certification</a>
+    <a href="../community.html" class="tnav-link"><span class="tnav-dot" style="background:#1A9E74"></span> Community</a>
+  </nav>
+</div>
 
 <!-- ── HERO ──────────────────────────────────────────────── -->
 <section class="hero">
@@ -481,6 +514,8 @@
 
 <!-- ── SECTION 1: HOW THE WORKFLOW RUNS ──────────────────── -->
 <div class="container">
+  <a href="workflows.html" class="mission-back">← Workflows</a>
+
   <section class="section">
     <div class="section-label">Overview</div>
     <h2>How This Workflow Runs</h2>
@@ -602,37 +637,37 @@
 
     <div class="doc-grid">
       <div class="doc-card">
-        <div class="doc-icon">✏️</div>
+        <div class="doc-icon"><i data-lucide="pencil"></i></div>
         <h4>Working Title</h4>
         <p>A draft title that captures the angle. Does not have to be final. Should be specific enough to distinguish this idea from others.</p>
         <span class="required">Required</span>
       </div>
       <div class="doc-card">
-        <div class="doc-icon">💡</div>
+        <div class="doc-icon"><i data-lucide="lightbulb"></i></div>
         <h4>Core Insight</h4>
         <p>1 to 2 sentences. What is the claim, argument, or lesson? This becomes the thesis of the post. Must be specific — not a topic, but a take on a topic.</p>
         <span class="required">Required</span>
       </div>
       <div class="doc-card">
-        <div class="doc-icon">🗂</div>
+        <div class="doc-icon"><i data-lucide="folder-open"></i></div>
         <h4>Suggested Framework</h4>
         <p>One of the five formats: Step-by-Step, Thesis/Manifesto, Listicle, Case Study, or Comparison. Include a one-sentence reason for the choice.</p>
         <span class="required">Required</span>
       </div>
       <div class="doc-card">
-        <div class="doc-icon">📍</div>
+        <div class="doc-icon"><i data-lucide="map-pin"></i></div>
         <h4>Strategy Type</h4>
         <p>Label which of the four topic strategies this idea uses: A (Core Framework Riff), B (Trend Reaction), C (Workshop Insight), or D (Career/Skills Angle).</p>
         <span class="required">Required</span>
       </div>
       <div class="doc-card">
-        <div class="doc-icon">🎯</div>
+        <div class="doc-icon"><i data-lucide="target"></i></div>
         <h4>Single Takeaway</h4>
         <p>One sentence. What should the reader remember after closing the tab? This is the post's north star and will be used verbatim in the delivery checklist.</p>
         <span class="required">Required</span>
       </div>
       <div class="doc-card">
-        <div class="doc-icon">📅</div>
+        <div class="doc-icon"><i data-lucide="calendar"></i></div>
         <h4>Why This Week</h4>
         <p>One sentence explaining the timeliness or relevance. Could be a trend, a recent workshop, a recurring question, or a gap in recent content. Strategy B must cite a real source.</p>
         <span class="required">Required</span>
@@ -788,10 +823,64 @@
 </div>
 
 <!-- ── FOOTER ─────────────────────────────────────────────── -->
-<footer class="footer">
-  <p><strong>AI Officer Institute</strong> · Internal Content SOP · Not for external distribution</p>
-  <p style="margin-top:8px;">Questions? Flag anything unclear before you start, not after.</p>
-</footer>
+
+    <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <h4>CAIO Coach</h4>
+          <p>Expert AI coaching for executives ready to lead the AI era.</p>
+        </div>
+
+        <!-- Main Menu -->
+        <div class="footer-section">
+          <h5>Menu</h5>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../coaching.html">Coaching</a></li>
+            <li><a href="../blog/index.html">Blog</a></li>
+            <li><a href="../certification.html">Certification</a></li>
+            <li><a href="../community.html">Community</a></li>
+          </ul>
+        </div>
+
+        <!-- AI-Officer -->
+        <div class="footer-section">
+          <h5>AI-Officer</h5>
+          <ul>
+            <li><a href="https://www.ai-officer.com/about" target="_blank">About</a></li>
+            <li><a href="https://www.ai-officer.com/keynotes" target="_blank">Keynotes</a></li>
+            <li><a href="https://www.ai-officer.com/leadership-training" target="_blank">Leadership Training</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-section">
+          <h5>Contact</h5>
+          <p><a href="tel:+84909958581">+84 90 995 8581</a> (VN)</p>
+          <p style="margin-top:8px;"><a href="tel:+12063958872">+1 206 395 8872</a> (US)</p>
+          <p style="margin-top:8px;"><a href="mailto:dave@edge8.ai">dave@edge8.ai</a></p>
+        </div>
+
+        <!-- Social -->
+        <div class="footer-section">
+          <h5>Social</h5>
+          <ul>
+            <li><a href="https://community.ai-officer.com" target="_blank">Community</a></li>
+            <li><a href="https://www.linkedin.com/company/aiofficerinstitute/" target="_blank">LinkedIn</a></li>
+            <li><a href="https://www.facebook.com/aiofficerinstitute" target="_blank">Facebook</a></li>
+            <li><a href="https://www.instagram.com/aiofficerinstitute/" target="_blank">Instagram</a></li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="footer-bottom">
+        <p>Copyright, 2025 | AI Officer Institute LLC | USA</p>
+      </div>
+    </div>
+  </footer>
 
 <script>
   const observer = new IntersectionObserver((entries) => {
@@ -799,5 +888,6 @@
   }, { threshold: 0.08 });
   document.querySelectorAll('.section').forEach(s => observer.observe(s));
 </script>
+<script>lucide.createIcons();</script>
 </body>
 </html>
