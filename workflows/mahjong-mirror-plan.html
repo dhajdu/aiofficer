@@ -4,27 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mahjong Tarot — 1 Man Company Plan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy:    #1B1F52;
-      --red:     #E34D35;
-      --gold:    #C9A840;
-      --peach:   #FFF0E8;
-      --cream:   #FFFDF8;
-      --offwhite:#FFF8F5;
-      --charcoal:#2A2540;
-      --mid:     #6B6888;
+      --red:     #E8360A;
+      --white:   #FFFFFF;
+      --offwhite:#F7F7F9;
+      --charcoal:#222222;
+      --mid:     #666680;
+      --border:  #E2E2EA;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Georgia', serif;
-      background: var(--offwhite);
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
       color: var(--charcoal);
       padding: 48px 24px 80px;
-      border: 6px solid var(--peach);
-      min-height: 100vh;
     }
 
     .page { max-width: 960px; margin: 0 auto; }
@@ -34,12 +32,13 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-family: 'Georgia', serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 14px;
+      font-weight: 500;
       color: var(--navy);
       text-decoration: none;
       margin-bottom: 36px;
-      opacity: 0.7;
+      opacity: 0.65;
       transition: opacity 0.15s;
     }
     .breadcrumb:hover { opacity: 1; }
@@ -51,24 +50,26 @@
     }
     .header .eyebrow {
       display: inline-block;
-      font-size: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
       letter-spacing: 4px;
       text-transform: uppercase;
-      color: var(--navy);
-      border-bottom: 2px solid var(--gold);
-      padding-bottom: 4px;
-      margin-bottom: 18px;
+      color: var(--red);
+      margin-bottom: 16px;
     }
     .header h1 {
-      font-size: 44px;
-      line-height: 1.2;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.15;
       color: var(--navy);
       margin-bottom: 16px;
     }
-    .header h1 span { color: var(--red); }
+    .header h1 span { color: var(--red); font-style: italic; }
     .header .subtitle {
-      font-size: 19px;
-      color: #555;
+      font-size: 18px;
+      color: var(--mid);
       max-width: 600px;
       margin: 0 auto;
       line-height: 1.8;
@@ -76,21 +77,22 @@
 
     /* ── DIVIDER ── */
     .divider {
-      height: 3px;
-      background: linear-gradient(to right, transparent, var(--gold), var(--red), transparent);
-      margin: 48px 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--red), var(--navy), transparent);
+      margin: 52px 0;
       border-radius: 2px;
+      opacity: 0.35;
     }
 
     /* ── SECTION LABEL ── */
     .section-label {
       font-size: 11px;
+      font-weight: 600;
       letter-spacing: 4px;
       text-transform: uppercase;
-      color: var(--navy);
+      color: var(--red);
       text-align: center;
       margin-bottom: 24px;
-      opacity: 0.7;
     }
 
     /* ══════════════════════════════════
@@ -100,7 +102,7 @@
       background: var(--navy);
       color: white;
       border-radius: 14px;
-      padding: 22px 32px;
+      padding: 24px 32px;
       display: flex;
       align-items: center;
       gap: 20px;
@@ -108,24 +110,26 @@
     }
     .orchestrator .orch-icon { font-size: 36px; flex-shrink: 0; }
     .orchestrator .orch-text h3 {
-      font-size: 19px;
-      color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: white;
       margin-bottom: 4px;
     }
     .orchestrator .orch-text p {
       font-size: 15px;
-      color: rgba(255,255,255,0.8);
-      line-height: 1.5;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
     }
     .orch-badge {
       margin-left: auto;
-      background: var(--gold);
-      color: var(--navy);
+      background: var(--red);
+      color: white;
       font-size: 11px;
-      font-weight: bold;
+      font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
-      padding: 6px 16px;
+      padding: 7px 18px;
       border-radius: 20px;
       flex-shrink: 0;
     }
@@ -144,19 +148,27 @@
       max-width: 760px;
     }
     .source-card {
-      background: var(--cream);
-      border: 2px solid var(--gold);
-      border-radius: 16px;
+      background: var(--offwhite);
+      border: 1.5px solid var(--border);
+      border-top: 4px solid var(--navy);
+      border-radius: 14px;
       padding: 28px 22px;
       text-align: center;
     }
-    .source-card .icon { font-size: 44px; display: block; margin-bottom: 12px; }
-    .source-card h3 { font-size: 18px; color: var(--navy); margin-bottom: 8px; font-weight: bold; }
-    .source-card p { font-size: 15px; color: #555; line-height: 1.7; }
+    .source-card .icon { font-size: 44px; display: block; margin-bottom: 14px; }
+    .source-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .source-card p { font-size: 15px; color: var(--mid); line-height: 1.7; }
     .source-card .tag {
       display: inline-block;
-      margin-top: 12px;
+      margin-top: 14px;
       font-size: 10px;
+      font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
       background: var(--navy);
@@ -172,13 +184,13 @@
       align-items: center;
       padding: 10px 0 6px;
     }
-    .arrow-block .arrow { font-size: 30px; color: var(--gold); line-height: 1; }
+    .arrow-block .arrow { font-size: 28px; color: var(--red); line-height: 1; opacity: 0.7; }
     .arrow-block .arrow-label {
-      font-size: 11px;
+      font-size: 10px;
+      font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--navy);
-      opacity: 0.6;
+      color: var(--mid);
       margin-top: 3px;
     }
 
@@ -187,14 +199,19 @@
       background: var(--navy);
       color: white;
       border-radius: 18px;
-      padding: 30px 40px;
+      padding: 32px 44px;
       text-align: center;
       max-width: 520px;
       width: 100%;
     }
-    .ai-engine .icon { font-size: 48px; display: block; margin-bottom: 12px; }
-    .ai-engine h3 { font-size: 24px; margin-bottom: 10px; color: var(--gold); }
-    .ai-engine p { font-size: 16px; line-height: 1.7; opacity: 0.9; }
+    .ai-engine .icon { font-size: 48px; display: block; margin-bottom: 14px; }
+    .ai-engine h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .ai-engine p { font-size: 16px; line-height: 1.8; opacity: 0.85; }
 
     /* ── OUTPUTS GRID ── */
     .outputs-grid {
@@ -205,16 +222,21 @@
       max-width: 900px;
     }
     .output-card {
-      background: white;
-      border: 2px solid var(--gold);
-      border-top: 4px solid var(--gold);
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-top: 4px solid var(--red);
       border-radius: 12px;
       padding: 20px 12px;
       text-align: center;
     }
     .output-card .icon { font-size: 32px; display: block; margin-bottom: 10px; }
-    .output-card h4 { font-size: 15px; font-weight: bold; color: var(--navy); margin-bottom: 6px; }
-    .output-card p { font-size: 13px; color: #666; line-height: 1.6; }
+    .output-card h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .output-card p { font-size: 13px; color: var(--mid); line-height: 1.6; }
 
     /* ══════════════════════════════════
        BOOK LAUNCH SECTION
@@ -223,19 +245,23 @@
       background: var(--red);
       color: white;
       border-radius: 18px;
-      padding: 32px 36px;
+      padding: 34px 38px;
       width: 100%;
-      margin-top: 0;
     }
     .book-launch-header {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 18px;
       margin-bottom: 24px;
     }
     .book-launch-header .icon { font-size: 44px; flex-shrink: 0; }
-    .book-launch-header h3 { font-size: 23px; line-height: 1.3; }
-    .book-launch-header p { font-size: 15px; opacity: 0.9; margin-top: 6px; line-height: 1.6; }
+    .book-launch-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .book-launch-header p { font-size: 15px; opacity: 0.9; margin-top: 6px; line-height: 1.65; }
 
     .launch-tracks {
       display: grid;
@@ -250,22 +276,28 @@
       text-align: center;
     }
     .launch-track .icon { font-size: 28px; display: block; margin-bottom: 8px; }
-    .launch-track h4 { font-size: 15px; font-weight: bold; margin-bottom: 6px; color: var(--gold); }
+    .launch-track h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
     .launch-track p { font-size: 13px; line-height: 1.6; opacity: 0.9; }
 
     /* ── WEBSITE BOX ── */
     .website-box {
-      background: var(--peach);
-      border: 2px solid var(--gold);
+      background: var(--offwhite);
+      border: 1.5px solid var(--border);
       border-radius: 16px;
-      padding: 28px 40px;
+      padding: 30px 44px;
       text-align: center;
       max-width: 480px;
       width: 100%;
     }
     .website-box .icon { font-size: 42px; display: block; margin-bottom: 12px; }
-    .website-box h3 { font-size: 22px; color: var(--navy); margin-bottom: 8px; font-weight: bold; }
-    .website-box p { font-size: 15px; color: #555; line-height: 1.7; }
+    .website-box h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .website-box p { font-size: 15px; color: var(--mid); line-height: 1.7; }
 
     /* ── RESULTS ── */
     .results-grid {
@@ -278,23 +310,30 @@
     .result-card {
       background: var(--navy);
       border-radius: 14px;
-      padding: 26px 18px;
+      padding: 28px 18px;
       text-align: center;
       color: white;
     }
-    .result-card .icon { font-size: 36px; display: block; margin-bottom: 10px; }
-    .result-card p { font-size: 16px; line-height: 1.6; }
+    .result-card .icon { font-size: 36px; display: block; margin-bottom: 12px; }
+    .result-card p { font-size: 16px; line-height: 1.65; }
 
     /* ══════════════════════════════════
        MONTHLY RHYTHM
     ══════════════════════════════════ */
     .rhythm {
-      background: var(--cream);
-      border: 2px solid var(--gold);
+      background: var(--offwhite);
+      border: 1.5px solid var(--border);
       border-radius: 18px;
-      padding: 36px;
+      padding: 40px;
     }
-    .rhythm h2 { font-size: 23px; text-align: center; margin-bottom: 30px; color: var(--navy); }
+    .rhythm h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 32px;
+      color: var(--navy);
+    }
 
     .rhythm-steps {
       display: grid;
@@ -306,9 +345,10 @@
       content: "→";
       position: absolute;
       right: -10px;
-      top: 19px;
+      top: 17px;
       font-size: 22px;
-      color: var(--gold);
+      color: var(--red);
+      opacity: 0.5;
     }
     .step-circle {
       width: 48px; height: 48px;
@@ -316,32 +356,46 @@
       color: white;
       border-radius: 50%;
       font-size: 20px;
-      font-weight: bold;
+      font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 12px;
+      margin: 0 auto 14px;
+      font-family: 'DM Sans', sans-serif;
     }
-    .rhythm-step h4 { font-size: 14px; font-weight: bold; color: var(--navy); margin-bottom: 6px; }
-    .rhythm-step p { font-size: 13px; color: #666; line-height: 1.5; }
+    .rhythm-step h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .rhythm-step p { font-size: 13px; color: var(--mid); line-height: 1.55; }
 
     /* ══════════════════════════════════
        COST CALLOUT
     ══════════════════════════════════ */
     .cost-callout {
-      background: var(--gold);
+      background: var(--navy);
       border-radius: 16px;
-      padding: 30px 40px;
+      padding: 36px 44px;
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 36px;
+      color: white;
     }
-    .cost-callout .big { font-size: 80px; font-weight: bold; color: var(--navy); line-height: 1; flex-shrink: 0; }
-    .cost-callout h3 { font-size: 24px; color: var(--navy); margin-bottom: 10px; }
-    .cost-callout p { font-size: 16px; color: var(--navy); line-height: 1.7; opacity: 0.85; }
+    .cost-callout .big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 88px;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .cost-callout h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .cost-callout p { font-size: 16px; line-height: 1.75; opacity: 0.8; }
 
     /* ── FOOTER ── */
-    .footer { text-align: center; margin-top: 60px; font-size: 14px; color: #999; }
+    .footer { text-align: center; margin-top: 60px; font-size: 14px; color: #aaa; }
 
     @media (max-width: 680px) {
       .sources-row { grid-template-columns: 1fr; }
@@ -353,7 +407,6 @@
       .cost-callout { flex-direction: column; text-align: center; }
       .orchestrator { flex-wrap: wrap; }
       .orch-badge { margin-left: 0; }
-      body { padding: 32px 16px 60px; border: none; }
     }
   </style>
 </head>
@@ -573,10 +626,10 @@
   <!-- BOTTOM LINE -->
   <div style="text-align:center; max-width:640px; margin: 0 auto;">
     <div class="section-label">The Bottom Line</div>
-    <h2 style="font-size:30px; line-height:1.4; margin-bottom:16px; color:var(--navy);">
+    <h2 style="font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:700; line-height:1.35; margin-bottom:18px; color:var(--navy);">
       Do what you love.<br/>The machine does the rest.
     </h2>
-    <p style="font-size:18px; color:#666; line-height:1.9;">
+    <p style="font-size:18px; color:var(--mid); line-height:1.9;">
       The book becomes content. The conversations become campaigns.
       The next book gets a full professional launch.
       And a community of Mahjong and Tarot enthusiasts discovers the work —
