@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahjong Tarot — 1 Man Company Plan</title>
+  <style>
+    :root {
+      --navy:    #1B1F52;
+      --red:     #E34D35;
+      --gold:    #C9A840;
+      --peach:   #FFF0E8;
+      --cream:   #FFFDF8;
+      --offwhite:#FFF8F5;
+      --charcoal:#2A2540;
+      --mid:     #6B6888;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--offwhite);
+      color: var(--charcoal);
+      padding: 48px 24px 80px;
+      border: 6px solid var(--peach);
+      min-height: 100vh;
+    }
+
+    .page { max-width: 960px; margin: 0 auto; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Georgia', serif;
+      font-size: 14px;
+      color: var(--navy);
+      text-decoration: none;
+      margin-bottom: 36px;
+      opacity: 0.7;
+      transition: opacity 0.15s;
+    }
+    .breadcrumb:hover { opacity: 1; }
+
+    /* ── HEADER ── */
+    .header {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+    .header .eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--navy);
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 4px;
+      margin-bottom: 18px;
+    }
+    .header h1 {
+      font-size: 44px;
+      line-height: 1.2;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .header h1 span { color: var(--red); }
+    .header .subtitle {
+      font-size: 19px;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 3px;
+      background: linear-gradient(to right, transparent, var(--gold), var(--red), transparent);
+      margin: 48px 0;
+      border-radius: 2px;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--navy);
+      text-align: center;
+      margin-bottom: 24px;
+      opacity: 0.7;
+    }
+
+    /* ══════════════════════════════════
+       ORCHESTRATOR BANNER
+    ══════════════════════════════════ */
+    .orchestrator {
+      background: var(--navy);
+      color: white;
+      border-radius: 14px;
+      padding: 22px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .orchestrator .orch-icon { font-size: 36px; flex-shrink: 0; }
+    .orchestrator .orch-text h3 {
+      font-size: 19px;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .orchestrator .orch-text p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+    }
+    .orch-badge {
+      margin-left: auto;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════════
+       FLOW LAYOUT
+    ══════════════════════════════════ */
+    .flow { display: flex; flex-direction: column; align-items: center; }
+
+    /* ── TWO SOURCES ROW ── */
+    .sources-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      width: 100%;
+      max-width: 760px;
+    }
+    .source-card {
+      background: var(--cream);
+      border: 2px solid var(--gold);
+      border-radius: 16px;
+      padding: 28px 22px;
+      text-align: center;
+    }
+    .source-card .icon { font-size: 44px; display: block; margin-bottom: 12px; }
+    .source-card h3 { font-size: 18px; color: var(--navy); margin-bottom: 8px; font-weight: bold; }
+    .source-card p { font-size: 15px; color: #555; line-height: 1.7; }
+    .source-card .tag {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: var(--navy);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 10px;
+    }
+
+    /* ── ARROW ── */
+    .arrow-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 0 6px;
+    }
+    .arrow-block .arrow { font-size: 30px; color: var(--gold); line-height: 1; }
+    .arrow-block .arrow-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--navy);
+      opacity: 0.6;
+      margin-top: 3px;
+    }
+
+    /* ── AI ENGINE ── */
+    .ai-engine {
+      background: var(--navy);
+      color: white;
+      border-radius: 18px;
+      padding: 30px 40px;
+      text-align: center;
+      max-width: 520px;
+      width: 100%;
+    }
+    .ai-engine .icon { font-size: 48px; display: block; margin-bottom: 12px; }
+    .ai-engine h3 { font-size: 24px; margin-bottom: 10px; color: var(--gold); }
+    .ai-engine p { font-size: 16px; line-height: 1.7; opacity: 0.9; }
+
+    /* ── OUTPUTS GRID ── */
+    .outputs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      width: 100%;
+      max-width: 900px;
+    }
+    .output-card {
+      background: white;
+      border: 2px solid var(--gold);
+      border-top: 4px solid var(--gold);
+      border-radius: 12px;
+      padding: 20px 12px;
+      text-align: center;
+    }
+    .output-card .icon { font-size: 32px; display: block; margin-bottom: 10px; }
+    .output-card h4 { font-size: 15px; font-weight: bold; color: var(--navy); margin-bottom: 6px; }
+    .output-card p { font-size: 13px; color: #666; line-height: 1.6; }
+
+    /* ══════════════════════════════════
+       BOOK LAUNCH SECTION
+    ══════════════════════════════════ */
+    .book-launch {
+      background: var(--red);
+      color: white;
+      border-radius: 18px;
+      padding: 32px 36px;
+      width: 100%;
+      margin-top: 0;
+    }
+    .book-launch-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .book-launch-header .icon { font-size: 44px; flex-shrink: 0; }
+    .book-launch-header h3 { font-size: 23px; line-height: 1.3; }
+    .book-launch-header p { font-size: 15px; opacity: 0.9; margin-top: 6px; line-height: 1.6; }
+
+    .launch-tracks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .launch-track {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.30);
+      border-radius: 12px;
+      padding: 18px 14px;
+      text-align: center;
+    }
+    .launch-track .icon { font-size: 28px; display: block; margin-bottom: 8px; }
+    .launch-track h4 { font-size: 15px; font-weight: bold; margin-bottom: 6px; color: var(--gold); }
+    .launch-track p { font-size: 13px; line-height: 1.6; opacity: 0.9; }
+
+    /* ── WEBSITE BOX ── */
+    .website-box {
+      background: var(--peach);
+      border: 2px solid var(--gold);
+      border-radius: 16px;
+      padding: 28px 40px;
+      text-align: center;
+      max-width: 480px;
+      width: 100%;
+    }
+    .website-box .icon { font-size: 42px; display: block; margin-bottom: 12px; }
+    .website-box h3 { font-size: 22px; color: var(--navy); margin-bottom: 8px; font-weight: bold; }
+    .website-box p { font-size: 15px; color: #555; line-height: 1.7; }
+
+    /* ── RESULTS ── */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      width: 100%;
+      max-width: 860px;
+    }
+    .result-card {
+      background: var(--navy);
+      border-radius: 14px;
+      padding: 26px 18px;
+      text-align: center;
+      color: white;
+    }
+    .result-card .icon { font-size: 36px; display: block; margin-bottom: 10px; }
+    .result-card p { font-size: 16px; line-height: 1.6; }
+
+    /* ══════════════════════════════════
+       MONTHLY RHYTHM
+    ══════════════════════════════════ */
+    .rhythm {
+      background: var(--cream);
+      border: 2px solid var(--gold);
+      border-radius: 18px;
+      padding: 36px;
+    }
+    .rhythm h2 { font-size: 23px; text-align: center; margin-bottom: 30px; color: var(--navy); }
+
+    .rhythm-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+    }
+    .rhythm-step { text-align: center; padding: 0 10px; position: relative; }
+    .rhythm-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -10px;
+      top: 19px;
+      font-size: 22px;
+      color: var(--gold);
+    }
+    .step-circle {
+      width: 48px; height: 48px;
+      background: var(--red);
+      color: white;
+      border-radius: 50%;
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+    }
+    .rhythm-step h4 { font-size: 14px; font-weight: bold; color: var(--navy); margin-bottom: 6px; }
+    .rhythm-step p { font-size: 13px; color: #666; line-height: 1.5; }
+
+    /* ══════════════════════════════════
+       COST CALLOUT
+    ══════════════════════════════════ */
+    .cost-callout {
+      background: var(--gold);
+      border-radius: 16px;
+      padding: 30px 40px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .cost-callout .big { font-size: 80px; font-weight: bold; color: var(--navy); line-height: 1; flex-shrink: 0; }
+    .cost-callout h3 { font-size: 24px; color: var(--navy); margin-bottom: 10px; }
+    .cost-callout p { font-size: 16px; color: var(--navy); line-height: 1.7; opacity: 0.85; }
+
+    /* ── FOOTER ── */
+    .footer { text-align: center; margin-top: 60px; font-size: 14px; color: #999; }
+
+    @media (max-width: 680px) {
+      .sources-row { grid-template-columns: 1fr; }
+      .outputs-grid { grid-template-columns: repeat(2, 1fr); }
+      .launch-tracks { grid-template-columns: 1fr; }
+      .results-grid { grid-template-columns: 1fr; }
+      .rhythm-steps { grid-template-columns: 1fr 1fr; }
+      .rhythm-step::after { display: none; }
+      .cost-callout { flex-direction: column; text-align: center; }
+      .orchestrator { flex-wrap: wrap; }
+      .orch-badge { margin-left: 0; }
+      body { padding: 32px 16px 60px; border: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <a href="workflows.html" class="breadcrumb">← Workflows</a>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="eyebrow">Mahjong Tarot</div>
+    <h1>The <span>1 Man Company</span> Plan</h1>
+    <p class="subtitle">
+      An AI-powered system that turns the Mahjong Tarot book and monthly conversations
+      into a steady stream of content — and handles the full launch of the next book —
+      with one person orchestrating everything.
+    </p>
+  </div>
+
+  <!-- ORCHESTRATOR BANNER -->
+  <div class="orchestrator">
+    <div class="orch-icon">🎼</div>
+    <div class="orch-text">
+      <h3>One Man Orchestrates Everything</h3>
+      <p>One human in the loop. Reviews, approves, and directs — the AI does the heavy lifting. No large team required.</p>
+    </div>
+    <div class="orch-badge">1 Human</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FLOW -->
+  <div class="section-label">How the System Works — Start to Finish</div>
+  <div class="flow">
+
+    <!-- SOURCES -->
+    <div class="sources-row">
+      <div class="source-card">
+        <span class="icon">📖</span>
+        <h3>The Mahjong Tarot Book</h3>
+        <p>Everything already written becomes permanent source material. The ideas, stories, and wisdom are loaded into the system once and drawn on continuously.</p>
+        <span class="tag">Permanent Source</span>
+      </div>
+      <div class="source-card">
+        <span class="icon">🎙️</span>
+        <h3>Monthly Conversation</h3>
+        <p>Once a month, a single conversation — that's it. The recording is transcribed and fed into the system, keeping content fresh, personal, and current.</p>
+        <span class="tag">Monthly Source</span>
+      </div>
+    </div>
+
+    <div class="arrow-block">
+      <div class="arrow">↓</div>
+      <div class="arrow-label">Both feed into</div>
+    </div>
+
+    <!-- AI ENGINE -->
+    <div class="ai-engine">
+      <span class="icon">🤖</span>
+      <h3>The AI Engine</h3>
+      <p>
+        Reads the book. Listens to the monthly conversation.
+        Understands the voice, ideas, and audience.
+        Then produces a full month of content — automatically.
+      </p>
+    </div>
+
+    <div class="arrow-block">
+      <div class="arrow">↓</div>
+      <div class="arrow-label">Automatically creates</div>
+    </div>
+
+    <!-- ONGOING CONTENT OUTPUTS -->
+    <div class="outputs-grid">
+      <div class="output-card">
+        <span class="icon">✍️</span>
+        <h4>Blog Articles</h4>
+        <p>Long-form pieces that show up when people search for Mahjong, Tarot &amp; wisdom on Google</p>
+      </div>
+      <div class="output-card">
+        <span class="icon">📱</span>
+        <h4>Social Media</h4>
+        <p>Tips, quotes &amp; stories for Facebook and Instagram — posted automatically on schedule</p>
+      </div>
+      <div class="output-card">
+        <span class="icon">📧</span>
+        <h4>Email Newsletter</h4>
+        <p>Weekly emails that keep the community engaged, curious, and coming back for more</p>
+      </div>
+      <div class="output-card">
+        <span class="icon">🖼️</span>
+        <h4>Custom Images</h4>
+        <p>AI-generated artwork created to match each piece of content — mystical and on-brand</p>
+      </div>
+    </div>
+
+    <div class="arrow-block">
+      <div class="arrow">↓</div>
+      <div class="arrow-label">Plus, in parallel</div>
+    </div>
+
+    <!-- BOOK LAUNCH -->
+    <div class="book-launch">
+      <div class="book-launch-header">
+        <span class="icon">🚀</span>
+        <div>
+          <h3>Next Book Launch Campaign</h3>
+          <p>The AI doesn't just handle regular content. It runs the entire launch campaign for the next book — from the first announcement through post-launch follow-up.</p>
+        </div>
+      </div>
+      <div class="launch-tracks">
+        <div class="launch-track">
+          <span class="icon">📣</span>
+          <h4>Outreach &amp; PR</h4>
+          <p>Press releases, media pitches, podcast outreach, and reviewer requests — all drafted by AI, approved, and sent on schedule</p>
+        </div>
+        <div class="launch-track">
+          <span class="icon">🌐</span>
+          <h4>Website Updates</h4>
+          <p>Launch landing page, pre-order page, countdown banners, and book description pages — automatically built and updated</p>
+        </div>
+        <div class="launch-track">
+          <span class="icon">📆</span>
+          <h4>Launch Calendar</h4>
+          <p>A week-by-week sequence of announcements, emails, and social posts — timed perfectly from pre-launch through release day</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow-block">
+      <div class="arrow">↓</div>
+      <div class="arrow-label">Everything publishes to</div>
+    </div>
+
+    <!-- WEBSITE -->
+    <div class="website-box">
+      <span class="icon">🌐</span>
+      <h3>MahjongTarot.com</h3>
+      <p>A fast, beautiful, fully-owned website. Content appears automatically. No copying and pasting. No manual uploads. It just works.</p>
+    </div>
+
+    <div class="arrow-block">
+      <div class="arrow">↓</div>
+      <div class="arrow-label">Which builds</div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="results-grid">
+      <div class="result-card">
+        <span class="icon">📈</span>
+        <p>More people discovering Mahjong Tarot on Google every single month</p>
+      </div>
+      <div class="result-card">
+        <span class="icon">👥</span>
+        <p>A real, growing community of fans drawn to the wisdom and the tiles</p>
+      </div>
+      <div class="result-card">
+        <span class="icon">📚</span>
+        <p>A bigger audience for the next book — and every one that follows</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- MONTHLY RHYTHM -->
+  <div class="section-label">What the Monthly Rhythm Looks Like</div>
+  <div class="rhythm">
+    <h2>🗓️ The Only Job Is the Monthly Conversation</h2>
+    <div class="rhythm-steps">
+      <div class="rhythm-step">
+        <div class="step-circle">1</div>
+        <h4>Monthly Call</h4>
+        <p>Talk for about an hour — a story, a lesson, whatever's on the mind. That's it.</p>
+      </div>
+      <div class="rhythm-step">
+        <div class="step-circle">2</div>
+        <h4>AI Reads &amp; Writes</h4>
+        <p>The AI combines the call with the book and drafts a full month of content.</p>
+      </div>
+      <div class="rhythm-step">
+        <div class="step-circle">3</div>
+        <h4>One Person Reviews</h4>
+        <p>Looks it over, makes any adjustments, and gives the green light.</p>
+      </div>
+      <div class="rhythm-step">
+        <div class="step-circle">4</div>
+        <h4>It Goes Live</h4>
+        <p>Content publishes automatically on schedule throughout the month.</p>
+      </div>
+      <div class="rhythm-step">
+        <div class="step-circle">5</div>
+        <h4>Community Grows</h4>
+        <p>Fans engage, share, and discover the books — every month, compounding.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- COST -->
+  <div class="cost-callout">
+    <div class="big">80%</div>
+    <div>
+      <h3>Lower Monthly Costs</h3>
+      <p>
+        Moving off a rented platform onto something we actually own cuts the monthly fees dramatically.
+        We stop paying rent on a house that doesn't belong to us —
+        and redirect that money into building something real, lasting, and entirely ours.
+      </p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- BOTTOM LINE -->
+  <div style="text-align:center; max-width:640px; margin: 0 auto;">
+    <div class="section-label">The Bottom Line</div>
+    <h2 style="font-size:30px; line-height:1.4; margin-bottom:16px; color:var(--navy);">
+      Do what you love.<br/>The machine does the rest.
+    </h2>
+    <p style="font-size:18px; color:#666; line-height:1.9;">
+      The book becomes content. The conversations become campaigns.
+      The next book gets a full professional launch.
+      And a community of Mahjong and Tarot enthusiasts discovers the work —
+      week after week, without anyone burning out trying to keep up by hand.
+    </p>
+  </div>
+
+  <div class="footer">
+    Prepared by Dave Hajdu &nbsp;·&nbsp; Mahjong Tarot &nbsp;·&nbsp; April 2026
+  </div>
+
+</div>
+</body>
+</html>
