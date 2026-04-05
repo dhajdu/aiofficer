@@ -84,7 +84,7 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans
 
 .container-narrow,
 .section-container {
-  max-width: 880px;
+  max-width: 1060px;
   margin: 0 auto;
   padding: 0 48px;
 }
