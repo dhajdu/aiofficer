@@ -460,6 +460,63 @@
       margin-bottom: 28px;
       letter-spacing: 0.04em;
     }
+    .pricing-tiers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .pricing-tier {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 20px 24px;
+      text-align: center;
+    }
+    .pricing-tier.featured {
+      border-color: rgba(111,242,193,0.4);
+      background: rgba(111,242,193,0.06);
+    }
+    .pricing-tier-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 8px;
+    }
+    .pricing-tier.featured .pricing-tier-label {
+      color: var(--mint);
+    }
+    .pricing-tier-price {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 38px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 6px;
+      letter-spacing: -1px;
+    }
+    .pricing-tier.featured .pricing-tier-price {
+      color: var(--mint);
+      font-size: 44px;
+    }
+    .pricing-tier-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+    .pricing-tier.featured .pricing-tier-desc {
+      color: rgba(111,242,193,0.7);
+    }
+    .pricing-deadline {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 24px;
+      letter-spacing: 0.02em;
+    }
+    .pricing-deadline strong {
+      color: rgba(255,255,255,0.6);
+    }
     .pricing-includes {
       display: flex;
       flex-wrap: wrap;
@@ -477,6 +534,9 @@
       font-size: 13px;
       color: rgba(255,255,255,0.75);
       font-weight: 500;
+    }
+    @media (max-width: 560px) {
+      .pricing-tiers { grid-template-columns: 1fr; }
     }
 
     /* ── DELIVERABLES ── */
