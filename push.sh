@@ -31,6 +31,7 @@ git add \
   certification.html \
   coaching.html \
   community.html \
+  retreat.html \
   favicon.svg \
   og-image.jpg
 # Stage any deletions (removed folders like agentic-ai, circle-embeds, generative-ai)
