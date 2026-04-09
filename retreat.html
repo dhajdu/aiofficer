@@ -837,6 +837,25 @@
               <div class="field-error"></div>
             </div>
 
+            <div class="form-field full" data-field="ai_fluency">
+              <label>What's your AI fluency?</label>
+              <div class="radio-group">
+                <div class="radio-option">
+                  <input type="radio" id="fluency-newbie" name="ai_fluency" value="newbie" required>
+                  <label for="fluency-newbie">Newbie</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="fluency-prompts" name="ai_fluency" value="writing_prompts">
+                  <label for="fluency-prompts">Writing prompts</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="fluency-agents" name="ai_fluency" value="built_agents">
+                  <label for="fluency-agents">Built agents</label>
+                </div>
+              </div>
+              <div class="field-error"></div>
+            </div>
+
             <div class="form-field full" data-field="goal">
               <label for="goal">What's the #1 thing you'd want to walk out with?</label>
               <textarea id="goal" name="goal" required placeholder="e.g. A deployed marketing-ops agent, a hired AI engineer, a validated product idea…"></textarea>
@@ -959,6 +978,7 @@
         retreat_date: "Pick the retreat you're interested in.",
         angle:        "Pick the angle that pulls you most. Or both.",
         region:       "Let us know how you feel about traveling.",
+        ai_fluency:   "Give us a sense of where you're at with AI. No wrong answer.",
         goal:         "Tell us the one thing you'd love to walk out with.",
         interest:     "Tick at least one so we know how to keep you in the loop."
       };
@@ -1012,6 +1032,7 @@
         check('retreat_date', ERRORS.retreat_date);
         check('angle', ERRORS.angle);
         check('region', ERRORS.region);
+        check('ai_fluency', ERRORS.ai_fluency);
         check('goal', ERRORS.goal);
 
         // At least one checkbox must be ticked
@@ -1060,6 +1081,7 @@
           company: fd.get('company') || null,
           angle: fd.get('angle'),
           region: fd.get('region'),
+          ai_fluency: fd.get('ai_fluency'),
           retreat_date: fd.get('retreat_date'),
           waitlist_june: fd.get('waitlist_june') === 'yes',
           notify_next_session: fd.get('notify_next_session') === 'yes',

@@ -409,6 +409,7 @@
                 <th data-sort="company">Company <span class="sort-indicator">↕</span></th>
                 <th data-sort="angle">Angle <span class="sort-indicator">↕</span></th>
                 <th data-sort="region">Region <span class="sort-indicator">↕</span></th>
+                <th data-sort="ai_fluency">AI fluency <span class="sort-indicator">↕</span></th>
                 <th data-sort="retreat_date">Retreat <span class="sort-indicator">↕</span></th>
                 <th data-sort="lead_status">Status <span class="sort-indicator">↕</span></th>
                 <th>Goal</th>
@@ -517,7 +518,7 @@
 
       // ── Data ──────────────────────────────────────
       async function loadRows() {
-        tbody.innerHTML = '<tr><td colspan="11" class="muted" style="padding:40px 20px;text-align:center;">Loading…</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="12" class="muted" style="padding:40px 20px;text-align:center;">Loading…</td></tr>';
         emptyState.style.display = 'none';
 
         const { data, error } = await sb
@@ -527,7 +528,7 @@
 
         if (error) {
           console.error(error);
-          tbody.innerHTML = '<tr><td colspan="11" class="muted" style="padding:40px 20px;text-align:center;color:#991b1b;">' +
+          tbody.innerHTML = '<tr><td colspan="12" class="muted" style="padding:40px 20px;text-align:center;color:#991b1b;">' +
             (error.message || 'Failed to load rows.') + '</td></tr>';
           return;
         }
@@ -610,6 +611,7 @@
         ).join('');
         const angle = r.angle ? `<span class="pill-mini">${escapeHtml(r.angle)}</span>` : '';
         const region = r.region ? `<span class="pill-mini">${escapeHtml(r.region.replace(/_/g, ' '))}</span>` : '';
+        const aiFluency = r.ai_fluency ? `<span class="pill-mini">${escapeHtml(r.ai_fluency.replace(/_/g, ' '))}</span>` : '';
         const role = r.role ? `<span class="pill-mini">${escapeHtml(r.role)}</span>` : '';
 
         return `
@@ -621,6 +623,7 @@
             <td>${escapeHtml(r.company || '')}</td>
             <td>${angle}</td>
             <td>${region}</td>
+            <td>${aiFluency}</td>
             <td class="mono nowrap">${escapeHtml(r.retreat_date || '')}</td>
             <td>
               <span class="status-dot status-${escapeHtml(r.lead_status || 'new')}"></span>
@@ -706,7 +709,7 @@
         const rows = getFilteredSortedRows();
         if (rows.length === 0) return;
         const cols = [
-          'created_at','name','email','role','company','angle','region',
+          'created_at','name','email','role','company','angle','region','ai_fluency',
           'retreat_date','waitlist_june','notify_next_session',
           'lead_status','lead_source','goal','notes'
         ];
