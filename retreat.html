@@ -395,6 +395,28 @@
     }
     .form-field textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
 
+    /* Inline error state */
+    .field-error {
+      display: none;
+      font-size: 13px;
+      color: #b91c1c;
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+    .form-field.has-error .field-error { display: block; }
+    .form-field.has-error input[type="text"],
+    .form-field.has-error input[type="email"],
+    .form-field.has-error select,
+    .form-field.has-error textarea {
+      border-color: #ef4444;
+      background: #fef2f2;
+    }
+    .form-field.has-error .radio-option label,
+    .form-field.has-error .checkbox-row {
+      border-color: #ef4444;
+    }
+    .form-field.has-error > label:first-child { color: #b91c1c; }
+
     .radio-group { display: flex; flex-wrap: wrap; gap: 8px; }
     .radio-group.stacked { flex-direction: column; flex-wrap: nowrap; gap: 10px; }
     .radio-group.stacked .radio-option { width: 100%; }
@@ -587,7 +609,7 @@
 
       <div class="offer-card featured">
         <div class="offer-label">Angle 02 · For Executives</div>
-        <div class="offer-heading">Reinvent a department</div>
+        <div class="offer-heading">Re-invent Business Operations</div>
         <div class="offer-desc">You're bringing agents into marketing, ops, product, or customer success. You want to rewire how your team works, and leave with working agents your team can actually use on Monday.</div>
         <div class="offer-list">
           <div class="offer-item"><div class="offer-dot"></div><span>Pick the department, map the workflows</span></div>
@@ -735,22 +757,24 @@
 
     <div class="form-section">
       <div class="form-card">
-        <p class="form-intro">Seats are capped at 30 for the June 19 to 21, 2026 cohort. Drop your details and we'll be in touch as the programme firms up. Takes 60 seconds.</p>
+        <p class="form-intro">Seats are capped at 30 for the June 19 to 21, 2026 cohort. Drop your details and we'll be in touch as the programme firms up. Takes about 90 seconds.</p>
 
         <form id="retreatForm" novalidate>
           <div class="form-grid">
 
-            <div class="form-field">
+            <div class="form-field" data-field="name">
               <label for="name">Your name</label>
               <input type="text" id="name" name="name" required autocomplete="name" placeholder="Jane Doe">
+              <div class="field-error"></div>
             </div>
 
-            <div class="form-field">
+            <div class="form-field" data-field="email">
               <label for="email">Email</label>
               <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@company.com">
+              <div class="field-error"></div>
             </div>
 
-            <div class="form-field full">
+            <div class="form-field full" data-field="role">
               <label>Are you a…</label>
               <div class="radio-group">
                 <div class="radio-option">
@@ -762,21 +786,24 @@
                   <label for="role-executive">Executive</label>
                 </div>
               </div>
+              <div class="field-error"></div>
             </div>
 
-            <div class="form-field full">
-              <label for="company">Company name <span class="optional">(optional)</span></label>
-              <input type="text" id="company" name="company" autocomplete="organization" placeholder="Acme Inc.">
+            <div class="form-field full" data-field="company">
+              <label for="company">Company name</label>
+              <input type="text" id="company" name="company" required autocomplete="organization" placeholder="Acme Inc.">
+              <div class="field-error"></div>
             </div>
 
-            <div class="form-field full">
+            <div class="form-field full" data-field="retreat_date">
               <label for="retreat-date">Retreat date</label>
               <select id="retreat-date" name="retreat_date" required>
-                <option value="2026-06-19-nha-trang" selected>June 19–21, 2026 · Nha Trang</option>
+                <option value="2026-06-19-nha-trang" selected>June 19 to 21, 2026 · Nha Trang</option>
               </select>
+              <div class="field-error"></div>
             </div>
 
-            <div class="form-field full">
+            <div class="form-field full" data-field="angle">
               <label>Which angle is most interesting to you?</label>
               <div class="radio-group stacked">
                 <div class="radio-option">
@@ -792,9 +819,10 @@
                   <label for="angle-both">Or both</label>
                 </div>
               </div>
+              <div class="field-error"></div>
             </div>
 
-            <div class="form-field full">
+            <div class="form-field full" data-field="region">
               <label>Preferred region</label>
               <div class="radio-group stacked">
                 <div class="radio-option">
@@ -806,14 +834,16 @@
                   <label for="region-close">I would prefer to do something closer to home</label>
                 </div>
               </div>
+              <div class="field-error"></div>
             </div>
 
-            <div class="form-field full">
-              <label for="goal">What's the #1 thing you'd want to walk out with? <span class="optional">(optional)</span></label>
-              <textarea id="goal" name="goal" placeholder="e.g. A deployed marketing-ops agent stack, a hired AI engineer, a validated agent-first product thesis…"></textarea>
+            <div class="form-field full" data-field="goal">
+              <label for="goal">What's the #1 thing you'd want to walk out with?</label>
+              <textarea id="goal" name="goal" required placeholder="e.g. A deployed marketing-ops agent, a hired AI engineer, a validated product idea…"></textarea>
+              <div class="field-error"></div>
             </div>
 
-            <div class="form-field full">
+            <div class="form-field full" data-field="interest">
               <div class="checkbox-grid">
                 <div class="checkbox-row">
                   <input type="checkbox" id="waitlist-june" name="waitlist_june" value="yes">
@@ -830,6 +860,7 @@
                   </label>
                 </div>
               </div>
+              <div class="field-error"></div>
             </div>
 
           </div>
@@ -918,13 +949,108 @@
       const btn = document.getElementById('submitBtn');
       const success = document.getElementById('formSuccess');
 
+      // Friendly error messages per field
+      const ERRORS = {
+        name:         "We'll need your name so we can say hi.",
+        email:        "Drop your email so we can get back to you.",
+        emailFormat:  "That email doesn't look quite right. Mind double-checking?",
+        role:         "Let us know which one fits you best.",
+        company:      "What company are you with? If you're between things, any name is fine.",
+        retreat_date: "Pick the retreat you're interested in.",
+        angle:        "Pick the angle that pulls you most. Or both.",
+        region:       "Let us know how you feel about traveling.",
+        goal:         "Tell us the one thing you'd love to walk out with.",
+        interest:     "Tick at least one so we know how to keep you in the loop."
+      };
+
+      function clearError(fieldEl) {
+        fieldEl.classList.remove('has-error');
+        const msg = fieldEl.querySelector('.field-error');
+        if (msg) msg.textContent = '';
+      }
+
+      function setError(fieldEl, message) {
+        fieldEl.classList.add('has-error');
+        const msg = fieldEl.querySelector('.field-error');
+        if (msg) msg.textContent = message;
+      }
+
+      function clearAllErrors() {
+        form.querySelectorAll('.form-field').forEach(clearError);
+      }
+
+      function validate() {
+        clearAllErrors();
+        let firstInvalid = null;
+        const fd = new FormData(form);
+        const check = (name, missingMsg, extraCheck) => {
+          const val = (fd.get(name) || '').toString().trim();
+          const fieldEl = form.querySelector('[data-field="' + name + '"]');
+          if (!val) {
+            setError(fieldEl, missingMsg);
+            if (!firstInvalid) firstInvalid = fieldEl;
+            return false;
+          }
+          if (extraCheck) {
+            const extraErr = extraCheck(val);
+            if (extraErr) {
+              setError(fieldEl, extraErr);
+              if (!firstInvalid) firstInvalid = fieldEl;
+              return false;
+            }
+          }
+          return true;
+        };
+
+        check('name', ERRORS.name);
+        check('email', ERRORS.email, v => {
+          const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+          return emailOk ? null : ERRORS.emailFormat;
+        });
+        check('role', ERRORS.role);
+        check('company', ERRORS.company);
+        check('retreat_date', ERRORS.retreat_date);
+        check('angle', ERRORS.angle);
+        check('region', ERRORS.region);
+        check('goal', ERRORS.goal);
+
+        // At least one checkbox must be ticked
+        const waitlist = fd.get('waitlist_june') === 'yes';
+        const notify = fd.get('notify_next_session') === 'yes';
+        const interestFieldEl = form.querySelector('[data-field="interest"]');
+        if (!waitlist && !notify) {
+          setError(interestFieldEl, ERRORS.interest);
+          if (!firstInvalid) firstInvalid = interestFieldEl;
+        }
+
+        if (firstInvalid) {
+          firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          const focusable = firstInvalid.querySelector('input, select, textarea');
+          if (focusable) setTimeout(() => focusable.focus({ preventScroll: true }), 300);
+          return false;
+        }
+        return true;
+      }
+
+      // Clear a field's error as soon as the user starts fixing it
+      form.addEventListener('input', function (e) {
+        const fieldEl = e.target.closest('.form-field');
+        if (fieldEl && fieldEl.classList.contains('has-error')) clearError(fieldEl);
+      });
+      form.addEventListener('change', function (e) {
+        const fieldEl = e.target.closest('.form-field');
+        if (fieldEl && fieldEl.classList.contains('has-error')) clearError(fieldEl);
+        // Also clear the interest error whenever any checkbox toggles
+        if (e.target.type === 'checkbox') {
+          const interestFieldEl = form.querySelector('[data-field="interest"]');
+          if (interestFieldEl) clearError(interestFieldEl);
+        }
+      });
+
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
 
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
-        }
+        if (!validate()) return;
 
         const fd = new FormData(form);
         const payload = {
