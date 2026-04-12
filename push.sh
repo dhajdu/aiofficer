@@ -23,6 +23,7 @@ fi
 echo "📋 Staging changes..."
 git add \
   blog/ \
+  blueprints/ \
   coaching-sessions/ \
   workflows/ \
   shared/ \
