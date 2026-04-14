@@ -7,7 +7,7 @@ import { POSTS } from '@/lib/posts-data';
 import ScrollReveal from '@/components/ScrollReveal';
 
 export const metadata: Metadata = {
-  title: 'AI Leadership Blog — CAIO Coach',
+  title: 'AI Leadership Blog - CAIO Coach',
   description: 'Practical AI leadership insights for executives and HR leaders. How to lead AI, build AI-ready teams, and stay ahead in the age of generative and agentic AI.',
 };
 

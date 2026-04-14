@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return { title: 'Post Not Found' };
 
   return {
-    title: `${post.title} — CAIO Coach`,
+    title: `${post.title} - CAIO Coach`,
     description: post.excerpt,
     openGraph: {
       title: post.title,
@@ -189,13 +189,13 @@ export default async function BlogPost({ params }: Props) {
         {/* Prev/Next */}
         <div className="border-t border-border pt-8 mt-14 grid grid-cols-1 md:grid-cols-2 gap-4">
           {prevPost && (
-            <Link href={`/blog/${prevPost.slug}`} className="border border-border rounded-xl p-5 no-underline hover:border-blue transition-colors bg-white">
+            <Link href={`/blog/${prevPost.slug}`} aria-label={`Previous post: ${prevPost.title}`} className="border border-border rounded-xl p-5 no-underline hover:border-blue transition-colors bg-white">
               <div className="text-[0.75rem] text-muted-foreground uppercase tracking-[0.1em] mb-1.5">&larr; Previous Post</div>
               <div className="text-[0.95rem] font-semibold text-foreground">{prevPost.title}</div>
             </Link>
           )}
           {nextPost && (
-            <Link href={`/blog/${nextPost.slug}`} className="border border-border rounded-xl p-5 no-underline hover:border-blue transition-colors bg-white">
+            <Link href={`/blog/${nextPost.slug}`} aria-label={`Next post: ${nextPost.title}`} className="border border-border rounded-xl p-5 no-underline hover:border-blue transition-colors bg-white">
               <div className="text-[0.75rem] text-muted-foreground uppercase tracking-[0.1em] mb-1.5">Next Post &rarr;</div>
               <div className="text-[0.95rem] font-semibold text-foreground">{nextPost.title}</div>
             </Link>

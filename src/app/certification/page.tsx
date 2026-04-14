@@ -6,11 +6,11 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { GraduationCap, Globe, SatelliteDish, Zap } from "lucide-react";
 
 export const metadata = {
-  title: "AI Officer Certification — CAIO Coach",
+  title: "AI Officer Certification - CAIO Coach",
   description:
-    "Earn your AI Officer certification across three tracks — Generative AI, Agentic AI, and AI Leadership (CAIO). $99/month. Live coaching included. Join leaders from 30+ countries.",
+    "Earn your AI Officer certification across three tracks: Generative AI, Agentic AI, and AI Leadership (CAIO). $99/month. Live coaching included. Join leaders from 30+ countries.",
   openGraph: {
-    title: "Become a Certified CAIO — CAIO Coach",
+    title: "Become a Certified CAIO - CAIO Coach",
     description:
       "Earn the credential that proves you can lead AI strategy at the executive level. Three certification tracks, live coaching included. $99/month.",
     type: "website",
@@ -25,7 +25,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Become a Certified CAIO — CAIO Coach",
+    title: "Become a Certified CAIO - CAIO Coach",
     description:
       "Earn the credential that proves you can lead AI strategy at the executive level.",
     images: ["https://www.caiocoach.com/images/og-certification.png"],

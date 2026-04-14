@@ -23,8 +23,7 @@ export default function Footer() {
                 { label: 'Certification', href: '/certification' },
                 { label: 'Community', href: '/community' },
                 { label: '100 Frameworks', href: '/resources/100-business-frameworks' },
-                { label: 'Blueprints', href: '/blueprints' },
-                { label: 'Workflows', href: '/workflows' },
+                { label: 'Retreat', href: '/retreat' },
               ].map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-[13px] text-white/60 hover:text-mint transition-colors">{link.label}</Link>
@@ -75,7 +74,7 @@ export default function Footer() {
         </div>
         <div className="border-t border-white/[0.07] pt-6">
           <p className="text-[11.5px] text-white/30 tracking-wide">
-            Copyright, 2025 | AI Officer Institute LLC | USA
+            Copyright, {new Date().getFullYear()} | AI Officer Institute LLC | USA
           </p>
         </div>
       </div>

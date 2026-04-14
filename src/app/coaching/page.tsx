@@ -78,19 +78,17 @@ export default function CoachingPage() {
                   </Badge>
 
                   <p className="font-mono text-[12px] font-bold text-muted-foreground tracking-[0.05em] uppercase mb-2">
-                    Thursday, 9 Apr 2026 &middot; 11:30 AM GMT+7
+                    Thursday, 17 Apr 2026 &middot; 11:30 AM GMT+7
                   </p>
 
                   <h2 className="text-[20px] font-bold text-foreground tracking-[-0.3px] leading-[1.25] mb-2.5">
-                    Setting Up My Folder Structure in Cowork + Automating Social
-                    Media
+                    Building AI Workflows That Run Without You
                   </h2>
 
                   <p className="text-[14px] text-muted-foreground leading-[1.65] mb-4.5">
-                    How to organise a Cowork project with the right folder
-                    structure and instructions so Claude stays on-brand, then
-                    building a workflow to automate social media content end to
-                    end.
+                    How to set up agentic workflows that execute end to end
+                    without manual intervention. From trigger to output,
+                    building systems that ship while you sleep.
                   </p>
 
                   <div className="flex items-center gap-2.5 pt-3.5 border-t border-surface">
@@ -100,8 +98,8 @@ export default function CoachingPage() {
                     <div className="flex items-center gap-2">
                       <div className="w-[34px] h-[34px] rounded-full overflow-hidden flex-shrink-0">
                         <Image
-                          src="/images/dru-nguyen-headshot.webp"
-                          alt="Dru"
+                          src="/images/dave-portrait.webp"
+                          alt="Dave"
                           width={34}
                           height={34}
                           className="object-cover w-full h-full rounded-full"
@@ -109,10 +107,10 @@ export default function CoachingPage() {
                       </div>
                       <div>
                         <div className="text-[12px] font-semibold text-muted-foreground">
-                          Dru
+                          Dave
                         </div>
                         <div className="text-[11px] text-muted-foreground">
-                          Founder &middot; Skylight
+                          Founder &middot; CAIO Coach
                         </div>
                       </div>
                     </div>
@@ -130,6 +128,49 @@ export default function CoachingPage() {
               </div>
 
               <div className="flex flex-col gap-3">
+                {/* Session 2 - Dru topic */}
+                <Card>
+                  <CardContent className="p-5">
+                    <div className="flex items-center justify-between gap-3 mb-1">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-[10px] font-bold text-muted-foreground bg-surface border border-border rounded-[5px] px-2 py-0.5 whitespace-nowrap">
+                          9 Apr 2026
+                        </span>
+                        <span className="text-[12px] font-semibold text-muted-foreground">
+                          Dave Hajdu
+                        </span>
+                      </div>
+                      <span className="text-[10px] font-bold tracking-[0.05em] uppercase bg-navy/8 text-navy rounded-[5px] px-2 py-0.5">
+                        CAIO &middot; Session 2
+                      </span>
+                    </div>
+                    <div className="flex flex-col mt-1">
+                      <div className="flex items-start gap-3 py-3 border-t border-surface">
+                        <div className="w-[34px] h-[34px] rounded-full overflow-hidden flex-shrink-0 mt-0.5">
+                          <Image
+                            src="/images/dru-nguyen-headshot.webp"
+                            alt="Dru"
+                            width={34}
+                            height={34}
+                            className="object-cover w-full h-full"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="font-mono text-[10px] font-bold tracking-[0.08em] uppercase text-muted-foreground mb-0.5">
+                            Dru
+                          </div>
+                          <div className="text-[14px] font-semibold text-foreground leading-[1.3] mb-1">
+                            Setting Up Folder Structure in Cowork + Automating Social Media
+                          </div>
+                          <div className="text-[12px] text-muted-foreground leading-[1.55]">
+                            How to organise a Cowork project with the right folder structure and instructions so Claude stays on-brand, then building a workflow to automate social media content end to end.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
                 {/* Session 1 - CAIO multi-topic card */}
                 <Card>
                   <CardContent className="p-5">

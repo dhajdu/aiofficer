@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import ScrollReveal from "@/components/ScrollReveal";
+import { POSTS } from "@/lib/posts-data";
 
 export default function Home() {
   return (
@@ -40,7 +41,7 @@ export default function Home() {
               <div className="relative min-h-[240px] md:min-h-[280px]">
                 <Image
                   src="/images/dave-portrait.webp"
-                  alt="Dave Hajdu — CAIO Coach"
+                  alt="Dave Hajdu - CAIO Coach"
                   fill
                   className="object-cover object-[center_top]"
                 />
@@ -60,7 +61,7 @@ export default function Home() {
                   <p>
                     I coach leaders to get ready. Not to code. Not to become data scientists. To lead the AI half of every workflow they&apos;re already responsible for. The organizational framework I use for that work is the{' '}
                     <Link href="/blog/four-offices-of-the-future" className="text-blue hover:underline">Four Offices of the Future</Link>{' '}
-                    &mdash; Revenue, Talent, Operations, and Innovation. That&apos;s where the ROI lives. Join the{' '}
+                    -- Revenue, Talent, Operations, and Innovation. That&apos;s where the ROI lives. Join the{' '}
                     <Link href="/community" className="text-blue hover:underline">Leadership in the AI Era</Link>{' '}
                     community and work through it with a global cohort of executives.
                   </p>
@@ -172,27 +173,8 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
-            {[
-              {
-                date: 'Apr 2, 2026',
-                title: 'I Raised $9.5M and Still Couldn\'t Read My Own Codebase. Then AI Happened.',
-                excerpt: 'The gap between a founder and the developer stack was never a skill gap. It was a guide gap. That guide exists now.',
-                href: '/blog/i-raised-9-5m-and-couldnt-read-my-own-codebase',
-              },
-              {
-                date: 'Apr 1, 2026',
-                title: 'The CMS Is Dead. AI Killed It.',
-                excerpt: 'Non-technical founders can now control their content and ship like engineers. No WordPress. No plugins. No waiting on developers.',
-                href: '/blog/the-cms-is-dead-ai-killed-it',
-              },
-              {
-                date: 'Mar 30, 2026',
-                title: 'The Hotel AI Personalization Gap',
-                excerpt: 'Hotels have more guest data than ever before. They just don\'t know how to activate it. This is a leadership problem, not a technology problem.',
-                href: '/blog/hotel-ai-personalization-guest-experience',
-              },
-            ].map((post) => (
-              <Link key={post.href} href={post.href}>
+            {POSTS.slice(0, 3).map((post) => (
+              <Link key={post.slug} href={`/blog/${post.slug}`}>
                 <Card className="h-full hover:border-blue/30 hover:shadow-lg hover:-translate-y-px transition-all cursor-pointer">
                   <CardContent className="p-5 flex flex-col gap-2.5 h-full">
                     <span className="font-mono text-[11px] text-muted-foreground">{post.date}</span>

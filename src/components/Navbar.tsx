@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40);
@@ -43,19 +45,26 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-9">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-[13px] font-medium transition-colors hover:opacity-100 ${
-                scrolled
-                  ? 'text-navy opacity-70 hover:text-blue'
-                  : 'text-white/80 hover:text-white'
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href || pathname.startsWith(link.href + '/');
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-[13px] font-medium transition-colors hover:opacity-100 ${
+                  isActive
+                    ? scrolled
+                      ? 'text-blue opacity-100'
+                      : 'text-mint opacity-100'
+                    : scrolled
+                      ? 'text-navy opacity-70 hover:text-blue'
+                      : 'text-white/80 hover:text-white'
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Desktop CTA */}
@@ -92,7 +101,11 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-navy font-medium hover:text-blue transition-colors"
+                className={`text-sm font-medium transition-colors ${
+                  pathname === link.href || pathname.startsWith(link.href + '/')
+                    ? 'text-blue'
+                    : 'text-navy hover:text-blue'
+                }`}
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}

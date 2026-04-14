@@ -13,7 +13,7 @@ export default function SeriesNav({ series, currentDay, totalDays }: SeriesNavPr
   return (
     <div className="text-center mb-9">
       <div className="text-[10px] font-bold tracking-[0.12em] uppercase text-blue font-mono mb-3">
-        Infinite Leverage Blueprint
+        {series.replace(/-/g, ' ')}
       </div>
       <div className="flex gap-1.5 flex-wrap justify-center">
         {Array.from({ length: totalDays }, (_, i) => {
