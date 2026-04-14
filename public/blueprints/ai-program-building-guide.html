@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Program Building Guide — CAIO Coach</title>
+<meta name="description" content="A five-step guide for building any AI-powered workflow. Define the problem, map the data, build the steps, translate to AI instructions, and deploy.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy: #0B1120;
+  --navy-card: #151D2E;
+  --navy-border: #1E293B;
+  --mint: #6FF2C1;
+  --mint-dim: rgba(111, 242, 193, 0.12);
+  --blue: #287BE8;
+  --blue-dim: rgba(40, 123, 232, 0.10);
+  --purple: #A78BFA;
+  --purple-dim: rgba(167, 139, 250, 0.10);
+  --coral: #FB923C;
+  --coral-dim: rgba(251, 146, 60, 0.10);
+  --white: #F8FAFC;
+  --gray-100: #E2E8F0;
+  --gray-200: #CBD5E1;
+  --gray-300: #94A3B8;
+  --gray-400: #64748B;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  background: var(--navy);
+  color: var(--gray-100);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--mint); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+/* ── HERO ── */
+.hero {
+  padding: 80px 0 56px;
+  text-align: center;
+  border-bottom: 1px solid var(--navy-border);
+}
+.breadcrumb {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-300);
+  margin-bottom: 28px;
+}
+.breadcrumb a { color: var(--gray-300); }
+.breadcrumb a:hover { color: var(--mint); text-decoration: none; }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--mint);
+  margin-bottom: 20px;
+}
+.eyebrow::before, .eyebrow::after {
+  content: '';
+  display: block; width: 24px; height: 1px;
+  background: var(--mint); opacity: 0.5;
+}
+h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+.lede {
+  font-size: 17px;
+  color: var(--gray-300);
+  max-width: 640px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* ── BODY ── */
+main { padding: 64px 0 96px; }
+
+.step {
+  margin-bottom: 56px;
+  background: var(--navy-card);
+  border: 1px solid var(--navy-border);
+  border-radius: 14px;
+  padding: 36px 40px;
+  position: relative;
+}
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mint);
+  margin-bottom: 12px;
+}
+.step-num .chip {
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  background: var(--mint-dim);
+  color: var(--mint);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700;
+}
+.step h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+.step p {
+  color: var(--gray-200);
+  margin-bottom: 14px;
+}
+.step ul {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 18px;
+}
+.step ul li {
+  position: relative;
+  padding: 10px 0 10px 22px;
+  border-bottom: 1px dashed var(--navy-border);
+  color: var(--gray-200);
+}
+.step ul li:last-child { border-bottom: none; }
+.step ul li::before {
+  content: '›';
+  position: absolute; left: 2px; top: 8px;
+  color: var(--mint);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+}
+.step ul li strong { color: var(--white); font-weight: 600; }
+
+.callout {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border-left: 3px solid var(--mint);
+  background: var(--mint-dim);
+  border-radius: 0 10px 10px 0;
+  color: var(--white);
+  font-size: 15px;
+}
+.callout.blue { border-left-color: var(--blue); background: var(--blue-dim); }
+.callout.purple { border-left-color: var(--purple); background: var(--purple-dim); }
+.callout.coral { border-left-color: var(--coral); background: var(--coral-dim); }
+.callout em { color: var(--mint); font-style: italic; }
+
+blockquote {
+  margin: 18px 0;
+  padding: 18px 22px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--navy-border);
+  border-radius: 10px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--gray-200);
+  line-height: 1.75;
+}
+blockquote ol { padding-left: 20px; }
+blockquote li { margin-bottom: 4px; }
+
+/* ── QUICK REFERENCE TABLE ── */
+.quickref {
+  margin-top: 48px;
+  background: var(--navy-card);
+  border: 1px solid var(--navy-border);
+  border-radius: 14px;
+  padding: 36px 40px;
+}
+.quickref h2 {
+  font-size: 24px;
+  color: var(--white);
+  margin-bottom: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.quickref table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.quickref th {
+  text-align: left;
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-300);
+  border-bottom: 1px solid var(--navy-border);
+}
+.quickref td {
+  padding: 14px;
+  border-bottom: 1px solid var(--navy-border);
+  color: var(--gray-200);
+  vertical-align: top;
+}
+.quickref tr:last-child td { border-bottom: none; }
+.quickref td:first-child {
+  color: var(--white);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── FOOTER ── */
+.pagefoot {
+  margin-top: 72px;
+  padding: 32px 0;
+  border-top: 1px solid var(--navy-border);
+  text-align: center;
+  color: var(--gray-400);
+  font-size: 13px;
+}
+.pagefoot a { color: var(--mint); }
+
+hr { border: none; border-top: 1px solid var(--navy-border); margin: 40px 0; }
+
+@media (max-width: 640px) {
+  .step { padding: 28px 22px; }
+  .quickref { padding: 28px 22px; }
+  .quickref th, .quickref td { padding: 10px 8px; font-size: 13px; }
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="./">Blueprints</a> &nbsp;/&nbsp; AI Program Building Guide</div>
+    <div class="eyebrow">CAIO Coach &middot; Method</div>
+    <h1>AI Program Building Guide</h1>
+    <p class="lede">Use this guide whenever you need to build a new AI-powered workflow. Walk through the steps in order &mdash; don't skip ahead. Steps 1&ndash;3 are structured: answer the questions before moving on. Steps 4&ndash;5 are collaborative: Claude will take the lead based on what you've defined.</p>
+  </div>
+</section>
+
+<main>
+<div class="container">
+
+  <div class="step">
+    <div class="step-num"><span class="chip">1</span> Step 1</div>
+    <h2>Define the Problem</h2>
+    <p>Before building anything, get crystal clear on what you're solving.</p>
+    <p>Answer these questions:</p>
+    <ul>
+      <li><strong>What is the problem you're trying to solve?</strong> Describe it in plain language.</li>
+      <li><strong>Who has this problem?</strong> Is it you, your team, a client, a customer?</li>
+      <li><strong>What does "solved" look like?</strong> What's the output or outcome when this works?</li>
+      <li><strong>How is this being handled today?</strong> Manual process, not at all, badly?</li>
+      <li><strong>How often does this need to happen?</strong> Once, daily, weekly, on-demand, triggered by an event?</li>
+    </ul>
+    <div class="callout">Don't move to Step 2 until you can clearly articulate: <em>"The problem is _____, and when it's solved, _____ happens."</em></div>
+  </div>
+
+  <div class="step">
+    <div class="step-num"><span class="chip">2</span> Step 2</div>
+    <h2>Decide What Data It Needs</h2>
+    <p>Now figure out what information the program needs to do its job.</p>
+    <p>Answer these questions:</p>
+    <ul>
+      <li><strong>What inputs does this need to run?</strong> Files, text, data from an API, user responses, etc.</li>
+      <li><strong>Where does that data live today?</strong> Google Drive, a database, email, someone's head, a spreadsheet?</li>
+      <li><strong>Is the data available right now</strong>, or does something need to be built to collect it?</li>
+      <li><strong>Does the data change?</strong> Is it static or does it update over time?</li>
+      <li><strong>Are there any sensitivities?</strong> Customer data, financial info, anything requiring access controls?</li>
+    </ul>
+    <div class="callout blue">By the end of this step you should have a clear list: <em>"This program needs X, Y, and Z as inputs, and they come from A, B, and C."</em></div>
+  </div>
+
+  <div class="step">
+    <div class="step-num"><span class="chip">3</span> Step 3</div>
+    <h2>Build the Steps</h2>
+    <p>Map out the workflow from start to finish. Think of it as: if you were explaining this process to a new hire, what would the steps be?</p>
+    <p>Answer these questions:</p>
+    <ul>
+      <li><strong>What is the first thing that happens?</strong> What kicks this off?</li>
+      <li><strong>Walk through each step in order.</strong> What happens, then what, then what?</li>
+      <li><strong>Which steps need a human?</strong> Where does someone need to review, approve, or make a decision?</li>
+      <li><strong>Which steps could an AI handle?</strong> Where is the AI doing the heavy lifting?</li>
+      <li><strong>Which steps are app integrations?</strong> Where does data move between tools or systems automatically?</li>
+      <li><strong>What's the final output?</strong> A document, a message, a decision, an update somewhere?</li>
+    </ul>
+    <p>Write it out as a numbered list. Be specific. For example:</p>
+    <blockquote>
+      <ol>
+        <li>New support ticket comes in via email.</li>
+        <li>AI reads the ticket and categorizes it (bug, feature request, question).</li>
+        <li>AI drafts a response based on category and knowledge base.</li>
+        <li>Human reviews the draft and edits if needed.</li>
+        <li>Human sends the response.</li>
+        <li>AI logs the interaction and updates the tracker.</li>
+      </ol>
+    </blockquote>
+    <div class="callout purple"><strong>Once you've mapped your steps, Claude will build a visual workflow diagram.</strong> This diagram will label each step as Human, AI, or App Integration so you can look at the entire flow and judge whether it makes sense &mdash; as if you were an employee being handed this process on day one.</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num"><span class="chip">4</span> Step 4</div>
+    <h2>Translate the Workflow into AI Instructions</h2>
+    <div class="callout coral"><strong>Claude takes the lead here.</strong> This is the step most people cannot do on their own.</div>
+    <p>You've defined the workflow. Now Claude needs to translate it into language that AI can actually execute. This matters because your workflow contains three types of steps &mdash; human actions, AI-powered steps, and app integrations &mdash; and each one needs to be handled differently:</p>
+    <ul>
+      <li><strong>Human steps</strong> need clear handoff points: what does the person receive, what are they deciding, and where does their output go next?</li>
+      <li><strong>AI steps</strong> need precise instructions: what data comes in, what the AI should do with it, what format the output should be in, and what guardrails to set.</li>
+      <li><strong>App integration steps</strong> need defined triggers and data mappings: what fires the integration, what data passes through, and what the expected result is.</li>
+    </ul>
+    <p>Claude will take your workflow from Step 3 and write the full set of instructions for every AI-powered step. You review them, pressure-test them, and refine them together until they're right.</p>
+    <div class="callout">To kick this off, just say: <em>"Here's my workflow &mdash; please write the AI instructions for it."</em> Then paste or reference what you built in Steps 1&ndash;3.</div>
+  </div>
+
+  <div class="step">
+    <div class="step-num"><span class="chip">5</span> Step 5</div>
+    <h2>Deploy and Schedule</h2>
+    <div class="callout coral"><strong>Claude tells you exactly how to get this running.</strong></div>
+    <p>The workflow is defined. The instructions are written. Now you need to ship it. Claude will walk you through each of these and tell you specifically what to do:</p>
+    <ul>
+      <li><strong>Where does this live?</strong> What repo, what structure, what files need to be created.</li>
+      <li><strong>Does it need a schedule?</strong> If so, Claude will specify the cron schedule and explain how to set it up.</li>
+      <li><strong>How do you deploy it?</strong> Step-by-step: what to commit, where to push, what to configure.</li>
+      <li><strong>How does the team access it?</strong> Exactly how other people will trigger or interact with the workflow.</li>
+      <li><strong>What does monitoring look like?</strong> How you'll know it's working and what to do when it breaks.</li>
+    </ul>
+    <p>This isn't advisory &mdash; Claude should give you concrete instructions you can follow to get the program live.</p>
+  </div>
+
+  <div class="quickref">
+    <h2>Quick Reference</h2>
+    <table>
+      <thead>
+        <tr><th>Step</th><th>You Do</th><th>Claude Does</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1. Define the Problem</td><td>Answer the questions</td><td>Ask follow-ups if anything is unclear</td></tr>
+        <tr><td>2. Decide What Data It Needs</td><td>Identify inputs and sources</td><td>Help you think through gaps</td></tr>
+        <tr><td>3. Build the Steps</td><td>Map the workflow</td><td>Build a visual workflow diagram</td></tr>
+        <tr><td>4. Translate to AI Instructions</td><td>Review and refine</td><td>Write the prompts, handoffs, and integration logic</td></tr>
+        <tr><td>5. Deploy and Schedule</td><td>Follow the instructions</td><td>Tell you exactly how to deploy, schedule, and monitor</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagefoot">
+    &larr; <a href="./">Back to Blueprints</a>
+  </div>
+
+</div>
+</main>
+
+</body>
+</html>

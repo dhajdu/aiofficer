@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import ScrollReveal from "@/components/ScrollReveal";
+import CoachingSignupForm from "@/components/CoachingSignupForm";
+import { getUpcomingCoachingDates } from "@/lib/coaching-dates";
 
 export const metadata: Metadata = {
   title: "AI Executive Coaching - CAIO Coach",
@@ -34,6 +35,7 @@ export const metadata: Metadata = {
 };
 
 export default function CoachingPage() {
+  const coachingDates = getUpcomingCoachingDates(3);
   return (
     <>
       {/* ── HERO ── */}
@@ -271,15 +273,11 @@ export default function CoachingPage() {
               </Card>
             </ScrollReveal>
 
-            {/* Card 2: Typeform embed */}
+            {/* Card 2: Signup form */}
             <ScrollReveal>
               <Card>
                 <CardContent className="p-5">
-                  <div data-tf-live="01KN6N41MG69GD68FBMCC87BJ9" />
-                  <Script
-                    src="//embed.typeform.com/next/embed.js"
-                    strategy="lazyOnload"
-                  />
+                  <CoachingSignupForm dates={coachingDates} />
                 </CardContent>
               </Card>
             </ScrollReveal>
