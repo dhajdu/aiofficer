@@ -6,6 +6,22 @@ import type { Post, Block } from './types';
 
 export const POSTS_DAY10_14: Post[] = [
   {
+    slug: 'day-11-ai-mindset-shift-unlocked',
+    title: 'Day 11: The AI Mindset Shift',
+    subtitle: 'The AI mindset shift isn\'t technical. It\'s relational. A non-technical founder walked in skeptical and walked out leading a half human, half AI team.',
+    excerpt: 'Day 11 of the Infinite Leverage Blueprint. A non-technical founder walked in skeptical and walked out leading a half human, half AI team. The AI mindset shift isn\'t about the tools. It\'s about who\'s at the table with you.',
+    date: 'Apr 18, 2026',
+    readTime: '5 min read',
+    category: 'Infinite Leverage',
+    categories: ['Infinite Leverage', 'AI Leadership', 'Claude Code'],
+    tags: ['AI mindset', 'AI mindset shift', 'Infinite Leverage Blueprint', 'half human half AI team', 'non-technical founder', 'The Other 50%', 'Dave Hajdu book', 'AI marketing team install', 'one-man company with AI'],
+    image: '/blog/images/day-11-ai-mindset-shift-unlocked.webp',
+    dayNumber: 11,
+    series: 'infinite-leverage-blueprint',
+    seriesTotal: 14,
+    author: 'Dave Hajdu',
+  },
+  {
     slug: 'day-10-coaching-assistant',
     title: 'Day 10: The Coaching Assistant',
     subtitle: 'The hard part of AI coaching isn\'t the coaching. It\'s the data. Here\'s how we built an AI coaching assistant using real homework and a framework we trust.',
@@ -26,6 +42,65 @@ export const POSTS_DAY10_14: Post[] = [
 /* ------------------------------------------------------------------ */
 
 export const BLOCKS_DAY10_14: Record<string, Block[]> = {
+
+  /* ================================================================ */
+  /*  DAY 11                                                           */
+  /* ================================================================ */
+  'day-11-ai-mindset-shift-unlocked': [
+    { tag: 'pull-quote', text: 'Part of a daily series where I\'m building toward a one-man company in 14 days using the <a href="/blog/day-1-infinite-leverage-blueprint">Infinite Leverage Blueprint</a>. Today is the one where the AI mindset actually unlocked for someone outside the team.' },
+
+    { tag: 'h2', text: 'The Morning Standup' },
+    { tag: 'shipped-list', title: 'What shipped today', items: [
+      '<strong>Two days of nothing.</strong> Travel to Hanoi. I thought I\'d keep building from taxis and hotel lobbies. I couldn\'t. The multi-delegation skill isn\'t there yet. That\'s a real post coming soon.',
+      '<strong>Setup prompts for the blueprint.</strong> Written so someone can install the whole operating system on their own machine, start to finish, without me walking them through it.',
+      '<strong>Marketing team install flow.</strong> Operationalized. Drop in, go.',
+      '<strong>TK Nguyen and his video team, onboarded live.</strong> In the room. Real work. AI mindset flipped inside of an afternoon.',
+    ] },
+    { tag: 'p', text: 'All of that before the real story started.' },
+
+    { tag: 'h2', text: 'Why Today Mattered' },
+    { tag: 'p', text: 'For the first 10 days of this build, I was making everything work for me. My machine. My folders. My brain. That was the point. Prove it runs.' },
+    { tag: 'p', text: 'Today was the pivot. The question stopped being <em>can I build this?</em> and became <em>can someone else install this?</em>' },
+    { tag: 'p', text: 'Those are two very different questions. The first one is ego. The second one is a business.' },
+    { tag: 'p', text: 'So we spent the morning writing setup prompts. Things that turn a messy collection of files into a single sequence a non-technical founder can actually follow. Install Claude Code. Link your GitHub. Paste this prompt. Answer the questions. Wait three minutes. The marketing team agent is on your machine.' },
+    { tag: 'callout', label: 'Why It Matters', text: 'If the system only runs on your laptop, you haven\'t built a system. You\'ve built a pet. A one-man company made of AI agents doesn\'t scale until installation is the first feature, not the last.' },
+    { tag: 'p', text: 'That shift, from "I can use this" to "you can install this," is the whole reason Day 11 mattered more than Days 9 or 10 combined.' },
+
+    { tag: 'h2', text: 'The AI Mindset Shift' },
+    { tag: 'p', text: 'Mid-afternoon, my friend <a href="https://tknguyen.com/" target="_blank" rel="noopener noreferrer">TK Nguyen</a> showed up with his video team. TK runs GAM Entertainment and Skylight rooftop bar in Nha Trang. He is not technical. He is a founder, an operator, a storyteller. The techy stuff has always felt like someone else\'s job.' },
+
+    { tag: 'image', src: '/blog/images/day-11-tk-nguyen.webp', alt: 'TK Nguyen sitting at a laptop at Lumiere in Nha Trang during the Day 11 session of the Infinite Leverage Blueprint' },
+
+    { tag: 'p', text: 'He sat down. Skeptical. You could feel it.' },
+    { tag: 'p', text: 'Then, over the next couple of hours, I watched his face change. Not when I explained the tools. When he started asking different questions. He stopped asking <em>how does the AI work?</em> and started asking <em>what would I have it do first?</em>' },
+    { tag: 'emphasis-box', text: '<strong>That\'s the flip. That is the AI mindset shift.</strong>' },
+    { tag: 'p', text: 'When a founder goes from "how does the AI work" to "what would I have it do first," they are no longer a user. They are a leader of a team that happens to be half AI. The tools become invisible. The ideas take over.' },
+    { tag: 'pull-quote', text: 'The ceiling moves from what you can build to what you can lead.' },
+    { tag: 'p', text: 'TK walked in wondering if this was for him. He walked out with a list of agents he wants to install by end of next week. A marketing lead. A scheduling assistant for the bar. A video pipeline for GAM. None of that was on the table when he arrived.' },
+    { tag: 'p', text: 'He didn\'t need a bootcamp. He needed an engineer at the table for one afternoon.' },
+
+    { tag: 'h2', text: 'The Other 50%' },
+    { tag: 'p', text: 'I\'m writing a book right now. Working title: <em>The Other 50%</em>. The whole thesis is there in the name. The future team is half human, half AI. Most leaders are comfortable with the human half. They\'ve been building those teams their whole career. The other half feels intimidating. New rules, new language, new failure modes.' },
+    { tag: 'p', text: 'Here is what watching TK unlocked for me, and what the book is really about. The AI mindset shift isn\'t technical. It\'s relational.' },
+    { tag: 'emphasis-box', text: '<strong>The other 50% is not intimidating because it is technical. It is intimidating because you are trying to meet it alone.</strong>' },
+    { tag: 'p', text: 'TK didn\'t need to learn how Claude works. He needed someone beside him who already did. Once that was true, the intimidation evaporated, and what was left was the part he is already world-class at: taste, story, customer, ideas.' },
+    { tag: 'p', text: 'That is the <a href="/retreat">retreat</a> in one sentence. We pair you with an engineer for two days. You walk in with the same intimidation TK had. You walk out leading a team that is half human, half AI. Your ideas are the bottleneck again, the way they should be.' },
+
+    { tag: 'conclusion-box', title: 'Day 11 of 14', paragraphs: [
+      'Three days left.',
+      'Ten days in, I\'ve been proving the system can run. Day 11 was the first time I proved it can travel. Install prompts in the morning. A founder from outside the team, unlocked by the afternoon. That\'s the signal I was waiting for.',
+      'The machine runs. The install ships. A friend got onboarded without me writing a line of code for him.',
+      'The last three days are about one question: how much of this can we hand off, cleanly, to the next person who walks in the door? Because the retreat is no longer theoretical. TK just showed us what it looks like.',
+      'Read next: <a href="/blog/day-10-coaching-assistant">Day 10: The Coaching Assistant</a> &middot; <a href="/blog/day-9-designer-got-stuck">Day 9: The Day the Designer Got Stuck</a> &middot; <a href="/blog/founder-stack-you-dont-need-to-become-technical">You Don\'t Need to Become Technical. You Need a Stack.</a>',
+      'See you on Day 12.',
+    ] },
+
+    { tag: 'faq', question: 'What is an AI mindset shift?', answer: 'An AI mindset shift is the moment a founder stops asking how the AI works and starts asking what they would have it do first. It is the flip from thinking like a user of AI tools to thinking like a leader of a team that happens to be half AI. The shift is not technical. It is relational: you stop trying to learn the tools alone and start leading them the way you already lead people.' },
+    { tag: 'faq', question: 'What is a half human, half AI team?', answer: 'A half human, half AI team is a business structure where half the roles are filled by humans and half by AI agents, operating as a single coordinated team. Humans own judgment, taste, story, and customer. AI agents handle execution, research, drafting, and scheduling. Leading one is where the AI mindset shift actually shows up in practice.' },
+    { tag: 'faq', question: 'What is the Infinite Leverage Blueprint?', answer: 'The Infinite Leverage Blueprint is a 14-day build challenge by Dave Hajdu to create a one-man company powered by AI. Each day adds a new capability: content pipelines, project management agents, coaching assistants, install flows, and automated publishing. The goal is to demonstrate how one person can run a full operation using AI agents, structured data, and automated workflows.' },
+    { tag: 'faq', question: 'What does "The Other 50%" mean?', answer: 'The Other 50% is the working title of Dave Hajdu\'s upcoming book. The thesis: the future team is half human, half AI. Most leaders are comfortable building the human half because they have been doing it their whole career. The other half feels intimidating because it uses new tools, new language, and new failure modes. The book argues the intimidation disappears the moment you stop trying to meet the other 50% alone.' },
+    { tag: 'faq', question: 'Do I need an engineer to install an AI team?', answer: 'Not forever, but almost always for the first time. A non-technical founder can run an AI team day to day without an engineer, but the initial install is where most people get stuck. An engineer beside you for one afternoon compresses weeks of fumbling into a working setup. That is exactly what the Infinite Leverage Retreat is built for.' },
+  ],
 
   /* ================================================================ */
   /*  DAY 10                                                           */
