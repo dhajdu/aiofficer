@@ -32,6 +32,7 @@ export type Blueprint = {
 export type Post = {
   slug: string;
   title: string;
+  titleAccent?: string;
   subtitle?: string;
   excerpt: string;
   date: string;

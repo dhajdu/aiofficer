@@ -118,7 +118,17 @@ export default async function BlogPost({ params }: Props) {
             {post.category}
           </Badge>
           <h1 className="text-white font-extrabold leading-[1.1] tracking-tight mb-4" style={{ fontSize: 'clamp(28px, 5vw, 48px)' }}>
-            {post.title}
+            {(() => {
+              if (!post.titleAccent) return post.title;
+              const idx = post.title.lastIndexOf(post.titleAccent);
+              if (idx === -1) return post.title;
+              return (
+                <>
+                  {post.title.slice(0, idx)}
+                  <span className="text-mint">{post.title.slice(idx)}</span>
+                </>
+              );
+            })()}
           </h1>
           {post.subtitle && (
             <p className="text-white/50 text-[16px] max-w-[600px] leading-relaxed">{post.subtitle}</p>

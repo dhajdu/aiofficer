@@ -42,7 +42,7 @@ export default function BlueprintsIndex() {
             className="text-white font-extrabold leading-[1.08] tracking-tight mb-3"
             style={{ fontSize: 'clamp(28px, 4.5vw, 42px)' }}
           >
-            Blueprints<span className="text-mint">.</span>
+            Blueprints
           </h1>
           <p className="text-white/55 text-[15px] max-w-[560px] leading-relaxed mb-5">
             Agent development plans, production workflows, and system architecture for building AI-powered one-person companies.

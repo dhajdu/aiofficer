@@ -7,7 +7,8 @@ import type { Post, Block } from './types';
 export const POSTS_STANDALONE_4: Post[] = [
   {
     slug: 'founder-stack-you-dont-need-to-become-technical',
-    title: 'You Don\'t Need to Become Technical. You Need a Stack.',
+    title: 'You Don\'t Need to Become Technical You Need a Stack',
+    titleAccent: 'You Need a Stack',
     subtitle: 'The non-technical founder myth is dead. Four tools (Claude, Vercel, Supabase, GitHub) and the judgment to direct them. That\'s the new bar.',
     excerpt: 'You\'ve been nodding in meetings about AI, code, and MVPs for years. You\'re not going to learn Python this quarter. You don\'t need to. You need a stack.',
     date: 'Apr 18, 2026',

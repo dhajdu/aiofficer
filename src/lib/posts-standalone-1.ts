@@ -3,7 +3,8 @@ import type { Post, Block } from './types';
 export const POSTS_STANDALONE_1: Post[] = [
   {
     slug: 'i-raised-9-5m-and-couldnt-read-my-own-codebase',
-    title: 'I Raised $9.5M and Still Couldn\'t Read My Own Codebase. Then AI Happened.',
+    title: 'I Raised $9.5M and Still Couldn\'t Read My Own Codebase Then AI Happened',
+    titleAccent: 'Then AI Happened',
     subtitle: 'Then AI happened. Here\'s what changed when the wall between founders and engineering finally came down.',
     excerpt: 'TINYpulse raised $9.5M with top investors. The founder still couldn\'t read the codebase. Here\'s what changed when AI collapsed the wall between founders and engineering.',
     date: 'Apr 2, 2026',
@@ -14,7 +15,8 @@ export const POSTS_STANDALONE_1: Post[] = [
   },
   {
     slug: 'the-cms-is-dead-ai-killed-it',
-    title: 'The CMS Is Dead. AI Killed It.',
+    title: 'The CMS Is Dead AI Killed It',
+    titleAccent: 'AI Killed It',
     subtitle: 'Non-technical founders can now control their content and ship like engineers. No WordPress. No plugins. No waiting on developers.',
     excerpt: 'AI replaced the CMS. Here is the 4-step system non-technical founders use to control their content and ship like engineers. No code required.',
     date: 'Apr 1, 2026',
@@ -25,7 +27,8 @@ export const POSTS_STANDALONE_1: Post[] = [
   },
   {
     slug: 'using-ai-was-2025-leading-ai-is-2026',
-    title: 'Using AI Was 2025. Leading AI Is 2026.',
+    title: 'Using AI Was 2025 Leading AI Is 2026',
+    titleAccent: 'Leading AI Is 2026',
     subtitle: 'The 50/50 Era is here. Teams now manage 50% people, 50% AI. Leaders who lead AI--not just use it--will define the next generation.',
     excerpt: 'The 50/50 Era is here: teams now manage 50% people, 50% AI. Leaders who lead AI--not just use it--will define the next generation of leadership.',
     date: 'Mar 30, 2026',
