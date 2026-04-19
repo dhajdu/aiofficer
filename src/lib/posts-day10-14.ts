@@ -6,6 +6,22 @@ import type { Post, Block } from './types';
 
 export const POSTS_DAY10_14: Post[] = [
   {
+    slug: 'day-12-two-track-business-model',
+    title: 'Day 12: The Two-Track Business Model',
+    subtitle: 'How I built a two-track business model with Claude Code in four hours on a Sunday. Events plus recurring memberships, Stripe live, CRM updated. The bottleneck isn\'t engineering anymore. It\'s the decision behind what you\'re selling.',
+    excerpt: 'Day 12 of the Infinite Leverage Blueprint. A two-track business model built with Claude Code in four hours on a Sunday. Events plus recurring memberships, Stripe live, CRM updated. The real question for leaders isn\'t can we build it anymore. It\'s what are we actually selling.',
+    date: 'Apr 19, 2026',
+    readTime: '5 min read',
+    category: 'Infinite Leverage',
+    categories: ['Infinite Leverage', 'AI Leadership', 'Claude Code'],
+    tags: ['two-track business model', 'build ecommerce with Claude Code', 'claude code stripe integration', 'AI-native business model', 'claude code for founders', 'agentic commerce', 'Infinite Leverage Blueprint', 'recurring revenue and events', 'subscription business with AI', 'one-man company with AI'],
+    image: '/blog/images/day-12-two-track-business.webp',
+    dayNumber: 12,
+    series: 'infinite-leverage-blueprint',
+    seriesTotal: 14,
+    author: 'Dave Hajdu',
+  },
+  {
     slug: 'day-11-ai-mindset-shift-unlocked',
     title: 'Day 11: The AI Mindset Shift',
     subtitle: 'The AI mindset shift isn\'t technical. It\'s relational. A non-technical founder walked in skeptical and walked out leading a half human, half AI team.',
@@ -42,6 +58,77 @@ export const POSTS_DAY10_14: Post[] = [
 /* ------------------------------------------------------------------ */
 
 export const BLOCKS_DAY10_14: Record<string, Block[]> = {
+
+  /* ================================================================ */
+  /*  DAY 12                                                           */
+  /* ================================================================ */
+  'day-12-two-track-business-model': [
+    { tag: 'pull-quote', text: 'Part of a daily series where I\'m building toward a one-man company in 14 days using the <a href="/blog/day-1-infinite-leverage-blueprint">Infinite Leverage Blueprint</a>. Day 12 was Sunday in Saigon, and the goal was simple. Get paid.' },
+
+    { tag: 'p', text: 'By the time the day was done, the business could take money. Two different ways. I also walked the dog, got a workout in, and wrote some content. The whole thing took about four hours.' },
+    { tag: 'p', text: 'I\'m telling you that not to flex. I\'m telling you because if you\'re a leader running a real business, your map of what a Sunday can hold is probably out of date. Mine was too, until this one.' },
+
+    { tag: 'h2', text: 'What I actually built' },
+    { tag: 'p', text: 'Before I touched Stripe, I made a decision.' },
+    { tag: 'p', text: 'I wanted to sell two things.' },
+    { tag: 'ol-item', text: '<strong>One-off events.</strong> The <a href="/retreat">Infinite Leverage Retreat</a> in June.' },
+    { tag: 'ol-item', text: '<strong>Recurring memberships.</strong> An ongoing coaching program for people who want a thinking partner in their corner every week.' },
+
+    { tag: 'p', text: 'Two tracks. The shape of a two-track business model. Different commitments, different journeys, same company. One for people ready to make a move in a weekend. One for people who know this is a year-long game.' },
+
+    { tag: 'p', text: 'Once I knew what I was selling, the build was almost boring. <a href="https://www.claude.com/product/claude-code" target="_blank" rel="noopener noreferrer">Claude Code</a> handled the implementation. Stripe account. API keys. Environment variables. Workflows routing each purchase to the right place. A plan I reviewed before anything went live. A first test. It passed.' },
+
+    { tag: 'p', text: 'The CRM got updated too. I added the two tracks to the company database so that a member and a retreat attendee each show up correctly in my little system of the world. By the end of the day, I had a working billing stack and a CRM that matched the business I actually want to run.' },
+
+    { tag: 'html', html: '<figure class="my-8"><div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4"><img src="/blog/images/day-12-gallery-1.webp" alt="CRM dashboard showing the two-track business model with events and members side by side" loading="lazy" class="w-full h-auto rounded-xl border border-[#E5E7EB] shadow-sm" /><img src="/blog/images/day-12-gallery-2.webp" alt="Database schema for the two-track business with separate events and members tables in Supabase" loading="lazy" class="w-full h-auto rounded-xl border border-[#E5E7EB] shadow-sm" /><img src="/blog/images/day-12-gallery-3.webp" alt="Claude Code wiring the Stripe integration and routing workflows for the two-track business model" loading="lazy" class="w-full h-auto rounded-xl border border-[#E5E7EB] shadow-sm" /></div><figcaption class="text-center text-xs text-muted-foreground mt-3 font-mono uppercase tracking-[0.08em]">Day 12 &middot; Two-track business model built with Claude Code and Stripe</figcaption></figure>' },
+
+    { tag: 'p', text: 'The weird part is how little of it I did with my own hands. Most of the work happened while I was out with the dog. The agents handled it. My job was to be clear about what I wanted, review the plan before it shipped, and run the test.' },
+
+    { tag: 'h2', text: 'What actually changed' },
+    { tag: 'p', text: 'Five years ago, this same project would have looked completely different.' },
+    { tag: 'p', text: 'It would have started with a scoping doc. A vendor review. A few conversations with a developer, or a proper engagement with a dev shop. Six weeks, easy. A real chunk of budget. A steering committee, if the company was big enough to have one.' },
+    { tag: 'p', text: 'I\'m not saying the old way was wrong. It was the only way, and it worked.' },
+    { tag: 'p', text: 'What I am saying is that the constraint moved. The thing that used to take weeks now takes an afternoon, as long as you\'re clear about what you want. And if you\'re not clear, no amount of developer hours is going to save you. You\'ll just build the wrong thing faster.' },
+    { tag: 'pull-quote', text: 'That\'s the part I want you to sit with for a second.' },
+
+    { tag: 'h2', text: 'The question most leaders are still answering wrong' },
+    { tag: 'p', text: 'The old question, the one most leadership teams still burn meetings on, is some version of this. <em>Can we build it?</em>' },
+    { tag: 'p', text: 'Can we build a subscription product. Can we build a second revenue line. Can we build the automation finance has been asking for. Can we build the dashboard the board keeps mentioning.' },
+    { tag: 'p', text: 'That was the right question for a long time. It\'s not the right question anymore.' },
+    { tag: 'emphasis-box', text: 'The real question is quieter and a lot harder. <strong>What are we actually selling, and to whom, at what level of commitment?</strong>' },
+    { tag: 'p', text: 'Notice that\'s not an engineering question. It\'s a coaching question. It\'s the kind of thing you work out with a thinking partner, not a Jira board. It\'s the kind of thing a sprint can\'t solve, because it isn\'t a sprint problem. It\'s a clarity problem.' },
+    { tag: 'callout', label: 'Why It Matters', text: 'Most leaders I coach are still treating the old question like it\'s the hard part. They haven\'t let themselves believe the build is almost free. So they don\'t run the experiments. They don\'t test the second track. They don\'t ship the member version because they\'re convinced it\'s a six-month project. Meanwhile, on some Sunday, somewhere, someone who figured out the new question is quietly pulling ahead.' },
+
+    { tag: 'h2', text: 'Where Day 12 leaves us' },
+    { tag: 'p', text: 'Tomorrow the marketing team gets cleaned up. After that, outreach and customer service. Two more days to round out the series, and then a pause to see what 14 days of this actually compressed into.' },
+    { tag: 'p', text: 'But before you close the tab, here\'s the question I\'d want to sit with if you and I were in the same room.' },
+    { tag: 'pull-quote', text: 'What revenue model would you test this week if the build took an afternoon?' },
+    { tag: 'p', text: 'Not the one your team has been debating for a quarter. The one you\'ve been quietly curious about and keep shelving. Write it down, even if it\'s half-baked. Especially if it\'s half-baked.' },
+    { tag: 'p', text: 'If you want a thinking partner while you work that out, that\'s what the coaching membership is for. You bring the half-baked idea. We get it sharper together, week after week. <a href="/coaching">Become a member</a>.' },
+    { tag: 'p', text: 'If you want to go faster and in person, the <a href="/retreat">Infinite Leverage Retreat</a> is in June. A few days, a small group, and you leave with your own two-track (or three-track) build sketched out and the first pieces already in motion.' },
+
+    { tag: 'stat-callout', stats: [
+      { value: '4 hrs', label: 'Sunday Build Time', color: 'blue' },
+      { value: '2', label: 'Revenue Tracks Live', color: 'magenta' },
+      { value: '0', label: 'Developers Hired', color: 'mint' },
+    ] },
+
+    { tag: 'conclusion-box', title: 'Day 12 of 14', paragraphs: [
+      'Two days left.',
+      'Twelve days in, the system doesn\'t just run. It takes money. It routes attendees and members into separate tracks. It updates itself while I\'m out of the room. None of which was built by hand in the way that phrase used to mean.',
+      'Here\'s what I keep coming back to. The build being trivial isn\'t the interesting part. The interesting part is what that frees you up to care about. Positioning. Pricing. Who you\'re really for. What a weekend-level move actually looks like versus a year-long one. The stuff that used to get squeezed by the implementation tax is the whole job now.',
+      'That\'s a different kind of leadership muscle. And it\'s the one every founder I coach is figuring out how to grow.',
+      'Read next: <a href="/blog/day-11-ai-mindset-shift-unlocked">Day 11: The AI Mindset Shift</a> &middot; <a href="/blog/day-10-coaching-assistant">Day 10: The Coaching Assistant</a> &middot; <a href="/blog/founder-stack-you-dont-need-to-become-technical">You Don\'t Need to Become Technical. You Need a Stack.</a>',
+      'See you on Day 13.',
+    ] },
+
+    { tag: 'faq', question: 'What is a two-track business model?', answer: 'A two-track business model sells to the same audience through two distinct paths: one-off events or products for people who want a single, high-commitment move, and recurring memberships or subscriptions for people who want an ongoing relationship. The two tracks share an audience and value system but serve different readiness levels, which lets you capture revenue at both ends of the commitment spectrum.' },
+    { tag: 'faq', question: 'How long does it take to build a two-track business model with Claude Code?', answer: 'With clear decisions about what you\'re selling and to whom, the full build (Stripe integration, workflow routing, CRM updates) can be completed in a single afternoon using Claude Code as your implementation agent. The bottleneck is no longer engineering time. It\'s the clarity of the business decisions behind the build.' },
+    { tag: 'faq', question: 'Why combine recurring memberships with one-off events?', answer: 'Different people buy at different commitment levels. A one-off event like a retreat serves people ready to make a weekend-level move. A recurring membership serves people who know their transformation is a year-long journey. Running both tracks means you\'re not forcing your audience to pick one readiness state, which broadens your revenue base without splintering your positioning.' },
+    { tag: 'faq', question: 'Can Claude Code set up a Stripe integration without a developer?', answer: 'Yes. A non-technical founder can use Claude Code to set up Stripe API keys, environment variables, product configurations, and routing workflows in a few hours, provided the business decisions about pricing, products, and customer journeys are already clear.' },
+    { tag: 'faq', question: 'What is an AI-native business model?', answer: 'An AI-native business model is built so that AI agents handle the majority of execution work like building, routing, responding, and analyzing, while the human operator focuses on decisions, judgment, positioning, and relationships. The operating assumption is that implementation is cheap and fast; clarity of direction is the scarce resource.' },
+    { tag: 'faq', question: 'What is the Infinite Leverage Blueprint?', answer: 'The Infinite Leverage Blueprint is Dave Hajdu\'s 14-day public build-in-public series documenting the end-to-end creation of an AI-native coaching business using AI agents. Day 12 covers billing, CRM, and the two-track business model setup.' },
+  ],
 
   /* ================================================================ */
   /*  DAY 11                                                           */
