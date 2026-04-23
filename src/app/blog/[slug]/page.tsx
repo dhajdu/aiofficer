@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { Badge } from '@/components/ui/badge';
 import BlockRenderer from '@/components/BlockRenderer';
 import SeriesNav from '@/components/SeriesNav';
 import { POSTS, BLOCKS_BY_SLUG } from '@/lib/posts-data';
+import styles from './page.module.css';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -48,16 +48,14 @@ export default async function BlogPost({ params }: Props) {
   const postIndex = POSTS.indexOf(post);
   const prevPost = postIndex < POSTS.length - 1 ? POSTS[postIndex + 1] : null;
   const nextPost = postIndex > 0 ? POSTS[postIndex - 1] : null;
-
-  // Related posts: 2 most recent that aren't this one
   const relatedPosts = POSTS.filter((p) => p.slug !== slug).slice(0, 2);
 
-  // FAQ blocks for structured data
-  const faqBlocks = blocks.filter((b): b is { tag: 'faq'; question: string; answer: string } => b.tag === 'faq');
+  const faqBlocks = blocks.filter(
+    (b): b is { tag: 'faq'; question: string; answer: string } => b.tag === 'faq'
+  );
 
   return (
     <>
-      {/* JSON-LD Article Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -85,7 +83,6 @@ export default async function BlogPost({ params }: Props) {
         }}
       />
 
-      {/* FAQ Schema */}
       {faqBlocks.length > 0 && (
         <script
           type="application/ld+json"
@@ -103,63 +100,44 @@ export default async function BlogPost({ params }: Props) {
         />
       )}
 
-      {/* Hero */}
-      <section className="relative bg-navy overflow-hidden pt-16">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 50% 50% at 10% 90%, rgba(40,123,232,0.14) 0%, transparent 60%)' }} />
-        <div className="relative max-w-[920px] mx-auto px-6 md:px-10 py-16 md:py-24">
-          <div className="mb-4">
-            <Link href="/blog" className="text-white/40 text-[13px] hover:text-white/60 transition-colors">
-              Blog
-            </Link>
-            <span className="text-white/20 mx-2">/</span>
-            <span className="text-white/40 text-[13px]">{post.title}</span>
+      {/* HERO */}
+      <section className={styles.hero}>
+        <div className={`page-container ${styles.heroInner}`}>
+          <div className={styles.crumb}>
+            <Link href="/blog">Blog</Link>
+            <span> / </span>
+            <span>{post.category}</span>
           </div>
-          <Badge variant="outline" className="bg-white/5 text-white/70 border-white/15 text-[10px] font-bold tracking-[0.08em] uppercase px-2.5 py-1 mb-4">
-            {post.category}
-          </Badge>
-          <h1 className="text-white font-extrabold leading-[1.1] tracking-tight mb-4" style={{ fontSize: 'clamp(28px, 5vw, 48px)' }}>
-            {(() => {
-              if (!post.titleAccent) return post.title;
-              const idx = post.title.lastIndexOf(post.titleAccent);
-              if (idx === -1) return post.title;
-              return (
-                <>
-                  {post.title.slice(0, idx)}
-                  <span className="text-mint">{post.title.slice(idx)}</span>
-                </>
-              );
-            })()}
-          </h1>
-          {post.subtitle && (
-            <p className="text-white/50 text-[16px] max-w-[600px] leading-relaxed">{post.subtitle}</p>
-          )}
+          <span className="tag tag-muted">{post.category}</span>
+          <h1 className={styles.title}>{post.title}</h1>
+          {post.subtitle && <p className={styles.subtitle}>{post.subtitle}</p>}
         </div>
       </section>
 
-      {/* Meta bar */}
-      <div className="border-b border-border">
-        <div className="max-w-[720px] mx-auto px-6 md:px-10 py-4 flex flex-wrap items-center gap-4 text-[0.85rem]">
+      {/* META BAR */}
+      <div className={styles.metaBar}>
+        <div className={styles.metaBarInner}>
           <div>
-            <span className="text-muted-foreground/60 text-[11px] uppercase tracking-[0.08em] font-mono">Published</span>
-            <span className="text-foreground ml-2">{post.date}</span>
+            Published<strong>{post.date}</strong>
           </div>
           <div>
-            <span className="text-muted-foreground/60 text-[11px] uppercase tracking-[0.08em] font-mono">Reading Time</span>
-            <span className="text-foreground ml-2">{post.readTime}</span>
+            Read time<strong>{post.readTime}</strong>
           </div>
         </div>
       </div>
 
-      {/* Content */}
-      <article className="max-w-[720px] mx-auto px-6 md:px-10 py-10">
-        {/* Series navigation */}
+      {/* ARTICLE */}
+      <article className={styles.article}>
         {post.series && post.dayNumber && post.seriesTotal && (
-          <SeriesNav series={post.series} currentDay={post.dayNumber} totalDays={post.seriesTotal} />
+          <SeriesNav
+            series={post.series}
+            currentDay={post.dayNumber}
+            totalDays={post.seriesTotal}
+          />
         )}
 
-        {/* Hero image */}
         {post.image && (
-          <div className="mb-10 rounded-xl overflow-hidden border border-border shadow-md">
+          <div className={styles.heroImage}>
             <Image
               src={post.image}
               alt={post.title}
@@ -171,56 +149,51 @@ export default async function BlogPost({ params }: Props) {
           </div>
         )}
 
-        {/* Block content */}
         <BlockRenderer blocks={blocks} />
 
-        {/* Author note */}
-        <div className="grid grid-cols-[auto_1fr] gap-5 items-start bg-surface border border-border rounded-xl p-6 my-12">
-          <div className="w-[52px] h-[52px] rounded-full bg-gradient-to-br from-blue to-mint-dark flex items-center justify-center text-white font-extrabold text-[1.2rem] flex-shrink-0">
-            DH
-          </div>
-          <p className="text-[0.88rem] text-muted-foreground leading-[1.7] m-0">
-            <strong className="text-foreground">Dave Hajdu</strong> is the founder of the AI Officer Institute and Edge8 AI. He works with founders and executives across more than 20 countries to build the leadership capabilities the AI era demands. Learn how to build your own AI team at <a href="https://www.caiocoach.com" className="text-blue hover:underline">caiocoach.com</a>.
+        <div className={styles.authorNote}>
+          <div className={styles.authorInitials}>DH</div>
+          <p>
+            <strong>Dave Hajdu</strong> is the founder of the AI Officer Institute and
+            Edge8 AI. He works with founders and executives across more than 20 countries
+            to build the leadership capabilities the AI era demands. Learn how to build
+            your own AI team at <a href="https://www.caiocoach.com">caiocoach.com</a>.
           </p>
         </div>
 
-        {/* CTA */}
-        <div className="my-12">
-          <Link href="/certification" className="block bg-navy rounded-xl p-7 no-underline">
-            <div className="text-[11px] font-bold tracking-[0.1em] uppercase text-mint mb-2.5">CAIO Coach</div>
-            <div className="text-[20px] font-bold text-white leading-tight mb-2">Ready to lead AI, not just use it?</div>
-            <div className="text-[14px] text-white/60 mb-4">Explore the Certified AI Officer program and start building the skills the AI era demands.</div>
-            <span className="inline-flex items-center gap-1.5 bg-blue text-white text-[14px] font-bold px-5 py-2.5 rounded-lg">
-              View the Certification Program &rarr;
-            </span>
-          </Link>
-        </div>
+        <Link href="/certification" className={styles.ctaBox}>
+          <div className={styles.ctaEyebrow}>CAIO Coach · Certification</div>
+          <div className={styles.ctaTitle}>Ready to lead AI, not just use it?</div>
+          <div className={styles.ctaDesc}>
+            Explore the Certified AI Officer program and start building the skills the
+            AI era demands.
+          </div>
+          <span className="btn btn-primary">View the program →</span>
+        </Link>
 
-        {/* Prev/Next */}
-        <div className="border-t border-border pt-8 mt-14 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className={styles.navCards}>
           {prevPost && (
-            <Link href={`/blog/${prevPost.slug}`} aria-label={`Previous post: ${prevPost.title}`} className="border border-border rounded-xl p-5 no-underline hover:border-blue transition-colors bg-white">
-              <div className="text-[0.75rem] text-muted-foreground uppercase tracking-[0.1em] mb-1.5">&larr; Previous Post</div>
-              <div className="text-[0.95rem] font-semibold text-foreground">{prevPost.title}</div>
+            <Link href={`/blog/${prevPost.slug}`} className={styles.navCard}>
+              <div className={styles.navCardLabel}>← Previous</div>
+              <div className={styles.navCardTitle}>{prevPost.title}</div>
             </Link>
           )}
           {nextPost && (
-            <Link href={`/blog/${nextPost.slug}`} aria-label={`Next post: ${nextPost.title}`} className="border border-border rounded-xl p-5 no-underline hover:border-blue transition-colors bg-white">
-              <div className="text-[0.75rem] text-muted-foreground uppercase tracking-[0.1em] mb-1.5">Next Post &rarr;</div>
-              <div className="text-[0.95rem] font-semibold text-foreground">{nextPost.title}</div>
+            <Link href={`/blog/${nextPost.slug}`} className={styles.navCard}>
+              <div className={styles.navCardLabel}>Next →</div>
+              <div className={styles.navCardTitle}>{nextPost.title}</div>
             </Link>
           )}
         </div>
 
-        {/* Related reads */}
         {relatedPosts.length > 0 && (
-          <div className="mt-14">
-            <h2 className="text-[1.1rem] font-bold text-foreground mb-4">Related Articles</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className={styles.related}>
+            <h2 className={styles.relatedHead}>Related reading</h2>
+            <div className={styles.navCards} style={{ marginTop: 0, paddingTop: 0, borderTop: 0 }}>
               {relatedPosts.map((rp) => (
-                <Link key={rp.slug} href={`/blog/${rp.slug}`} className="border border-border rounded-xl p-5 no-underline hover:border-blue transition-colors bg-white">
-                  <div className="text-[0.92rem] font-semibold text-foreground mb-1.5">{rp.title}</div>
-                  <div className="text-[0.75rem] text-muted-foreground">{rp.date}</div>
+                <Link key={rp.slug} href={`/blog/${rp.slug}`} className={styles.navCard}>
+                  <div className={styles.navCardLabel}>{rp.date}</div>
+                  <div className={styles.navCardTitle}>{rp.title}</div>
                 </Link>
               ))}
             </div>

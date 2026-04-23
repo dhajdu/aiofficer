@@ -22,38 +22,82 @@ export default function BlueprintCard({ blueprint }: BlueprintCardProps) {
   return (
     <Link
       href={`/blueprints/${blueprint.slug}`}
-      className="group flex flex-col gap-2 bg-white border border-border rounded-xl p-6 md:p-7 no-underline transition-all hover:border-blue/30 hover:shadow-lg hover:-translate-y-px"
+      className="group flex flex-col gap-3 p-7 no-underline transition-colors"
+      style={{
+        border: '1px solid var(--fg-border)',
+        color: 'inherit',
+      }}
     >
       <div className="flex items-center justify-between gap-2">
+        <span className="tag tag-muted">{meta.label}</span>
         <span
-          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-bold tracking-[0.06em] uppercase"
-          style={{ background: meta.bg, color: meta.textColor }}
+          className="font-mono"
+          style={{
+            fontSize: 10,
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            color: 'var(--fg-50)',
+          }}
         >
-          <span
-            className="w-[6px] h-[6px] rounded-full"
-            style={{ background: meta.color }}
-          />
-          {meta.label}
-        </span>
-        <span className="font-mono text-[9px] font-bold tracking-[0.08em] uppercase px-2 py-1 rounded-md bg-surface text-muted-foreground border border-border">
           {blueprint.type}
         </span>
       </div>
 
-      <h3 className="text-[16px] font-bold text-navy leading-[1.3] tracking-tight mt-2">
+      <h3
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 400,
+          fontSize: 18,
+          lineHeight: 1.25,
+          letterSpacing: '-0.01em',
+          color: 'var(--fg)',
+          margin: '8px 0 0',
+        }}
+      >
         {blueprint.title}
       </h3>
 
-      <p className="text-[13px] text-muted-foreground leading-[1.55] flex-1">
+      <p
+        style={{
+          fontSize: 13,
+          color: 'var(--fg-70)',
+          lineHeight: 1.55,
+          margin: 0,
+          flex: 1,
+        }}
+      >
         {blueprint.excerpt}
       </p>
 
-      <div className="flex items-center justify-between pt-3 mt-1 border-t border-surface">
-        <span className="font-mono text-[11px] text-muted-foreground">
+      <div
+        className="flex items-center justify-between"
+        style={{
+          paddingTop: 14,
+          marginTop: 4,
+          borderTop: '1px solid var(--fg-border)',
+        }}
+      >
+        <span
+          className="font-mono"
+          style={{
+            fontSize: 11,
+            letterSpacing: '0.1em',
+            color: 'var(--fg-50)',
+            textTransform: 'uppercase',
+          }}
+        >
           {formatDate(blueprint.date)}
         </span>
-        <span className="text-[13px] text-muted-foreground group-hover:text-blue transition-colors">
-          &rarr;
+        <span
+          className="font-mono"
+          style={{
+            fontSize: 10,
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            color: 'var(--fg)',
+          }}
+        >
+          Read →
         </span>
       </div>
     </Link>

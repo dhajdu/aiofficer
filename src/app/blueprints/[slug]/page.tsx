@@ -31,7 +31,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: blueprint.excerpt,
       type: 'article',
       url: `https://www.caiocoach.com/blueprints/${blueprint.slug}`,
-      images: blueprint.image ? [{ url: `https://www.caiocoach.com${blueprint.image}` }] : [],
+      images: blueprint.image
+        ? [{ url: `https://www.caiocoach.com${blueprint.image}` }]
+        : [],
     },
     twitter: {
       card: 'summary_large_image',
@@ -51,19 +53,48 @@ export default async function BlueprintPage({ params }: Props) {
 
   const index = BLUEPRINTS.findIndex((b) => b.slug === slug);
   const prev = index > 0 ? BLUEPRINTS[index - 1] : null;
-  const next = index >= 0 && index < BLUEPRINTS.length - 1 ? BLUEPRINTS[index + 1] : null;
+  const next =
+    index >= 0 && index < BLUEPRINTS.length - 1 ? BLUEPRINTS[index + 1] : null;
 
   return (
     <>
       <BlueprintHero blueprint={blueprint} />
 
-      <article className="max-w-[920px] mx-auto px-6 md:px-10 py-12 md:py-16">
+      <article
+        style={{
+          maxWidth: 760,
+          margin: '0 auto',
+          padding: '64px 24px 96px',
+        }}
+      >
         {blocks.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-border bg-surface p-10 text-center">
-            <p className="text-muted-foreground text-[14px] font-mono uppercase tracking-[0.08em]">
+          <div
+            style={{
+              border: '1px dashed var(--fg-border)',
+              background: 'var(--elev-1)',
+              padding: 40,
+              textAlign: 'center',
+            }}
+          >
+            <p
+              className="font-mono"
+              style={{
+                fontSize: 11,
+                letterSpacing: '0.18em',
+                textTransform: 'uppercase',
+                color: 'var(--fg-50)',
+                margin: 0,
+              }}
+            >
               Content coming soon
             </p>
-            <p className="text-muted-foreground text-[13px] mt-2">
+            <p
+              style={{
+                fontSize: 13,
+                color: 'var(--fg-70)',
+                margin: '8px 0 0',
+              }}
+            >
               This blueprint is being migrated. Check back shortly.
             </p>
           </div>
@@ -71,27 +102,66 @@ export default async function BlueprintPage({ params }: Props) {
           <BlueprintRenderer blocks={blocks} />
         )}
 
-        <div className="border-t border-border pt-8 mt-14 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 gap-4"
+          style={{
+            borderTop: '1px solid var(--fg-border)',
+            paddingTop: 48,
+            marginTop: 64,
+          }}
+        >
           {prev && (
             <Link
               href={`/blueprints/${prev.slug}`}
-              className="border border-border rounded-xl p-5 no-underline hover:border-blue transition-colors bg-white"
+              style={{
+                border: '1px solid var(--fg-border)',
+                padding: 24,
+                textDecoration: 'none',
+                color: 'inherit',
+              }}
             >
-              <div className="text-[0.75rem] text-muted-foreground uppercase tracking-[0.1em] mb-1.5">
-                &larr; Previous
+              <div
+                className="font-mono"
+                style={{
+                  fontSize: 10,
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase',
+                  color: 'var(--fg-50)',
+                  marginBottom: 10,
+                }}
+              >
+                ← Previous
               </div>
-              <div className="text-[0.95rem] font-semibold text-foreground">{prev.title}</div>
+              <div style={{ fontSize: 15, fontWeight: 500, color: 'var(--fg)' }}>
+                {prev.title}
+              </div>
             </Link>
           )}
           {next && (
             <Link
               href={`/blueprints/${next.slug}`}
-              className="border border-border rounded-xl p-5 no-underline hover:border-blue transition-colors bg-white md:text-right"
+              style={{
+                border: '1px solid var(--fg-border)',
+                padding: 24,
+                textDecoration: 'none',
+                color: 'inherit',
+              }}
             >
-              <div className="text-[0.75rem] text-muted-foreground uppercase tracking-[0.1em] mb-1.5">
-                Next &rarr;
+              <div
+                className="font-mono"
+                style={{
+                  fontSize: 10,
+                  letterSpacing: '0.18em',
+                  textTransform: 'uppercase',
+                  color: 'var(--fg-50)',
+                  marginBottom: 10,
+                }}
+              >
+                Next →
               </div>
-              <div className="text-[0.95rem] font-semibold text-foreground">{next.title}</div>
+              <div style={{ fontSize: 15, fontWeight: 500, color: 'var(--fg)' }}>
+                {next.title}
+              </div>
             </Link>
           )}
         </div>

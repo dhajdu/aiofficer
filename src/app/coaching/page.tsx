@@ -1,355 +1,259 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import ScrollReveal from "@/components/ScrollReveal";
-import CoachingSignupForm from "@/components/CoachingSignupForm";
-import { getUpcomingCoachingDates } from "@/lib/coaching-dates";
+import type { Metadata } from 'next';
+import Link from 'next/link';
+/* eslint-disable @next/next/no-img-element */
+import CoachingSignupForm from '@/components/CoachingSignupForm';
+import { getUpcomingCoachingDates } from '@/lib/coaching-dates';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: "AI Executive Coaching - CAIO Coach",
+  title: 'AI Executive Coaching - CAIO Coach',
   description:
-    "Weekly live AI coaching sessions with Dave Hajdu. Bring your real AI challenges and get coached in real time. Included with CAIO Coach certification.",
+    'Weekly live AI coaching sessions with Dave Hajdu. Bring your real AI challenges and get coached in real time. Included with CAIO Coach certification.',
   openGraph: {
-    title: "AI Coaching for Executives - CAIO Coach",
+    title: 'AI Coaching for Executives - CAIO Coach',
     description:
-      "Weekly live AI coaching with Dave Hajdu. Group sessions for $99/month or private 1:1. Bring your real challenges and get coached in real time.",
-    type: "website",
-    url: "https://www.caiocoach.com/coaching",
-    images: [
-      {
-        url: "https://www.caiocoach.com/images/og-coaching.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "AI Coaching for Executives - CAIO Coach",
-    description:
-      "Weekly live AI coaching with Dave Hajdu. Group sessions for $99/month or private 1:1.",
-    images: ["https://www.caiocoach.com/images/og-coaching.png"],
+      'Weekly live AI coaching with Dave Hajdu. Group sessions for $99/month or private 1:1. Bring your real challenges and get coached in real time.',
+    type: 'website',
+    url: 'https://www.caiocoach.com/coaching',
   },
 };
 
 export default function CoachingPage() {
   const coachingDates = getUpcomingCoachingDates(3);
+
   return (
     <>
-      {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-navy h-[380px] md:h-[420px] pt-[120px]">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 50% 50% at 10% 90%, rgba(40,123,232,0.14) 0%, transparent 60%)' }} />
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 40% 50% at 50% 0%, rgba(111,242,193,0.06) 0%, transparent 50%)' }} />
-        <div className="relative z-10 w-full max-w-[920px] mx-auto px-6 md:px-10">
-          <p className="text-white/70 text-[11px] font-bold tracking-[0.15em] uppercase mb-3 font-mono">-- Coaching &middot; CAIO Coach</p>
-          <h1 className="text-white font-extrabold leading-[1.08] tracking-tight mb-3" style={{ fontSize: 'clamp(28px, 4.5vw, 42px)' }}>Your Toughest AI Problems <span className="text-mint">Solved</span></h1>
-          <p className="text-white/55 text-[15px] max-w-[480px] leading-relaxed mb-5">Bring your real challenges. Every week, Dave works through submitted problems live. Submit yours before the session.</p>
-          <div className="flex flex-wrap gap-3">
-            <Badge variant="outline" className="bg-navy/50 text-white/80 border-white/15 px-4 py-1.5 text-[12px] font-semibold">Live Coaching</Badge>
-            <Badge variant="outline" className="bg-navy/50 text-white/80 border-white/15 px-4 py-1.5 text-[12px] font-semibold">Every Thursday</Badge>
-            <Badge variant="outline" className="bg-navy/50 text-white/80 border-white/15 px-4 py-1.5 text-[12px] font-semibold">11:30 AM - 1:30 PM GMT+7</Badge>
+      {/* HERO */}
+      <section className={styles.hero}>
+        <div className={`page-container ${styles.heroInner}`}>
+          <div>
+            <div className={styles.tagRow}>
+              <span className="tag">
+                <span className={`dot ${styles.pulseDot}`} />
+                Live next session · Thursday
+              </span>
+              <span className="tag tag-muted">11:30 AM GMT+7</span>
+            </div>
+            <h1 className={styles.display}>
+              Bring
+              <br />
+              the hard
+              <br />
+              problems.
+            </h1>
+            <p className={styles.lede}>
+              Every week, members submit the AI challenges they&apos;re facing. Dave works
+              the top topics live, on camera, with the group in the room.
+            </p>
+            <div className={styles.ctaRow}>
+              <a className="btn btn-primary" href="#submit">
+                Submit a challenge
+              </a>
+              <a className="btn btn-ghost" href="#past">
+                See past sessions
+              </a>
+            </div>
+          </div>
+
+          <aside className={styles.sessionCard}>
+            <div className={styles.label}>Next session · 001</div>
+            <div className={styles.date}>Thu · 23 Apr 2026 · 11:30 GMT+7</div>
+            <div className={styles.title}>Building routines that stick.</div>
+            <p className={styles.blurb}>
+              The routines layer of an AI-native operation. Daily check-ins, weekly
+              rhythms, monthly reviews - how to design the cadence that keeps your AI
+              team moving instead of quietly drifting.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      {/* PAST + SIGNUP */}
+      <section className="sec" id="past">
+        <div className="page-container">
+          <div className="sec-head">
+            <div className="idx">01 / Past sessions</div>
+            <div>
+              <h2 className="t-h1">What the room has been working on.</h2>
+              <p className="sub">
+                Every topic was submitted by a member. Every answer was worked live in
+                under 30 minutes.
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.split}>
+            <div className={styles.sessionList}>
+              <div className={styles.session}>
+                <div className={styles.metaCol}>
+                  <span className={styles.date}>09 Apr · 2026</span>
+                  <span className={styles.sessNo}>Session · 002</span>
+                </div>
+                <div className={styles.topics}>
+                  <div className={styles.topic}>
+                    <div className={styles.avatar}>
+                      <img src="/images/dru-nguyen-headshot.webp" alt="Dru" />
+                    </div>
+                    <div>
+                      <div className={styles.topicName}>Dru</div>
+                      <div className={styles.topicTitle}>
+                        Setting up folder structure in Cowork &amp; automating social.
+                      </div>
+                      <p className={styles.topicBlurb}>
+                        How to organise a Cowork project with the right folder
+                        structure and instructions so Claude stays on-brand, then
+                        building a workflow to automate social media content end to end.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.right}>1 topic</div>
+              </div>
+
+              <div className={styles.session}>
+                <div className={styles.metaCol}>
+                  <span className={styles.date}>02 Apr · 2026</span>
+                  <span className={styles.sessNo}>Session · 001</span>
+                </div>
+                <div className={styles.topics}>
+                  <div className={styles.topic}>
+                    <div className={styles.avatar}>
+                      <img src="/images/eric-enriquez-headshot.webp" alt="Eric" />
+                    </div>
+                    <div>
+                      <div className={styles.topicName}>Eric</div>
+                      <div className={styles.topicTitle}>
+                        Building a website with AI - Bhutan travel project.
+                      </div>
+                      <p className={styles.topicBlurb}>
+                        Used Cowork to plan, brand, and build a full project website
+                        from scratch - starting with a strategy brief in chat and
+                        ending with a live Gantt chart for tracking milestones.
+                      </p>
+                    </div>
+                  </div>
+                  <div className={styles.topic}>
+                    <div className={styles.avatar}>
+                      <img src="/images/julien-head-shot.webp" alt="Julien" />
+                    </div>
+                    <div>
+                      <div className={styles.topicName}>Julien</div>
+                      <div className={styles.topicTitle}>
+                        Power BI dashboard migration with Cowork.
+                      </div>
+                      <p className={styles.topicBlurb}>
+                        Walked through using Claude to accelerate a Power BI migration
+                        - setting up data context, writing DAX with AI assistance, and
+                        building a repeatable Cowork workflow for future reports.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.right}>2 topics</div>
+              </div>
+            </div>
+
+            <aside style={{ display: 'flex', flexDirection: 'column' }} id="submit">
+              <div className={styles.sidecard}>
+                <h4>Submit a challenge</h4>
+                <p>
+                  Every submission is reviewed. The most applicable problems get worked
+                  live on Thursday.
+                </p>
+              </div>
+              <div className={styles.sidecard}>
+                <CoachingSignupForm dates={coachingDates} />
+              </div>
+              <div className={styles.sidecard}>
+                <h4>Session details</h4>
+                <div className={styles.details}>
+                  <div className={styles.detailRow}>
+                    <span className={styles.k}>When</span>
+                    <span className={styles.v}>
+                      Every Thursday
+                      <span className={styles.s}>Weekly, no breaks</span>
+                    </span>
+                  </div>
+                  <div className={styles.detailRow}>
+                    <span className={styles.k}>Time</span>
+                    <span className={styles.v}>
+                      11:30 - 13:30
+                      <span className={styles.s}>GMT+7 · Bangkok / Hanoi / Jakarta</span>
+                    </span>
+                  </div>
+                  <div className={styles.detailRow}>
+                    <span className={styles.k}>Where</span>
+                    <span className={styles.v}>
+                      Live on AIO Labs
+                      <span className={styles.s}>Recorded · watch back anytime</span>
+                    </span>
+                  </div>
+                  <div className={styles.detailRow}>
+                    <span className={styles.k}>Deadline</span>
+                    <span className={styles.v}>
+                      Tuesday 16:00 GMT+7
+                      <span className={styles.s}>To be considered for the session</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
 
-      {/* ── PAGE MAIN ── */}
-      <div className="max-w-[920px] mx-auto px-6 md:px-10 py-12 md:py-14">
-        {/* ── UP NEXT HEADER ── */}
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-[18px] font-bold text-foreground tracking-[-0.2px]">
-            Up Next
-          </span>
-        </div>
-
-        {/* ── TWO-COLUMN BODY ── */}
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_320px] gap-7 items-start">
-          {/* ═══ Main column ═══ */}
-          <div>
-            {/* ── Upcoming Session Banner ── */}
-            <ScrollReveal>
-              <Card className="border-blue/25 border-2">
-                <CardContent className="p-6">
-                  <Badge
-                    variant="outline"
-                    className="bg-blue/8 text-blue border-blue/20 text-[10px] font-bold tracking-[0.08em] uppercase px-2.5 py-0.5 gap-1.5 mb-3.5"
-                  >
-                    <span className="w-[5px] h-[5px] rounded-full bg-blue animate-pulse" />
-                    Next Session
-                  </Badge>
-
-                  <p className="font-mono text-[12px] font-bold text-muted-foreground tracking-[0.05em] uppercase mb-2">
-                    Thursday, 23 Apr 2026 &middot; 11:30 AM GMT+7
-                  </p>
-
-                  <h2 className="text-[20px] font-bold text-foreground tracking-[-0.3px] leading-[1.25] mb-2.5">
-                    Building Routines That Stick
-                  </h2>
-
-                  <p className="text-[14px] text-muted-foreground leading-[1.65] mb-4.5">
-                    The routines layer of an AI-native operation. Daily
-                    check-ins, weekly rhythms, monthly reviews. How to design
-                    the cadence that keeps your AI team actually moving
-                    instead of quietly drifting.
-                  </p>
-
-                  <div className="flex items-center gap-2.5 pt-3.5 border-t border-surface">
-                    <span className="text-[11px] text-muted-foreground mr-1">
-                      Submitted by
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <div className="w-[34px] h-[34px] rounded-full overflow-hidden flex-shrink-0">
-                        <Image
-                          src="/images/dave-portrait.webp"
-                          alt="Dave"
-                          width={34}
-                          height={34}
-                          className="object-cover w-full h-full rounded-full"
-                        />
-                      </div>
-                      <div>
-                        <div className="text-[12px] font-semibold text-muted-foreground">
-                          Dave
-                        </div>
-                        <div className="text-[11px] text-muted-foreground">
-                          Founder &middot; CAIO Coach
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </ScrollReveal>
-
-            {/* ── Past Sessions ── */}
-            <ScrollReveal>
-              <div className="flex items-center justify-between mt-10 mb-4">
-                <span className="text-[18px] font-bold text-foreground tracking-[-0.2px]">
-                  Past Sessions
-                </span>
-              </div>
-
-              <div className="flex flex-col gap-3">
-                {/* Session 2 - Dru topic */}
-                <Card>
-                  <CardContent className="p-5">
-                    <div className="flex items-center justify-between gap-3 mb-1">
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono text-[10px] font-bold text-muted-foreground bg-surface border border-border rounded-[5px] px-2 py-0.5 whitespace-nowrap">
-                          9 Apr 2026
-                        </span>
-                        <span className="text-[12px] font-semibold text-muted-foreground">
-                          Dave Hajdu
-                        </span>
-                      </div>
-                      <span className="text-[10px] font-bold tracking-[0.05em] uppercase bg-navy/8 text-navy rounded-[5px] px-2 py-0.5">
-                        CAIO &middot; Session 2
-                      </span>
-                    </div>
-                    <div className="flex flex-col mt-1">
-                      <div className="flex items-start gap-3 py-3 border-t border-surface">
-                        <div className="w-[34px] h-[34px] rounded-full overflow-hidden flex-shrink-0 mt-0.5">
-                          <Image
-                            src="/images/dru-nguyen-headshot.webp"
-                            alt="Dru"
-                            width={34}
-                            height={34}
-                            className="object-cover w-full h-full"
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="font-mono text-[10px] font-bold tracking-[0.08em] uppercase text-muted-foreground mb-0.5">
-                            Dru
-                          </div>
-                          <div className="text-[14px] font-semibold text-foreground leading-[1.3] mb-1">
-                            Setting Up Folder Structure in Cowork + Automating Social Media
-                          </div>
-                          <div className="text-[12px] text-muted-foreground leading-[1.55]">
-                            How to organise a Cowork project with the right folder structure and instructions so Claude stays on-brand, then building a workflow to automate social media content end to end.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Session 1 - CAIO multi-topic card */}
-                <Card>
-                  <CardContent className="p-5">
-                    <div className="flex items-center justify-between gap-3 mb-1">
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono text-[10px] font-bold text-muted-foreground bg-surface border border-border rounded-[5px] px-2 py-0.5 whitespace-nowrap">
-                          2 Apr 2026
-                        </span>
-                        <span className="text-[12px] font-semibold text-muted-foreground">
-                          Dave Hajdu
-                        </span>
-                      </div>
-                      <span className="text-[10px] font-bold tracking-[0.05em] uppercase bg-navy/8 text-navy rounded-[5px] px-2 py-0.5">
-                        CAIO &middot; Session 1
-                      </span>
-                    </div>
-
-                    {/* Topic rows */}
-                    <div className="flex flex-col mt-1">
-                      {/* Eric topic */}
-                      <div
-                        className="flex items-start gap-3 py-3 border-t border-surface"
-                      >
-                        <div className="w-[34px] h-[34px] rounded-full overflow-hidden flex-shrink-0 mt-0.5">
-                          <Image
-                            src="/images/eric-enriquez-headshot.webp"
-                            alt="Eric"
-                            width={34}
-                            height={34}
-                            className="object-cover w-full h-full"
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="font-mono text-[10px] font-bold tracking-[0.08em] uppercase text-muted-foreground mb-0.5">
-                            Eric
-                          </div>
-                          <div className="text-[14px] font-semibold text-foreground leading-[1.3] mb-1 group-hover:text-blue transition-colors">
-                            Building a Website with AI: Bhutan Travel Project
-                          </div>
-                          <div className="text-[12px] text-muted-foreground leading-[1.55]">
-                            Used Cowork to plan, brand, and build a full project
-                            website from scratch, starting with a strategy brief
-                            in chat and ending with a live Gantt chart for
-                            tracking milestones.
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Julien topic */}
-                      <div
-                        className="flex items-start gap-3 py-3 border-t border-surface"
-                      >
-                        <div className="w-[34px] h-[34px] rounded-full overflow-hidden flex-shrink-0 mt-0.5">
-                          <Image
-                            src="/images/julien-head-shot.webp"
-                            alt="Julien"
-                            width={34}
-                            height={34}
-                            className="object-cover w-full h-full"
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="font-mono text-[10px] font-bold tracking-[0.08em] uppercase text-muted-foreground mb-0.5">
-                            Julien
-                          </div>
-                          <div className="text-[14px] font-semibold text-foreground leading-[1.3] mb-1 group-hover:text-blue transition-colors">
-                            Power BI Dashboard Migration with Cowork
-                          </div>
-                          <div className="text-[12px] text-muted-foreground leading-[1.55]">
-                            Walked through using Claude to accelerate a Power BI
-                            migration, setting up data context, writing DAX with
-                            AI assistance, and building a repeatable Cowork
-                            workflow for future reports.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </ScrollReveal>
+      {/* PLANS */}
+      <section className="sec">
+        <div className="page-container">
+          <div className="sec-head">
+            <div className="idx">02 / Plans</div>
+            <div>
+              <h2 className="t-h1">Group or private.</h2>
+              <p className="sub">
+                Weekly group coaching at $99/month, or focused private work with Dave by
+                arrangement.
+              </p>
+            </div>
           </div>
 
-          {/* ═══ Sidebar ═══ */}
-          <div className="flex flex-col gap-4 md:sticky md:top-[76px]">
-            {/* Card 1: Submit header */}
-            <ScrollReveal>
-              <Card>
-                <CardContent className="p-5">
-                  <p className="text-[14px] font-bold text-foreground tracking-tight mb-1.5">
-                    Submit Your AI Challenge
-                  </p>
-                  <p className="text-[13px] text-muted-foreground leading-[1.55]">
-                    Every submission gets reviewed. The most applicable problems
-                    get worked live on Thursday.
-                  </p>
-                </CardContent>
-              </Card>
-            </ScrollReveal>
-
-            {/* Card 2: Signup form */}
-            <ScrollReveal>
-              <Card>
-                <CardContent className="p-5">
-                  <CoachingSignupForm dates={coachingDates} />
-                </CardContent>
-              </Card>
-            </ScrollReveal>
-
-            {/* Card 3: Session details */}
-            <ScrollReveal>
-              <Card>
-                <CardContent className="p-5 bg-surface rounded-xl">
-                  <p className="text-[11px] font-bold tracking-[0.08em] uppercase text-muted-foreground mb-3.5">
-                    Session Details
-                  </p>
-
-                  <div className="flex flex-col gap-2.5">
-                    <div className="flex items-start gap-2.5 text-[13px]">
-                      <span className="text-[14px] flex-shrink-0 mt-px">
-                        &#x1F4C5;
-                      </span>
-                      <div className="text-muted-foreground leading-[1.5]">
-                        <strong className="text-foreground font-bold">
-                          Every Thursday
-                        </strong>
-                        <br />
-                        Weekly, no breaks
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-2.5 text-[13px]">
-                      <span className="text-[14px] flex-shrink-0 mt-px">
-                        &#x1F552;
-                      </span>
-                      <div className="text-muted-foreground leading-[1.5]">
-                        <strong className="text-foreground font-bold">
-                          11:30 AM - 1:30 PM
-                        </strong>
-                        <br />
-                        GMT+7 (Bangkok / Hanoi / Jakarta)
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-2.5 text-[13px]">
-                      <span className="text-[14px] flex-shrink-0 mt-px">
-                        &#x1F3A4;
-                      </span>
-                      <div className="text-muted-foreground leading-[1.5]">
-                        <strong className="text-foreground font-bold">
-                          Live on AIO Labs
-                        </strong>
-                        <br />
-                        Recorded, watch back anytime
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-2.5 text-[13px]">
-                      <span className="text-[14px] flex-shrink-0 mt-px">
-                        &#x2709;
-                      </span>
-                      <div className="text-muted-foreground leading-[1.5]">
-                        <strong className="text-foreground font-bold">
-                          Submit by Tue 4pm
-                        </strong>
-                        <br />
-                        GMT+7 to be considered
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </ScrollReveal>
+          <div className={styles.plansGrid}>
+            <div className={styles.plan}>
+              <div className="t-eyebrow">Group coaching</div>
+              <div className="t-h1">Weekly live sessions</div>
+              <div className={styles.priceRow}>
+                <span className={styles.planPrice}>$99</span>
+                <span className={styles.planPer}>/ month</span>
+              </div>
+              <p className="t-body">
+                Weekly live coaching. Submit your topics. Get real-time guidance on your
+                situation. Certification included.
+              </p>
+              <Link className="btn btn-primary" href="#submit" style={{ marginTop: 'auto' }}>
+                Join for $99 / month
+              </Link>
+            </div>
+            <div className={styles.plan}>
+              <div className="t-eyebrow">Private coaching</div>
+              <div className="t-h1">One-on-one with Dave</div>
+              <div className={styles.priceRow}>
+                <span className={styles.planPrice}>-</span>
+                <span className={styles.planPer}>By arrangement</span>
+              </div>
+              <p className="t-body">
+                Dedicated 1:1 sessions. Custom AI roadmap for your organisation. Team
+                coaching and enablement. Limited availability.
+              </p>
+              <a
+                className="btn btn-ghost"
+                href="mailto:dave@edge8.ai"
+                style={{ marginTop: 'auto' }}
+              >
+                Enquire →
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

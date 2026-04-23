@@ -1,196 +1,292 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import ScrollReveal from "@/components/ScrollReveal";
-import { POSTS } from "@/lib/posts-data";
+import Link from 'next/link';
+import styles from './page.module.css';
 
 export default function Home() {
   return (
     <>
-      {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-navy h-[380px] md:h-[420px] pt-[120px]">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 50% 50% at 10% 90%, rgba(40,123,232,0.14) 0%, transparent 60%)' }} />
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 40% 50% at 50% 0%, rgba(111,242,193,0.06) 0%, transparent 50%)' }} />
-        <div className="relative z-10 w-full max-w-[920px] mx-auto px-6 md:px-10">
-          <p className="text-white/70 text-[11px] font-bold tracking-[0.15em] uppercase mb-3 font-mono">-- CAIO Coach &middot; Dave Hajdu</p>
-          <h1 className="text-white font-extrabold leading-[1.08] tracking-tight mb-3" style={{ fontSize: 'clamp(28px, 4.5vw, 42px)' }}>Leadership Has <span className="text-mint">Changed</span></h1>
-          <p className="text-white/55 text-[15px] max-w-[480px] leading-relaxed mb-5">Half the job is still people. The other half is now AI. We coach you on both.</p>
-          <div className="flex flex-wrap gap-3">
-            <Badge variant="outline" className="bg-navy/50 text-white/80 border-white/15 px-4 py-1.5 text-[12px] font-semibold">Weekly Live Sessions</Badge>
-            <Badge variant="outline" className="bg-navy/50 text-white/80 border-white/15 px-4 py-1.5 text-[12px] font-semibold">$99 / month</Badge>
-            <Link href="/coaching"><Badge className="bg-blue text-white px-4 py-1.5 text-[12px] font-semibold hover:bg-blue/90 cursor-pointer">Start Coaching &rarr;</Badge></Link>
+      {/* HERO */}
+      <section className={styles.hero}>
+        <div className={`page-container ${styles.heroInner}`}>
+          <div className={styles.tagRow}>
+            <span className="tag">
+              <span className="dot" />
+              Coaching with Dave Hajdu
+            </span>
+            <span className="tag tag-muted">Q3 · 2026 cohort open</span>
+          </div>
+
+          <h1 className={styles.display}>
+            Leadership
+            <br />
+            has <span className={styles.slash}>/</span>changed.
+          </h1>
+
+          <p className={styles.lede}>
+            Half the job is still people. The other half is now AI.
+            <br />
+            We coach you on both.
+          </p>
+
+          <div className={styles.ctaRow}>
+            <Link className="btn btn-primary" href="/coaching">
+              Start coaching
+            </Link>
+            <Link className="btn btn-ghost" href="/infinite-leverage">
+              The Blueprint →
+            </Link>
+            <span className={styles.price}>$99 / month · weekly live sessions</span>
+          </div>
+
+          <div className={styles.heroStats}>
+            <div>
+              <div className={styles.num}>9.5M</div>
+              <div className={styles.label}>
+                Raised for TINYpulse. Dave led it without reading a line of code.
+              </div>
+            </div>
+            <div>
+              <div className={styles.num}>50/50</div>
+              <div className={styles.label}>
+                The emerging split of human and AI work in every modern workflow.
+              </div>
+            </div>
+            <div>
+              <div className={styles.num}>4</div>
+              <div className={styles.label}>
+                Offices of the future: Revenue, Talent, Operations, Innovation.
+              </div>
+            </div>
+            <div>
+              <div className={styles.num}>420+</div>
+              <div className={styles.label}>
+                Certified AI officers trained across four continents and counting.
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ── PAGE MAIN ── */}
-      <div className="max-w-[920px] mx-auto px-6 md:px-10 py-12 md:py-14">
-
-        {/* ── ABOUT DAVE ── */}
-        <ScrollReveal>
-          <div className="flex items-center gap-2.5 mb-5">
-            <Badge variant="outline" className="bg-blue/10 text-blue border-blue/20 text-[10px] font-bold tracking-[0.08em] uppercase px-2.5 py-1 gap-1.5">
-              <span className="w-[5px] h-[5px] rounded-full bg-blue" />
-              Your Coach
-            </Badge>
-          </div>
-
-          <Card className="overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-[260px_1fr]">
-              <div className="relative min-h-[240px] md:min-h-[280px]">
-                <Image
-                  src="/images/dave-portrait.webp"
-                  alt="Dave Hajdu - CAIO Coach"
-                  fill
-                  className="object-cover object-[center_top]"
-                />
-              </div>
-              <CardContent className="p-6 md:p-9">
-                <h3 className="text-[20px] font-bold text-foreground tracking-tight mb-1">Dave Hajdu</h3>
-                <p className="text-blue text-[13px] font-semibold mb-4">Founder &amp; Chief AI Officer, Edge8 AI</p>
-                <div className="text-muted-foreground text-[14px] leading-[1.7] space-y-2.5">
-                  <p>
-                    We raised $9.5 million for TINYpulse. Had{' '}
-                    <a href="https://www.baselinevc.com" target="_blank" rel="noopener noreferrer" className="text-blue hover:underline">Baseline Venture Capital</a>{' '}
-                    behind us, a real board, and a real team. And for most of that journey, I couldn&apos;t tell you the difference between a repository and a folder.
-                  </p>
-                  <p>
-                    That wasn&apos;t laziness. That was just how it worked until AI made it inefficient. Now every executive faces the same inflection point I did. The wall between leadership and the technical side of the business is coming down, whether you&apos;re ready or not.
-                  </p>
-                  <p>
-                    I coach leaders to get ready. Not to code. Not to become data scientists. To lead the AI half of every workflow they&apos;re already responsible for. The organizational framework I use for that work is the{' '}
-                    <Link href="/blog/four-offices-of-the-future" className="text-blue hover:underline">Four Offices of the Future</Link>{' '}
-                    -- Revenue, Talent, Operations, and Innovation. That&apos;s where the ROI lives. Join the{' '}
-                    <Link href="/community" className="text-blue hover:underline">Leadership in the AI Era</Link>{' '}
-                    community and work through it with a global cohort of executives.
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {['TINYpulse · $9.5M raised', 'Microsoft Alumni', 'Founder, Edge8 AI', 'Global Faculty, EOVietnam'].map((chip) => (
-                    <span key={chip} className="font-mono text-[11px] font-semibold text-muted-foreground bg-surface border border-border rounded-md px-2.5 py-1">
-                      {chip}
-                    </span>
-                  ))}
-                </div>
-              </CardContent>
+      {/* ABOUT DAVE */}
+      <section className="sec">
+        <div className="page-container">
+          <div className="sec-head">
+            <div className="idx">01 / Your coach</div>
+            <div>
+              <h2 className="t-h1">I coach leaders to lead the AI half of the job.</h2>
+              <p className="sub">
+                Not to code. Not to become a data scientist. To lead the AI half of every
+                workflow you&apos;re already responsible for.
+              </p>
             </div>
-          </Card>
-        </ScrollReveal>
-
-        {/* ── COACHING OFFER ── */}
-        <ScrollReveal>
-          <div className="flex flex-wrap items-center gap-2.5 mt-14 mb-5">
-            <Badge variant="outline" className="bg-blue/10 text-blue border-blue/20 text-[10px] font-bold tracking-[0.08em] uppercase px-2.5 py-1 gap-1.5">
-              <span className="w-[5px] h-[5px] rounded-full bg-blue" />
-              How It Works
-            </Badge>
-            <span className="text-[18px] font-bold text-foreground tracking-tight">The Coaching Program</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Group Coaching */}
-            <Card className="border-blue/30 bg-gradient-to-br from-white to-blue/[0.03] flex flex-col">
-              <CardContent className="p-7 flex flex-col flex-1">
-                <p className="text-[10px] font-bold tracking-[0.1em] uppercase text-blue mb-2.5">Group Coaching</p>
-                <h3 className="text-[18px] font-bold text-foreground tracking-tight mb-2.5">Weekly Live Sessions</h3>
-                <div className="flex items-baseline gap-1.5 mb-3.5">
-                  <span className="font-mono text-[28px] font-bold text-foreground">$99</span>
-                  <span className="text-[13px] text-muted-foreground">/ month</span>
+          <div className={styles.about}>
+            <div className={styles.portrait}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/dave-portrait.webp" alt="Dave Hajdu" />
+              <div className={styles.portraitMeta}>
+                <div>
+                  <div className={styles.portraitName}>Dave Hajdu</div>
+                  <div className={styles.portraitRole}>Founder · Edge8 AI</div>
                 </div>
-                <p className="text-[14px] text-muted-foreground leading-relaxed mb-5">
-                  Each week, members submit the AI challenges they&apos;re facing. Dave coaches the top topics live. Anyone can join, ask questions, and get real-time guidance on their specific situation.
-                </p>
-                <div className="flex flex-col gap-2 mb-6">
-                  {[
-                    'Weekly live coaching sessions',
-                    'Submit your topics and questions',
-                    'Access to all micro-sessions and thought leadership',
-                    'Community of global AI leaders',
-                    'Certification program included',
-                  ].map((item) => (
-                    <div key={item} className="flex items-baseline gap-2.5 text-[13px] text-muted-foreground">
-                      <span className="w-[5px] h-[5px] rounded-full bg-blue flex-shrink-0 mt-[6px]" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
+                <div className={styles.portraitTag}>
+                  CAIO
+                  <br />
+                  Coach
                 </div>
-                <Link
-                  href="/coaching"
-                  className="mt-auto inline-flex items-center gap-1.5 bg-navy text-white text-[14px] font-semibold px-5 py-2.5 rounded-lg hover:bg-blue transition-colors"
-                >
-                  Join for $99/month &rarr;
+              </div>
+            </div>
+            <div className={styles.aboutBody}>
+              <p>
+                We raised <strong>$9.5 million for TINYpulse</strong>. Had Baseline Venture
+                Capital behind us, a real board, and a real team. And for most of that
+                journey, I couldn&apos;t tell you the difference between a repository and a
+                folder.
+              </p>
+              <p>
+                That wasn&apos;t laziness. That was just how it worked, until AI made it
+                inefficient. Now every executive faces the same inflection point I did. The
+                wall between leadership and the technical side of the business is coming
+                down, whether you&apos;re ready or not.
+              </p>
+              <p>
+                I coach leaders to get ready. The organizational framework I use is the{' '}
+                <Link className={styles.aboutInline} href="/blog">
+                  Four Offices of the Future
+                </Link>{' '}
+                - Revenue, Talent, Operations, Innovation. Join the{' '}
+                <Link className={styles.aboutInline} href="/community">
+                  Leadership in the AI Era
+                </Link>{' '}
+                community and work through it with a global cohort of executives.
+              </p>
+              <div className={styles.credentials}>
+                <span className="tag tag-muted">TINYpulse · $9.5M raised</span>
+                <span className="tag tag-muted">Microsoft alumni</span>
+                <span className="tag tag-muted">Founder · Edge8 AI</span>
+                <span className="tag tag-muted">Global faculty · EO Vietnam</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* OFFER */}
+      <section className="sec">
+        <div className="page-container">
+          <div className="sec-head">
+            <div className="idx">02 / Program</div>
+            <div>
+              <h2 className="t-h1">Two ways in.</h2>
+              <p className="sub">
+                Weekly group coaching at $99 per month, or focused private work with Dave by
+                arrangement.
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.offers}>
+            <div className={styles.offer}>
+              <div className={styles.offerType}>Group coaching</div>
+              <h3 className={styles.offerTitle}>Weekly live sessions</h3>
+              <p className={styles.offerDesc}>
+                Each week, members submit the AI challenges they&apos;re facing. Dave
+                coaches the top topics live. Anyone can join, ask questions, and get
+                real-time guidance on their specific situation.
+              </p>
+              <div className={styles.priceRow}>
+                <div className={styles.offerPrice}>$99</div>
+                <div className={styles.offerPer}>/ month</div>
+              </div>
+              <ul className={styles.offerList}>
+                <li>Weekly live coaching sessions</li>
+                <li>Submit your own topics and questions</li>
+                <li>Access to every micro-session and thought leadership archive</li>
+                <li>Community of global AI leaders</li>
+                <li>Certification program included</li>
+              </ul>
+              <div className={styles.offerAct}>
+                <Link className="btn btn-primary" href="/coaching">
+                  Join for $99 / month
                 </Link>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            {/* Private Coaching */}
-            <Card className="flex flex-col">
-              <CardContent className="p-7 flex flex-col flex-1">
-                <p className="text-[10px] font-bold tracking-[0.1em] uppercase text-blue mb-2.5">Private Coaching</p>
-                <h3 className="text-[18px] font-bold text-foreground tracking-tight mb-2.5">One-on-One Sessions</h3>
-                <div className="flex items-baseline gap-1.5 mb-3.5">
-                  <span className="font-mono text-[20px] font-bold text-muted-foreground">By arrangement</span>
-                </div>
-                <p className="text-[14px] text-muted-foreground leading-relaxed mb-5">
-                  For executives who want focused, private attention on their AI strategy. Dave works directly with you on your roadmap, your team, and your specific business context.
-                </p>
-                <div className="flex flex-col gap-2 mb-6">
-                  {[
-                    { text: 'Dedicated 1:1 sessions with Dave', muted: false },
-                    { text: 'Custom AI roadmap for your organisation', muted: false },
-                    { text: 'Team coaching and enablement', muted: false },
-                    { text: 'Limited availability', muted: true },
-                  ].map((item) => (
-                    <div key={item.text} className={`flex items-baseline gap-2.5 text-[13px] ${item.muted ? 'text-muted-foreground/60' : 'text-muted-foreground'}`}>
-                      <span className={`w-[5px] h-[5px] rounded-full flex-shrink-0 mt-[6px] ${item.muted ? 'bg-muted-foreground/40' : 'bg-blue'}`} />
-                      <span>{item.text}</span>
-                    </div>
-                  ))}
-                </div>
-                <Link
-                  href="/coaching"
-                  className="mt-auto inline-flex items-center gap-1.5 bg-surface text-muted-foreground text-[14px] font-semibold px-5 py-2.5 rounded-lg border border-border hover:border-blue hover:text-blue transition-colors"
-                >
-                  Enquire About Private Coaching &rarr;
+            <div className={styles.offer}>
+              <div className={styles.offerType}>Private coaching</div>
+              <h3 className={styles.offerTitle}>One-on-one with Dave</h3>
+              <p className={styles.offerDesc}>
+                For executives who want focused, private attention on their AI strategy.
+                Dave works directly with you on your roadmap, your team, and your specific
+                business context.
+              </p>
+              <div className={styles.priceRow}>
+                <div className={styles.offerPrice}>-</div>
+                <div className={styles.offerPer}>By arrangement</div>
+              </div>
+              <ul className={styles.offerList}>
+                <li>Dedicated 1:1 sessions with Dave</li>
+                <li>Custom AI roadmap for your organisation</li>
+                <li>Team coaching and enablement</li>
+                <li>Limited availability - enquire first</li>
+              </ul>
+              <div className={styles.offerAct}>
+                <Link className="btn btn-ghost" href="/coaching">
+                  Enquire about private coaching
                 </Link>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
-        </ScrollReveal>
+        </div>
+      </section>
 
-        {/* ── BLOG PREVIEW ── */}
-        <ScrollReveal>
-          <div className="flex flex-wrap items-center gap-2.5 mt-14 mb-5">
-            <Badge variant="outline" className="bg-mint-dark/10 text-mint-dark border-mint-dark/20 text-[10px] font-bold tracking-[0.08em] uppercase px-2.5 py-1 gap-1.5">
-              <span className="w-[5px] h-[5px] rounded-full bg-mint-dark" />
-              Blog
-            </Badge>
-            <span className="text-[18px] font-bold text-foreground tracking-tight">Latest Insights</span>
-            <span className="ml-auto text-[13px] text-muted-foreground hover:text-blue transition-colors">
-              <Link href="/blog">View all &rarr;</Link>
-            </span>
+      {/* FIELD NOTES */}
+      <section className="sec">
+        <div className="page-container">
+          <div className="sec-head">
+            <div className="idx">03 / Writing</div>
+            <div>
+              <h2 className="t-h1">Field notes.</h2>
+              <p className="sub">
+                Serialized builds on one side, standalone essays on the other.
+              </p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
-            {POSTS.slice(0, 3).map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`}>
-                <Card className="h-full hover:border-blue/30 hover:shadow-lg hover:-translate-y-px transition-all cursor-pointer">
-                  <CardContent className="p-5 flex flex-col gap-2.5 h-full">
-                    <span className="font-mono text-[11px] text-muted-foreground">{post.date}</span>
-                    <h3 className="text-[15px] font-bold text-foreground leading-tight tracking-tight flex-1">
-                      {post.title}
-                    </h3>
-                    <p className="text-[13px] text-muted-foreground leading-relaxed">{post.excerpt}</p>
-                    <span className="text-[13px] text-muted-foreground group-hover:text-blue">Read &rarr;</span>
-                  </CardContent>
-                </Card>
+          <div className={styles.fieldNotes}>
+            <Link
+              href="/infinite-leverage"
+              className={`${styles.notesCard} ${styles.notesCardFeatured}`}
+            >
+              <div className={styles.notesHead}>
+                <span className={styles.notesDate}>14-day series · complete</span>
+                <span className={styles.notesNum}>Series 01</span>
+              </div>
+              <div className={styles.notesGlyph}>
+                Infinite
+                <br />
+                Leverage.
+              </div>
+              <p className={styles.notesExcerpt}>
+                Five AI employees. Two offices. One weekend. 14 days of building a
+                one-person agentic company - and what it proved about how the next decade
+                of work gets built.
+              </p>
+              <div className={styles.notesFoot}>
+                <span className={styles.notesRead}>Read the Blueprint →</span>
+                <span className={styles.notesMetaRight}>14 days · 22k words</span>
+              </div>
+            </Link>
+
+            <Link href="/blog" className={styles.notesCard}>
+              <div className={styles.notesHead}>
+                <span className={styles.notesDate}>Standalone essays</span>
+                <span className={styles.notesNum}>Ongoing</span>
+              </div>
+              <h3 className={styles.notesTitle}>Essays on leadership in the 50/50 era.</h3>
+              <p className={styles.notesExcerpt}>
+                Frameworks, case studies, and hard-earned insights for leaders navigating
+                the transition from using AI to leading it. The Four Offices. The skill
+                your team actually needs. Why iteration is the secret weapon.
+              </p>
+              <p className={styles.notesMeta}>
+                Latest · Using AI was 2025. Leading AI is 2026.
+              </p>
+              <div className={styles.notesFoot}>
+                <span className={styles.notesRead}>All essays →</span>
+                <span className={styles.notesMetaRight}>7 essays · monthly</span>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* COMMUNITY BAND */}
+      <section className="sec">
+        <div className="page-container">
+          <div className={styles.band}>
+            <div>
+              <div className="t-eyebrow" style={{ marginBottom: 20 }}>
+                Community
+              </div>
+              <h2 className="t-h1">Leadership in the AI Era - a global cohort.</h2>
+              <p>
+                A community of executives coaching each other through the Four Offices
+                framework. Weekly live sessions. A shared archive of what&apos;s working.
+                Apply to the Q3 cohort before enrollment closes.
+              </p>
+            </div>
+            <div className={styles.bandCtas}>
+              <Link className="btn btn-primary" href="/community">
+                Apply to cohort
               </Link>
-            ))}
+              <Link className="btn btn-ghost" href="/community">
+                Visit community
+              </Link>
+            </div>
           </div>
-        </ScrollReveal>
-
-      </div>
+        </div>
+      </section>
     </>
   );
 }

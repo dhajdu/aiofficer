@@ -1,366 +1,539 @@
-import type { Metadata } from "next";
-import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import ScrollReveal from "@/components/ScrollReveal";
-import CommunityCarousel from "./CommunityCarousel";
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import CommunityCarousel from './CommunityCarousel';
 
 export const metadata: Metadata = {
-  title: "AI Leadership Community - CAIO Coach",
+  title: 'AI Leadership Community - CAIO Coach',
   description:
-    "Join a global community of AI leaders from 30+ countries. Weekly coaching sessions, certification tracks, peer accountability, and AI leadership resources.",
+    'Join a global community of AI leaders from 30+ countries. Weekly coaching sessions, certification tracks, peer accountability, and AI leadership resources.',
   openGraph: {
-    title: "Join the CAIO Coach Community",
+    title: 'Join the CAIO Coach Community',
     description:
-      "A global community of executives navigating AI strategy together. Weekly live sessions, peer accountability, and certification -- all for $99/month.",
-    type: "website",
-    url: "https://www.caiocoach.com/community",
-    images: [
-      {
-        url: "https://www.caiocoach.com/images/og-community.webp",
-        width: 1200,
-        height: 630,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Join the CAIO Coach Community",
-    description:
-      "A global community of executives navigating AI strategy together.",
-    images: ["https://www.caiocoach.com/images/og-community.webp"],
+      'A global community of executives navigating AI strategy together. Weekly live sessions, peer accountability, and certification - all for $99/month.',
+    type: 'website',
+    url: 'https://www.caiocoach.com/community',
   },
 };
 
+const JOIN_URL =
+  'https://community.ai-officer.com/checkout/ai-officer-certification-program?affiliate_code=ab0cd6';
+
 const advisors = [
   {
-    name: "Dr. Brooks Holtom",
-    image: "/images/advisor-brooks.webp",
-    role: "Professor of Management, Georgetown University McDonough School of Business",
-    bio: "Brooks is a leading researcher in organisational behaviour and human capital development. His consulting work spans Microsoft, Capital One, and the U.S. Air Force. He brings deep expertise in talent strategy and how organisations build capability at scale.",
-    tag: "Leadership & Talent",
+    name: 'Dr. Brooks Holtom',
+    image: '/images/advisor-brooks.webp',
+    role: 'Professor of Management, Georgetown',
+    bio: 'Brooks is a leading researcher in organisational behaviour and human capital development. His consulting work spans Microsoft, Capital One, and the U.S. Air Force.',
+    tag: 'Leadership & Talent',
   },
   {
-    name: "David Nilssen",
-    image: "/images/advisor-david.webp",
-    role: "CEO, DOXA Talent · Co-founder & Chairman, Guidant Financial",
-    bio: "David co-founded Guidant Financial, which has helped 30,000 entrepreneurs secure $7 billion in funding. He now leads DOXA Talent, a global HR platform. Named SBA National Young Entrepreneur of the Year, he has built companies that have appeared on the Inc 500/5000 list six times.",
-    tag: "Entrepreneurship & Talent",
+    name: 'David Nilssen',
+    image: '/images/advisor-david.webp',
+    role: 'CEO, DOXA Talent',
+    bio: 'David co-founded Guidant Financial, which helped 30,000 entrepreneurs secure $7B in funding. Now leads DOXA Talent, a global HR platform.',
+    tag: 'Entrepreneurship & Talent',
   },
   {
     name: "Dato' George Lim",
-    image: "/images/advisor-george.webp",
-    role: "Chair, Vistage Malaysia · Founder & CEO, G&A Group",
-    bio: "George leads Vistage Malaysia and has spent 28+ years in business advisory, building G&A Group to 100+ team members. He founded GA Space to mentor over 200,000 entrepreneurs and is a Chartered Accountant with credentials from Malaysia and New Zealand. A 15+ year Rotary International member.",
-    tag: "Executive Coaching",
+    image: '/images/advisor-george.webp',
+    role: 'Chair, Vistage Malaysia',
+    bio: 'George leads Vistage Malaysia and has spent 28+ years in business advisory, building G&A Group to 100+ team members. Founded GA Space to mentor 200,000+ entrepreneurs.',
+    tag: 'Executive Coaching',
   },
   {
-    name: "TK Nguyen",
-    image: "/images/advisor-tk.webp",
-    role: "CEO, GAM Esports Vietnam",
-    bio: "TK leads GAM Esports, one of Vietnam's top competitive gaming organisations, and has been instrumental in building the country's esports ecosystem. A serial entrepreneur who moved from Hollywood's nightlife scene to become a major figure in Vietnam's emerging tech and entertainment sector.",
-    tag: "Entrepreneurship · Vietnam",
+    name: 'TK Nguyen',
+    image: '/images/advisor-tk.webp',
+    role: 'CEO, GAM Esports Vietnam',
+    bio: "TK leads one of Vietnam's top competitive gaming organisations and has been instrumental in building the country's esports ecosystem.",
+    tag: 'Entrepreneurship · Vietnam',
   },
   {
-    name: "Dru Nguyen",
-    image: "/images/advisor-dru.webp",
-    role: "Co-Founder, Skylight · Advisor, AI Officer Institute",
-    bio: "With a decade of operational leadership across hospitality, entertainment, and technology, Dru specialises in scaling businesses across Southeast Asia.",
-    tag: "AI & Operations · SEA",
+    name: 'Dru Nguyen',
+    image: '/images/advisor-dru.webp',
+    role: 'Co-Founder, Skylight',
+    bio: 'A decade of operational leadership across hospitality, entertainment, and technology - scaling businesses across Southeast Asia.',
+    tag: 'AI & Operations · SEA',
   },
   {
-    name: "Tommy Dan",
-    image: "/images/advisor-tommy.webp",
-    role: "Entrepreneur & Community Leader",
-    bio: "Tommy is an entrepreneur and active member of the CAIO Coach community. His experience spans business operations and leadership development, and he contributes to the community as a practitioner bringing real-world context to the conversations.",
-    tag: "Entrepreneurship",
+    name: 'Tommy Dan',
+    image: '/images/advisor-tommy.webp',
+    role: 'Entrepreneur & Community Leader',
+    bio: 'Tommy is an entrepreneur and active member of the CAIO Coach community, bringing real-world practitioner context to the conversations.',
+    tag: 'Entrepreneurship',
   },
 ];
 
 const expectItems = [
   {
-    icon: "📡",
-    heading: "Weekly Live Coaching",
-    desc: "Every week, Dave coaches the topics members are actually wrestling with. Submit your challenge, join live, and get real answers in real time.",
+    heading: 'Weekly live coaching',
+    desc: "Every week, Dave coaches the topics members are actually wrestling with. Submit your challenge, join live, get real answers.",
   },
   {
-    icon: "🎬",
-    heading: "Micro-Sessions Library",
-    desc: "Short, practical sessions on the AI tools and strategies making a difference right now. New sessions released regularly, all available to free members.",
+    heading: 'Micro-sessions library',
+    desc: 'Short, practical sessions on the AI tools and strategies making a difference right now. New sessions released regularly.',
   },
   {
-    icon: "✏️",
-    heading: "AI Leadership Blog",
-    desc: "Dave's writing on AI leadership, strategy, and the real-world implications of the 50/50 era. Direct, practical, and globally relevant.",
+    heading: 'AI leadership blog',
+    desc: "Dave's writing on AI leadership, strategy, and the real-world implications of the 50/50 era.",
   },
   {
-    icon: "🌍",
-    heading: "Global Peers",
-    desc: "Connect with executives and operators from 30+ countries who are navigating the same transition. The community is the curriculum.",
+    heading: 'Global peers',
+    desc: 'Connect with executives and operators from 30+ countries navigating the same transition.',
   },
   {
-    icon: "🎓",
-    heading: "Certification Path",
-    desc: "Premium members get full access to the AI Officer Certification program -- three tracks, from Generative AI to CAIO Certified.",
+    heading: 'Certification path',
+    desc: 'Premium members get full access to the AI Officer Certification program - three tracks.',
   },
   {
-    icon: "🤝",
-    heading: "Advisor Access",
-    desc: "Guest sessions with community advisors -- practitioners, investors, and domain experts who bring real context to the coaching conversations.",
+    heading: 'Advisor access',
+    desc: 'Guest sessions with community advisors - practitioners, investors, and domain experts.',
   },
-];
-
-const freeTierItems = [
-  "All thought leadership articles",
-  "Full micro-session library",
-  "Community forum access",
-  "Weekly newsletter",
-];
-
-const premiumTierItems = [
-  "Everything in Free",
-  "Weekly live group coaching with Dave",
-  "Submit topics and ask questions live",
-  "AI Officer Certification program",
-  "Access to guest advisor sessions",
-  "Private coaching available separately",
 ];
 
 export default function CommunityPage() {
   return (
     <>
-      {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-navy h-[380px] md:h-[420px] pt-[120px]">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 50% 50% at 10% 90%, rgba(40,123,232,0.14) 0%, transparent 60%)' }} />
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 40% 50% at 50% 0%, rgba(111,242,193,0.06) 0%, transparent 50%)' }} />
-        <div className="relative z-10 w-full max-w-[920px] mx-auto px-6 md:px-10">
-          <p className="text-white/70 text-[11px] font-bold tracking-[0.15em] uppercase mb-3 font-mono">-- Community &middot; CAIO Coach</p>
-          <h1 className="text-white font-extrabold leading-[1.08] tracking-tight mb-3" style={{ fontSize: 'clamp(28px, 4.5vw, 42px)' }}>AI Is Better With <span className="text-mint">People</span></h1>
-          <p className="text-white/55 text-[15px] max-w-[480px] leading-relaxed mb-5">A global community of founders, executives, and advisors navigating the ever-changing world of AI together.</p>
-          <div className="flex flex-wrap gap-3">
-            <Badge
-              variant="outline"
-              className="bg-navy/50 text-white/80 border-white/15 px-4 py-1.5 text-[12px] font-semibold"
-            >
-              Free Tier Available
-            </Badge>
-            <Badge
-              variant="outline"
-              className="bg-navy/50 text-white/80 border-white/15 px-4 py-1.5 text-[12px] font-semibold"
-            >
-              30+ Countries
-            </Badge>
+      {/* HERO */}
+      <section
+        className="relative overflow-hidden"
+        style={{
+          padding: '140px 0 72px',
+          borderBottom: '1px solid var(--fg-border)',
+        }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.10) 1px, transparent 1px)',
+            backgroundSize: '80px 80px',
+            maskImage: 'radial-gradient(ellipse at 70% 30%, black 0%, transparent 70%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at 70% 30%, black 0%, transparent 70%)',
+            opacity: 0.4,
+          }}
+        />
+        <div className="page-container relative">
+          <div className="flex gap-2 flex-wrap mb-8">
+            <span className="tag">
+              <span className="dot" />
+              Leadership in the AI era
+            </span>
+            <span className="tag tag-muted">30+ countries</span>
+            <span className="tag tag-muted">Free tier available</span>
+          </div>
+          <h1 className="t-display" style={{ fontSize: 'clamp(48px, 10vw, 120px)', margin: 0 }}>
+            AI is better
+            <br />
+            with people.
+          </h1>
+          <p
+            style={{
+              maxWidth: 640,
+              fontSize: 20,
+              lineHeight: 1.5,
+              color: 'var(--fg-70)',
+              margin: '32px 0 0',
+            }}
+          >
+            A global community of founders, executives, and advisors navigating the
+            ever-changing world of AI together.
+          </p>
+          <div className="mt-10 flex gap-3 flex-wrap">
             <a
-              href="https://community.ai-officer.com/checkout/ai-officer-certification-program?affiliate_code=ab0cd6"
+              className="btn btn-primary"
+              href={JOIN_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Badge className="bg-blue text-white px-4 py-1.5 text-[12px] font-semibold hover:bg-blue/90 cursor-pointer">
-                Join the Community &rarr;
-              </Badge>
+              Join the community →
+            </a>
+            <a
+              className="btn btn-ghost"
+              href="https://community.ai-officer.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Browse free tier
             </a>
           </div>
         </div>
       </section>
 
-      {/* ── PAGE MAIN ── */}
-      <div className="max-w-[920px] mx-auto px-6 md:px-10 py-12 md:py-14">
-        {/* ── ADVISORS ── */}
-        <ScrollReveal>
-          <div className="flex items-center gap-2.5 mb-5">
-            <Badge
-              variant="outline"
-              className="bg-mint-dark/10 text-mint-dark border-mint-dark/20 text-[10px] font-bold tracking-[0.08em] uppercase px-2.5 py-1 gap-1.5"
-            >
-              <span className="w-[5px] h-[5px] rounded-full bg-mint-dark" />
-              The Network
-            </Badge>
-            <span className="text-[18px] font-bold text-foreground tracking-tight">
-              Advisors &amp; Community Leaders
-            </span>
+      {/* ADVISORS */}
+      <section className="sec">
+        <div className="page-container">
+          <div className="sec-head">
+            <div className="idx">01 / The network</div>
+            <div>
+              <h2 className="t-h1">Advisors &amp; community leaders.</h2>
+              <p className="sub">
+                The practitioners, investors, and domain experts who show up alongside the
+                coaching.
+              </p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {advisors.map((advisor) => (
-              <Card
-                key={advisor.name}
-                className="hover:border-mint-dark/30 hover:shadow-lg hover:-translate-y-px transition-all"
-              >
-                <CardContent className="p-6">
-                  <div className="w-16 h-16 rounded-full overflow-hidden mb-3.5 flex-shrink-0">
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+            style={{ border: '1px solid var(--fg-border)' }}
+          >
+            {advisors.map((a, i) => {
+              const col = i % 3;
+              const row = Math.floor(i / 3);
+              const lastRow = row === Math.ceil(advisors.length / 3) - 1;
+              return (
+                <div
+                  key={a.name}
+                  style={{
+                    padding: 32,
+                    borderRight: col < 2 ? '1px solid var(--fg-border)' : 'none',
+                    borderBottom: !lastRow ? '1px solid var(--fg-border)' : 'none',
+                  }}
+                  className="flex flex-col gap-3"
+                >
+                  <div
+                    style={{
+                      width: 56,
+                      height: 56,
+                      overflow: 'hidden',
+                      border: '1px solid var(--fg-border)',
+                      marginBottom: 8,
+                    }}
+                  >
                     <Image
-                      src={advisor.image}
-                      alt={advisor.name}
-                      width={64}
-                      height={64}
-                      className="w-full h-full object-cover object-[center_top]"
+                      src={a.image}
+                      alt={a.name}
+                      width={56}
+                      height={56}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        filter: 'grayscale(100%) contrast(1.05)',
+                      }}
                     />
                   </div>
-                  <h3 className="text-[15px] font-bold text-foreground tracking-tight mb-0.5">
-                    {advisor.name}
-                  </h3>
-                  <p className="text-[12px] font-semibold text-blue mb-3 leading-snug">
-                    {advisor.role}
-                  </p>
-                  <p className="text-[13px] text-muted-foreground leading-[1.65]">
-                    {advisor.bio}
-                  </p>
-                  <Badge
-                    variant="outline"
-                    className="mt-3 bg-mint-dark/10 text-mint-dark border-mint-dark/20 text-[10px] font-bold tracking-[0.06em] uppercase px-2.5 py-0.5 rounded-[5px]"
+                  <h3
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontWeight: 500,
+                      fontSize: 16,
+                      color: 'var(--fg)',
+                      margin: 0,
+                    }}
                   >
-                    {advisor.tag}
-                  </Badge>
-                </CardContent>
-              </Card>
-            ))}
+                    {a.name}
+                  </h3>
+                  <div
+                    className="font-mono"
+                    style={{
+                      fontSize: 11,
+                      letterSpacing: '0.14em',
+                      textTransform: 'uppercase',
+                      color: 'var(--fg-50)',
+                    }}
+                  >
+                    {a.role}
+                  </div>
+                  <p
+                    style={{
+                      fontSize: 13,
+                      lineHeight: 1.6,
+                      color: 'var(--fg-70)',
+                      margin: '4px 0 0',
+                      flex: 1,
+                    }}
+                  >
+                    {a.bio}
+                  </p>
+                  <span className="tag tag-muted" style={{ marginTop: 8, alignSelf: 'flex-start' }}>
+                    {a.tag}
+                  </span>
+                </div>
+              );
+            })}
           </div>
-        </ScrollReveal>
+        </div>
+      </section>
 
-        {/* ── WHAT TO EXPECT ── */}
-        <ScrollReveal>
-          <div className="flex items-center gap-2.5 mt-14 mb-5">
-            <Badge
-              variant="outline"
-              className="bg-blue/10 text-blue border-blue/20 text-[10px] font-bold tracking-[0.08em] uppercase px-2.5 py-1 gap-1.5"
-            >
-              <span className="w-[5px] h-[5px] rounded-full bg-blue" />
-              Inside the Community
-            </Badge>
-            <span className="text-[18px] font-bold text-foreground tracking-tight">
-              What You Get
-            </span>
+      {/* WHAT YOU GET */}
+      <section className="sec">
+        <div className="page-container">
+          <div className="sec-head">
+            <div className="idx">02 / Inside</div>
+            <div>
+              <h2 className="t-h1">What you get.</h2>
+              <p className="sub">
+                Everything in one place - coaching, curriculum, community, and a path to
+                certification.
+              </p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
-            {expectItems.map((item) => (
-              <Card key={item.heading}>
-                <CardContent className="p-5">
-                  <div className="text-[24px] mb-2.5">{item.icon}</div>
-                  <h3 className="text-[14px] font-bold text-foreground mb-2">
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+            style={{ border: '1px solid var(--fg-border)' }}
+          >
+            {expectItems.map((item, i) => {
+              const col = i % 3;
+              const row = Math.floor(i / 3);
+              const lastRow = row === Math.ceil(expectItems.length / 3) - 1;
+              return (
+                <div
+                  key={item.heading}
+                  style={{
+                    padding: 32,
+                    borderRight: col < 2 ? '1px solid var(--fg-border)' : 'none',
+                    borderBottom: !lastRow ? '1px solid var(--fg-border)' : 'none',
+                  }}
+                >
+                  <div
+                    className="font-mono"
+                    style={{
+                      fontSize: 10,
+                      letterSpacing: '0.18em',
+                      textTransform: 'uppercase',
+                      color: 'var(--fg-50)',
+                      marginBottom: 16,
+                    }}
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </div>
+                  <h3
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontWeight: 500,
+                      fontSize: 18,
+                      color: 'var(--fg)',
+                      margin: '0 0 10px',
+                    }}
+                  >
                     {item.heading}
                   </h3>
-                  <p className="text-[13px] text-muted-foreground leading-[1.65]">
+                  <p
+                    style={{
+                      fontSize: 14,
+                      lineHeight: 1.6,
+                      color: 'var(--fg-70)',
+                      margin: 0,
+                    }}
+                  >
                     {item.desc}
                   </p>
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+              );
+            })}
           </div>
-        </ScrollReveal>
+        </div>
+      </section>
 
-        {/* ── CAROUSEL ── */}
-        <ScrollReveal>
-          <div className="mt-12">
-            <CommunityCarousel />
+      {/* CAROUSEL */}
+      <section className="sec">
+        <div className="page-container">
+          <CommunityCarousel />
+        </div>
+      </section>
+
+      {/* MEMBERSHIP */}
+      <section className="sec">
+        <div className="page-container">
+          <div className="sec-head">
+            <div className="idx">03 / Membership</div>
+            <div>
+              <h2 className="t-h1">Free and premium access.</h2>
+              <p className="sub">Start free. Upgrade when the live coaching matters.</p>
+            </div>
           </div>
-        </ScrollReveal>
 
-        {/* ── MEMBERSHIP TIERS ── */}
-        <ScrollReveal>
-          <div className="flex items-center gap-2.5 mt-14 mb-5">
-            <Badge
-              variant="outline"
-              className="bg-blue/10 text-blue border-blue/20 text-[10px] font-bold tracking-[0.08em] uppercase px-2.5 py-1 gap-1.5"
+          <div
+            className="grid grid-cols-1 md:grid-cols-2"
+            style={{ border: '1px solid var(--fg-border)' }}
+          >
+            <div
+              style={{
+                padding: 48,
+                borderRight: '1px solid var(--fg-border)',
+              }}
             >
-              <span className="w-[5px] h-[5px] rounded-full bg-blue" />
-              Membership
-            </Badge>
-            <span className="text-[18px] font-bold text-foreground tracking-tight">
-              Free and Premium Access
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Free Tier */}
-            <Card>
-              <CardContent className="p-7">
-                <p className="text-[10px] font-bold tracking-[0.1em] uppercase text-mint-dark mb-2">
-                  Free
-                </p>
-                <h3 className="text-[20px] font-bold text-foreground tracking-tight mb-1.5">
-                  Community Member
-                </h3>
-                <div className="flex items-baseline gap-1.5 mb-3.5">
-                  <span className="font-mono text-[24px] font-bold text-foreground">
-                    $0
-                  </span>
-                  <span className="text-[13px] text-muted-foreground">
-                    forever
-                  </span>
-                </div>
-                <p className="text-[14px] text-muted-foreground leading-relaxed mb-5">
-                  Everything you need to follow along, learn at your own pace,
-                  and engage with the community. No credit card required.
-                </p>
-                <div className="flex flex-col gap-2 mb-6">
-                  {freeTierItems.map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-baseline gap-2.5 text-[13px] text-muted-foreground"
-                    >
-                      <span className="w-[5px] h-[5px] rounded-full bg-mint-dark flex-shrink-0 mt-[6px]" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <a
-                  href="https://community.ai-officer.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 bg-surface text-muted-foreground text-[14px] font-semibold px-5 py-2.5 rounded-lg border border-border hover:border-blue hover:text-blue transition-colors"
+              <div className="t-eyebrow">Free</div>
+              <h3
+                style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontWeight: 400,
+                  fontSize: 28,
+                  color: 'var(--fg)',
+                  margin: '16px 0 20px',
+                  lineHeight: 1.2,
+                  letterSpacing: '-0.01em',
+                }}
+              >
+                Community member
+              </h3>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  gap: 10,
+                  paddingTop: 12,
+                  borderTop: '1px solid var(--fg-border)',
+                }}
+              >
+                <span
+                  className="font-mono"
+                  style={{ fontSize: 56, fontWeight: 300, color: 'var(--fg)', lineHeight: 1 }}
                 >
-                  Join Free &rarr;
-                </a>
-              </CardContent>
-            </Card>
-
-            {/* Premium Tier */}
-            <Card className="border-blue/30 bg-gradient-to-br from-white to-blue/[0.03]">
-              <CardContent className="p-7">
-                <p className="text-[10px] font-bold tracking-[0.1em] uppercase text-blue mb-2">
-                  Premium
-                </p>
-                <h3 className="text-[20px] font-bold text-foreground tracking-tight mb-1.5">
-                  Coached Member
-                </h3>
-                <div className="flex items-baseline gap-1.5 mb-3.5">
-                  <span className="font-mono text-[24px] font-bold text-foreground">
-                    $99
-                  </span>
-                  <span className="text-[13px] text-muted-foreground">
-                    / month
-                  </span>
-                </div>
-                <p className="text-[14px] text-muted-foreground leading-relaxed mb-5">
-                  Live weekly coaching, certification access, and direct
-                  connection to Dave and the advisor network. Built for leaders
-                  who want to move faster.
-                </p>
-                <div className="flex flex-col gap-2 mb-6">
-                  {premiumTierItems.map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-baseline gap-2.5 text-[13px] text-muted-foreground"
-                    >
-                      <span className="w-[5px] h-[5px] rounded-full bg-blue flex-shrink-0 mt-[6px]" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <a
-                  href="https://community.ai-officer.com/checkout/ai-officer-certification-program?affiliate_code=ab0cd6"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 bg-navy text-white text-[14px] font-semibold px-5 py-2.5 rounded-lg hover:bg-blue transition-colors"
+                  $0
+                </span>
+                <span
+                  className="font-mono"
+                  style={{
+                    fontSize: 13,
+                    color: 'var(--fg-50)',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                  }}
                 >
-                  Join for $99/month &rarr;
-                </a>
-              </CardContent>
-            </Card>
+                  Forever
+                </span>
+              </div>
+              <p
+                style={{
+                  fontSize: 15,
+                  color: 'var(--fg-70)',
+                  lineHeight: 1.6,
+                  margin: '20px 0 20px',
+                }}
+              >
+                Everything you need to follow along, learn at your own pace, and engage with
+                the community. No credit card required.
+              </p>
+              <ul className="list-none p-0 m-0 flex flex-col gap-2.5 mb-8">
+                {[
+                  'All thought leadership articles',
+                  'Full micro-session library',
+                  'Community forum access',
+                  'Weekly newsletter',
+                ].map((t) => (
+                  <li
+                    key={t}
+                    className="flex gap-3"
+                    style={{ fontSize: 14, color: 'var(--fg-70)', lineHeight: 1.55 }}
+                  >
+                    <span
+                      style={{
+                        width: 10,
+                        height: 1,
+                        background: 'var(--fg-30)',
+                        flexShrink: 0,
+                        marginTop: 10,
+                      }}
+                    />
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                className="btn btn-ghost"
+                href="https://community.ai-officer.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Join free →
+              </a>
+            </div>
+
+            <div style={{ padding: 48 }}>
+              <div className="t-eyebrow">Premium</div>
+              <h3
+                style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontWeight: 400,
+                  fontSize: 28,
+                  color: 'var(--fg)',
+                  margin: '16px 0 20px',
+                  lineHeight: 1.2,
+                  letterSpacing: '-0.01em',
+                }}
+              >
+                Coached member
+              </h3>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  gap: 10,
+                  paddingTop: 12,
+                  borderTop: '1px solid var(--fg-border)',
+                }}
+              >
+                <span
+                  className="font-mono"
+                  style={{ fontSize: 56, fontWeight: 300, color: 'var(--fg)', lineHeight: 1 }}
+                >
+                  $99
+                </span>
+                <span
+                  className="font-mono"
+                  style={{
+                    fontSize: 13,
+                    color: 'var(--fg-50)',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  / month
+                </span>
+              </div>
+              <p
+                style={{
+                  fontSize: 15,
+                  color: 'var(--fg-70)',
+                  lineHeight: 1.6,
+                  margin: '20px 0 20px',
+                }}
+              >
+                Live weekly coaching, certification access, and direct connection to Dave and
+                the advisor network.
+              </p>
+              <ul className="list-none p-0 m-0 flex flex-col gap-2.5 mb-8">
+                {[
+                  'Everything in Free',
+                  'Weekly live group coaching',
+                  'Submit topics live',
+                  'AI Officer Certification program',
+                  'Advisor guest sessions',
+                  'Private coaching available separately',
+                ].map((t) => (
+                  <li
+                    key={t}
+                    className="flex gap-3"
+                    style={{ fontSize: 14, color: 'var(--fg-70)', lineHeight: 1.55 }}
+                  >
+                    <span
+                      style={{
+                        width: 10,
+                        height: 1,
+                        background: 'var(--fg-30)',
+                        flexShrink: 0,
+                        marginTop: 10,
+                      }}
+                    />
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                className="btn btn-primary"
+                href={JOIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Join for $99 / month →
+              </a>
+            </div>
           </div>
-        </ScrollReveal>
-      </div>
+        </div>
+      </section>
     </>
   );
 }

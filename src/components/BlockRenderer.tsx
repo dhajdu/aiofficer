@@ -14,71 +14,104 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
         switch (block.tag) {
           case 'h2':
             return (
-              <h2 key={i} className="text-[1.4rem] font-extrabold text-foreground tracking-tight mt-12 mb-5">
+              <h2
+                key={i}
+                className="font-sans font-normal text-white text-[28px] leading-[1.2] tracking-[-0.01em] mt-14 mb-5"
+              >
                 {renderInlineHtml(block.text)}
               </h2>
             );
           case 'h3':
             return (
-              <h3 key={i} className="text-[1.1rem] font-bold text-foreground mt-8 mb-3">
+              <h3
+                key={i}
+                className="font-sans font-medium text-white text-[20px] leading-[1.3] mt-10 mb-3"
+              >
                 {renderInlineHtml(block.text)}
               </h3>
             );
           case 'h4':
             return (
-              <h4 key={i} className="text-[0.85rem] font-bold uppercase tracking-[0.08em] text-muted-foreground mt-8 mb-3 font-mono">
+              <h4
+                key={i}
+                className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/50 mt-8 mb-3"
+              >
                 {renderInlineHtml(block.text)}
               </h4>
             );
           case 'p':
             return (
-              <p key={i} className="text-[0.97rem] text-muted-foreground leading-[1.75] mb-4 [&_a]:text-blue [&_a]:underline [&_a]:underline-offset-2 [&_strong]:text-foreground [&_strong]:font-semibold">
+              <p
+                key={i}
+                className="text-[16px] text-white/70 leading-[1.7] mb-5 [&_a]:text-white [&_a]:border-b [&_a]:border-white/30 [&_a]:pb-px [&_a:hover]:text-white/70 [&_strong]:text-white [&_strong]:font-medium"
+              >
                 {renderInlineHtml(block.text)}
               </p>
             );
           case 'blockquote':
             return (
-              <blockquote key={i} className="border-l-4 border-blue pl-5 py-1 my-6 italic text-muted-foreground text-[0.95rem] leading-relaxed bg-blue/[0.04] rounded-r-lg pr-5">
+              <blockquote
+                key={i}
+                className="border-l-2 border-white/40 pl-6 py-2 my-7 italic text-white/80 text-[17px] leading-[1.55]"
+              >
                 {renderInlineHtml(block.text)}
               </blockquote>
             );
           case 'li':
             return (
-              <div key={i} className="flex gap-3 mb-2 text-[0.97rem] text-muted-foreground leading-[1.75] [&_a]:text-blue [&_a]:underline [&_strong]:text-foreground [&_strong]:font-semibold">
-                <span className="w-[6px] h-[6px] rounded-full bg-mint-dark flex-shrink-0 mt-[10px]" />
+              <div
+                key={i}
+                className="flex gap-3 mb-2 text-[16px] text-white/70 leading-[1.7] [&_a]:text-white [&_a]:underline [&_strong]:text-white [&_strong]:font-medium"
+              >
+                <span className="w-[10px] h-px bg-white/30 flex-shrink-0 mt-[13px]" />
                 <span>{renderInlineHtml(block.text)}</span>
               </div>
             );
           case 'ol-item':
             return (
-              <div key={i} className="flex gap-3 mb-2 text-[0.97rem] text-muted-foreground leading-[1.75] [&_a]:text-blue [&_a]:underline [&_strong]:text-foreground [&_strong]:font-semibold">
-                <span className="text-blue font-semibold text-[0.85rem] flex-shrink-0 mt-[2px] font-mono">{i + 1}.</span>
+              <div
+                key={i}
+                className="flex gap-3 mb-2 text-[16px] text-white/70 leading-[1.7] [&_a]:text-white [&_a]:underline [&_strong]:text-white [&_strong]:font-medium"
+              >
+                <span className="text-white/50 font-mono text-[12px] tracking-[0.1em] flex-shrink-0 mt-[6px]">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
                 <span>{renderInlineHtml(block.text)}</span>
               </div>
             );
           case 'pull-quote':
             return (
-              <div key={i} className="text-[1.25rem] font-bold leading-[1.4] text-foreground text-center py-7 my-9 border-t-[3px] border-b-[3px] border-blue relative">
-                <span className="absolute top-[-20px] left-0 text-[5rem] text-blue/15 leading-none">&ldquo;</span>
+              <div
+                key={i}
+                className="font-mono font-light text-white text-[24px] leading-[1.3] tracking-[-0.01em] text-center py-10 my-12 border-t border-b border-white/20"
+              >
                 {renderInlineHtml(block.text)}
               </div>
             );
           case 'emphasis-box':
             return (
-              <div key={i} className="bg-navy rounded-xl p-7 my-7">
-                <p className="text-white/90 leading-[1.75] text-[1rem] [&_strong]:text-mint [&_strong]:font-semibold m-0">
+              <div
+                key={i}
+                className="border border-white/10 bg-white/[0.03] p-7 my-8"
+              >
+                <p className="text-white leading-[1.7] text-[16px] [&_strong]:text-white [&_strong]:font-medium m-0">
                   {renderInlineHtml(block.text)}
                 </p>
               </div>
             );
           case 'tl-dr':
             return (
-              <div key={i} className="bg-blue/[0.06] border border-blue/20 rounded-xl p-6 my-7">
-                <h3 className="text-blue text-[0.85rem] font-bold uppercase tracking-[0.1em] mb-4 font-mono">Quick Summary</h3>
-                <ul className="space-y-2">
+              <div key={i} className="border border-white/10 bg-white/[0.03] p-7 my-8">
+                <h3 className="font-mono text-white/50 text-[11px] uppercase tracking-[0.18em] mb-4">
+                  TL;DR
+                </h3>
+                <ul className="space-y-2.5 list-none p-0 m-0">
                   {block.items.map((item, j) => (
-                    <li key={j} className="flex gap-2.5 text-[0.9rem] text-muted-foreground leading-relaxed">
-                      <span className="w-[5px] h-[5px] rounded-full bg-blue flex-shrink-0 mt-[8px]" />
+                    <li
+                      key={j}
+                      className="flex gap-3 text-[15px] text-white/70 leading-[1.6]"
+                    >
+                      <span className="w-[10px] h-px bg-white/30 flex-shrink-0 mt-[11px]" />
                       <span>{renderInlineHtml(item)}</span>
                     </li>
                   ))}
@@ -87,35 +120,52 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             );
           case 'stat-callout':
             return (
-              <div key={i} className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-8">
-                {block.stats.map((stat, j) => {
-                  const colorClass = stat.color === 'mint' ? 'text-mint-dark' : stat.color === 'magenta' ? 'text-magenta' : 'text-blue';
-                  return (
-                    <div key={j} className="bg-white border border-border rounded-xl p-5 text-center">
-                      <div className={`text-[2rem] font-extrabold ${colorClass}`}>{stat.value}</div>
-                      <div className="text-[0.75rem] text-muted-foreground uppercase tracking-[0.08em] mt-1">{stat.label}</div>
+              <div
+                key={i}
+                className="grid grid-cols-1 sm:grid-cols-3 border border-white/10 my-8"
+              >
+                {block.stats.map((stat, j) => (
+                  <div
+                    key={j}
+                    className={`p-6 text-center ${j < block.stats.length - 1 ? 'sm:border-r border-white/10' : ''}`}
+                  >
+                    <div className="font-mono font-light text-white text-[40px] leading-none tracking-[-0.02em]">
+                      {stat.value}
                     </div>
-                  );
-                })}
+                    <div className="font-mono text-[10px] text-white/50 uppercase tracking-[0.18em] mt-3">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
               </div>
             );
           case 'callout':
             return (
-              <div key={i} className="border-l-4 border-mint-dark bg-mint-dark/[0.06] rounded-r-xl p-5 my-7">
-                <div className="text-[0.75rem] font-bold uppercase tracking-[0.1em] text-mint-dark mb-2 font-mono">{block.label}</div>
-                <p className="text-[0.95rem] text-muted-foreground leading-[1.7] m-0">
+              <div
+                key={i}
+                className="border-l-2 border-white/40 pl-6 py-2 my-7"
+              >
+                <div className="font-mono text-[10px] font-normal uppercase tracking-[0.18em] text-white/50 mb-2">
+                  {block.label}
+                </div>
+                <p className="text-[15px] text-white/80 leading-[1.7] m-0">
                   {renderInlineHtml(block.text)}
                 </p>
               </div>
             );
           case 'shipped-list':
             return (
-              <div key={i} className="bg-white border border-border rounded-xl p-6 my-7 shadow-sm">
-                <div className="text-[0.75rem] font-bold uppercase tracking-[0.1em] text-blue mb-4 font-mono">{block.title}</div>
-                <ul className="space-y-2.5">
+              <div key={i} className="border border-white/10 bg-white/[0.03] p-7 my-8">
+                <div className="font-mono text-[10px] font-normal uppercase tracking-[0.18em] text-white/50 mb-4">
+                  {block.title}
+                </div>
+                <ul className="space-y-2.5 list-none p-0 m-0">
                   {block.items.map((item, j) => (
-                    <li key={j} className="flex gap-2.5 text-[0.92rem] text-muted-foreground leading-relaxed [&_strong]:text-foreground [&_strong]:font-semibold">
-                      <span className="w-[5px] h-[5px] rounded-full bg-blue flex-shrink-0 mt-[8px]" />
+                    <li
+                      key={j}
+                      className="flex gap-3 text-[15px] text-white/70 leading-[1.6] [&_strong]:text-white [&_strong]:font-medium"
+                    >
+                      <span className="w-[10px] h-px bg-white/30 flex-shrink-0 mt-[11px]" />
                       <span>{renderInlineHtml(item)}</span>
                     </li>
                   ))}
@@ -124,10 +174,18 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             );
           case 'conclusion-box':
             return (
-              <div key={i} className="bg-gradient-to-br from-navy to-[#0d1f4a] rounded-2xl p-10 my-12">
-                <h2 className="text-mint text-[1.3rem] font-extrabold mb-4">{block.title}</h2>
+              <div
+                key={i}
+                className="border border-white/15 bg-white/[0.05] p-10 my-12"
+              >
+                <h2 className="font-sans font-normal text-white text-[24px] leading-[1.2] tracking-[-0.01em] mb-5">
+                  {block.title}
+                </h2>
                 {block.paragraphs.map((para, j) => (
-                  <p key={j} className="text-white/85 leading-[1.75] text-[0.97rem] mb-3.5 last:mb-0 [&_a]:text-mint [&_a]:underline">
+                  <p
+                    key={j}
+                    className="text-white/80 leading-[1.7] text-[15px] mb-4 last:mb-0 [&_a]:text-white [&_a]:border-b [&_a]:border-white/30 [&_strong]:text-white [&_strong]:font-medium"
+                  >
                     {renderInlineHtml(para)}
                   </p>
                 ))}
@@ -135,14 +193,18 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             );
           case 'faq':
             return (
-              <div key={i} className="border border-border rounded-xl mb-3 overflow-hidden bg-white">
+              <div key={i} className="border border-white/10 mb-3 overflow-hidden">
                 <details className="group">
-                  <summary className="px-6 py-5 text-[0.95rem] font-bold text-foreground cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden">
+                  <summary className="px-6 py-5 text-[15px] font-medium text-white cursor-pointer flex justify-between items-center list-none [&::-webkit-details-marker]:hidden">
                     {block.question}
-                    <span className="text-muted-foreground text-[1.2rem] group-open:hidden">+</span>
-                    <span className="text-muted-foreground text-[1.2rem] hidden group-open:inline">&minus;</span>
+                    <span className="text-white/50 text-[20px] group-open:hidden">
+                      +
+                    </span>
+                    <span className="text-white/50 text-[20px] hidden group-open:inline">
+                      −
+                    </span>
                   </summary>
-                  <div className="px-6 pb-5 text-[0.9rem] text-muted-foreground leading-[1.7]">
+                  <div className="px-6 pb-5 text-[14px] text-white/70 leading-[1.7]">
                     {renderInlineHtml(block.answer)}
                   </div>
                 </details>
@@ -150,7 +212,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             );
           case 'image':
             return (
-              <div key={i} className="my-8 rounded-xl overflow-hidden border border-border shadow-md">
+              <div key={i} className="my-10 border border-white/10 overflow-hidden">
                 <Image
                   src={block.src}
                   alt={block.alt}
@@ -162,7 +224,11 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             );
           case 'html':
             return (
-              <div key={i} className="my-6" dangerouslySetInnerHTML={{ __html: block.html }} />
+              <div
+                key={i}
+                className="my-7"
+                dangerouslySetInnerHTML={{ __html: block.html }}
+              />
             );
           default:
             return null;

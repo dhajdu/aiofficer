@@ -25,7 +25,8 @@ export default function BlueprintGrid({ blueprints }: BlueprintGridProps) {
   const [sort, setSort] = useState<SortMode>('date');
 
   const visible = useMemo(() => {
-    const filtered = filter === 'all' ? blueprints : blueprints.filter((b) => b.category === filter);
+    const filtered =
+      filter === 'all' ? blueprints : blueprints.filter((b) => b.category === filter);
     const sorted = [...filtered].sort((a, b) => {
       if (sort === 'date') return b.date.localeCompare(a.date);
       return a.title.localeCompare(b.title);
@@ -35,58 +36,60 @@ export default function BlueprintGrid({ blueprints }: BlueprintGridProps) {
 
   return (
     <div>
-      <div className="flex items-center justify-between flex-wrap gap-3 mb-8">
+      <div className="flex items-center justify-between flex-wrap gap-4 mb-10">
         <div className="flex gap-2 flex-wrap">
-          <FilterButton
-            active={filter === 'all'}
-            onClick={() => setFilter('all')}
-          >
+          <Chip active={filter === 'all'} onClick={() => setFilter('all')}>
             All
-          </FilterButton>
+          </Chip>
           {CATEGORY_ORDER.map((cat) => {
             const meta = CATEGORY_META[cat];
             return (
-              <FilterButton
+              <Chip
                 key={cat}
                 active={filter === cat}
                 onClick={() => setFilter(cat)}
               >
-                <span
-                  className="w-[6px] h-[6px] rounded-full"
-                  style={{ background: meta.color }}
-                />
                 {meta.label}
-              </FilterButton>
+              </Chip>
             );
           })}
         </div>
 
-        <div className="flex gap-1.5">
-          <FilterButton active={sort === 'date'} onClick={() => setSort('date')}>
+        <div className="flex gap-2">
+          <Chip active={sort === 'date'} onClick={() => setSort('date')}>
             Newest
-          </FilterButton>
-          <FilterButton active={sort === 'name'} onClick={() => setSort('name')}>
+          </Chip>
+          <Chip active={sort === 'name'} onClick={() => setSort('name')}>
             A to Z
-          </FilterButton>
+          </Chip>
         </div>
       </div>
 
       {visible.length === 0 ? (
-        <div className="py-16 text-center text-muted-foreground text-[14px]">
+        <div
+          style={{
+            padding: '64px 0',
+            textAlign: 'center',
+            color: 'var(--fg-50)',
+            fontSize: 14,
+          }}
+        >
           No blueprints in this category yet.
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {visible.map((bp) => (
-            <BlueprintCard key={bp.slug} blueprint={bp} />
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border border-[var(--fg-border)]">
+          {visible.map((bp, i) => {
+            // Create a grid with 1px seams via negative offsets isn't worth it here;
+            // use gap instead.
+            return <BlueprintCard key={bp.slug} blueprint={bp} />;
+          })}
         </div>
       )}
     </div>
   );
 }
 
-function FilterButton({
+function Chip({
   active,
   onClick,
   children,
@@ -99,11 +102,21 @@ function FilterButton({
     <button
       type="button"
       onClick={onClick}
-      className={`inline-flex items-center gap-1.5 text-[12px] font-bold tracking-[0.04em] px-4 py-2 rounded-lg border transition-colors whitespace-nowrap ${
-        active
-          ? 'bg-navy text-white border-navy'
-          : 'bg-white text-foreground border-border hover:border-blue'
-      }`}
+      className="font-mono"
+      style={{
+        fontSize: 11,
+        letterSpacing: '0.14em',
+        textTransform: 'uppercase',
+        padding: '8px 14px',
+        border: active
+          ? '1px solid var(--fg)'
+          : '1px solid var(--border-strong)',
+        color: active ? 'var(--navy)' : 'var(--fg-70)',
+        background: active ? 'var(--fg)' : 'transparent',
+        cursor: 'pointer',
+        whiteSpace: 'nowrap',
+        transition: 'color .15s, border-color .15s, background .15s',
+      }}
     >
       {children}
     </button>

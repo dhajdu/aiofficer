@@ -18,42 +18,62 @@ export const metadata: Metadata = {
 export default function BlueprintsIndex() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-navy h-[380px] md:h-[420px] pt-[120px]">
+      {/* HERO */}
+      <section
+        className="relative overflow-hidden"
+        style={{
+          padding: '140px 0 72px',
+          borderBottom: '1px solid var(--fg-border)',
+        }}
+      >
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background:
-              'radial-gradient(ellipse 50% 50% at 10% 90%, rgba(40,123,232,0.14) 0%, transparent 60%)',
+            backgroundImage:
+              'linear-gradient(rgba(255,255,255,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.10) 1px, transparent 1px)',
+            backgroundSize: '80px 80px',
+            maskImage:
+              'radial-gradient(ellipse at 70% 30%, black 0%, transparent 70%)',
+            WebkitMaskImage:
+              'radial-gradient(ellipse at 70% 30%, black 0%, transparent 70%)',
+            opacity: 0.4,
           }}
         />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              'radial-gradient(ellipse 40% 50% at 50% 0%, rgba(111,242,193,0.06) 0%, transparent 50%)',
-          }}
-        />
-        <div className="relative z-10 w-full max-w-[920px] mx-auto px-6 md:px-10">
-          <p className="text-white/70 text-[11px] font-bold tracking-[0.15em] uppercase mb-3 font-mono">
-            -- Blueprints &middot; CAIO Coach
-          </p>
+        <div className="page-container relative">
+          <div className="flex gap-2 flex-wrap mb-8">
+            <span className="tag">
+              <span className="dot" />
+              {BLUEPRINTS.length} blueprints
+            </span>
+            <span className="tag tag-muted">Agent systems · Workflows · Plans</span>
+          </div>
           <h1
-            className="text-white font-extrabold leading-[1.08] tracking-tight mb-3"
-            style={{ fontSize: 'clamp(28px, 4.5vw, 42px)' }}
+            className="t-display"
+            style={{ fontSize: 'clamp(48px, 10vw, 120px)', margin: 0 }}
           >
-            Blueprints
+            Blueprints.
           </h1>
-          <p className="text-white/55 text-[15px] max-w-[560px] leading-relaxed mb-5">
-            Agent development plans, production workflows, and system architecture for building AI-powered one-person companies.
+          <p
+            style={{
+              maxWidth: 640,
+              fontSize: 20,
+              lineHeight: 1.5,
+              color: 'var(--fg-70)',
+              margin: '24px 0 0',
+            }}
+          >
+            Agent development plans, production workflows, and system architecture for
+            building AI-powered one-person companies.
           </p>
         </div>
       </section>
 
-      {/* Grid */}
-      <div className="max-w-[920px] mx-auto px-6 md:px-10 py-12">
-        <BlueprintGrid blueprints={BLUEPRINTS} />
-      </div>
+      {/* GRID */}
+      <section className="sec" style={{ borderBottom: 0 }}>
+        <div className="page-container">
+          <BlueprintGrid blueprints={BLUEPRINTS} />
+        </div>
+      </section>
     </>
   );
 }
