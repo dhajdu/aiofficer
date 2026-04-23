@@ -12,7 +12,12 @@ const videos: Video[] = [
   { id: "rDBdMsdRTRY", name: "TK Nguyen", featured: true },
   { id: "DbhyzpSFr1w", name: "Rich Pham", featured: true },
   { id: "aIlclgK1nug", name: "Dru Nguyen", featured: true },
-  // pool — add more here as YouTube IDs become available
+  // pool
+  { id: "0-sIvgjdiT0", name: "Hailey Trung", featured: false },
+  { id: "HvEqBCwOKrE", name: "Hanh Nguyen", featured: false },
+  { id: "a37EulY41-8", name: "Grace Le", featured: false },
+  { id: "alum53SduUQ", name: "Raul Riveros", featured: false },
+  { id: "_TgbAOyOsCY", name: "Rachel Tran", featured: false },
 ];
 
 function shuffle<T>(arr: T[]): T[] {
