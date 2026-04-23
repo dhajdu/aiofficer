@@ -3,15 +3,16 @@ import Image from 'next/image';
 import CommunityCarousel from './CommunityCarousel';
 
 export const metadata: Metadata = {
-  title: 'AI Leadership Community - CAIO Coach',
+  title: 'AI Leadership Community',
   description:
     'Join a global community of AI leaders from 30+ countries. Weekly coaching sessions, certification tracks, peer accountability, and AI leadership resources.',
+  alternates: { canonical: '/community' },
   openGraph: {
     title: 'Join the CAIO Coach Community',
     description:
       'A global community of executives navigating AI strategy together. Weekly live sessions, peer accountability, and certification - all for $99/month.',
     type: 'website',
-    url: 'https://www.caiocoach.com/community',
+    url: '/community',
   },
 };
 

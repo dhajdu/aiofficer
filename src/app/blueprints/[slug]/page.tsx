@@ -24,22 +24,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!blueprint) return { title: 'Blueprint Not Found' };
 
   return {
-    title: `${blueprint.title} - CAIO Coach`,
+    title: blueprint.title,
     description: blueprint.excerpt,
+    alternates: { canonical: `/blueprints/${blueprint.slug}` },
     openGraph: {
       title: blueprint.title,
       description: blueprint.excerpt,
       type: 'article',
-      url: `https://www.caiocoach.com/blueprints/${blueprint.slug}`,
-      images: blueprint.image
-        ? [{ url: `https://www.caiocoach.com${blueprint.image}` }]
-        : [],
+      url: `/blueprints/${blueprint.slug}`,
+      images: blueprint.image ? [{ url: blueprint.image }] : undefined,
     },
     twitter: {
       card: 'summary_large_image',
       title: blueprint.title,
       description: blueprint.excerpt,
-      images: blueprint.image ? [`https://www.caiocoach.com${blueprint.image}`] : [],
+      images: blueprint.image ? [blueprint.image] : undefined,
     },
   };
 }

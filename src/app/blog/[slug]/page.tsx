@@ -21,20 +21,24 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return { title: 'Post Not Found' };
 
   return {
-    title: `${post.title} - CAIO Coach`,
+    title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: 'article',
-      url: `https://www.caiocoach.com/blog/${post.slug}`,
-      images: post.image ? [{ url: `https://www.caiocoach.com${post.image}` }] : [],
+      url: `/blog/${post.slug}`,
+      images: post.image ? [{ url: post.image }] : undefined,
+      publishedTime: post.date,
+      authors: [post.author || 'Dave Hajdu'],
+      tags: post.tags,
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      images: post.image ? [`https://www.caiocoach.com${post.image}`] : [],
+      images: post.image ? [post.image] : undefined,
     },
   };
 }

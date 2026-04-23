@@ -53,8 +53,8 @@
   --color-navy: #04102D;
   --color-fg: #ffffff;
   --color-fg-70: rgba(255, 255, 255, 0.70);
-  --color-fg-50: rgba(255, 255, 255, 0.50);
-  --color-fg-30: rgba(255, 255, 255, 0.30);
+  --color-fg-50: rgba(255, 255, 255, 0.55);
+  --color-fg-30: rgba(255, 255, 255, 0.45);
   --color-fg-15: rgba(255, 255, 255, 0.15);
   --color-fg-10: rgba(255, 255, 255, 0.10);
 
@@ -74,8 +74,8 @@
   --elev-3: rgba(255, 255, 255, 0.08);
   --fg: #ffffff;
   --fg-70: rgba(255, 255, 255, 0.70);
-  --fg-50: rgba(255, 255, 255, 0.50);
-  --fg-30: rgba(255, 255, 255, 0.30);
+  --fg-50: rgba(255, 255, 255, 0.55);
+  --fg-30: rgba(255, 255, 255, 0.45);
   --fg-15: rgba(255, 255, 255, 0.15);
   --fg-10: rgba(255, 255, 255, 0.10);
   --fg-border: rgba(255, 255, 255, 0.10);
@@ -305,4 +305,25 @@
 :focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px var(--ring);
+}
+
+/* Skip-to-content link for keyboard users */
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  background: var(--fg);
+  color: var(--navy);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  border: 1px solid var(--fg);
+  transform: translateY(-200%);
+  transition: transform 0.15s;
+}
+.skip-link:focus {
+  transform: translateY(0);
 }

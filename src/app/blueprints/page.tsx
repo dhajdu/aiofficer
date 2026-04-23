@@ -3,14 +3,15 @@ import { BLUEPRINTS } from '@/lib/blueprints-data';
 import BlueprintGrid from '@/components/blueprints/BlueprintGrid';
 
 export const metadata: Metadata = {
-  title: 'Blueprints - CAIO Coach',
+  title: 'Blueprints',
   description:
     'Agent development plans, production workflows, and system architecture for building AI-powered one-person companies.',
+  alternates: { canonical: '/blueprints' },
   openGraph: {
     title: 'Blueprints - CAIO Coach',
     description:
       'Agent development plans, production workflows, and system architecture for building AI-powered one-person companies.',
-    url: 'https://www.caiocoach.com/blueprints',
+    url: '/blueprints',
     type: 'website',
   },
 };

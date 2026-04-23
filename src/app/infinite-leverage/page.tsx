@@ -3,15 +3,16 @@ import Link from 'next/link';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Infinite Leverage - CAIO Coach',
+  title: 'Infinite Leverage',
   description:
     'Five AI employees. Two offices. One weekend. 14 days of building a one-person agentic company, documented end-to-end while it was happening.',
+  alternates: { canonical: '/infinite-leverage' },
   openGraph: {
     title: 'Infinite Leverage - CAIO Coach',
     description:
       'Five AI employees. Two offices. One weekend. 14 days of building a one-person agentic company, documented end-to-end while it was happening.',
-    url: 'https://www.caiocoach.com/infinite-leverage',
-    type: 'website',
+    url: '/infinite-leverage',
+    type: 'article',
   },
 };
 

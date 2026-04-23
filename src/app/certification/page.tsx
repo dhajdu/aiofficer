@@ -2,15 +2,56 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata = {
-  title: 'AI Officer Certification - CAIO Coach',
+  title: 'AI Officer Certification',
   description:
     'Earn your AI Officer certification across three tracks: Generative AI, Agentic AI, and AI Leadership (CAIO). $99/month. Live coaching included.',
+  alternates: { canonical: '/certification' },
   openGraph: {
     title: 'Become a Certified CAIO - CAIO Coach',
     description:
       'Earn the credential that proves you can lead AI strategy at the executive level. Three certification tracks, live coaching included. $99/month.',
     type: 'website',
-    url: 'https://www.caiocoach.com/certification',
+    url: '/certification',
+  },
+};
+
+const CERTIFICATION_SERVICE_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'AI Officer Certification Program',
+  serviceType: 'Professional certification',
+  provider: { '@id': 'https://www.caiocoach.com#organization' },
+  description:
+    'Three-track AI Officer certification program: Generative AI Specialist, Agentic AI Specialist, and CAIO Certified. Includes weekly live coaching.',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'AI Officer tracks',
+    itemListElement: [
+      {
+        '@type': 'OfferCatalog',
+        name: 'Generative AI Specialist',
+      },
+      {
+        '@type': 'OfferCatalog',
+        name: 'Agentic AI Specialist',
+      },
+      {
+        '@type': 'OfferCatalog',
+        name: 'CAIO Certified (AI Leadership)',
+      },
+    ],
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '99',
+    priceCurrency: 'USD',
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: '99',
+      priceCurrency: 'USD',
+      unitText: 'MONTH',
+    },
+    url: 'https://community.ai-officer.com/checkout/ai-officer-certification-program?affiliate_code=ab0cd6',
   },
 };
 
@@ -60,6 +101,11 @@ const EARN = [
 export default function CertificationPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(CERTIFICATION_SERVICE_JSONLD) }}
+      />
+
       {/* HERO */}
       <section
         className="relative overflow-hidden"

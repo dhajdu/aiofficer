@@ -5,16 +5,52 @@ import { getUpcomingCoachingDates } from '@/lib/coaching-dates';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'AI Executive Coaching - CAIO Coach',
+  title: 'AI Executive Coaching',
   description:
     'Weekly live AI coaching sessions with Dave Hajdu. Bring your real AI challenges and get coached in real time. Included with CAIO Coach certification.',
+  alternates: { canonical: '/coaching' },
   openGraph: {
     title: 'AI Coaching for Executives - CAIO Coach',
     description:
       'Weekly live AI coaching with Dave Hajdu. Group sessions for $99/month or private 1:1. Bring your real challenges and get coached in real time.',
     type: 'website',
-    url: 'https://www.caiocoach.com/coaching',
+    url: '/coaching',
   },
+};
+
+const COACHING_SERVICE_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'AI Executive Coaching',
+  serviceType: 'Executive coaching',
+  provider: { '@id': 'https://www.caiocoach.com#organization' },
+  areaServed: 'Worldwide',
+  description:
+    'Weekly live AI coaching with Dave Hajdu for founders and executives. Group sessions at $99/month or focused private work.',
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'Group coaching - weekly live sessions',
+      price: '99',
+      priceCurrency: 'USD',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: '99',
+        priceCurrency: 'USD',
+        unitText: 'MONTH',
+      },
+      url: 'https://community.ai-officer.com/checkout/ai-officer-certification-program?affiliate_code=ab0cd6',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Private 1:1 coaching',
+      priceSpecification: {
+        '@type': 'PriceSpecification',
+        priceCurrency: 'USD',
+      },
+      availability: 'https://schema.org/LimitedAvailability',
+    },
+  ],
 };
 
 export default function CoachingPage() {
@@ -22,6 +58,11 @@ export default function CoachingPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(COACHING_SERVICE_JSONLD) }}
+      />
+
       {/* HERO */}
       <section className={styles.hero}>
         <div className={`page-container ${styles.heroInner}`}>
