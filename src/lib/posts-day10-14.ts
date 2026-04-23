@@ -6,6 +6,22 @@ import type { Post, Block } from './types';
 
 export const POSTS_DAY10_14: Post[] = [
   {
+    slug: 'day-13-coordination-tax',
+    title: 'Day 13: The Coordination Tax',
+    subtitle: 'Why two people drop to 60% productive when a second human joins the build, and what it takes to get them back near 100%. The hidden cost of coordinating humans and AI agents.',
+    excerpt: 'Day 13 of the Infinite Leverage Blueprint. Infinite leverage is easiest with one person. Add a second and each of you drops to 60% productive until you build the connective tissue. The real Blueprint work isn\'t the agents. It\'s the spine.',
+    date: 'Apr 23, 2026',
+    readTime: '4 min read',
+    category: 'Infinite Leverage',
+    categories: ['Infinite Leverage', 'AI Leadership'],
+    tags: ['coordinating humans and AI agents', 'coordination tax', 'AI team productivity', 'Infinite Leverage Blueprint', 'scaling teams with AI', 'pairing non-coders with engineers', 'AI agent team coordination'],
+    image: '/blog/images/day-13-coordination-tax.webp',
+    dayNumber: 13,
+    series: 'infinite-leverage-blueprint',
+    seriesTotal: 14,
+    author: 'Dave Hajdu',
+  },
+  {
     slug: 'day-12-two-track-business-model',
     title: 'Day 12: The Two-Track Business Model',
     subtitle: 'How I built a two-track business model with Claude Code in four hours on a Sunday. Events plus recurring memberships, Stripe live, CRM updated. The bottleneck isn\'t engineering anymore. It\'s the decision behind what you\'re selling.',
@@ -58,6 +74,66 @@ export const POSTS_DAY10_14: Post[] = [
 /* ------------------------------------------------------------------ */
 
 export const BLOCKS_DAY10_14: Record<string, Block[]> = {
+
+  /* ================================================================ */
+  /*  DAY 13                                                           */
+  /* ================================================================ */
+  'day-13-coordination-tax': [
+    { tag: 'pull-quote', text: 'Part of a daily series where I\'m building toward a one-man company in 14 days using the <a href="/blog/day-1-infinite-leverage-blueprint">Infinite Leverage Blueprint</a>. Day 13 is the one where the coordination tax shows up and refuses to leave.' },
+
+    { tag: 'p', text: 'I\'ll tell you where today actually started. I caught myself pulling the Blueprint\'s best wins into my other business instead of the other way around. Part-time builds do that. You ship something that works in one place and your brain quietly migrates it to where your real paycheck lives.' },
+    { tag: 'p', text: 'The drift is not a willpower problem. It\'s the first symptom of the thing I want to talk about today.' },
+
+    { tag: 'h2', text: 'The first 80% is not the build' },
+    { tag: 'p', text: 'Like any software project, the first 80% felt fast. A week in, I had agents running. Marketing was reporting itself. I had a PM plan on paper. The thing looked like it was working. (<a href="https://en.wikipedia.org/wiki/Brooks%27s_law" target="_blank" rel="noopener noreferrer">Brooks\'s law</a>, fifty years later, is still the sharpest frame for what happened next.)' },
+    { tag: 'p', text: 'Then came the last 20%, and the last 20% has a name. Polish and people.' },
+    { tag: 'p', text: 'Polish is the detail you only see when someone else tries to use your system. People is every second human you pull into it. Together they stop feeling like the finishing touch and start feeling like the whole project.' },
+
+    { tag: 'h2', text: 'Two humans don\'t multiply. They negotiate.' },
+    { tag: 'p', text: 'Infinite leverage is easiest with exactly one person. Alone, you\'re the spec, the PM, the reviewer, and the one holding the whole map in your head. You\'re running at something close to 100%.' },
+    { tag: 'p', text: 'Add a second person and something strange happens. You don\'t go to 200%. You don\'t even go to 150%. On a good day, you each drop to about 60% while you figure out how to work together.' },
+    { tag: 'emphasis-box', text: '<strong>Nobody got slower. The work got more expensive to coordinate.</strong>' },
+    { tag: 'p', text: 'You\'re checking in and checking out of the same files. You\'re explaining what you meant in the last stand-up. You\'re hitting a code conflict someone else didn\'t see coming. You\'re teaching a tech-forward but non-coding teammate a whole new language of work: branches, commits, pull requests, what a conflict even is. Every one of those is a skill and a habit, not a click.' },
+    { tag: 'callout', label: 'Why It Matters', text: 'Most leadership teams count headcount and assume output scales linearly. It doesn\'t. Every second person you pull into a build pays a coordination tax until you\'ve built the connective tissue between them.' },
+    { tag: 'p', text: 'That tissue is what the Blueprint is really for. Not the agents. The spine that keeps two humans, three agents, and a messy Thursday from cancelling each other out.' },
+
+    { tag: 'stat-callout', stats: [
+      { value: '100%', label: 'Productive Alone', color: 'mint' },
+      { value: '60%', label: 'Each, When a Second Joins', color: 'magenta' },
+      { value: 'Setup', label: 'The Real Blueprint Work', color: 'blue' },
+    ] },
+
+    { tag: 'h2', text: 'What that looks like from the inside' },
+    { tag: 'p', text: 'Today the PM agent goes remote, which is a small victory with a big footnote. <a href="https://www.anthropic.com/news" target="_blank" rel="noopener noreferrer">Claude shipped remote services</a> this week, and that let me move the PM off my laptop without breaking a thing. The marketing team is already running on standup, so every morning I can see what the agents did while I slept. (The <a href="/blog/day-10-coaching-assistant">agent standup pattern</a> is where we wired that up.)' },
+    { tag: 'p', text: 'Here are my new AI teammates, the ones actually running on the Blueprint right now.' },
+    { tag: 'image', src: '/blog/images/day-13-ai-teammates.webp', alt: 'The agents running on the Infinite Leverage Blueprint today, my new AI teammates' },
+    { tag: 'p', text: 'Each row is a job that used to sit on my to-do list. None of them are perfect. All of them are running.' },
+    { tag: 'p', text: 'That\'s the clean half. Here\'s the messy half.' },
+    { tag: 'p', text: 'Yesterday we tried to set up a new person, Eric, on his own Bhutan travel play. The setup was still a bit bumpy. Enough that Trac went back into the setup scripts to work on them again. Because when a new person has to climb a cliff to get into the system, the coordination tax gets paid twice. Once to onboard them. Once to keep them there.' },
+    { tag: 'pull-quote', text: 'A smooth setup is not a convenience. It\'s the single highest-leverage investment we can make right now.' },
+    { tag: 'p', text: 'If the setup is hard, the pattern doesn\'t travel. If the pattern doesn\'t travel, "infinite leverage" is just a thing that works for me, on my machine, on a good day. That\'s not a Blueprint. That\'s a hobby.' },
+
+    { tag: 'h2', text: 'One question before Day 14' },
+    { tag: 'p', text: 'Tomorrow closes this series. Day 14 is the final piece of the Blueprint, and I\'ll tell you honestly, I\'m going to spend a lot of it on setup, not on new features. (<a href="/blog/day-12-two-track-business-model">Day 12</a> was about what to sell. Day 14 is about making sure someone else can install it.)' },
+    { tag: 'p', text: 'Before that, a question to sit with today.' },
+    { tag: 'pull-quote', text: 'Where in your business are you dragging two people to 60% when one of them could be running at 100%?' },
+    { tag: 'p', text: 'No guilt attached to the answer. Sometimes the honest move is to build the connective tissue. Sometimes it\'s to let one person own the whole thing end to end. Both are right answers. The expensive answer is pretending the tax doesn\'t exist.' },
+
+    { tag: 'conclusion-box', title: 'Day 13 of 14', paragraphs: [
+      'One day left.',
+      'Thirteen days in, the system runs, takes money, reports itself every morning, and coordinates a team that is now mostly agents and occasionally human. The part that took actual work this week wasn\'t the agents. It was the spine between them and the humans trying to use them.',
+      'That is the real Blueprint. Not the stack. The connective tissue that lets someone other than me show up on Day 1 and still be productive by Day 3. If that part is missing, nothing scales.',
+      'If you want a thinking partner while you build your own version of this, that\'s what the <a href="/coaching">coaching membership</a> is for. If you want to do it in person with a small group, the <a href="/retreat">Infinite Leverage Retreat</a> is in June. Three days, same questions, across a table.',
+      'Read next: <a href="/blog/day-12-two-track-business-model">Day 12: The Two-Track Business Model</a> &middot; <a href="/blog/day-11-ai-mindset-shift-unlocked">Day 11: The AI Mindset Shift</a> &middot; <a href="/blog/day-10-coaching-assistant">Day 10: The Coaching Assistant</a>',
+      'See you on Day 14.',
+    ] },
+
+    { tag: 'faq', question: 'What is the coordination tax in AI team building?', answer: 'The coordination tax is the productivity cost every team pays when a second person is added to a build. Instead of doubling output, each person drops to roughly 60% productive while they negotiate check-in and check-out, resolve code conflicts, and transfer context. The tax continues until a team invests in connective tissue: shared setup, clear standups, and explicit handoff rules. The term applies specifically to hybrid teams of humans and AI agents, where the non-coding human is also learning the engineering language (branches, commits, pull requests) as part of the coordination cost.' },
+    { tag: 'faq', question: 'Why does adding a second person to an AI project cut productivity?', answer: 'Adding a second person to an AI project doesn\'t double output because the new work isn\'t building, it\'s coordinating. You have to check in and out of the same files, explain what you meant in the last standup, resolve conflicts the other person didn\'t see coming, and teach a non-coding teammate a new language of work. On a good day, each person runs at about 60% productive until the connective tissue (setup scripts, handoff rules, shared conventions) is built. Output becomes linear again only after that investment.' },
+    { tag: 'faq', question: 'How do you coordinate humans and AI agents on the same project?', answer: 'Coordinating humans and AI agents requires three moves: a clean setup script so new humans can join without a week of onboarding friction, a daily standup where the agents report their work (so humans can observe instead of interrogate), and a single source of truth for specs so both humans and agents are working from the same map. The hardest of the three is setup. If setup is rough, the whole pattern doesn\'t travel beyond the one person who built it, and infinite leverage stays a solo pursuit.' },
+    { tag: 'faq', question: 'What is the hardest part of building with AI agents?', answer: 'The hardest part of building with AI agents is not the first 80% (that feels fast) but the last 20%: polish and people. Polish is the detail that surfaces when a second person tries to use your system. People is every human beyond the founder who has to be coordinated in. Together they\'re where the real work lives, and where most founders underinvest.' },
+    { tag: 'faq', question: 'What is the Infinite Leverage Blueprint?', answer: 'The Infinite Leverage Blueprint is Dave Hajdu\'s 14-day public build-in-public series documenting the end-to-end creation of an AI-native coaching business using AI agents. Day 13 covers the coordination tax, the hidden productivity cost of adding humans to an agent-powered build.' },
+  ],
 
   /* ================================================================ */
   /*  DAY 12                                                           */
