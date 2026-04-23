@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 /* eslint-disable @next/next/no-img-element */
 import CoachingSignupForm from '@/components/CoachingSignupForm';
 import { getUpcomingCoachingDates } from '@/lib/coaching-dates';
@@ -228,9 +227,15 @@ export default function CoachingPage() {
                 Weekly live coaching. Submit your topics. Get real-time guidance on your
                 situation. Certification included.
               </p>
-              <Link className="btn btn-primary" href="#submit" style={{ marginTop: 'auto' }}>
+              <a
+                className="btn btn-primary"
+                href="https://community.ai-officer.com/checkout/ai-officer-certification-program?affiliate_code=ab0cd6"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ marginTop: 'auto' }}
+              >
                 Join for $99 / month
-              </Link>
+              </a>
             </div>
             <div className={styles.plan}>
               <div className="t-eyebrow">Private coaching</div>

@@ -166,9 +166,14 @@ export default function Home() {
                 <li>Certification program included</li>
               </ul>
               <div className={styles.offerAct}>
-                <Link className="btn btn-primary" href="/coaching">
+                <a
+                  className="btn btn-primary"
+                  href="https://community.ai-officer.com/checkout/ai-officer-certification-program?affiliate_code=ab0cd6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Join for $99 / month
-                </Link>
+                </a>
               </div>
             </div>
 
@@ -277,12 +282,22 @@ export default function Home() {
               </p>
             </div>
             <div className={styles.bandCtas}>
-              <Link className="btn btn-primary" href="/community">
+              <a
+                className="btn btn-primary"
+                href="https://community.ai-officer.com/checkout/ai-officer-certification-program?affiliate_code=ab0cd6"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Apply to cohort
-              </Link>
-              <Link className="btn btn-ghost" href="/community">
+              </a>
+              <a
+                className="btn btn-ghost"
+                href="https://community.ai-officer.com/feed"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Visit community
-              </Link>
+              </a>
             </div>
           </div>
         </div>

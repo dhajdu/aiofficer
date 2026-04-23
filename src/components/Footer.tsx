@@ -54,7 +54,7 @@ export default function Footer() {
           <FooterCol
             title="Social"
             items={[
-              { label: 'Community', href: 'https://community.ai-officer.com', external: true },
+              { label: 'Community', href: 'https://community.ai-officer.com/feed', external: true },
               { label: 'LinkedIn', href: 'https://www.linkedin.com/company/aiofficerinstitute/', external: true },
               { label: 'Facebook', href: 'https://www.facebook.com/aiofficerinstitute', external: true },
               { label: 'Instagram', href: 'https://www.instagram.com/aiofficerinstitute/', external: true },

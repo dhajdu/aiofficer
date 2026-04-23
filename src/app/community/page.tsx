@@ -149,7 +149,7 @@ export default function CommunityPage() {
             </a>
             <a
               className="btn btn-ghost"
-              href="https://community.ai-officer.com"
+              href="https://community.ai-officer.com/feed"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -434,7 +434,7 @@ export default function CommunityPage() {
               </ul>
               <a
                 className="btn btn-ghost"
-                href="https://community.ai-officer.com"
+                href="https://community.ai-officer.com/feed"
                 target="_blank"
                 rel="noopener noreferrer"
               >
