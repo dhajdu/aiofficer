@@ -376,9 +376,14 @@ export default function InfiniteLeveragePage() {
               </p>
             </div>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <Link className="btn btn-primary" href="/coaching">
-                Join coaching →
-              </Link>
+              <a
+                className="btn btn-primary"
+                href="https://ai-officer.com/retreat"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Join the retreat →
+              </a>
               <Link className="btn btn-ghost" href="/blog">
                 Read essays
               </Link>
