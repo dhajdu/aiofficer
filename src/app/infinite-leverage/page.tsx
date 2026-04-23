@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import NewsletterForm from '@/components/NewsletterForm';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -371,8 +372,8 @@ export default function InfiniteLeveragePage() {
                 Working on this in your own company?
               </h2>
               <p>
-                The Infinite Leverage Blueprint is the public artifact. The weekly coaching
-                is where we apply it to your situation - your org chart, your agents, your
+                The Infinite Leverage Blueprint is the public artifact. The retreat is
+                where we apply it to your situation - your org chart, your agents, your
                 comms layer.
               </p>
             </div>
@@ -389,6 +390,43 @@ export default function InfiniteLeveragePage() {
                 Read essays
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NEWSLETTER */}
+      <section className="sec">
+        <div className="page-container">
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr auto',
+              gap: 32,
+              alignItems: 'center',
+              padding: 48,
+              border: '1px solid var(--fg-border)',
+              background: 'var(--elev-1)',
+            }}
+          >
+            <div>
+              <div className="t-eyebrow">Track the next build</div>
+              <h2 className="t-h1" style={{ marginTop: 12 }}>
+                Get the next series in your inbox.
+              </h2>
+              <p
+                style={{
+                  maxWidth: 560,
+                  fontSize: 15,
+                  lineHeight: 1.65,
+                  color: 'var(--fg-70)',
+                  margin: '16px 0 0',
+                }}
+              >
+                One short essay a week plus a heads-up when the next serialized build
+                starts. No sign-up funnel. Unsubscribe with one click.
+              </p>
+            </div>
+            <NewsletterForm source="infinite_leverage_page" />
           </div>
         </div>
       </section>

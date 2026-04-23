@@ -401,3 +401,13 @@
 @media (max-width: 820px) {
   .band { grid-template-columns: 1fr; padding: 32px; }
 }
+
+.newsletterBox {
+  display: grid;
+}
+@media (max-width: 820px) {
+  .newsletterBox {
+    grid-template-columns: 1fr !important;
+    padding: 32px !important;
+  }
+}

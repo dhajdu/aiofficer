@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import NewsletterForm from '@/components/NewsletterForm';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -304,6 +305,44 @@ export default function Home() {
                 Visit community
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NEWSLETTER */}
+      <section className="sec">
+        <div className="page-container">
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr auto',
+              gap: 32,
+              alignItems: 'center',
+              padding: 48,
+              border: '1px solid var(--fg-border)',
+              background: 'var(--elev-1)',
+            }}
+            className={styles.newsletterBox}
+          >
+            <div>
+              <div className="t-eyebrow">The 50/50 memo</div>
+              <h2 className="t-h1" style={{ marginTop: 12 }}>
+                Field notes to your inbox.
+              </h2>
+              <p
+                style={{
+                  maxWidth: 560,
+                  fontSize: 15,
+                  lineHeight: 1.65,
+                  color: 'var(--fg-70)',
+                  margin: '16px 0 0',
+                }}
+              >
+                One short essay a week, from coaching executives through the AI
+                transition. No sign-up funnel. No upsell. Unsubscribe with one click.
+              </p>
+            </div>
+            <NewsletterForm source="home_hero" />
           </div>
         </div>
       </section>

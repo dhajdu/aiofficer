@@ -9,12 +9,18 @@ import Footer from "@/components/Footer";
 
 const geist = Geist({
   subsets: ["latin"],
+  weight: ["400", "500"],
   variable: "--font-sans",
+  display: "swap",
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
+  weight: ["300", "400", "500"],
   variable: "--font-mono",
+  display: "swap",
+  preload: true,
 });
 
 const SITE_URL = "https://www.caiocoach.com";

@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { POSTS } from '@/lib/posts-data';
+import NewsletterForm from '@/components/NewsletterForm';
 import styles from './page.module.css';
 
 const FILTERS = ['All essays', 'AI Leadership', 'Claude Code', 'Case studies'] as const;
@@ -159,16 +160,7 @@ export default function BlogIndex() {
                 transition. No sign-up funnel. No upsell. Unsubscribe with one click.
               </p>
             </div>
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              <input
-                type="email"
-                placeholder="you@company.com"
-                className={styles.emailInput}
-              />
-              <button type="button" className="btn btn-primary">
-                Subscribe →
-              </button>
-            </div>
+            <NewsletterForm source="blog_footer" />
           </div>
         </div>
       </section>
