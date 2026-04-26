@@ -124,10 +124,10 @@ const WEEK_2: Day[] = [
   },
   {
     n: 14,
-    title: 'Shipping the company.',
+    title: 'The world has moved.',
     takeaway:
-      'What a one-person agentic company actually looks like on Day 14 - and what comes next.',
-    href: '#',
+      'Series finale. Six AI agents running, four queued, and the setup script that lets the pattern travel off my machine.',
+    href: '/blog/day-14-world-has-moved',
   },
 ];
 
