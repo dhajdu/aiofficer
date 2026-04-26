@@ -6,6 +6,22 @@ import type { Post, Block } from './types';
 
 export const POSTS_DAY10_14: Post[] = [
   {
+    slug: 'day-14-world-has-moved',
+    title: 'Day 14: The World Has Moved (No Excuses Left)',
+    subtitle: 'Series finale. The habit, the business frameworks, and the setup that travels. Six AI agents running, four more on deck, and the pattern that finally moved off my machine.',
+    excerpt: 'Day 14 wraps the Infinite Leverage Blueprint. The habit, the business frameworks, and the setup that travels. Six AI agents running, four more on deck.',
+    date: 'Apr 26, 2026',
+    readTime: '5 min read',
+    category: 'Infinite Leverage',
+    categories: ['Infinite Leverage', 'AI Leadership'],
+    tags: ['how to build a team of AI agents', 'AI agents to replace hires', 'business frameworks for AI agents', 'multi-delegating', 'prompt frameworks dead', 'Infinite Leverage Blueprint', 'AI agent team for founders', 'one-man company with AI', 'series finale'],
+    image: '/blog/images/day-14-world-has-moved.webp',
+    dayNumber: 14,
+    series: 'infinite-leverage-blueprint',
+    seriesTotal: 14,
+    author: 'Dave Hajdu',
+  },
+  {
     slug: 'day-13-coordination-tax',
     title: 'Day 13: The Coordination Tax',
     subtitle: 'Why two people drop to 60% productive when a second human joins the build, and what it takes to get them back near 100%. The hidden cost of coordinating humans and AI agents.',
@@ -74,6 +90,93 @@ export const POSTS_DAY10_14: Post[] = [
 /* ------------------------------------------------------------------ */
 
 export const BLOCKS_DAY10_14: Record<string, Block[]> = {
+
+  /* ================================================================ */
+  /*  DAY 14                                                           */
+  /* ================================================================ */
+  'day-14-world-has-moved': [
+    { tag: 'pull-quote', text: 'Final post in a daily series where I built toward a one-man company in 14 days using the <a href="/blog/day-1-infinite-leverage-blueprint">Infinite Leverage Blueprint</a>. Day 14 is the deadline. Tomorrow three founders find out at the same time I do whether the pattern travels.' },
+
+    { tag: 'p', text: 'Drew, TK, and James walk into the office tomorrow morning. The setup is either ready or it isn\'t. Tonight is the deadline.' },
+    { tag: 'p', text: 'This is what <a href="/blog/day-13-coordination-tax">Day 13 of the Infinite Leverage Blueprint</a> promised. Day 14 was going to be about setup, not features. The reason matters. After 14 days running this Blueprint on my own machine, the test isn\'t whether it works for me. It\'s whether the pattern travels. Tomorrow three founders find out at the same time I do.' },
+    { tag: 'pull-quote', text: 'So the real question for today isn\'t "what did I build." It\'s "did I build something three other people can pick up tomorrow and run with."' },
+
+    { tag: 'h2', text: 'What 14 days actually cost' },
+    { tag: 'p', text: 'Two full Saturdays. About 100 hours in individual blocks. I was in roughly 50 of them. Trac built the setup script that turns a fresh laptop into a working environment in under an hour. Yon and K2 shipped the Designer and the Outreach Manager. Six months ago that team didn\'t exist. Today they do, and they are the reason I had time to write this.' },
+    { tag: 'p', text: 'Time is the part of this people most underestimate. It takes time to configure. It takes time to teach. It takes time to get unstuck. It takes time to develop the habit.' },
+    { tag: 'emphasis-box', text: 'The honest version is, it took longer than I thought. <strong>The more honest version is, it was supposed to.</strong>' },
+
+    { tag: 'h2', text: 'The habit landed' },
+    { tag: 'p', text: 'They say it takes 21 days for something to become a habit. Fourteen was enough for me, after <a href="/blog/day-11-ai-mindset-shift-unlocked">the mindset shift that made it possible</a>.' },
+    { tag: 'p', text: 'Here\'s the new morning ritual. Journal. Read. Move my body. Then one hour of deep thinking on what I want to delegate to the agents that are already running. That hour is the actual product. Everything that ships during the rest of the day is a consequence of how clearly I thought during that hour.' },
+    { tag: 'p', text: 'The target is one new agent a day. Even at a 25% hit rate, my team of seven becomes a team of twenty-five by the end of May. That math is the reason I\'m calm tonight while three founders are flying in tomorrow.' },
+    { tag: 'pull-quote', text: 'What would your morning look like if the first hour belonged to your agents instead of your inbox?' },
+
+    { tag: 'h2', text: 'What\'s running' },
+    { tag: 'p', text: 'The current team. Each of these would cost between $1,000 and $7,000 a month to hire, depending on where in the world you are.' },
+    { tag: 'shipped-list', title: 'Six roles running today', items: [
+      'Writer',
+      'Designer',
+      'Web Developer',
+      'Project Manager',
+      'Product Manager',
+      'Outreach Manager',
+    ] },
+    { tag: 'p', text: 'On deck for the next two weeks:' },
+    { tag: 'shipped-list', title: 'Four queued for May', items: [
+      'Social Media Manager',
+      'Customer Service',
+      'Sales Development Rep',
+      'Bookkeeper',
+    ] },
+    { tag: 'p', text: 'Mahjongtarot.com runs on full automation. Longevity Coach and Forever App are mid-build. A handful of side outputs along the way.' },
+
+    { tag: 'stat-callout', stats: [
+      { value: '6', label: 'Roles Running Today', color: 'blue' },
+      { value: '4', label: 'Queued for May', color: 'magenta' },
+      { value: '$10-70K', label: 'Monthly Payroll Replaced', color: 'mint' },
+    ] },
+
+    { tag: 'p', text: 'That list looks like the answer. It isn\'t. The answer is what\'s underneath them.' },
+
+    { tag: 'h2', text: 'Prompt frameworks are dead. Business frameworks are the missing leg of the stool.' },
+    { tag: 'p', text: 'For two years the whole industry was hunting the perfect prompt. "Act as a senior X, follow Y framework, output Z format." That whole thing is over. The models got good enough.' },
+    { tag: 'p', text: 'What\'s not over, and what most builders are still missing, is the thinking the agents are supposed to stand on.' },
+    { tag: 'p', text: 'My writer thinks she\'s <a href="https://every.to" target="_blank" rel="noopener noreferrer">Dan Shipper at Every</a>. My SEO coach thinks he\'s <a href="https://neilpatel.com" target="_blank" rel="noopener noreferrer">Neil Patel</a>. (The em-dashes are finally gone. Life is good.) Beneath that, Georgetown\'s coaching frameworks driving the coach agent. McDonough School of Business strategy shaping the strategic plan. A growing library of blog styles the writer pulls from.' },
+    { tag: 'emphasis-box', text: 'That\'s the layer. <strong>Without it you have a polite intern with API access. With it, something closer to a senior.</strong>' },
+    { tag: 'p', text: 'The market is going to spend another year selling prompt courses. The leverage is somewhere else.' },
+
+    { tag: 'h2', text: 'Why the setup matters more than the agents' },
+    { tag: 'p', text: 'Day 13 hinted at this. Tomorrow it gets tested.' },
+    { tag: 'p', text: 'If Drew, TK, and James walk out tomorrow with Git, Vercel, and Supabase configured, with their own writer agent humming, with the habit pattern installed, then this was not a hobby. The pattern travels.' },
+    { tag: 'p', text: 'If they walk out frustrated, I have a setup problem to solve, not a model problem.' },
+    { tag: 'callout', label: 'Why It Matters', text: 'The skills I had to learn over the last 14 days (Vercel, Supabase, Next.js, .env hygiene, Terminal) already feel routine. Six months ago I\'d have hired that out. Now they\'re vocabulary, not a moat. The gap is no longer technical literacy. It\'s the willingness to sit with the time it takes.' },
+
+    { tag: 'h2', text: 'Where this leaves us' },
+    { tag: 'pull-quote', text: 'The world has moved.' },
+    { tag: 'p', text: 'Two years ago, building a team of agents required a research lab. One year ago, it required engineers. Today it requires a habit, the right business frameworks, and a setup that travels. There are zero excuses left.' },
+    { tag: 'p', text: 'It is still not easy. You will still hit walls. You will still need an engineer or three for the genuinely hard parts.' },
+    { tag: 'emphasis-box', text: 'But the gap is no longer "can you." <strong>The gap is "will you sit with the time it takes."</strong>' },
+
+    { tag: 'h2', text: 'A question to sit with as the series wraps' },
+    { tag: 'p', text: 'Pick one delegation you\'ve been avoiding. The reason you\'ve been avoiding it is probably that teaching it would take a week, and you don\'t have a week. That\'s the one your next agent should own. A real business framework and a daily habit, and it pays back inside a month.' },
+    { tag: 'p', text: 'If you\'d like to work through which delegation to pick, with a small group of leaders running the same Blueprint, <a href="/retreat">the Infinite Leverage Retreat</a> in June is where that conversation lives. Three days, same questions, across a table.' },
+    { tag: 'p', text: 'Drew, TK, and James are arriving tomorrow. The retreat in June is the same thing, scaled up.' },
+
+    { tag: 'conclusion-box', title: 'Day 14 of 14 — Series Finale', paragraphs: [
+      'Fourteen days in, the system runs, takes money, reports itself every morning, and coordinates a team that is mostly agents and occasionally human. Six roles already running. Four queued. A payroll between ten and seventy thousand dollars a month I am not paying.',
+      'The world has moved. Two years ago this required a research lab. One year ago it required engineers. Today it requires a habit, the right business frameworks, and a setup that travels. There are zero excuses left.',
+      'Thank you for following along these last 14 days. The series wraps here.',
+      'If you want a thinking partner while you build your own version of this, that\'s what the <a href="/coaching">coaching membership</a> is for. If you want to do it in person with a small group, <a href="/retreat">the Infinite Leverage Retreat</a> is in June.',
+      'Read next: <a href="/blog/day-13-coordination-tax">Day 13: The Coordination Tax</a> &middot; <a href="/blog/day-12-two-track-business-model">Day 12: The Two-Track Business Model</a> &middot; <a href="/blog/day-11-ai-mindset-shift-unlocked">Day 11: The AI Mindset Shift</a>',
+    ] },
+
+    { tag: 'faq', question: 'How do you build a team of AI agents?', answer: 'You build a team of AI agents in three layers. First, the agents themselves: pick the roles a real human team would hire (writer, designer, web developer, project manager, product manager, outreach manager). Second, the business frameworks the agents stand on: feed each agent the actual thinking from real disciplines (writing standards, business strategy, coaching frameworks) instead of generic prompts. Third, the setup that travels: a one-hour onboarding script so new humans can join the same system without a week of friction. Plan on roughly 100 hours of work over two to three weeks of part-time effort to get six roles running.' },
+    { tag: 'faq', question: 'How much does an AI agent save versus hiring an employee?', answer: 'A single AI agent replaces a role that costs between $1,000 and $7,000 a month to hire, depending on the role\'s seniority and where in the world the candidate lives. A six-agent team (writer, designer, web developer, project manager, product manager, outreach manager) replaces a payroll between $10,000 and $70,000 a month at blended market rates. The cost of running the agents themselves is a small fraction of that, primarily in API and infrastructure spend.' },
+    { tag: 'faq', question: 'Are prompt frameworks still useful in 2026?', answer: 'Prompt frameworks (the "act as a senior X, follow Y framework, output Z format" templates) are largely obsolete. The models got good enough that prompt-as-incantation no longer drives output quality. What does drive quality is feeding agents real business frameworks: actual writing standards, real strategy methodologies, established coaching models. The leverage moved from prompt engineering to framework selection.' },
+    { tag: 'faq', question: 'What is the difference between prompt frameworks and business frameworks for AI agents?', answer: 'Prompt frameworks are formatting and behavioral templates applied to the model ("act as," "follow these steps," "output in this structure"). Business frameworks are the actual thinking and methodology a discipline uses ("write like Dan Shipper at Every," "apply Georgetown coaching frameworks," "use McDonough School strategy methods"). Prompt frameworks shape how the agent talks. Business frameworks shape how the agent thinks. The first is mostly solved. The second is where the leverage now lives.' },
+    { tag: 'faq', question: 'What is multi-delegating?', answer: 'Multi-delegating is a morning ritual for leaders running a team of AI agents. After the personal block (journal, reading, exercise), the leader spends one hour in deep thought on what to delegate to the agents already running. The hour is the actual product: clear thinking during that window determines the quality and quantity of work the agents produce for the rest of the day. The aim is to add one new delegation or new agent per day. At a 25% hit rate, this grows a team of seven agents to twenty-five within a month.' },
+  ],
 
   /* ================================================================ */
   /*  DAY 13                                                           */
