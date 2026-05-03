@@ -24,7 +24,8 @@
 | fab-four | `/Users/davepro/code-projects/fab-four` | `public/project-status.html` | `docs/product/epic-status.md` |
 | leadership-coach | `/Users/davepro/code-projects/leadership-coach` | `public/project-status.html` | `docs/product/epic-status.md` |
 
-Monitor path: `/Users/davepro/code-projects/caio-coach/site/public/claude-code-monitor.html`
+Monitor (live): `/Users/davepro/code-projects/caio-coach/site/public/claude-code-monitor.html`
+History page:  `/Users/davepro/code-projects/caio-coach/site/public/claude-code-monitor-history.html`
 
 ---
 
@@ -108,9 +109,9 @@ Read the file at the monitor path. Use targeted Edit calls.
 
 **4b. Completed Today section**
 
-Check the `section-hint` date:
+Check the `section-hint` date in `claude-code-monitor.html`:
 - **Same date as today** — prepend this project's group to the top of `.completed-list` (inside the div, before the first existing group header)
-- **Older date** — archive the existing `.completed-list` content to the Past Updates section first, then replace with just this project's new entries
+- **Older date** — archive the existing `.completed-list` content to the history page first (step 4f), then replace Completed Today with just this project's new entries and update the `section-hint` date
 
 Group format:
 ```html
@@ -123,21 +124,23 @@ Group format:
 
 Use all of today's commits. Limit to 20 per project if more than 20 (take the most recent).
 
-**4c. Past Updates section — archiving old Completed Today entries**
+**4f. Archive rollover to history page**
 
-When the Completed Today date is older than today, move the entire `.completed-list` content into the Past Updates section as a new day block:
+When the Completed Today date is older than today, open `claude-code-monitor-history.html` and prepend a new session block inside `.history-section > .wrap`, after the `section-header` div:
 
 ```html
-<div class="past-day-header">
-  <span class="past-day-label">YYYY-MM-DD</span>
-  <span class="past-day-count">N commits across M projects</span>
-</div>
-<div class="completed-list">
-  <!-- archived entries here -->
+<div class="session-block">
+  <div class="session-header">
+    <span class="session-date">YYYY-MM-DD</span>
+    <span class="session-summary">N commits &middot; M projects</span>
+  </div>
+  <div class="completed-list">
+    <!-- the archived entries from Completed Today -->
+  </div>
 </div>
 ```
 
-Insert at the top of the `.past-section` content (most recent past first).
+Insert before the first existing `session-block` (most recent session always at top).
 
 **4d. Portfolio table row** — find the project's `pt-row` and update pipeline dots to match the new epic-by-epic status.
 

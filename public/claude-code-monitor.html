@@ -511,17 +511,6 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
   color: var(--fg-30); text-align: right; letter-spacing: 0.04em;
 }
 
-/* ── PAST UPDATES ── */
-.past-section { padding: 48px 0; border-bottom: 1px solid var(--fg-border); }
-.past-day-header {
-  display: flex; align-items: center; gap: 16px;
-  margin-bottom: 12px;
-}
-.past-day-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-70); }
-.past-day-count { font-family: var(--font-mono); font-size: 11px; color: var(--fg-30); }
-.past-section .completed-group-name { color: var(--fg-50); }
-.past-section .completed-list { opacity: 0.75; }
-
 /* ── FOOTER ── */
 .page-footer {
   border-top: 1px solid var(--fg-border);
@@ -561,7 +550,7 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
     <div class="nav-links">
       <a href="#needs-you">Needs You</a>
       <a href="#portfolio">Portfolio</a>
-      <a href="#past-updates">Past</a>
+      <a href="/claude-code-monitor-history">History</a>
       <a href="https://caiocoach.com">caiocoach.com ↗</a>
     </div>
   </div>
@@ -613,6 +602,7 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
     <div class="section-header">
       <span class="section-title">// Completed Today</span>
       <span class="section-hint">Git pushes &mdash; 2026-05-03</span>
+      <a href="/claude-code-monitor-history" style="margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--fg-30);letter-spacing:0.08em;">History &rarr;</a>
     </div>
     <div class="completed-list">
 
@@ -686,84 +676,6 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
       <div class="completed-item"><div class="completed-msg"><strong>snapshot:</strong> 2026-05-03 publish run + course refactor</div><code class="completed-hash">c9c641b</code></div>
 
     </div>
-  </div>
-</section>
-
-<!-- PAST UPDATES -->
-<section class="past-section" id="past-updates">
-  <div class="wrap">
-    <div class="section-header">
-      <span class="section-title">// Past Updates</span>
-      <span class="section-hint">Previous sessions &mdash; archived</span>
-    </div>
-
-    <div class="past-day-header">
-      <span class="past-day-label">2026-05-02</span>
-      <span class="past-day-count">36 commits across 4 projects</span>
-    </div>
-    <div class="completed-list">
-
-      <!-- forever-app -->
-      <div class="completed-group-header">
-        <span class="completed-group-name">forever-app</span>
-        <span class="completed-group-count">19 commits</span>
-      </div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> revert middleware to getUser() &mdash; getClaims() breaks login</div><code class="completed-hash">ba3fac1</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(authed):</strong> replace TopBar gold-circle mark with Forever. wordmark</div><code class="completed-hash">4822fa1</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(marketing):</strong> redesign login/signup/contact/stories/blog/not-found</div><code class="completed-hash">194d59f</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> accept 6-8 digit OTP codes (Supabase project sends 8)</div><code class="completed-hash">8e38502</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>docs(epic-status):</strong> confirm a087d85 auth pivot deployed</div><code class="completed-hash">c4755d9</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> handle nullable getClaims() data to unblock TypeScript build</div><code class="completed-hash">9295647</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>docs(epic-status):</strong> log auth flow pivot + Care &amp; Calm design system</div><code class="completed-hash">537167e</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(about):</strong> redesign About with founder origin story</div><code class="completed-hash">15a8c2f</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(auth):</strong> switch sign-in to OTP code flow + verify JWT locally</div><code class="completed-hash">a087d85</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(home):</strong> add temp hero image (picsum, deterministic seed)</div><code class="completed-hash">99a90bc</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(home):</strong> redesign marketing home with Care &amp; Calm design system</div><code class="completed-hash">d43d740</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> use plain OTP token in magic link URL &mdash; no PKCE, no verifier</div><code class="completed-hash">4c7d778</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> switch to 6-digit OTP code instead of magic link</div><code class="completed-hash">f50b0b3</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> handle token_hash flow in callback for cross-device magic links</div><code class="completed-hash">bbe7ee3</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> attach session cookies directly to redirect response</div><code class="completed-hash">a7cd0f9</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(nav):</strong> add Sign in link before Sign up CTA in top-right</div><code class="completed-hash">170e430</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>docs:</strong> epic-status + epics &mdash; circle-based Epic 2, shipped Epic 8, pre-launch confirmed</div><code class="completed-hash">f219dea</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> marketing site (about/stories/blog/contact/signup) + multi-recorder data model</div><code class="completed-hash">727e54d</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>docs+infra:</strong> epic-1 reminder plan, marketing/engineering scaffolding, palette mockups</div><code class="completed-hash">388ed2c</code></div>
-
-      <!-- caio-coach -->
-      <div class="completed-group-header">
-        <span class="completed-group-name">caio-coach</span>
-        <span class="completed-group-count">9 commits</span>
-      </div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> convert /product-manager to skills/ format with YAML frontmatter</div><code class="completed-hash">3e4de58</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> add PM agent persona grounded in Dan Shipper and Basecamp principles</div><code class="completed-hash">7520dc4</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>chore:</strong> track .claude/commands/ in git; ignore only personal config files</div><code class="completed-hash">5af3a90</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> add /product-manager slash command and agents folder</div><code class="completed-hash">eb1521a</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> add full project epic breakdown cards to claude-code-monitor</div><code class="completed-hash">ce0f0b6</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>chore:</strong> remove old Next.js claude-code-monitor route</div><code class="completed-hash">bee50a7</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix:</strong> restore original stats section content in claude-code-monitor</div><code class="completed-hash">38b896b</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> restyle claude-code-monitor to match caio-coach brand</div><code class="completed-hash">3412c27</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> add Claude Code Monitor and standardize docs structure</div><code class="completed-hash">93b2a1a</code></div>
-
-      <!-- mahjong-tarot -->
-      <div class="completed-group-header">
-        <span class="completed-group-name">mahjong-tarot</span>
-        <span class="completed-group-count">6 commits</span>
-      </div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(global):</strong> reduce section padding from 96px to 64px</div><code class="completed-hash">85b9516</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(home):</strong> replace CSS fake book cover with actual book-cover.webp</div><code class="completed-hash">842f022</code></div>
-      <div class="completed-item"><div class="completed-msg">Merge pull request #168 &mdash; member-area UX refresh</div><code class="completed-hash">d0a8d10</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>ux(dashboard):</strong> horoscope-first dashboard &mdash; Today / Month / Year / Pillars / Purple Star</div><code class="completed-hash">a0dcb3d</code></div>
-      <div class="completed-item"><div class="completed-msg">Merge pull request #167 &mdash; member-area UX refresh (wave 1)</div><code class="completed-hash">958671c</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>ux(member-area):</strong> MemberNav, dashboard restructure, design token consistency</div><code class="completed-hash">958671c</code></div>
-
-      <!-- aio-website -->
-      <div class="completed-group-header">
-        <span class="completed-group-name">aio-website</span>
-        <span class="completed-group-count">2 commits</span>
-      </div>
-      <div class="completed-item"><div class="completed-msg">Merge pull request #13 &mdash; feat/about-intellectual-lineage</div><code class="completed-hash">e9e92e0</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> add intellectual lineage section to About page</div><code class="completed-hash">5c92998</code></div>
-
-    </div><!-- /.completed-list -->
   </div>
 </section>
 
