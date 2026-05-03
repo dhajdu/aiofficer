@@ -59,6 +59,16 @@ code { font-family: var(--font-mono); }
 .section-title { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-50); }
 .section-hint { font-size: 12px; color: var(--fg-30); }
 
+/* ── BREADCRUMB ── */
+.breadcrumb-bar {
+  padding: 16px 0 24px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+.breadcrumb-bar a { color: var(--mint); }
+.breadcrumb-bar a:hover { opacity: 0.8; }
+
 /* ── HISTORY SESSIONS ── */
 .history-section { padding: 48px 0; }
 .session-block { margin-bottom: 48px; }
@@ -147,6 +157,10 @@ code { font-family: var(--font-mono); }
 
 <section class="history-section">
   <div class="wrap">
+    <div class="breadcrumb-bar">
+      <a href="/claude-code-monitor">← Live Monitor</a>
+    </div>
+
     <div class="section-header">
       <span class="section-title">// Session Log</span>
       <span class="section-hint">Most recent first &mdash; updated by agents after each session</span>
@@ -156,22 +170,25 @@ code { font-family: var(--font-mono); }
     <div class="session-block">
       <div class="session-header">
         <span class="session-date">2026-05-02</span>
-        <span class="session-summary">36 commits &middot; 4 projects</span>
+        <span class="session-summary">58 commits &middot; 4 projects</span>
       </div>
       <div class="completed-list">
-
-        <!-- forever-app -->
-        <div class="completed-group-header">
-          <span class="completed-group-name">forever-app</span>
-          <span class="completed-group-count">19 commits</span>
-        </div>
+        <div class="completed-group-header"><span class="completed-group-name">forever-app</span><span class="completed-group-count">30 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> hard-nav after sign-in + break curator redirect loop</div><code class="completed-hash">a9b4924</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> restore PKCE code exchange in callback</div><code class="completed-hash">2a37a39</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(auth):</strong> replace magic link with email/password auth</div><code class="completed-hash">eca072c</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> correct verifyOtp type cast for token_hash path</div><code class="completed-hash">e45ea4c</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> call signInWithOtp from browser client, not server action</div><code class="completed-hash">fc1624b</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> write session cookies via next/headers in callback</div><code class="completed-hash">bd08b5f</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> switch to magic link &mdash; email → click link → signed in</div><code class="completed-hash">cd59bf9</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> wipe and rewrite login from scratch &mdash; OTP server action</div><code class="completed-hash">8060b60</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> restore 8-digit OTP support clobbered by page rewrite</div><code class="completed-hash">7794e54</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> move OTP verify to server action so session is set before redirect</div><code class="completed-hash">f7ded97</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> revert middleware to getUser() &mdash; getClaims() breaks login</div><code class="completed-hash">ba3fac1</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>feat(authed):</strong> replace TopBar gold-circle mark with Forever. wordmark</div><code class="completed-hash">4822fa1</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>feat(marketing):</strong> redesign login/signup/contact/stories/blog/not-found</div><code class="completed-hash">194d59f</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> accept 6-8 digit OTP codes (Supabase project sends 8)</div><code class="completed-hash">8e38502</code></div>
-        <div class="completed-item"><div class="completed-msg"><strong>docs(epic-status):</strong> confirm a087d85 auth pivot deployed</div><code class="completed-hash">c4755d9</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> handle nullable getClaims() data to unblock TypeScript build</div><code class="completed-hash">9295647</code></div>
-        <div class="completed-item"><div class="completed-msg"><strong>docs(epic-status):</strong> log auth flow pivot + Care &amp; Calm design system</div><code class="completed-hash">537167e</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>feat(about):</strong> redesign About with founder origin story</div><code class="completed-hash">15a8c2f</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>feat(auth):</strong> switch sign-in to OTP code flow + verify JWT locally</div><code class="completed-hash">a087d85</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>feat(home):</strong> add temp hero image (picsum, deterministic seed)</div><code class="completed-hash">99a90bc</code></div>
@@ -185,43 +202,537 @@ code { font-family: var(--font-mono); }
         <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> marketing site (about/stories/blog/contact/signup) + multi-recorder data model</div><code class="completed-hash">727e54d</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>docs+infra:</strong> epic-1 reminder plan, marketing/engineering scaffolding, palette mockups</div><code class="completed-hash">388ed2c</code></div>
 
-        <!-- caio-coach -->
-        <div class="completed-group-header">
-          <span class="completed-group-name">caio-coach</span>
-          <span class="completed-group-count">9 commits</span>
-        </div>
+        <div class="completed-group-header"><span class="completed-group-name">caio-coach</span><span class="completed-group-count">15 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>blog:</strong> replace spreadsheet with 3 real images on founder post</div><code class="completed-hash">bcbee19</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>blog:</strong> rotate James coding photo + add captions to all post images</div><code class="completed-hash">45e9ed5</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>blog:</strong> add real photos to "5 Days Instead of 3 Months" post</div><code class="completed-hash">83acb4d</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>blog:</strong> rename post to "How a Founder Built His Product in 5 Days Instead of 3 Months"</div><code class="completed-hash">d9b901a</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>blog:</strong> publish "The Infinite Leverage Blueprint"</div><code class="completed-hash">9b6372b</code></div>
+        <div class="completed-item"><div class="completed-msg">Update claude-code-monitor: sweep all projects, add Completed Today section</div><code class="completed-hash">60a87e0</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> convert /product-manager to skills/ format with YAML frontmatter</div><code class="completed-hash">3e4de58</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> add PM agent persona grounded in Dan Shipper and Basecamp principles</div><code class="completed-hash">7520dc4</code></div>
-        <div class="completed-item"><div class="completed-msg"><strong>chore:</strong> track .claude/commands/ in git; ignore only personal config files</div><code class="completed-hash">5af3a90</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> add /product-manager slash command and agents folder</div><code class="completed-hash">eb1521a</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> add full project epic breakdown cards to claude-code-monitor</div><code class="completed-hash">ce0f0b6</code></div>
-        <div class="completed-item"><div class="completed-msg"><strong>chore:</strong> remove old Next.js claude-code-monitor route</div><code class="completed-hash">bee50a7</code></div>
-        <div class="completed-item"><div class="completed-msg"><strong>fix:</strong> restore original stats section content in claude-code-monitor</div><code class="completed-hash">38b896b</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> restyle claude-code-monitor to match caio-coach brand</div><code class="completed-hash">3412c27</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> add Claude Code Monitor and standardize docs structure</div><code class="completed-hash">93b2a1a</code></div>
 
-        <!-- mahjong-tarot -->
-        <div class="completed-group-header">
-          <span class="completed-group-name">mahjong-tarot</span>
-          <span class="completed-group-count">6 commits</span>
-        </div>
+        <div class="completed-group-header"><span class="completed-group-name">mahjong-tarot</span><span class="completed-group-count">11 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>publish:</strong> project-status.html dashboard</div><code class="completed-hash">95bf8e8</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>publish:</strong> 4 posts — Feel Good Friday Wealth, Fire Horse Career, Decision Framework Career, Career Cage</div><code class="completed-hash">d3b071a</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>fix(global):</strong> reduce section padding from 96px to 64px</div><code class="completed-hash">85b9516</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>fix(home):</strong> replace CSS fake book cover with actual book-cover.webp</div><code class="completed-hash">842f022</code></div>
-        <div class="completed-item"><div class="completed-msg">Merge pull request #168 &mdash; member-area UX refresh</div><code class="completed-hash">d0a8d10</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>ux(dashboard):</strong> horoscope-first dashboard &mdash; Today / Month / Year / Pillars / Purple Star</div><code class="completed-hash">a0dcb3d</code></div>
-        <div class="completed-item"><div class="completed-msg">Merge pull request #167 &mdash; member-area UX refresh (wave 1)</div><code class="completed-hash">958671c</code></div>
         <div class="completed-item"><div class="completed-msg"><strong>ux(member-area):</strong> MemberNav, dashboard restructure, design token consistency</div><code class="completed-hash">958671c</code></div>
 
-        <!-- aio-website -->
-        <div class="completed-group-header">
-          <span class="completed-group-name">aio-website</span>
-          <span class="completed-group-count">2 commits</span>
-        </div>
-        <div class="completed-item"><div class="completed-msg">Merge pull request #13 &mdash; feat/about-intellectual-lineage</div><code class="completed-hash">e9e92e0</code></div>
+        <div class="completed-group-header"><span class="completed-group-name">aio-website</span><span class="completed-group-count">2 commits</span></div>
         <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> add intellectual lineage section to About page</div><code class="completed-hash">5c92998</code></div>
+        <div class="completed-item"><div class="completed-msg">Merge pull request #13 &mdash; feat/about-intellectual-lineage</div><code class="completed-hash">e9e92e0</code></div>
+      </div>
+    </div>
 
-      </div><!-- /.completed-list -->
-    </div><!-- /.session-block -->
+    <!-- ══ 2026-05-01 ══ -->
+    <div class="session-block">
+      <div class="session-header">
+        <span class="session-date">2026-05-01</span>
+        <span class="session-summary">51 commits &middot; 3 projects</span>
+      </div>
+      <div class="completed-list">
+        <div class="completed-group-header"><span class="completed-group-name">longevity-coach</span><span class="completed-group-count">40 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(finances):</strong> retainer + Phase 1B at 50% margin</div><code class="completed-hash">81a57fa</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(finances):</strong> standalone build &amp; run cost page at /finances.html</div><code class="completed-hash">5a796fe</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs(status):</strong> surface 16 open bugs from 2026-05-01 QA pass</div><code class="completed-hash">934fa2a</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(status):</strong> replace stale 3791-line file with the actual new dashboard</div><code class="completed-hash">53ca0a2</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(status):</strong> standalone project-status dashboard at /project-status.html</div><code class="completed-hash">3bce29b</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs(changes):</strong> CHANGELOG + EXECUTIVE_SUMMARY for janet-upload array healing</div><code class="completed-hash">bdd5451</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(uploads):</strong> heal array responses from Janet for multi-panel pathology PDFs</div><code class="completed-hash">9930a60</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(report):</strong> convert chat to sticky sidebar at desktop</div><code class="completed-hash">e07f69f</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(brand):</strong> clip favicon to a circle (transparent corners)</div><code class="completed-hash">b41a615</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(brand):</strong> convert app/favicon.ico to multi-size ICO from Janet Cares mark</div><code class="completed-hash">f194d3e</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(app-shell):</strong> standardize container width to 1080px + harden nav against wrap</div><code class="completed-hash">a8cd544</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(app-shell):</strong> redesign /labs, /simulator, /uploads, /dashboard on design system</div><code class="completed-hash">261b9ab</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(seo):</strong> site-wide metadata, OG/Twitter, dynamic OG image, sitemap, robots, JSON-LD</div><code class="completed-hash">6c8f141</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(report+brand):</strong> redesign /report on the marketing design system + ship favicon</div><code class="completed-hash">07ceda0</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(check-in):</strong> redesign /check-in against the marketing design system</div><code class="completed-hash">70bace5</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs(email):</strong> add logo embedding guide + update templates to janet-cares-logo.png</div><code class="completed-hash">6acac09</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs(epic-status):</strong> record 2026-04-30 hotfix + ship backfill script</div><code class="completed-hash">ce96209</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">eo-vietnam</span><span class="completed-group-count">8 commits</span></div>
+        <div class="completed-item"><div class="completed-msg">Initial scaffold and homepage from design handoff</div><code class="completed-hash">9e70022</code></div>
+        <div class="completed-item"><div class="completed-msg">Trigger initial Vercel deploy</div><code class="completed-hash">2a7c611</code></div>
+        <div class="completed-item"><div class="completed-msg">Bump logo sizes for better topbar and footer presence</div><code class="completed-hash">dfe6f90</code></div>
+        <div class="completed-item"><div class="completed-msg">Fix testimonial photos: Chloe gets her real photo, Dave gets his</div><code class="completed-hash">0164e39</code></div>
+        <div class="completed-item"><div class="completed-msg">Add Forum, Events, Podcast, Blog, Board pages</div><code class="completed-hash">21d929b</code></div>
+        <div class="completed-item"><div class="completed-msg">Add Training, Member Directory, Partners pages</div><code class="completed-hash">2288f4d</code></div>
+        <div class="completed-item"><div class="completed-msg">Add About, Path of Leadership, Join, Community Events, Past Events</div><code class="completed-hash">df3c4cb</code></div>
+        <div class="completed-item"><div class="completed-msg">Add /privacy</div><code class="completed-hash">787756f</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">mahjong-tarot</span><span class="completed-group-count">3 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>pm(weekly-rag):</strong> 2026-05-01</div><code class="completed-hash">07537e2</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>pm(standup-compile):</strong> 2026-05-01</div><code class="completed-hash">024a934</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>pm(standup-morning):</strong> 2026-05-01</div><code class="completed-hash">df1c9c7</code></div>
+      </div>
+    </div>
+
+    <!-- ══ 2026-04-30 ══ -->
+    <div class="session-block">
+      <div class="session-header">
+        <span class="session-date">2026-04-30</span>
+        <span class="session-summary">67 commits &middot; 5 projects</span>
+      </div>
+      <div class="completed-list">
+        <div class="completed-group-header"><span class="completed-group-name">longevity-coach</span><span class="completed-group-count">42 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>refactor(account):</strong> split schemas from actions into separate files</div><code class="completed-hash">166526a</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(account):</strong> redesign /account against marketing design system</div><code class="completed-hash">d549b6d</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(email):</strong> add branded Supabase Auth email templates</div><code class="completed-hash">44d1922</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(account):</strong> Security card + sign-out relocation (Wave 2)</div><code class="completed-hash">cd2376f</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(account):</strong> inline edit for Identity card (Wave 1)</div><code class="completed-hash">b9c4fb0</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(app-shell):</strong> align signed-in pages with marketing design system</div><code class="completed-hash">eda972c</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(public-nav):</strong> tighten header &mdash; logo left, nav cluster right</div><code class="completed-hash">cc9097f</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(app-chrome):</strong> extract AppHeader, polish mobile drawer, rename labels</div><code class="completed-hash">ec8c729</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(brand):</strong> rebrand to Janet Cares + design polish</div><code class="completed-hash">c748aab</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(risk-narrative):</strong> unblock Atlas pipeline + ship clinical review packs</div><code class="completed-hash">f70c91a</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(auth):</strong> password show/hide toggle + post-confirmation thank-you page</div><code class="completed-hash">c22d166</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(cron):</strong> cap drip-emails per run + skip unconfirmed users</div><code class="completed-hash">3fdf1b1</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs(ops):</strong> record auth email deliverability fix (SMTP + DNS)</div><code class="completed-hash">c452edf</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(ops):</strong> admin Sentry probe route + AHPRA breach-notification protocol</div><code class="completed-hash">bac063d</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>chore(rebrand):</strong> replace longevity-coach.io with janet.care across app, libs, tests, docs</div><code class="completed-hash">2b4f7b5</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(trust):</strong> deceased-flag backend slice &mdash; admin actions + audit log</div><code class="completed-hash">eb4a79d</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(booking):</strong> wave 4 &mdash; patient cancellation with 24h cutoff + audit trigger</div><code class="completed-hash">9a9692c</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(journal):</strong> enhanced journal &mdash; title, mood, tags, search, pin, inline edit</div><code class="completed-hash">af62a85</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(org):</strong> CSV bulk invite flow for organisations</div><code class="completed-hash">dfae631</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(insights):</strong> add category filter pills and search to research digests</div><code class="completed-hash">e00fcf3</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(booking-calendar):</strong> two-sided clinician&ndash;patient booking calendar</div><code class="completed-hash">3b0ae56</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(reminders):</strong> wave 2 &mdash; weekly digest cron + alert-notification cron</div><code class="completed-hash">6772d48</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(reminders):</strong> wave 1 &mdash; check-in reminder cron + notification prefs</div><code class="completed-hash">227e79c</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(cost):</strong> wave 2 &mdash; daily budget rollup cron + admin email alert</div><code class="completed-hash">6cd1dbe</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(cost):</strong> wave 1 &mdash; Anthropic API usage telemetry + /admin/cost dashboard</div><code class="completed-hash">54d6a48</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(org):</strong> employer dashboard &mdash; KPIs, seat utilisation, plan details, org nav</div><code class="completed-hash">129458b</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(meal-plan):</strong> end-to-end fix for direct trigger + chat integration</div><code class="completed-hash">41a8842</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> ground Atlas in deterministic engine scores + enable risk history + simulator nav</div><code class="completed-hash">56d8bfa</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs(ops):</strong> Sentry setup + DR drill runbooks; confirm pause/freeze shipped</div><code class="completed-hash">7f549e5</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">aio-website</span><span class="completed-group-count">9 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>commission:</strong> USD on net (post-Stripe-fee), not native gross</div><code class="completed-hash">44d01a8</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>orders:</strong> USD amount + Stripe fee from balance_transaction</div><code class="completed-hash">22d88ad</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>retreat:</strong> amount paid column + cohort slug includes day</div><code class="completed-hash">a249c9e</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>affiliates:</strong> commission default, drop CAIO Coach, copy-all button</div><code class="completed-hash">d072593</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>notify:</strong> fan out Lark alongside Telegram + email</div><code class="completed-hash">cc979b1</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>affiliates:</strong> referred_by + operator-picked base code</div><code class="completed-hash">b3d6fe4</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>affiliates:</strong> rework to two codes per partner</div><code class="completed-hash">521b2c6</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>affiliates:</strong> tracking schema, attribution flow, admin UI</div><code class="completed-hash">53bf37d</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>retreat:</strong> Melbourne &mdash; testimonials, founder bio, FAQ, lead magnet, video placeholder</div><code class="completed-hash">81d581b</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">infinite-leverage</span><span class="completed-group-count">7 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>seo:</strong> country-led titles, Event JSON-LD, dynamic OG images, sitemap + robots</div><code class="completed-hash">50aa1ac</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>reserve:</strong> pre-create orders row + write inquiry metadata</div><code class="completed-hash">9294b3a</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>notify:</strong> fire Telegram + Lark on every retreat signup</div><code class="completed-hash">528d28d</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>affiliates:</strong> switch to two-code resolver</div><code class="completed-hash">9edf8e4</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>affiliates:</strong> capture ?ref= cookie + attribute signups</div><code class="completed-hash">3d45336</code></div>
+        <div class="completed-item"><div class="completed-msg">Home: use real Dave headshot in About Dave block</div><code class="completed-hash">d3b417e</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>melbourne:</strong> CRO pass &mdash; testimonials, founder bio, FAQ, lead magnet, video placeholder, refund strip</div><code class="completed-hash">2472aad</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">caio-coach</span><span class="completed-group-count">4 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>affiliates:</strong> tighten Affiliate type after base-code migration</div><code class="completed-hash">0a5276c</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>affiliates:</strong> switch to two-code resolver</div><code class="completed-hash">f9538a5</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>affiliates:</strong> capture ?ref= cookie + attribute inquiries</div><code class="completed-hash">9140f42</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> add testimonials carousel</div><code class="completed-hash">bfcd520</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">mahjong-tarot</span><span class="completed-group-count">2 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>pm(standup-compile):</strong> 2026-04-30</div><code class="completed-hash">37d1c07</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>pm(standup-morning):</strong> 2026-04-30</div><code class="completed-hash">e16da9c</code></div>
+      </div>
+    </div>
+
+    <!-- ══ 2026-04-29 ══ -->
+    <div class="session-block">
+      <div class="session-header">
+        <span class="session-date">2026-04-29</span>
+        <span class="session-summary">70 commits &middot; 8 projects</span>
+      </div>
+      <div class="completed-list">
+        <div class="completed-group-header"><span class="completed-group-name">longevity-coach</span><span class="completed-group-count">30 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(coach):</strong> latency benchmarks + clinical prompt review + PT Coach docs</div><code class="completed-hash">eb43631</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> personalised daily goals + onboarding E2E test + epic status updates</div><code class="completed-hash">1746039</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(insights):</strong> add research digest feed to /insights + Labs nav link</div><code class="completed-hash">45e7007</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(report):</strong> add Regenerate report button triggering risk + supplement pipelines</div><code class="completed-hash">a8480f9</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(chat):</strong> smooth word-by-word drip animation decoupled from LLM chunk cadence</div><code class="completed-hash">5dbe8c2</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(admin/tiers):</strong> add tier deletion with cascade + dedup server-side plans</div><code class="completed-hash">c1603c9</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(admin):</strong> add dynamic tier creation + fix plan-builder merge conflicts</div><code class="completed-hash">47607cc</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(admin):</strong> refine plan-builder UX + tiers styling + nav color scheme</div><code class="completed-hash">017dd08</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(erasure):</strong> wave 3 &mdash; UX surfaces (consent toggle, /legal, /account card, type-DELETE confirm)</div><code class="completed-hash">6be7d63</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(admin/plan-builder):</strong> add comprehensive B2B plan management UI</div><code class="completed-hash">24d2a26</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(compression):</strong> use claude-sonnet-4-6 for conversation summarisation</div><code class="completed-hash">d22f158</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(erasure):</strong> wave 2 &mdash; cascade engine + audited deleteAccount + integration tests</div><code class="completed-hash">ffd3a84</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(plan-b):</strong> rest-day streak dots, journal quick-link, Janet latency logging</div><code class="completed-hash">0658fb0</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(erasure):</strong> wave 1 &mdash; erasure_log audit table + FK relaxations + data_no_training policy</div><code class="completed-hash">8b55fa1</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(admin/suppliers):</strong> replace CrudTable with full-featured supplier/product management UI</div><code class="completed-hash">21433b3</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(janet):</strong> add request_supplement_protocol tool so Janet can generate missing plans</div><code class="completed-hash">d97c92e</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(clinician-portal):</strong> wire patient program-delivery email on Approve &amp; send</div><code class="completed-hash">d74ab64</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(clinician-portal):</strong> janet_clinician real-time agent with submit_30_day_program tool</div><code class="completed-hash">88adba2</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(admin):</strong> branded clinician invite email via Resend</div><code class="completed-hash">8e68518</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(clinician-portal):</strong> /clinician review workspace + schedule + profile</div><code class="completed-hash">9394eb6</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(clinician-portal):</strong> patient consent surface + admin clinician invite</div><code class="completed-hash">531d020</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(clinician-portal):</strong> foundation &mdash; role expansion, schema, proxy gates</div><code class="completed-hash">b332c8c</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(admin):</strong> wave 5 &mdash; plans / add-ons / suppliers / products admin pages + APIs</div><code class="completed-hash">ef26d5d</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(billing):</strong> wave 4 &mdash; account billing page + subscription add-ons + test orders APIs</div><code class="completed-hash">8816f23</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(pricing):</strong> wave 3 &mdash; public /pricing page + DB-driven Stripe checkout + plan APIs</div><code class="completed-hash">fa544f3</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(billing):</strong> wave 2 &mdash; feature-flag resolver, pricing calculators, migration renumber</div><code class="completed-hash">4fc3af7</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(billing):</strong> wave 1 &mdash; fix 0041 collision + org addons stripe linkage + invites table</div><code class="completed-hash">f742f17</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(wave2-chef):</strong> meal plan pipeline, Chef agent, and Janet request_meal_plan tool</div><code class="completed-hash">1f13d35</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(wave4):</strong> trust layer &mdash; erasure, pause/freeze, ToS disclosure, simulator E2E</div><code class="completed-hash">9df6f0c</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(wave3):</strong> daily return features &mdash; goals, insights, journal, streak</div><code class="completed-hash">e589d8d</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">aio-website</span><span class="completed-group-count">3 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>retreat:</strong> split into 3 cohorts (Melbourne, Nha Trang, Seattle) with 3-tier pricing</div><code class="completed-hash">2221809</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs:</strong> add full project documentation structure</div><code class="completed-hash">bc4ddb4</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>supabase:</strong> document aio_pad bookings + car_bookings as 004_aio_pad</div><code class="completed-hash">f94ded7</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">infinite-leverage</span><span class="completed-group-count">9 commits</span></div>
+        <div class="completed-item"><div class="completed-msg">Remove all mentions of GST + disable automatic_tax</div><code class="completed-hash">2a8ff8a</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>melbourne:</strong> rewrite with new design system + royal blue on paper</div><code class="completed-hash">de37c5c</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>design system:</strong> AIO-derived navy + Fraunces serif, no ordering on home</div><code class="completed-hash">809978e</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>nha-trang offline_vn:</strong> bank details + VietQR on success page</div><code class="completed-hash">8d0568b</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>nha-trang:</strong> bank transfer (Vietnam) option, no Stripe required</div><code class="completed-hash">9c1ad1d</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>reservation:</strong> form before payment, captures lead either way</div><code class="completed-hash">4bb4cd2</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>events:</strong> 3-tier Stripe pricing + custom Melbourne page</div><code class="completed-hash">67f9f2d</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>events:</strong> Melbourne (was Sydney) + lock in prices</div><code class="completed-hash">b63d868</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> initial scaffold: Next.js 16 marketing site + retreat signup</div><code class="completed-hash">f7c422c</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">forever-app</span><span class="completed-group-count">3 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs:</strong> add full project documentation structure</div><code class="completed-hash">3c5e508</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs:</strong> status sweep &mdash; plan-1.md QA-pass entry; project-status.html re-synced</div><code class="completed-hash">782bef2</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>qa:</strong> close 28 bugs from the 2026-04-26 + 04-28 passes</div><code class="completed-hash">4ace9c4</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">caio-coach</span><span class="completed-group-count">5 commits</span></div>
+        <div class="completed-item"><div class="completed-msg">claude-code-monitor: refresh aggregate stats to match 13 projects</div><code class="completed-hash">89d8207</code></div>
+        <div class="completed-item"><div class="completed-msg">claude-code-monitor: refresh Longevity Coach from origin/main</div><code class="completed-hash">da1efb5</code></div>
+        <div class="completed-item"><div class="completed-msg">monitor: expand to 13 projects with code-grounded estimates</div><code class="completed-hash">2bb8d2b</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs:</strong> add full project documentation structure</div><code class="completed-hash">30b99e0</code></div>
+        <div class="completed-item"><div class="completed-msg">claude-code-monitor: add Fab Four Academy</div><code class="completed-hash">3c1fb23</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">aio-pad</span><span class="completed-group-count">1 commit</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs:</strong> add full project documentation structure</div><code class="completed-hash">726b10c</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">edge8</span><span class="completed-group-count">1 commit</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs:</strong> add full project documentation structure</div><code class="completed-hash">ad13c65</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">mahjong-tarot</span><span class="completed-group-count">8 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(e2):</strong> share affordances and analytics events</div><code class="completed-hash">ed978dd</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(e2):</strong> add why-this-date-scores explanation to result page</div><code class="completed-hash">8f20736</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(e2):</strong> public Find a Good Day pages with shareable URLs</div><code class="completed-hash">8e8f8de</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(home):</strong> lead with today's almanac (E1)</div><code class="completed-hash">be5b373</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs:</strong> reorganise project documentation into docs/ tree</div><code class="completed-hash">3a8943d</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs:</strong> add agents.md and surface in project-status dashboard</div><code class="completed-hash">5a1cc17</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">content-studio</span><span class="completed-group-count">1 commit</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs:</strong> add full project documentation structure</div><code class="completed-hash">b208bba</code></div>
+      </div>
+    </div>
+
+    <!-- ══ 2026-04-28 ══ -->
+    <div class="session-block">
+      <div class="session-header">
+        <span class="session-date">2026-04-28</span>
+        <span class="session-summary">30 commits &middot; 3 projects</span>
+      </div>
+      <div class="completed-list">
+        <div class="completed-group-header"><span class="completed-group-name">longevity-coach</span><span class="completed-group-count">15 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(janet):</strong> structured biomarker writer + B6 plan + logo +50%</div><code class="completed-hash">3d88334</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(alerts):</strong> member alerts surface (B7, Epic 8)</div><code class="completed-hash">92e6724</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(trends):</strong> 30-day daily-log trends page (B5, Epic 8)</div><code class="completed-hash">e1ffbbe</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(labs):</strong> member-facing lab results UI (B4, Epic 8)</div><code class="completed-hash">9863009</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(sprint-1):</strong> ship P0 Vietnam MVP + P1 polish wave</div><code class="completed-hash">f1fe816</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(nova):</strong> Research Digest Pipeline &mdash; weekly PubMed evidence refresh for Janet RAG</div><code class="completed-hash">0df4e00</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(evidence-base):</strong> clinical knowledge layer, agents schema, RAG wiring</div><code class="completed-hash">e931d41</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(admin):</strong> add agent definition editor and Alex AI chat FAB</div><code class="completed-hash">3fdee0a</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(ai):</strong> agent layer with shared factory, Janet, Alex, Atlas, Sage</div><code class="completed-hash">e7374f7</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs:</strong> add Dan Shipper product/epics/epic-status/QA plan + project-status viewer</div><code class="completed-hash">9f9e085</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(uploads):</strong> multi-file parallel upload with per-file progress</div><code class="completed-hash">dfdc2de</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">forever-app</span><span class="completed-group-count">3 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>qa:</strong> code-level pass adds BUG-013 → BUG-033; status dashboard updated</div><code class="completed-hash">ac2afbb</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>docs:</strong> epics-status dashboard with pipeline glyphs + per-epic open bugs</div><code class="completed-hash">4e67c63</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>plan:</strong> catch up on two days of unrecorded ships</div><code class="completed-hash">1bce33b</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">mahjong-tarot</span><span class="completed-group-count">12 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> wire /signup to real Supabase + add magic link + password eye toggle</div><code class="completed-hash">388aa0b</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>ui(home):</strong> drop heavy red duotone &mdash; clean hero photo, subtle About wash</div><code class="completed-hash">b9b98b2</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(home):</strong> redirect signed-in users from / to /dashboard</div><code class="completed-hash">d09d394</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>redesign(home + signup):</strong> Mahjong Tarot Home iteration 2</div><code class="completed-hash">2f6e210</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(booking):</strong> one card-reading product with three lengths + new /book-a-reading funnel</div><code class="completed-hash">a68fb31</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(home):</strong> show real card art on deck strip</div><code class="completed-hash">e2bed96</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>writer(tuesday-2026-04-28):</strong> content for week of 2026-05-04</div><code class="completed-hash">113a989</code></div>
+      </div>
+    </div>
+
+    <!-- ══ 2026-04-27 ══ -->
+    <div class="session-block">
+      <div class="session-header">
+        <span class="session-date">2026-04-27</span>
+        <span class="session-summary">48 commits &middot; 4 projects</span>
+      </div>
+      <div class="completed-list">
+        <div class="completed-group-header"><span class="completed-group-name">forever-app</span><span class="completed-group-count">11 commits</span></div>
+        <div class="completed-item"><div class="completed-msg">Tinder-style deck of 8 LLM-generated conversation starters</div><code class="completed-hash">59a9fe9</code></div>
+        <div class="completed-item"><div class="completed-msg">Pretty slugs ({name}-{8hex}) instead of raw UUIDs everywhere</div><code class="completed-hash">50b51a3</code></div>
+        <div class="completed-item"><div class="completed-msg">3MB photo cap with a friendly warning instead of a generic crash</div><code class="completed-hash">8f425ba</code></div>
+        <div class="completed-item"><div class="completed-msg">Recorder: free-mode pipeline splits transcripts into multiple stories</div><code class="completed-hash">05036f1</code></div>
+        <div class="completed-item"><div class="completed-msg">Distill: never lose a recording; permissive prompt + raw-transcript fallback + logging</div><code class="completed-hash">5af0bcb</code></div>
+        <div class="completed-item"><div class="completed-msg">Recorder: gamified 8-minute timer (phase + filling 8 + bonus stars + flash)</div><code class="completed-hash">51daee5</code></div>
+        <div class="completed-item"><div class="completed-msg">Landing: 'why now' section without addressing death; 8 minutes is a starting point</div><code class="completed-hash">054e4ad</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">aio-website</span><span class="completed-group-count">4 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>leadership-training:</strong> profile photos, tighter Series titles, aligned shift lines</div><code class="completed-hash">7359588</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>leadership-training:</strong> add dedicated /contact-leadership inquiry page</div><code class="completed-hash">ac498ba</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>leadership-training:</strong> switch to 1/2/3-day intensive format</div><code class="completed-hash">4c7422e</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">aio-pad</span><span class="completed-group-count">14 commits</span></div>
+        <div class="completed-item"><div class="completed-msg">Fix Travel Buddy link: travelbuddy8.com (no dash)</div><code class="completed-hash">1912358</code></div>
+        <div class="completed-item"><div class="completed-msg">Add "Lumiere Riverside | Thao Dien" to top-right of header</div><code class="completed-hash">c5fb57d</code></div>
+        <div class="completed-item"><div class="completed-msg">Add Travel Buddy nav link (external, opens in new tab)</div><code class="completed-hash">f96947c</code></div>
+        <div class="completed-item"><div class="completed-msg">Replace nav text with AIO Pad logo (SVG, brand colors)</div><code class="completed-hash">9583395</code></div>
+        <div class="completed-item"><div class="completed-msg">Add favicon + apple-touch-icon (AIO brand mark)</div><code class="completed-hash">b760114</code></div>
+        <div class="completed-item"><div class="completed-msg">Shared site header with Apartment | Car nav</div><code class="completed-hash">7cffbf6</code></div>
+        <div class="completed-item"><div class="completed-msg">Make Car &amp; Driver a standalone bookable service</div><code class="completed-hash">4547bde</code></div>
+        <div class="completed-item"><div class="completed-msg">Add /car-driver page + raise add-on to $80/day</div><code class="completed-hash">0c1c7a3</code></div>
+        <div class="completed-item"><div class="completed-msg">Add optional add-ons + raise base to $80/night</div><code class="completed-hash">837eb97</code></div>
+        <div class="completed-item"><div class="completed-msg">Block bookings before June 1, 2026 (apartment unavailable)</div><code class="completed-hash">c3caf54</code></div>
+        <div class="completed-item"><div class="completed-msg">Add About Your Host, cap guests at 4, flexible 2pm/12pm times</div><code class="completed-hash">72f54a5</code></div>
+        <div class="completed-item"><div class="completed-msg">Initial scaffold: AIO Pad booking site</div><code class="completed-hash">f29ec77</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">mahjong-tarot</span><span class="completed-group-count">19 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>redesign(home + member):</strong> promo bar, split hero, sessions, book band, dark footer</div><code class="completed-hash">bea4cee</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>redesign:</strong> cool white + Fire red editorial system across public site</div><code class="completed-hash">e2262f4</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(horoscopes):</strong> add --out-sql mode to backfill script</div><code class="completed-hash">9a69723</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>ux(almanac):</strong> prominent search CTA + suggestion/result animations</div><code class="completed-hash">7b0d24d</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(nav):</strong> lock signed-in users into member shell + add daily horoscope</div><code class="completed-hash">128d881</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(almanac):</strong> extend data through 2032 + add activity search</div><code class="completed-hash">ab850e2</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(readings):</strong> finish Purple Star (Zi Wei Dou Shu) reading</div><code class="completed-hash">24bd2eb</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>data(almanac):</strong> seed 354 days of Tong Shu &mdash; Year of the Fire Horse</div><code class="completed-hash">b972dbb</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(dashboard):</strong> Purple Star (Zi Wei Dou Shu) chart</div><code class="completed-hash">d374b72</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(dashboard):</strong> Three Blessings reading</div><code class="completed-hash">9fadf0e</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(fire-horse):</strong> interactive 2026 forecast with year-pillar + Day Master scoring</div><code class="completed-hash">2459a65</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(dashboard):</strong> BaZi profile, compatibility calculator, Inner Circle</div><code class="completed-hash">5be790e</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>auth:</strong> replace Clerk with Supabase Auth</div><code class="completed-hash">f5fe931</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(readings):</strong> persist compatibility reports as their own pages</div><code class="completed-hash">b31f5f6</code></div>
+      </div>
+    </div>
+
+    <!-- ══ 2026-04-26 ══ -->
+    <div class="session-block">
+      <div class="session-header">
+        <span class="session-date">2026-04-26</span>
+        <span class="session-summary">37 commits &middot; 3 projects</span>
+      </div>
+      <div class="completed-list">
+        <div class="completed-group-header"><span class="completed-group-name">forever-app</span><span class="completed-group-count">28 commits</span></div>
+        <div class="completed-item"><div class="completed-msg">Empty shelf: tap a book opens the recorder directly</div><code class="completed-hash">964bd46</code></div>
+        <div class="completed-item"><div class="completed-msg">Home: two paths to record (free recording + topic-first)</div><code class="completed-hash">8c6f25d</code></div>
+        <div class="completed-item"><div class="completed-msg">Epic 4 stage 2 slice 2: book-scale drafting</div><code class="completed-hash">a1dc076</code></div>
+        <div class="completed-item"><div class="completed-msg">Epic 4 stage 2 slice 1: chapter assembly (reorder, rename, move story)</div><code class="completed-hash">800bdc5</code></div>
+        <div class="completed-item"><div class="completed-msg">Admin: redesign &mdash; garden palette, shared layout, live dashboard</div><code class="completed-hash">8b84d7b</code></div>
+        <div class="completed-item"><div class="completed-msg">Catalog: 63 chapter templates + /admin/templates editor + ABC rotation</div><code class="completed-hash">36241a8</code></div>
+        <div class="completed-item"><div class="completed-msg">Epic 2 slice 2: Today's Prompt v2 mixes callbacks + chapters</div><code class="completed-hash">d11f69b</code></div>
+        <div class="completed-item"><div class="completed-msg">Home books: drop photo covers, add leather grain + strap + brass buckle</div><code class="completed-hash">a5efff5</code></div>
+        <div class="completed-item"><div class="completed-msg">Epic 2 slice 1: chapter_callbacks (extraction + wiring + seed)</div><code class="completed-hash">0b11795</code></div>
+        <div class="completed-item"><div class="completed-msg">Home: photo book covers + empty-shelf picker</div><code class="completed-hash">3eabc72</code></div>
+        <div class="completed-item"><div class="completed-msg">Home books: render as actual book-shaped tiles with spine + page edge</div><code class="completed-hash">1d81666</code></div>
+        <div class="completed-item"><div class="completed-msg">Design: full Memory Garden push (book covers, chapter cards, Fraunces)</div><code class="completed-hash">f5a0a43</code></div>
+        <div class="completed-item"><div class="completed-msg">Admin: live users page + admin RLS + book/chapter/story copy</div><code class="completed-hash">1b5ff7d</code></div>
+        <div class="completed-item"><div class="completed-msg">Design: Memory Garden palette across the app</div><code class="completed-hash">ce9ec1a</code></div>
+        <div class="completed-item"><div class="completed-msg">Story reader: render PhotoGrid so curator can add photos in context</div><code class="completed-hash">0037bb5</code></div>
+        <div class="completed-item"><div class="completed-msg">Design: autosave profile editor, click-avatar, photo tiles + grid, app border</div><code class="completed-hash">997b9d4</code></div>
+        <div class="completed-item"><div class="completed-msg">Epic 3: notes &amp; transcripts attached to entries</div><code class="completed-hash">3e14d32</code></div>
+        <div class="completed-item"><div class="completed-msg">Design: recorder + redesigned chapter &amp; story surfaces (sweep)</div><code class="completed-hash">8b143e6</code></div>
+        <div class="completed-item"><div class="completed-msg">Epic 8: onboarding flow + landing page rewrite</div><code class="completed-hash">5278ba0</code></div>
+        <div class="completed-item"><div class="completed-msg">Fix: soft-delete works again &mdash; drop deleted_at filter from SELECT RLS</div><code class="completed-hash">abacf06</code></div>
+        <div class="completed-item"><div class="completed-msg">Feat: avatars on people, photos on entries, extended kinship, body→white</div><code class="completed-hash">61a23c4</code></div>
+        <div class="completed-item"><div class="completed-msg">Model: book/chapter/story replaces entries + topics</div><code class="completed-hash">47246bf</code></div>
+        <div class="completed-item"><div class="completed-msg">Epic 4 first slice: topic extraction across transcripts</div><code class="completed-hash">3cdd409</code></div>
+        <div class="completed-item"><div class="completed-msg">Nav: consistent TopBar across every authed surface</div><code class="completed-hash">83d856e</code></div>
+        <div class="completed-item"><div class="completed-msg">Epic 3 close: edit transcript + re-transcribe</div><code class="completed-hash">06f4747</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">caio-coach</span><span class="completed-group-count">3 commits</span></div>
+        <div class="completed-item"><div class="completed-msg">infinite-leverage: wire Day 14 card to live post</div><code class="completed-hash">728e30b</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>blog:</strong> publish "Day 14: The World Has Moved (No Excuses Left)"</div><code class="completed-hash">75b5ca9</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">mahjong-tarot</span><span class="completed-group-count">6 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>pm(weekly-rag):</strong> 2026-04-26</div><code class="completed-hash">06b261d</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix(bootstrap-html):</strong> update index.html and concepts.html to 3-phase model</div><code class="completed-hash">765cb1f</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>refactor(bootstrap):</strong> consolidate all agent schedules into schedule-agents.md</div><code class="completed-hash">5f2f443</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">content-studio</span><span class="completed-group-count">3 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> update writer agent to draft email</div><code class="completed-hash">382f2bb</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>blog:</strong> publish "Day 13: The Coordination Tax" (caio-coach)</div><code class="completed-hash">67e889e</code></div>
+      </div>
+    </div>
+
+    <!-- ══ 2026-04-25 ══ -->
+    <div class="session-block">
+      <div class="session-header">
+        <span class="session-date">2026-04-25</span>
+        <span class="session-summary">14 commits &middot; 2 projects</span>
+      </div>
+      <div class="completed-list">
+        <div class="completed-group-header"><span class="completed-group-name">forever-app</span><span class="completed-group-count">9 commits</span></div>
+        <div class="completed-item"><div class="completed-msg">Design: storyteller switcher in /home top bar; drop "passed away" checkbox</div><code class="completed-hash">052e64c</code></div>
+        <div class="completed-item"><div class="completed-msg">Design: /home &mdash; port the prototype HomeScreen to responsive web</div><code class="completed-hash">3e16a1d</code></div>
+        <div class="completed-item"><div class="completed-msg">App: storyteller management &mdash; add, edit, soft-delete person + entry</div><code class="completed-hash">45b5e18</code></div>
+        <div class="completed-item"><div class="completed-msg">Design: bookshelf + reader &mdash; entries render as book spines on wood-plank shelves</div><code class="completed-hash">964ed45</code></div>
+        <div class="completed-item"><div class="completed-msg">App: /api/transcribe &mdash; Gemini transcribes audio, saves transcript to entries</div><code class="completed-hash">2c7b7b0</code></div>
+        <div class="completed-item"><div class="completed-msg">App: record loop UI &mdash; /shelf/[person_id] with MediaRecorder + Storage upload</div><code class="completed-hash">93e1df2</code></div>
+        <div class="completed-item"><div class="completed-msg">Auth: magic-link sign-in, gated /home, session refresh middleware</div><code class="completed-hash">f36055a</code></div>
+        <div class="completed-item"><div class="completed-msg">DB: initial schema &mdash; people, relationships, entries</div><code class="completed-hash">2cad55a</code></div>
+        <div class="completed-item"><div class="completed-msg">Bootstrap: scaffold Next.js (App Router) in website/, port landing page</div><code class="completed-hash">5e3b12c</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">aio-website</span><span class="completed-group-count">5 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>admin:</strong> add People page and rename sidebar Contacts to Inquiries</div><code class="completed-hash">a94f97f</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>admin:</strong> add overview dashboard at /admin</div><code class="completed-hash">8084f36</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>admin:</strong> add newsletter subscribers page with CSV export</div><code class="completed-hash">05b1d93</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>admin:</strong> add orders page with refund flow</div><code class="completed-hash">1298f72</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>financial projection:</strong> unlinked partner-facing page with noindex</div><code class="completed-hash">8e19fb0</code></div>
+      </div>
+    </div>
+
+    <!-- ══ 2026-04-24 ══ -->
+    <div class="session-block">
+      <div class="session-header">
+        <span class="session-date">2026-04-24</span>
+        <span class="session-summary">22 commits &middot; 4 projects</span>
+      </div>
+      <div class="completed-list">
+        <div class="completed-group-header"><span class="completed-group-name">longevity-coach</span><span class="completed-group-count">8 commits</span></div>
+        <div class="completed-item"><div class="completed-msg">Update sprint plan as handoff doc for Trac</div><code class="completed-hash">93fb210</code></div>
+        <div class="completed-item"><div class="completed-msg">Restore nav with Science/Team/Stories pages; logo links home</div><code class="completed-hash">859ce7c</code></div>
+        <div class="completed-item"><div class="completed-msg">Add /sample-report page; remove in-page section nav</div><code class="completed-hash">1f70bd6</code></div>
+        <div class="completed-item"><div class="completed-msg">Wire landing CTAs to /login and /signup, align step mini-cards</div><code class="completed-hash">5357fc3</code></div>
+        <div class="completed-item"><div class="completed-msg">Polish: transparent logo, fix email-confirm callback, wire dashboard</div><code class="completed-hash">058ea92</code></div>
+        <div class="completed-item"><div class="completed-msg">Send Resend welcome email on email confirmation</div><code class="completed-hash">b011ebc</code></div>
+        <div class="completed-item"><div class="completed-msg">Add auth, Stripe checkout/webhook, and onboarding questionnaire</div><code class="completed-hash">930bd41</code></div>
+        <div class="completed-item"><div class="completed-msg">Wire Supabase: idempotent migration, generated types, new key naming</div><code class="completed-hash">b637ea3</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">aio-website</span><span class="completed-group-count">3 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>fix:</strong> point Microsoft retention link at 2025 Work Trend Index report</div><code class="completed-hash">f65c92e</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>blog:</strong> publish "I Interviewed Four Accountants Today. They're All Quitting Over AI."</div><code class="completed-hash">d8d6da6</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">mahjong-tarot</span><span class="completed-group-count">8 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(pm-triggers):</strong> add PR watch trigger</div><code class="completed-hash">ff17cfd</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>pm(weekly-rag):</strong> 2026-04-24</div><code class="completed-hash">95d0e77</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>designer(thursday-2026-04-23):</strong> hero images for horse-wedding, mirror-wedding, feel-good-love</div><code class="completed-hash">ba17d66</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">content-studio</span><span class="completed-group-count">3 commits</span></div>
+        <div class="completed-item"><div class="completed-msg">Rename aio-website to ai-officer-company; add four-accountants post</div><code class="completed-hash">b37d5d7</code></div>
+        <div class="completed-item"><div class="completed-msg">Restructure agentic course series (a01-a06): add textbook/workbook-intro, remove legacy files</div><code class="completed-hash">d3a6bae</code></div>
+      </div>
+    </div>
+
+    <!-- ══ 2026-04-23 ══ -->
+    <div class="session-block">
+      <div class="session-header">
+        <span class="session-date">2026-04-23</span>
+        <span class="session-summary">24 commits &middot; 4 projects</span>
+      </div>
+      <div class="completed-list">
+        <div class="completed-group-header"><span class="completed-group-name">longevity-coach</span><span class="completed-group-count">3 commits</span></div>
+        <div class="completed-item"><div class="completed-msg">Implement Longevity Coach home page from design bundle</div><code class="completed-hash">82b06e2</code></div>
+        <div class="completed-item"><div class="completed-msg">Scaffold Supabase auth + initial schema</div><code class="completed-hash">c6f4cf8</code></div>
+        <div class="completed-item"><div class="completed-msg">Initial commit from Create Next App</div><code class="completed-hash">6669fd7</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">caio-coach</span><span class="completed-group-count">8 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>contact:</strong> tighten to a coaching-only inquiry, 30 minutes</div><code class="completed-hash">8557d52</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>contact:</strong> new /contact page with full inquiry form</div><code class="completed-hash">addf4ef</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>newsletter + perf:</strong> lead capture on home/IL/blog, restrict font weights</div><code class="completed-hash">c7e183c</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>seo/a11y:</strong> schema, canonicals, OG defaults, skip-nav, contrast</div><code class="completed-hash">b2ae0f1</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>home:</strong> retreat is the primary hero CTA</div><code class="completed-hash">b85694d</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>redesign:</strong> full site in navy monochrome system</div><code class="completed-hash">5c9f66a</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>blog:</strong> publish "Day 13: The Coordination Tax"</div><code class="completed-hash">0d99bac</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">aio-website</span><span class="completed-group-count">3 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>contact + keynotes:</strong> tighten into single-purpose inquiry flows</div><code class="completed-hash">7fdd8ed</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">content-studio</span><span class="completed-group-count">10 commits</span></div>
+        <div class="completed-item"><div class="completed-msg">Add L04 MD file</div><code class="completed-hash">db09a25</code></div>
+        <div class="completed-item"><div class="completed-msg">Add L04 PDF slides with notes</div><code class="completed-hash">0ff833a</code></div>
+        <div class="completed-item"><div class="completed-msg">Add L01 transcribed MD file</div><code class="completed-hash">5a13abf</code></div>
+        <div class="completed-item"><div class="completed-msg">Add L01 PDF slide deck with notes</div><code class="completed-hash">6697929</code></div>
+        <div class="completed-item"><div class="completed-msg">Update a01 frameworks and textbook HTML</div><code class="completed-hash">0cfa87e</code></div>
+        <div class="completed-item"><div class="completed-msg">Add mahjong-tarot post: fire-horse-money</div><code class="completed-hash">fd20601</code></div>
+        <div class="completed-item"><div class="completed-msg">Add caio-coach posts: day-12 two-track-business and day-13 coordination-tax</div><code class="completed-hash">67e889e</code></div>
+        <div class="completed-item"><div class="completed-msg">Add aio-website post: how-to-delegate-to-ai</div><code class="completed-hash">41e88ff</code></div>
+        <div class="completed-item"><div class="completed-msg">Add L07 session 7 workbook, dashboard, and Dave's reviewed copies</div><code class="completed-hash">10ccba6</code></div>
+        <div class="completed-item"><div class="completed-msg">Update agentic-courses a01 + add SERIES-FRAMING-v2</div><code class="completed-hash">1986398</code></div>
+      </div>
+    </div>
+
+    <!-- ══ 2026-04-22 ══ -->
+    <div class="session-block">
+      <div class="session-header">
+        <span class="session-date">2026-04-22</span>
+        <span class="session-summary">26 commits &middot; 3 projects</span>
+      </div>
+      <div class="completed-list">
+        <div class="completed-group-header"><span class="completed-group-name">edge8</span><span class="completed-group-count">18 commits</span></div>
+        <div class="completed-item"><div class="completed-msg">Remove shadow from blog cards on normal state</div><code class="completed-hash">4dcb0f0</code></div>
+        <div class="completed-item"><div class="completed-msg">Use uploaded slug-named images for 8 placeholder posts</div><code class="completed-hash">4dcb0f0</code></div>
+        <div class="completed-item"><div class="completed-msg">Pin 2026 AI Trends as featured post in blog page hero</div><code class="completed-hash">df416e3</code></div>
+        <div class="completed-item"><div class="completed-msg">Re-categorize 37 AI in Business posts into existing categories</div><code class="completed-hash">cc19b37</code></div>
+        <div class="completed-item"><div class="completed-msg">Add 37 AI in Business blog posts with cover images and postData registration</div><code class="completed-hash">86bfacc</code></div>
+        <div class="completed-item"><div class="completed-msg">Add 6 Founders' Secrets blog posts with cover images and postData registration</div><code class="completed-hash">31c5175</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">mahjong-tarot</span><span class="completed-group-count">5 commits</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>publish:</strong> How to Know If This Is the Year for You to Take a Financial Risk</div><code class="completed-hash">bc2425c</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>designer:</strong> 21 hero images for 5 topics (Apr 22, 24, 27, 29, May 1)</div><code class="completed-hash">b82ea78</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>writer:</strong> content for weeks of Apr 20 (Money catch-up) + Apr 27 (Career)</div><code class="completed-hash">c08de28</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">content-studio</span><span class="completed-group-count">3 commits</span></div>
+        <div class="completed-item"><div class="completed-msg">Finalize The Room Was Crying post: name fixes, card, photos</div><code class="completed-hash">1acad19</code></div>
+        <div class="completed-item"><div class="completed-msg">Add davehajdu blog: The Room Was Crying</div><code class="completed-hash">a1c511b</code></div>
+        <div class="completed-item"><div class="completed-msg">Add .gitignore for .DS_Store and .claude/ worktree folders</div><code class="completed-hash">2e0d562</code></div>
+      </div>
+    </div>
+
+    <!-- ══ 2026-04-21 ══ -->
+    <div class="session-block">
+      <div class="session-header">
+        <span class="session-date">2026-04-21</span>
+        <span class="session-summary">19 commits &middot; 3 projects</span>
+      </div>
+      <div class="completed-list">
+        <div class="completed-group-header"><span class="completed-group-name">edge8</span><span class="completed-group-count">14 commits</span></div>
+        <div class="completed-item"><div class="completed-msg">Fix blog card layout bug and add category+excerpt to hero featured post</div><code class="completed-hash">c6c3760</code></div>
+        <div class="completed-item"><div class="completed-msg">Blog: fix category switch bug, 3-col grid, image flush, date-title spacing</div><code class="completed-hash">a3c5d79</code></div>
+        <div class="completed-item"><div class="completed-msg">Blog: infinite scroll, reduced card padding, image-flush text alignment</div><code class="completed-hash">05787c9</code></div>
+        <div class="completed-item"><div class="completed-msg">Blog: restore featured post card in hero banner</div><code class="completed-hash">9cc636d</code></div>
+        <div class="completed-item"><div class="completed-msg">Blog: add All Posts tab, default to it, show all 23 posts when active</div><code class="completed-hash">69e8954</code></div>
+        <div class="completed-item"><div class="completed-msg">Redesign blog page with category filter tabs and card grid</div><code class="completed-hash">f76f34b</code></div>
+        <div class="completed-item"><div class="completed-msg">Homepage: link case study cards to detail pages, white blog item bg</div><code class="completed-hash">42f072f</code></div>
+        <div class="completed-item"><div class="completed-msg">Redesign post detail page to match HTML reference layout</div><code class="completed-hash">b40b965</code></div>
+        <div class="completed-item"><div class="completed-msg">Refine case studies heroes, blog hero, and CTA layouts</div><code class="completed-hash">c1f8a3d</code></div>
+        <div class="completed-item"><div class="completed-msg">Replace emoji icons with flat 2D white SVG icons on blue circles</div><code class="completed-hash">eb09938</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> footer cleanup, hero 1:1, 4-col problem cards, blue featured cards, svc testimonial sliders</div><code class="completed-hash">338fe0c</code></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> service pages hero 2-col, white bg, contact-blue CTA</div><code class="completed-hash">b530011</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">aio-website</span><span class="completed-group-count">1 commit</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>retreat:</strong> embed YouTube video between hero and Two Angles section</div><code class="completed-hash">e2f44bf</code></div>
+
+        <div class="completed-group-header"><span class="completed-group-name">content-studio</span><span class="completed-group-count">4 commits</span></div>
+        <div class="completed-item"><div class="completed-msg">Add textbook files for L01-L05 and L08</div><code class="completed-hash">e03e2ed</code></div>
+        <div class="completed-item"><div class="completed-msg">Add Series 1: Lead Yourself workbook and EQ self-assessment</div><code class="completed-hash">d9c5a79</code></div>
+        <div class="completed-item"><div class="completed-msg">Add L07 textbook HTML</div><code class="completed-hash">f2183db</code></div>
+      </div>
+    </div>
+
+    <!-- ══ 2026-04-20 ══ -->
+    <div class="session-block">
+      <div class="session-header">
+        <span class="session-date">2026-04-20</span>
+        <span class="session-summary">1 commit &middot; 1 project</span>
+      </div>
+      <div class="completed-list">
+        <div class="completed-group-header"><span class="completed-group-name">mahjong-tarot</span><span class="completed-group-count">1 commit</span></div>
+        <div class="completed-item"><div class="completed-msg"><strong>feat(notify-social-media):</strong> add skill to email Hien post assets after publish</div><code class="completed-hash">6095b12</code></div>
+      </div>
+    </div>
 
   </div>
 </section>
