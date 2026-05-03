@@ -274,9 +274,9 @@
   .post .meta {
     grid-column: 1 / -1;
     grid-row: 3;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
     justify-content: flex-start;
     text-align: left;
   }
