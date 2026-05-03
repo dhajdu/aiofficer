@@ -110,6 +110,6 @@ All 13 projects tracked by the monitor:
 - [ ] `public/claude-code-monitor.html` — the actual page
 - [ ] `## Needs Human Review` section added to all epic-status.md files
 - [ ] PM and Developer agent files for each project
-- [ ] `update-project-status` skill (called by agents after every task)
+- [x] `update-project-status` skill — `agents/product-manager/skills/update-project-status.md`
 - [ ] Morning cron at 5:30am
 - [ ] project-status.html for remaining projects (aio-pad, aio-website, caio-coach, edge8, etc.)
