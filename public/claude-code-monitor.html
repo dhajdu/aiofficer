@@ -511,6 +511,17 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
   color: var(--fg-30); text-align: right; letter-spacing: 0.04em;
 }
 
+/* ── PAST UPDATES ── */
+.past-section { padding: 48px 0; border-bottom: 1px solid var(--fg-border); }
+.past-day-header {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 12px;
+}
+.past-day-label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-70); }
+.past-day-count { font-family: var(--font-mono); font-size: 11px; color: var(--fg-30); }
+.past-section .completed-group-name { color: var(--fg-50); }
+.past-section .completed-list { opacity: 0.75; }
+
 /* ── FOOTER ── */
 .page-footer {
   border-top: 1px solid var(--fg-border);
@@ -546,10 +557,11 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
 <nav class="nav">
   <div class="nav-inner">
     <span class="brand">claude<span>.</span>code <span>monitor</span></span>
-    <span class="nav-meta">Updated 2026-05-02</span>
+    <span class="nav-meta">Updated 2026-05-03</span>
     <div class="nav-links">
       <a href="#needs-you">Needs You</a>
       <a href="#portfolio">Portfolio</a>
+      <a href="#past-updates">Past</a>
       <a href="https://caiocoach.com">caiocoach.com ↗</a>
     </div>
   </div>
@@ -562,7 +574,7 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
       <div class="eyebrow">Dave Hajdu — Build Portfolio</div>
       <h1 class="display">Claude Code<br>Monitor</h1>
       <p class="lede">Epic summaries across the active build slate. Pipeline progress, estimates, and open bugs across every shipped product.</p>
-      <p class="meta-line">13 projects &middot; 100 epics &middot; 13 agents &middot; 8 needs review &middot; 2 open bugs</p>
+      <p class="meta-line">13 projects &middot; 100 epics &middot; 13 agents &middot; 9 needs review &middot; 2 open bugs</p>
     </div>
   </div>
 </section>
@@ -600,7 +612,94 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
   <div class="wrap">
     <div class="section-header">
       <span class="section-title">// Completed Today</span>
-      <span class="section-hint">Git pushes &mdash; 2026-05-02</span>
+      <span class="section-hint">Git pushes &mdash; 2026-05-03</span>
+    </div>
+    <div class="completed-list">
+
+      <!-- forever-app -->
+      <div class="completed-group-header">
+        <span class="completed-group-name">forever-app</span>
+        <span class="completed-group-count">10 commits</span>
+      </div>
+      <div class="completed-item"><div class="completed-msg"><strong>docs(epic-status):</strong> capture 2026-05-03 auth scoping fix and Memory Garden removal</div><code class="completed-hash">965b338</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>docs(epic-status):</strong> update 2026-05-03 &mdash; font migration complete, date bumped</div><code class="completed-hash">f8a709e</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>chore(design):</strong> migrate all typography from Fraunces serif to Source Sans 3</div><code class="completed-hash">64e418f</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> scope storyteller listing queries to account_id (#2)</div><code class="completed-hash">fdfe7f1</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>chore(design):</strong> delete Memory Garden palette, align member area to Care &amp; Calm system (#1)</div><code class="completed-hash">183b0a9</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix(rls):</strong> remove circle_members self-referential policies causing infinite recursion</div><code class="completed-hash">d82957a</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>debug:</strong> add /api/debug route to inspect server-side session + DB state</div><code class="completed-hash">0216dee</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>debug(auth):</strong> log auth cookies + user in home/onboarding; fix TopBar redirect</div><code class="completed-hash">cf3f43a</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> rename middleware&rarr;proxy, hard-nav after sign-in</div><code class="completed-hash">bb32023</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>debug(auth):</strong> add middleware + layout + home logging to trace redirect</div><code class="completed-hash">9693010</code></div>
+
+      <!-- aio-website -->
+      <div class="completed-group-header">
+        <span class="completed-group-name">aio-website</span>
+        <span class="completed-group-count">20 commits</span>
+      </div>
+      <div class="completed-item"><div class="completed-msg"><strong>blog:</strong> feature "Leadership in the AI Era" + embed real photos</div><code class="completed-hash">69939eb</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>blog:</strong> index + sitemap update for "Leadership in the AI Era"</div><code class="completed-hash">3658029</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>blog:</strong> publish "Leadership in the AI Era: Built with Dr Holtom, Taught at Georgetown"</div><code class="completed-hash">7bad87d</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>docs:</strong> update epic-status.md with 2026-05-03 session work</div><code class="completed-hash">543b870</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix:</strong> make all checkout form fields required</div><code class="completed-hash">243f40b</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>ui:</strong> change reserve button text to "Reserve Seat"</div><code class="completed-hash">10c57c5</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix:</strong> fallback VND calculation from amount_cents for pre-migration orders</div><code class="completed-hash">bb86a31</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>checkout:</strong> add lead-gen fields to event checkout form</div><code class="completed-hash">28ee7c5</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> add VietQR code and bank details to offline VN confirmation page</div><code class="completed-hash">28a5570</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix:</strong> correct Melbourne Mac Mini to A$7,000 and White Glove to A$9,000</div><code class="completed-hash">38fd6c7</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix:</strong> reprice Melbourne and Seattle White Glove tiers</div><code class="completed-hash">4037739</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> reactive tier selection &mdash; subtitle and price update on upgrade pick</div><code class="completed-hash">de1866e</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix:</strong> update Nha Trang White Glove price to $6,000 and tagline</div><code class="completed-hash">8ee6937</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> checkout upsell, phone field, white_glove repriced to $6k</div><code class="completed-hash">7753e63</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>data:</strong> retreat product titles and subtitles &mdash; all 9 products</div><code class="completed-hash">d21130f</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> product subtitle field &mdash; Nha Trang mac_mini title + tagline</div><code class="completed-hash">1fafdae</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix:</strong> events page hero &mdash; white/light theme matching retreat page</div><code class="completed-hash">04e5b88</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix:</strong> events page &mdash; minimal checkout header, revert to white body</div><code class="completed-hash">6dc3809</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> homepage, events page styling, and Nha Trang retreat DB seed</div><code class="completed-hash">757e3b4</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix:</strong> correct Melbourne White Glove to A$8,500 (USD increment translated)</div><code class="completed-hash">f837c32</code></div>
+
+      <!-- infinite-leverage -->
+      <div class="completed-group-header">
+        <span class="completed-group-name">infinite-leverage</span>
+        <span class="completed-group-count">13 commits</span>
+      </div>
+      <div class="completed-item"><div class="completed-msg"><strong>docs:</strong> track product docs and update epic-status for 2026-05-03 session</div><code class="completed-hash">cacb20a</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix:</strong> make all reserve form fields required</div><code class="completed-hash">3445d4f</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>ui:</strong> change reserve button text to "Reserve Seat"</div><code class="completed-hash">cbef254</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix:</strong> bake VND amount into VietQR code on offline VN success page</div><code class="completed-hash">cf20c68</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>reserve:</strong> all page sections update dynamically on tier change</div><code class="completed-hash">f884c91</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>reserve:</strong> dynamic card header + 'Reserve a seat' button</div><code class="completed-hash">8ba44c5</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>reserve:</strong> live seat count + FOMO badges from Supabase</div><code class="completed-hash">945f451</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>reserve:</strong> AIO-style layout with hero stats + 2-col body</div><code class="completed-hash">9ff6f64</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> dedicated /reserve/[slug] checkout funnel page</div><code class="completed-hash">672eb56</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>ui:</strong> AIO-style card radios for package selection</div><code class="completed-hash">467cfa8</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>ui:</strong> remove pre-selected radio options from reservation form</div><code class="completed-hash">c9b903d</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>ui:</strong> white background for reservation form</div><code class="completed-hash">8450484</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>pricing:</strong> sync IL site labels to AIO canonical prices</div><code class="completed-hash">d1178cf</code></div>
+
+      <!-- content-studio -->
+      <div class="completed-group-header">
+        <span class="completed-group-name">content-studio</span>
+        <span class="completed-group-count">2 commits</span>
+      </div>
+      <div class="completed-item"><div class="completed-msg"><strong>docs:</strong> update epic-status with Series II textbook progress</div><code class="completed-hash">e8dbf84</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>snapshot:</strong> 2026-05-03 publish run + course refactor</div><code class="completed-hash">c9c641b</code></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PAST UPDATES -->
+<section class="past-section" id="past-updates">
+  <div class="wrap">
+    <div class="section-header">
+      <span class="section-title">// Past Updates</span>
+      <span class="section-hint">Previous sessions &mdash; archived</span>
+    </div>
+
+    <div class="past-day-header">
+      <span class="past-day-label">2026-05-02</span>
+      <span class="past-day-count">36 commits across 4 projects</span>
     </div>
     <div class="completed-list">
 
@@ -664,7 +763,7 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
       <div class="completed-item"><div class="completed-msg">Merge pull request #13 &mdash; feat/about-intellectual-lineage</div><code class="completed-hash">e9e92e0</code></div>
       <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> add intellectual lineage section to About page</div><code class="completed-hash">5c92998</code></div>
 
-    </div>
+    </div><!-- /.completed-list -->
   </div>
 </section>
 
@@ -704,9 +803,17 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
       <div class="needs-item">
         <span class="priority p1">P1</span>
         <div class="needs-body">
-          <strong>aio-website</strong> &mdash; Epic 1 (Public marketing site) at 5%. No <code>app/page.tsx</code> exists &mdash; requests to <code>/</code> 404 in production. The commercial front door for the AI Officer portfolio has no homepage.
+          <strong>infinite-leverage</strong> &mdash; Stripe webhook not registered. <code>payment_status = 'paid'</code> column exists on <code>registrations</code>. Stripe sends <code>checkout.session.completed</code> but no webhook endpoint is registered in the Stripe Dashboard &mdash; paid seats confirmed in Stripe but inquiry record never updates.
         </div>
-        <span class="needs-tag">Build &mdash; Epic 1</span>
+        <span class="needs-tag">Build &mdash; Epic 3</span>
+      </div>
+
+      <div class="needs-item">
+        <span class="priority p2">P2</span>
+        <div class="needs-body">
+          <strong>aio-website</strong> &mdash; Hold-expiry automation missing (Epic 3). No cron exists; holds expire silently and masking relies on manual outreach. Fix before Nha Trang sell-out.
+        </div>
+        <span class="needs-tag">Build &mdash; Epic 3</span>
       </div>
 
       <div class="needs-item">
@@ -781,8 +888,8 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
 
       <a class="pt-row row-forever" href="#forever-app">
         <div class="pt-name">forever-app<small>forever-8.com</small></div>
-        <div class="pt-pipeline"><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-open">○</span></div>
-        <div class="pt-phase">Phase 1 &mdash; QA</div>
+        <div class="pt-pipeline"><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-partial">◐</span></div>
+        <div class="pt-phase">Phase 1 &mdash; Pilot</div>
         <div class="pt-go">→</div>
       </a>
 
@@ -812,7 +919,7 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
 
       <a class="pt-row row-aio-website" href="#aio-website">
         <div class="pt-name">aio-website<small>ai-officer.com</small></div>
-        <div class="pt-pipeline"><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-partial">◐</span><span class="dot-partial">◐</span><span class="dot-open">○</span></div>
+        <div class="pt-pipeline"><span class="dot-partial">◐</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-partial">◐</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-partial">◐</span></div>
         <div class="pt-phase">Live</div>
         <div class="pt-go">→</div>
       </a>
@@ -826,7 +933,7 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
 
       <a class="pt-row row-infinite" href="#infinite-leverage">
         <div class="pt-name">infinite-leverage<small>infiniteleverage.ai</small></div>
-        <div class="pt-pipeline"><span class="dot-partial">◐</span><span class="dot-pass">●</span><span class="dot-partial">◐</span><span class="dot-pass">●</span><span class="dot-partial">◐</span><span class="dot-open">○</span></div>
+        <div class="pt-pipeline"><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-partial">◐</span></div>
         <div class="pt-phase">Live</div>
         <div class="pt-go">→</div>
       </a>
@@ -929,18 +1036,18 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
         <div class="card-meta"><span><strong>Phase:</strong> Pilot</span><a href="https://forever-8.com" target="_blank">forever-8.com →</a></div>
         <div class="sub-label">Epics</div>
         <table class="epic-table"><thead><tr><th class="col-n">#</th><th>Epic</th><th class="col-p">Pipeline</th><th class="col-pct">Est.</th><th class="col-b">Open</th><th class="col-b">Closed</th></tr></thead><tbody>
-          <tr><td class="col-n">1</td><td class="col-e">Auth and onboarding</td><td class="col-p">●●●●○</td><td class="col-pct">80%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">2</td><td class="col-e">Subject (person) management</td><td class="col-p">●●●●○</td><td class="col-pct">80%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">1</td><td class="col-e">Auth and onboarding</td><td class="col-p">●●●●○</td><td class="col-pct">90%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">2</td><td class="col-e">Subject (person) management</td><td class="col-p">●●●●○</td><td class="col-pct">85%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">3</td><td class="col-e">Recording capture and processing</td><td class="col-p">●●●●○</td><td class="col-pct">80%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">4</td><td class="col-e">Shelf (per-subject library)</td><td class="col-p">●●●○○</td><td class="col-pct">75%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">5</td><td class="col-e">Conversation starters</td><td class="col-p">●●●●○</td><td class="col-pct">80%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">6</td><td class="col-e">Book drafting</td><td class="col-p">●●●○○</td><td class="col-pct">75%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">7</td><td class="col-e">Admin operations</td><td class="col-p">●●●●○</td><td class="col-pct">80%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">8</td><td class="col-e">Brand and marketing surface</td><td class="col-p">○○○○○</td><td class="col-pct">0%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">8</td><td class="col-e">Brand and marketing surface</td><td class="col-p">●◐○○○</td><td class="col-pct">75%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
         </tbody></table>
         <div class="sub-label sub-label-top">Agents</div>
         <div class="no-agents">No agents defined yet.</div>
-        <div class="card-foot"><span>Bugs: <span>0 open</span> · <span>0 closed</span></span><span style="color:var(--fg-30);font-size:11px">Code audit 2026-04-29</span></div>
+        <div class="card-foot"><span>Bugs: <span>0 open</span> · <span>0 closed</span></span><span style="color:var(--fg-30);font-size:11px">Updated 2026-05-03</span></div>
       </article>
 
       <!-- EO VIETNAM -->
@@ -995,12 +1102,12 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
           <h2 class="card-title"><a href="https://ai-officer.com" target="_blank">AI Officer Institute <span class="ext">↗</span></a></h2>
           <p class="card-tagline">Train and certify senior leaders as AI Officers</p>
         </div></div>
-        <div class="card-meta"><span><strong>Phase:</strong> Commerce live</span><a href="https://ai-officer.com" target="_blank">ai-officer.com →</a></div>
+        <div class="card-meta"><span><strong>Phase:</strong> Commerce live · 73% avg</span><a href="https://ai-officer.com" target="_blank">ai-officer.com →</a></div>
         <div class="sub-label">Epics</div>
         <table class="epic-table"><thead><tr><th class="col-n">#</th><th>Epic</th><th class="col-p">Pipeline</th><th class="col-pct">Est.</th><th class="col-b">Open</th><th class="col-b">Closed</th></tr></thead><tbody>
-          <tr><td class="col-n">1</td><td class="col-e">Public marketing site</td><td class="col-p">○○○○○</td><td class="col-pct">5%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">2</td><td class="col-e">Events commerce</td><td class="col-p">●●●●◐</td><td class="col-pct">95%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">3</td><td class="col-e">Vietnam offline-pay path</td><td class="col-p">●●◐○○</td><td class="col-pct">60%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">1</td><td class="col-e">Public marketing site</td><td class="col-p">●◐○○○</td><td class="col-pct">45%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">2</td><td class="col-e">Events commerce</td><td class="col-p">●●●●●</td><td class="col-pct">100%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">3</td><td class="col-e">Vietnam offline-pay path</td><td class="col-p">●●●○○</td><td class="col-pct">85%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">4</td><td class="col-e">Membership commerce</td><td class="col-p">●●●●○</td><td class="col-pct">90%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">5</td><td class="col-e">Member experience handoff</td><td class="col-p">●◐○○○</td><td class="col-pct">40%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">6</td><td class="col-e">Lead capture and inquiry CRM</td><td class="col-p">●●●◐○</td><td class="col-pct">85%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
@@ -1041,15 +1148,15 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
           <h2 class="card-title"><a href="https://infiniteleverage.ai" target="_blank">Infinite Leverage <span class="ext">↗</span></a></h2>
           <p class="card-tagline">Retreat events · Melbourne, Nha Trang, Seattle 2026</p>
         </div></div>
-        <div class="card-meta"><span><strong>Phase:</strong> Live, building</span><a href="https://infiniteleverage.ai" target="_blank">infiniteleverage.ai →</a></div>
+        <div class="card-meta"><span><strong>Phase:</strong> Live, building · 83% avg</span><a href="https://infiniteleverage.ai" target="_blank">infiniteleverage.ai →</a></div>
         <div class="sub-label">Epics</div>
         <table class="epic-table"><thead><tr><th class="col-n">#</th><th>Epic</th><th class="col-p">Pipeline</th><th class="col-pct">Est.</th><th class="col-b">Open</th><th class="col-b">Closed</th></tr></thead><tbody>
-          <tr><td class="col-n">1</td><td class="col-e">Marketing &amp; event pages</td><td class="col-p">●●●◐○</td><td class="col-pct">70%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">2</td><td class="col-e">Retreat signup flow</td><td class="col-p">●●●●○</td><td class="col-pct">80%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">3</td><td class="col-e">Stripe checkout</td><td class="col-p">●●●○○</td><td class="col-pct">60%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">4</td><td class="col-e">Lead capture &amp; CRM integration</td><td class="col-p">●●●●○</td><td class="col-pct">80%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">5</td><td class="col-e">Operational notifications</td><td class="col-p">●●●○○</td><td class="col-pct">60%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">6</td><td class="col-e">Brand discipline, SEO, and analytics</td><td class="col-p">●◐○○○</td><td class="col-pct">25%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">1</td><td class="col-e">Marketing &amp; event pages</td><td class="col-p">●●●●○</td><td class="col-pct">95%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">2</td><td class="col-e">Retreat signup flow</td><td class="col-p">●●●●○</td><td class="col-pct">95%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">3</td><td class="col-e">Stripe checkout</td><td class="col-p">●●●○○</td><td class="col-pct">80%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">4</td><td class="col-e">Lead capture &amp; CRM integration</td><td class="col-p">●●●●○</td><td class="col-pct">90%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">5</td><td class="col-e">Operational notifications</td><td class="col-p">●●●●○</td><td class="col-pct">90%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">6</td><td class="col-e">Brand discipline, SEO, and analytics</td><td class="col-p">●●○○○</td><td class="col-pct">50%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
         </tbody></table>
         <div class="sub-label sub-label-top">Agents</div>
         <div class="no-agents">No agents defined yet.</div>
