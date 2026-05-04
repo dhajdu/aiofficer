@@ -11,7 +11,7 @@
 | Project | Root | project-status.html | epic-status.md |
 |---|---|---|---|
 | longevity-coach | `/Users/davepro/code-projects/longevity-coach` | `public/project-status.html` | `docs/product/epic-status.md` |
-| forever-app | `/Users/davepro/code-projects/forever-app` | `website/public/project-status.html` | `docs/product/epic-status.md` |
+| forever-app | `/Users/davepro/code-projects/forever-app` | `website/public/project-status.html` | `website/docs/product/epic-status.md` |
 | eo-vietnam | `/Users/davepro/code-projects/eo-vietnam` | `public/project-status.html` | `docs/product/epic-status.md` |
 | bhutan | `/Users/davepro/code-projects/bhutan` | `public/project-status.html` | `docs/product/epic-status.md` |
 | caio-coach | `/Users/davepro/code-projects/caio-coach/site` | `public/project-status.html` | `docs/product/epic-status.md` |
@@ -23,6 +23,9 @@
 | mahjong-tarot | `/Users/davepro/code-projects/mahjong-tarot` | `website/public/project-status.html` | `docs/product/epic-status.md` |
 | fab-four | `/Users/davepro/code-projects/fab-four` | `public/project-status.html` | `docs/product/epic-status.md` |
 | leadership-coach | `/Users/davepro/code-projects/leadership-coach` | `public/project-status.html` | `docs/product/epic-status.md` |
+| content-studio | `/Users/davepro/code-projects/content-studio` | `docs/project-status.html` | `docs/product/epic-status.md` |
+
+**Note:** content-studio is a content production hub, not a deployed website — it has no `public/` folder, so its dashboard lives in `docs/`. Confirmed 2026-05-05: Dave keeps it as the studio he makes content in; may add a website later.
 
 Monitor (live): `/Users/davepro/code-projects/caio-coach/site/public/claude-code-monitor.html`
 History page:  `/Users/davepro/code-projects/caio-coach/site/public/claude-code-monitor-history.html`
