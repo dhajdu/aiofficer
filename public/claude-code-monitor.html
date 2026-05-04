@@ -562,7 +562,7 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
 <nav class="nav">
   <div class="nav-inner">
     <span class="brand">claude<span>.</span>code <span>monitor</span></span>
-    <span class="nav-meta">Updated 2026-05-03</span>
+    <span class="nav-meta">Updated 2026-05-05</span>
     <div class="nav-links">
       <a href="#needs-you">Needs You</a>
       <a href="#portfolio">Portfolio</a>
@@ -621,6 +621,31 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
       <a href="/claude-code-monitor-history" style="margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--fg-30);letter-spacing:0.08em;">History &rarr;</a>
     </div>
     <div class="completed-list">
+
+      <!-- forever-app -->
+      <div class="completed-group-header">
+        <span class="completed-group-name">forever-app</span>
+        <span class="completed-group-count">19 commits</span>
+      </div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix(ui):</strong> disambiguate story-move from chapter-move labels</div><code class="completed-hash">63a48d2</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix(ui):</strong> explicit button styles on contributors panel + transcript form</div><code class="completed-hash">c97fdc5</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat(chapter):</strong> move a chapter to another book</div><code class="completed-hash">451a213</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat(chapter):</strong> delete a chapter from the editor</div><code class="completed-hash">7d96da1</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat(record):</strong> paste or upload a transcript instead of recording audio</div><code class="completed-hash">8121ab3</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix(migration):</strong> drop recordings + conversation_starters contributor SELECT</div><code class="completed-hash">1f4befb</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat(books):</strong> rename book_members &rarr; book_contributors, add roles + reassign</div><code class="completed-hash">8357921</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat(auth):</strong> show/hide password toggle on login, signup, reset-password</div><code class="completed-hash">f127c2f</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix(starters):</strong> rename Skip &rarr; "Next starter" and match Begin button size</div><code class="completed-hash">d8376d9</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix(recorder):</strong> drop prompt-as-binding language and visuals</div><code class="completed-hash">997d2e6</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix(switcher):</strong> point profile edit to the active subject, not the curator</div><code class="completed-hash">543a29e</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>chore(ai):</strong> rewrite processRecording system prompt</div><code class="completed-hash">f5bb6be</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>docs(seed):</strong> restore Bill's 32-min Italy transcript from git history</div><code class="completed-hash">18fb595</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat(books):</strong> invite members to a book</div><code class="completed-hash">98dff25</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> gendered relationship kinds + four-book starter set</div><code class="completed-hash">90c3e14</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>revert:</strong> "feat: schema rebuild &mdash; book-membership model + segment-and-classify v0"</div><code class="completed-hash">b64f1ca</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>revert:</strong> "feat(authed): restore family-member switcher + restyle authed shell"</div><code class="completed-hash">46a4d26</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat(authed):</strong> restore family-member switcher + restyle authed shell (later reverted)</div><code class="completed-hash">9beb17e</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> schema rebuild &mdash; book-membership model + segment-and-classify v0 (later reverted)</div><code class="completed-hash">435774a</code></div>
 
       <!-- longevity-coach -->
       <div class="completed-group-header">
@@ -739,7 +764,7 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
 
       <a class="pt-row row-forever" href="#forever-app">
         <div class="pt-name">forever-app<small>forever-8.com</small></div>
-        <div class="pt-pipeline"><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-partial">◐</span></div>
+        <div class="pt-pipeline"><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-partial">◐</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-pass">●</span><span class="dot-partial">◐</span></div>
         <div class="pt-phase">Phase 1 &mdash; Pilot</div>
         <div class="pt-go">→</div>
       </a>
@@ -887,18 +912,18 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
         <div class="card-meta"><span><strong>Phase:</strong> Pilot</span><a href="https://forever-8.com" target="_blank">forever-8.com →</a></div>
         <div class="sub-label">Epics</div>
         <table class="epic-table"><thead><tr><th class="col-n">#</th><th>Epic</th><th class="col-p">Pipeline</th><th class="col-pct">Est.</th><th class="col-b">Open</th><th class="col-b">Closed</th></tr></thead><tbody>
-          <tr><td class="col-n">1</td><td class="col-e">Auth and onboarding</td><td class="col-p">●●●●○</td><td class="col-pct">90%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">2</td><td class="col-e">Subject (person) management</td><td class="col-p">●●●●○</td><td class="col-pct">85%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">3</td><td class="col-e">Recording capture and processing</td><td class="col-p">●●●●○</td><td class="col-pct">80%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">4</td><td class="col-e">Shelf (per-subject library)</td><td class="col-p">●●●○○</td><td class="col-pct">75%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">5</td><td class="col-e">Conversation starters</td><td class="col-p">●●●●○</td><td class="col-pct">80%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">6</td><td class="col-e">Book drafting</td><td class="col-p">●●●○○</td><td class="col-pct">75%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">1</td><td class="col-e">Auth and onboarding</td><td class="col-p">●●●●○</td><td class="col-pct">95%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">2</td><td class="col-e">Subject (person) management</td><td class="col-p">●●●●○</td><td class="col-pct">90%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">3</td><td class="col-e">Recording capture and processing</td><td class="col-p">●●●●○</td><td class="col-pct">85%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">4</td><td class="col-e">Shelf (per-subject library)</td><td class="col-p">●●●◐○</td><td class="col-pct">75%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">5</td><td class="col-e">Conversation starters</td><td class="col-p">●●●●○</td><td class="col-pct">85%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">6</td><td class="col-e">Book drafting</td><td class="col-p">●●●●○</td><td class="col-pct">85%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">7</td><td class="col-e">Admin operations</td><td class="col-p">●●●●○</td><td class="col-pct">80%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">8</td><td class="col-e">Brand and marketing surface</td><td class="col-p">●◐○○○</td><td class="col-pct">75%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">8</td><td class="col-e">Brand and marketing surface</td><td class="col-p">●●●◐○</td><td class="col-pct">75%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
         </tbody></table>
         <div class="sub-label sub-label-top">Agents</div>
         <div class="no-agents">No agents defined yet.</div>
-        <div class="card-foot"><span>Bugs: <span>0 open</span> · <span>0 closed</span></span><span style="color:var(--fg-30);font-size:11px">Updated 2026-05-03</span></div>
+        <div class="card-foot"><span>Bugs: <span>0 open</span> · <span>0 closed</span></span><span style="color:var(--fg-30);font-size:11px">Updated 2026-05-05</span></div>
       </article>
 
       <!-- EO VIETNAM -->
