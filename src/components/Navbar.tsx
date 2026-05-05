@@ -9,6 +9,7 @@ type NavItem = { label: string; href: string };
 
 const NAV_LINKS: NavItem[] = [
   { label: 'Coaching', href: '/coaching' },
+  { label: 'AI Training', href: '/ai-training.html' },
   { label: 'Infinite Leverage', href: '/infinite-leverage' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
