@@ -562,7 +562,7 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
 <nav class="nav">
   <div class="nav-inner">
     <span class="brand">claude<span>.</span>code <span>monitor</span></span>
-    <span class="nav-meta">Updated 2026-05-05</span>
+    <span class="nav-meta">Updated 2026-05-06</span>
     <div class="nav-links">
       <a href="#needs-you">Needs You</a>
       <a href="#portfolio">Portfolio</a>
@@ -616,8 +616,8 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
 <section class="completed-section" id="completed-today">
   <div class="wrap">
     <div class="section-header">
-      <span class="section-title">// Completed Today</span>
-      <span class="section-hint">Git pushes &mdash; 2026-05-04</span>
+      <span class="section-title">// Recently Shipped</span>
+      <span class="section-hint">Git pushes &mdash; 2026-05-05 &amp; 2026-05-06</span>
       <a href="/claude-code-monitor-history" style="margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--fg-30);letter-spacing:0.08em;">History &rarr;</a>
     </div>
     <div class="completed-list">
@@ -625,43 +625,34 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
       <!-- forever-app -->
       <div class="completed-group-header">
         <span class="completed-group-name">forever-app</span>
-        <span class="completed-group-count">19 commits</span>
+        <span class="completed-group-count">8 commits over 2 days</span>
       </div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(ui):</strong> disambiguate story-move from chapter-move labels</div><code class="completed-hash">63a48d2</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(ui):</strong> explicit button styles on contributors panel + transcript form</div><code class="completed-hash">c97fdc5</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(chapter):</strong> move a chapter to another book</div><code class="completed-hash">451a213</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(chapter):</strong> delete a chapter from the editor</div><code class="completed-hash">7d96da1</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(record):</strong> paste or upload a transcript instead of recording audio</div><code class="completed-hash">8121ab3</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(migration):</strong> drop recordings + conversation_starters contributor SELECT</div><code class="completed-hash">1f4befb</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(books):</strong> rename book_members &rarr; book_contributors, add roles + reassign</div><code class="completed-hash">8357921</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(auth):</strong> show/hide password toggle on login, signup, reset-password</div><code class="completed-hash">f127c2f</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(starters):</strong> rename Skip &rarr; "Next starter" and match Begin button size</div><code class="completed-hash">d8376d9</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(recorder):</strong> drop prompt-as-binding language and visuals</div><code class="completed-hash">997d2e6</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(switcher):</strong> point profile edit to the active subject, not the curator</div><code class="completed-hash">543a29e</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>chore(ai):</strong> rewrite processRecording system prompt</div><code class="completed-hash">f5bb6be</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>docs(seed):</strong> restore Bill's 32-min Italy transcript from git history</div><code class="completed-hash">18fb595</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(books):</strong> invite members to a book</div><code class="completed-hash">98dff25</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> gendered relationship kinds + four-book starter set</div><code class="completed-hash">90c3e14</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>revert:</strong> "feat: schema rebuild &mdash; book-membership model + segment-and-classify v0"</div><code class="completed-hash">b64f1ca</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>revert:</strong> "feat(authed): restore family-member switcher + restyle authed shell"</div><code class="completed-hash">46a4d26</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(authed):</strong> restore family-member switcher + restyle authed shell (later reverted)</div><code class="completed-hash">9beb17e</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> schema rebuild &mdash; book-membership model + segment-and-classify v0 (later reverted)</div><code class="completed-hash">435774a</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat(seo):</strong> OG share image, favicons, robots/sitemap, Article + Organization JSON-LD, canonical URLs</div><code class="completed-hash">1cb73e3</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix(admin):</strong> inline view-as cookie name &mdash; use-server files can't export consts</div><code class="completed-hash">cc612f8</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat(admin):</strong> rebuild /admin v0 &mdash; admin_users + is_platform_admin(), ai_call_log + logAiCall() wrapper, Creators / Subjects / Activity / AI usage console, view-as audit</div><code class="completed-hash">85c14be</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat(blog):</strong> publish "why 8 minutes" post with founder story + 5-question FAQ (PR #3)</div><code class="completed-hash">45e7534</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat(people):</strong> edit relationship + Alive and well checkbox + memoriam prompts (gendered Mom/Dad, deceased flag, SYSTEM_PROMPT_MEMORIAM swap)</div><code class="completed-hash">b5c25b4</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat(photos):</strong> hero photo + Last 8 photo strip on /home, photo book page</div><code class="completed-hash">3b53cf6</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix(rls):</strong> rebuild am_book_contributor body + cut relationship picker to Mom/Dad</div><code class="completed-hash">f9f9e76</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>refactor(model):</strong> collapse stories into chapters &mdash; book &rarr; chapter, period</div><code class="completed-hash">de39a22</code></div>
 
-      <!-- longevity-coach -->
+      <!-- infinite-leverage -->
       <div class="completed-group-header">
-        <span class="completed-group-name">longevity-coach</span>
-        <span class="completed-group-count">21 commits</span>
+        <span class="completed-group-name">infinite-leverage</span>
+        <span class="completed-group-count">2 PRs &mdash; major product additions</span>
       </div>
-      <div class="completed-item"><div class="completed-msg"><strong>docs(project-status):</strong> update 2026-05-04 &mdash; 30+ PRs merged, 14 bugs closed, 2 P3 open</div><code class="completed-hash">4a4f890</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(suppliers):</strong> add missing supplier_type column (BUG: New Supplier 500)</div><code class="completed-hash">15c872e</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>copy(home):</strong> hero promises supplement + exercise + meal plan</div><code class="completed-hash">74540d5</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(admin):</strong> role assignment UI on /admin/users/[id]</div><code class="completed-hash">585e5a1</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>docs(qa):</strong> close BUG-014 + CHANGELOG + EXECUTIVE_SUMMARY for billing tier fix (PR #135)</div><code class="completed-hash">8596a36</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(billing):</strong> seed B2C annual plans + flip tier model to core/clinical/elite (BUG-014)</div><code class="completed-hash">a999452</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>docs(qa):</strong> CHANGELOG + EXECUTIVE_SUMMARY for signup redirect preservation (PR #133)</div><code class="completed-hash">495501c</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> preserve redirect through signup + email-verify flow</div><code class="completed-hash">e7de573</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>docs(qa):</strong> close BUG-018 + BUG-024 (auth redirect preservation, PR #131)</div><code class="completed-hash">c31e2ab</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(auth):</strong> preserve redirect target across protected routes (BUG-018, BUG-024)</div><code class="completed-hash">1948eb7</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>saigon-private:</strong> date picker + blocked-dates system &mdash; native start-date picker, derived end_date, private_session_blocks overlap rejection, /admin/blocks tool, restructured 5-day program (PR #8)</div><code class="completed-hash">1851a26</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> add Saigon Private Retreats and Human Tokens pages &mdash; multi-line-item Stripe (base + per-person), team-size selector, AIO-pad photos, page-aware nav CTA via usePathname (PR #7)</div><code class="completed-hash">8e4f362</code></div>
+
+      <!-- aio-website -->
+      <div class="completed-group-header">
+        <span class="completed-group-name">aio-website</span>
+        <span class="completed-group-count">4 commits over 3 days</span>
+      </div>
+      <div class="completed-item"><div class="completed-msg"><strong>internal:</strong> add Leadership in the AI Era program feedback report (NPS L01-L08, session-level scores, themes, L09 Perth)</div><code class="completed-hash">27711f0</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>internal:</strong> Quan offer projection &mdash; AIO style guide, exit scope, partner dividends + Quan comp table</div><code class="completed-hash">5cb71b8</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>internal:</strong> add Quan offer scenario projection page (tunable ARR / EBITDA / retainer / DOXA exit kicker)</div><code class="completed-hash">01087ad</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix:</strong> include confirmed offline VN payments in dashboard revenue totals</div><code class="completed-hash">036d0bd</code></div>
 
     </div>
   </div>
@@ -913,17 +904,17 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
         <div class="sub-label">Epics</div>
         <table class="epic-table"><thead><tr><th class="col-n">#</th><th>Epic</th><th class="col-p">Pipeline</th><th class="col-pct">Est.</th><th class="col-b">Open</th><th class="col-b">Closed</th></tr></thead><tbody>
           <tr><td class="col-n">1</td><td class="col-e">Auth and onboarding</td><td class="col-p">●●●●○</td><td class="col-pct">95%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">2</td><td class="col-e">Subject (person) management</td><td class="col-p">●●●●○</td><td class="col-pct">90%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">2</td><td class="col-e">Subject (person) management</td><td class="col-p">●●●●○</td><td class="col-pct">92%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">3</td><td class="col-e">Recording capture and processing</td><td class="col-p">●●●●○</td><td class="col-pct">85%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">4</td><td class="col-e">Shelf (per-subject library)</td><td class="col-p">●●●◐○</td><td class="col-pct">75%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">5</td><td class="col-e">Conversation starters</td><td class="col-p">●●●●○</td><td class="col-pct">85%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">4</td><td class="col-e">Shelf (per-subject library)</td><td class="col-p">●●●◐○</td><td class="col-pct">80%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">5</td><td class="col-e">Conversation starters</td><td class="col-p">●●●●○</td><td class="col-pct">88%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">6</td><td class="col-e">Book drafting</td><td class="col-p">●●●●○</td><td class="col-pct">85%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">7</td><td class="col-e">Admin operations</td><td class="col-p">●●●●○</td><td class="col-pct">80%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">8</td><td class="col-e">Brand and marketing surface</td><td class="col-p">●●●◐○</td><td class="col-pct">75%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">7</td><td class="col-e">Admin operations</td><td class="col-p">●●●●○</td><td class="col-pct">90%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">8</td><td class="col-e">Brand and marketing surface</td><td class="col-p">●●◐○○</td><td class="col-pct">45%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
         </tbody></table>
         <div class="sub-label sub-label-top">Agents</div>
         <div class="no-agents">No agents defined yet.</div>
-        <div class="card-foot"><span>Bugs: <span>0 open</span> · <span>0 closed</span></span><span style="color:var(--fg-30);font-size:11px">Updated 2026-05-05</span></div>
+        <div class="card-foot"><span>Bugs: <span>0 open</span> · <span>0 closed</span></span><span style="color:var(--fg-30);font-size:11px">Updated 2026-05-06</span></div>
       </article>
 
       <!-- EO VIETNAM -->
@@ -978,16 +969,16 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
           <h2 class="card-title"><a href="https://ai-officer.com" target="_blank">AI Officer Institute <span class="ext">↗</span></a></h2>
           <p class="card-tagline">Train and certify senior leaders as AI Officers</p>
         </div></div>
-        <div class="card-meta"><span><strong>Phase:</strong> Commerce live · 73% avg</span><a href="https://ai-officer.com" target="_blank">ai-officer.com →</a></div>
+        <div class="card-meta"><span><strong>Phase:</strong> Commerce live · 74% avg</span><a href="https://ai-officer.com" target="_blank">ai-officer.com →</a></div>
         <div class="sub-label">Epics</div>
         <table class="epic-table"><thead><tr><th class="col-n">#</th><th>Epic</th><th class="col-p">Pipeline</th><th class="col-pct">Est.</th><th class="col-b">Open</th><th class="col-b">Closed</th></tr></thead><tbody>
-          <tr><td class="col-n">1</td><td class="col-e">Public marketing site</td><td class="col-p">●◐○○○</td><td class="col-pct">45%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">1</td><td class="col-e">Public marketing site</td><td class="col-p">●◐○○○</td><td class="col-pct">50%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">2</td><td class="col-e">Events commerce</td><td class="col-p">●●●●●</td><td class="col-pct">100%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">3</td><td class="col-e">Vietnam offline-pay path</td><td class="col-p">●●●○○</td><td class="col-pct">85%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">4</td><td class="col-e">Membership commerce</td><td class="col-p">●●●●○</td><td class="col-pct">90%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">5</td><td class="col-e">Member experience handoff</td><td class="col-p">●◐○○○</td><td class="col-pct">40%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">6</td><td class="col-e">Lead capture and inquiry CRM</td><td class="col-p">●●●◐○</td><td class="col-pct">85%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">7</td><td class="col-e">Admin operations console</td><td class="col-p">●●●●○</td><td class="col-pct">90%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">7</td><td class="col-e">Admin operations console</td><td class="col-p">●●●●○</td><td class="col-pct">92%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">8</td><td class="col-e">Newsletter list management</td><td class="col-p">●●●○○</td><td class="col-pct">80%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">9</td><td class="col-e">Operational notifications</td><td class="col-p">●●●◐○</td><td class="col-pct">85%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">10</td><td class="col-e">Analytics and instrumentation</td><td class="col-p">●◐○○○</td><td class="col-pct">30%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
@@ -1024,12 +1015,12 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
           <h2 class="card-title"><a href="https://infiniteleverage.ai" target="_blank">Infinite Leverage <span class="ext">↗</span></a></h2>
           <p class="card-tagline">Retreat events · Melbourne, Nha Trang, Seattle 2026</p>
         </div></div>
-        <div class="card-meta"><span><strong>Phase:</strong> Live, building · 83% avg</span><a href="https://infiniteleverage.ai" target="_blank">infiniteleverage.ai →</a></div>
+        <div class="card-meta"><span><strong>Phase:</strong> Live, building · 84% avg</span><a href="https://infiniteleverage.ai" target="_blank">infiniteleverage.ai →</a></div>
         <div class="sub-label">Epics</div>
         <table class="epic-table"><thead><tr><th class="col-n">#</th><th>Epic</th><th class="col-p">Pipeline</th><th class="col-pct">Est.</th><th class="col-b">Open</th><th class="col-b">Closed</th></tr></thead><tbody>
-          <tr><td class="col-n">1</td><td class="col-e">Marketing &amp; event pages</td><td class="col-p">●●●●○</td><td class="col-pct">95%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">1</td><td class="col-e">Marketing &amp; event pages</td><td class="col-p">●●●●○</td><td class="col-pct">97%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">2</td><td class="col-e">Retreat signup flow</td><td class="col-p">●●●●○</td><td class="col-pct">95%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">3</td><td class="col-e">Stripe checkout</td><td class="col-p">●●●○○</td><td class="col-pct">80%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">3</td><td class="col-e">Stripe checkout</td><td class="col-p">●●●○○</td><td class="col-pct">82%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">4</td><td class="col-e">Lead capture &amp; CRM integration</td><td class="col-p">●●●●○</td><td class="col-pct">90%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">5</td><td class="col-e">Operational notifications</td><td class="col-p">●●●●○</td><td class="col-pct">90%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">6</td><td class="col-e">Brand discipline, SEO, and analytics</td><td class="col-p">●●○○○</td><td class="col-pct">50%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
