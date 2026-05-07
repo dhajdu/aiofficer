@@ -562,7 +562,7 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
 <nav class="nav">
   <div class="nav-inner">
     <span class="brand">claude<span>.</span>code <span>monitor</span></span>
-    <span class="nav-meta">Updated 2026-05-06</span>
+    <span class="nav-meta">Updated 2026-05-07</span>
     <div class="nav-links">
       <a href="#needs-you">Needs You</a>
       <a href="#portfolio">Portfolio</a>
@@ -617,7 +617,7 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
   <div class="wrap">
     <div class="section-header">
       <span class="section-title">// Recently Shipped</span>
-      <span class="section-hint">Git pushes &mdash; 2026-05-05 &amp; 2026-05-06</span>
+      <span class="section-hint">Git pushes &mdash; 2026-05-07</span>
       <a href="/claude-code-monitor-history" style="margin-left:auto;font-family:var(--font-mono);font-size:11px;color:var(--fg-30);letter-spacing:0.08em;">History &rarr;</a>
     </div>
     <div class="completed-list">
@@ -625,34 +625,10 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
       <!-- forever-app -->
       <div class="completed-group-header">
         <span class="completed-group-name">forever-app</span>
-        <span class="completed-group-count">8 commits over 2 days</span>
+        <span class="completed-group-count">2 commits</span>
       </div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(seo):</strong> OG share image, favicons, robots/sitemap, Article + Organization JSON-LD, canonical URLs</div><code class="completed-hash">1cb73e3</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(admin):</strong> inline view-as cookie name &mdash; use-server files can't export consts</div><code class="completed-hash">cc612f8</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(admin):</strong> rebuild /admin v0 &mdash; admin_users + is_platform_admin(), ai_call_log + logAiCall() wrapper, Creators / Subjects / Activity / AI usage console, view-as audit</div><code class="completed-hash">85c14be</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(blog):</strong> publish "why 8 minutes" post with founder story + 5-question FAQ (PR #3)</div><code class="completed-hash">45e7534</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(people):</strong> edit relationship + Alive and well checkbox + memoriam prompts (gendered Mom/Dad, deceased flag, SYSTEM_PROMPT_MEMORIAM swap)</div><code class="completed-hash">b5c25b4</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat(photos):</strong> hero photo + Last 8 photo strip on /home, photo book page</div><code class="completed-hash">3b53cf6</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix(rls):</strong> rebuild am_book_contributor body + cut relationship picker to Mom/Dad</div><code class="completed-hash">f9f9e76</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>refactor(model):</strong> collapse stories into chapters &mdash; book &rarr; chapter, period</div><code class="completed-hash">de39a22</code></div>
-
-      <!-- infinite-leverage -->
-      <div class="completed-group-header">
-        <span class="completed-group-name">infinite-leverage</span>
-        <span class="completed-group-count">2 PRs &mdash; major product additions</span>
-      </div>
-      <div class="completed-item"><div class="completed-msg"><strong>saigon-private:</strong> date picker + blocked-dates system &mdash; native start-date picker, derived end_date, private_session_blocks overlap rejection, /admin/blocks tool, restructured 5-day program (PR #8)</div><code class="completed-hash">1851a26</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>feat:</strong> add Saigon Private Retreats and Human Tokens pages &mdash; multi-line-item Stripe (base + per-person), team-size selector, AIO-pad photos, page-aware nav CTA via usePathname (PR #7)</div><code class="completed-hash">8e4f362</code></div>
-
-      <!-- aio-website -->
-      <div class="completed-group-header">
-        <span class="completed-group-name">aio-website</span>
-        <span class="completed-group-count">4 commits over 3 days</span>
-      </div>
-      <div class="completed-item"><div class="completed-msg"><strong>internal:</strong> add Leadership in the AI Era program feedback report (NPS L01-L08, session-level scores, themes, L09 Perth)</div><code class="completed-hash">27711f0</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>internal:</strong> Quan offer projection &mdash; AIO style guide, exit scope, partner dividends + Quan comp table</div><code class="completed-hash">5cb71b8</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>internal:</strong> add Quan offer scenario projection page (tunable ARR / EBITDA / retainer / DOXA exit kicker)</div><code class="completed-hash">01087ad</code></div>
-      <div class="completed-item"><div class="completed-msg"><strong>fix:</strong> include confirmed offline VN payments in dashboard revenue totals</div><code class="completed-hash">036d0bd</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>feat(mobile):</strong> scaffold Flutter app (iOS + Android) &mdash; all authed surfaces mirrored; Bearer JWT fallback added to 6 API routes via <code>createApiClient</code> (PR <a href="https://github.com/dhajdu/forever-app/pull/5">#5</a>)</div><code class="completed-hash">a4c8d9a</code></div>
+      <div class="completed-item"><div class="completed-msg"><strong>fix(relationships):</strong> expand picker to 13 gendered options (Mom · Dad · Grandma · Grandpa · Uncle · Aunt · Son · Daughter · Nephew · Niece · Grandson · Granddaughter · Friend) &mdash; migration adds nephew + niece to CHECK constraint</div><code class="completed-hash">b802922</code></div>
 
     </div>
   </div>
@@ -904,8 +880,8 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
         <div class="sub-label">Epics</div>
         <table class="epic-table"><thead><tr><th class="col-n">#</th><th>Epic</th><th class="col-p">Pipeline</th><th class="col-pct">Est.</th><th class="col-b">Open</th><th class="col-b">Closed</th></tr></thead><tbody>
           <tr><td class="col-n">1</td><td class="col-e">Auth and onboarding</td><td class="col-p">●●●●○</td><td class="col-pct">95%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">2</td><td class="col-e">Subject (person) management</td><td class="col-p">●●●●○</td><td class="col-pct">92%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
-          <tr><td class="col-n">3</td><td class="col-e">Recording capture and processing</td><td class="col-p">●●●●○</td><td class="col-pct">85%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">2</td><td class="col-e">Subject (person) management</td><td class="col-p">●●●●○</td><td class="col-pct">93%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
+          <tr><td class="col-n">3</td><td class="col-e">Recording capture and processing</td><td class="col-p">●●●●○</td><td class="col-pct">87%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">4</td><td class="col-e">Shelf (per-subject library)</td><td class="col-p">●●●◐○</td><td class="col-pct">80%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">5</td><td class="col-e">Conversation starters</td><td class="col-p">●●●●○</td><td class="col-pct">88%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
           <tr><td class="col-n">6</td><td class="col-e">Book drafting</td><td class="col-p">●●●●○</td><td class="col-pct">85%</td><td class="col-b">0</td><td class="col-b">0</td></tr>
@@ -914,7 +890,7 @@ a.pt-row:hover .pt-name { color: var(--row-accent, var(--fg)); }
         </tbody></table>
         <div class="sub-label sub-label-top">Agents</div>
         <div class="no-agents">No agents defined yet.</div>
-        <div class="card-foot"><span>Bugs: <span>0 open</span> · <span>0 closed</span></span><span style="color:var(--fg-30);font-size:11px">Updated 2026-05-06</span></div>
+        <div class="card-foot"><span>Bugs: <span>0 open</span> · <span>0 closed</span></span><span style="color:var(--fg-30);font-size:11px">Updated 2026-05-07</span></div>
       </article>
 
       <!-- EO VIETNAM -->
