@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Janet Cares — Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Brand — Dark Purple primary, Light Purple secondary */
+      --primary:       #534476;
+      --primary-700:   #3E3258;
+      --primary-800:   #2E2542;
+      --primary-100:   #DDD5EA;
+      --primary-50:    #F0ECF5;
+
+      --light-purple:  #C7B8DD;
+
+      /* Neutral / structure */
+      --ink:           #2B2B2B;
+      --ink-soft:      #4B4B4B;
+      --grey:          #8A9AA5;
+      --hairline:      #E3E8EC;
+      --line-soft:     #EDF1F4;
+      --surface:       #FFFFFF;
+      --surface-warm:  #FAF7F3;
+      --bg:            #F4F7F9;
+
+      /* Semantic risk */
+      --success:       #3F8A5C;
+      --warning:       #B5722F;
+      --danger:        #B5452F;
+
+      --serif: 'Newsreader', Georgia, serif;
+      --sans:  'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+      --mono:  'JetBrains Mono', ui-monospace, Menlo, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--surface);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .ds {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 48px 32px 96px;
+    }
+
+    .ds-header { margin-bottom: 48px; }
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin: 0 0 6px;
+    }
+    .ds-header h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 36px;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+      color: var(--ink);
+      margin: 0 0 8px;
+    }
+    .ds-header h1 em { font-style: italic; font-weight: 400; color: var(--primary); }
+    .ds-header .lede {
+      font-size: 17px;
+      line-height: 1.4;
+      color: var(--ink-soft);
+      max-width: 640px;
+      margin: 0;
+    }
+
+    section { margin-bottom: 48px; }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .section-head h2 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 22px;
+      color: var(--ink);
+      margin: 0;
+    }
+    .section-head .note {
+      font-size: 13px;
+      color: var(--grey);
+    }
+
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .swatch {
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .swatch .chip {
+      height: 110px;
+      display: block;
+    }
+    .swatch.bordered .chip {
+      box-shadow: inset 0 0 0 1px var(--hairline);
+    }
+    .swatch .body {
+      padding: 12px 14px 14px;
+    }
+    .swatch .name {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 0 0 2px;
+    }
+    .swatch .hex {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--primary);
+      margin: 0 0 6px;
+    }
+    .swatch .role {
+      font-size: 12px;
+      color: var(--ink-soft);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* Larger feature row for the three core brand colors */
+    .core {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .core .swatch .chip { height: 180px; }
+    .core .swatch .body { padding: 18px 20px 20px; }
+    .core .swatch .name { font-size: 16px; }
+    .core .swatch .hex { font-size: 12px; }
+    .core .swatch .role { font-size: 13px; }
+
+    /* Sample usage block */
+    .usage {
+      background: var(--light-purple);
+      border: 1px solid rgba(83, 68, 118, 0.18);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-top: 16px;
+    }
+    .usage h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 24px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin: 0 0 8px;
+    }
+    .usage h3 em { font-style: italic; color: var(--primary); }
+    .usage p { color: var(--ink-soft); margin: 0 0 16px; max-width: 500px; }
+    .btn {
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn:hover { background: var(--primary-700); }
+
+    /* Risk badges */
+    .risk-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .risk-card {
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      padding: 16px 18px;
+      background: var(--surface);
+    }
+    .risk-card .badge {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .risk-low  .badge { background: #E3F4EA; color: var(--success); }
+    .risk-mod  .badge { background: #FAEFE0; color: var(--warning); }
+    .risk-high .badge { background: #FBEAE5; color: var(--danger); }
+    .risk-card .bar {
+      height: 4px;
+      background: var(--hairline);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 10px 0 12px;
+    }
+    .risk-card .bar .fill { height: 100%; border-radius: 999px; }
+    .risk-low  .fill { background: var(--success); width: 28%; }
+    .risk-mod  .fill { background: var(--warning); width: 58%; }
+    .risk-high .fill { background: var(--danger);  width: 82%; }
+    .risk-card .hex {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--grey);
+      letter-spacing: 0.04em;
+    }
+    .risk-card .desc {
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin: 4px 0 0;
+    }
+
+    /* Typography section */
+    .type-stack { display: grid; gap: 18px; }
+    .type-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      align-items: baseline;
+      gap: 24px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .type-row:last-child { border-bottom: 0; }
+    .type-row .label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--grey);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .type-display { font-family: var(--serif); font-weight: 400; font-size: 40px; line-height: 1.1; letter-spacing: -0.015em; }
+    .type-h1 { font-family: var(--serif); font-weight: 400; font-size: 28px; letter-spacing: -0.012em; }
+    .type-h2 { font-family: var(--serif); font-weight: 500; font-size: 20px; }
+    .type-h3 { font-family: var(--sans); font-weight: 600; font-size: 16px; }
+    .type-body { font-family: var(--sans); font-size: 15px; line-height: 1.55; color: var(--ink-soft); max-width: 600px; }
+    .type-meta { font-family: var(--sans); font-size: 13px; color: var(--grey); }
+    .type-mono { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--primary); text-transform: uppercase; }
+
+    /* ── Buttons ───────────────────────────────────────────────── */
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--primary);
+      border: 1px solid var(--primary);
+    }
+    .btn-secondary:hover { background: var(--primary-50); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--primary);
+      padding: 10px 14px;
+      text-decoration: none;
+    }
+    .btn-ghost:hover { text-decoration: underline; }
+    .btn-danger { background: var(--danger); color: #fff; }
+    .btn-danger:hover { background: #963a25; }
+    .btn-lg { padding: 14px 24px; font-size: 15px; }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+    .btn:disabled:hover { background: var(--primary); }
+
+    .btn-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .btn-cell {
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .btn-cell .caption {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--grey);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    /* ── Components ────────────────────────────────────────────── */
+    .sub-h3 {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      margin: 28px 0 12px;
+    }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .stack { display: flex; flex-direction: column; gap: 10px; }
+
+    /* Card variants */
+    .card-base, .card-light, .card-dark {
+      border-radius: 14px;
+      padding: 20px 22px;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-base { background: var(--surface); border: 1px solid var(--hairline); }
+    .card-light { background: var(--light-purple); border: 1px solid rgba(83, 68, 118, 0.18); }
+    .card-dark { background: var(--primary); color: #fff; }
+    .card-base h4, .card-light h4, .card-dark h4 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 18px;
+      margin: 4px 0 6px;
+    }
+    .card-base h4, .card-light h4 { color: var(--ink); }
+    .card-dark h4 { color: #fff; }
+    .card-base p:not(.eyebrow),
+    .card-light p:not(.eyebrow) {
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+    .card-dark p:not(.eyebrow) {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.86);
+      margin: 0;
+    }
+
+    /* Alert chips */
+    .alert {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      border-radius: 12px;
+      padding: 14px 18px;
+      border-left: 4px solid;
+    }
+    .alert .icon-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+    .alert .alert-body { flex: 1; color: var(--ink); }
+    .alert .alert-title {
+      font-weight: 600;
+      color: var(--ink);
+      margin: 0 0 2px;
+      font-size: 14px;
+    }
+    .alert .alert-desc {
+      font-size: 13px;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+    .alert-info { border-color: var(--primary); background: var(--primary-50); color: var(--primary); }
+    .alert-warn { border-color: var(--warning); background: #FAEFE0; color: var(--warning); }
+    .alert-urgent { border-color: var(--danger); background: #FBEAE5; color: var(--danger); }
+
+    /* Pills */
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .pill {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-weight: 500;
+      display: inline-block;
+    }
+    .pill-purple { background: var(--light-purple); color: var(--primary); }
+    .pill-success { background: #E3F4EA; color: var(--success); }
+    .pill-warn { background: #FAEFE0; color: var(--warning); }
+    .pill-danger { background: #FBEAE5; color: var(--danger); }
+    .pill-mono { background: var(--line-soft); color: var(--ink-soft); }
+
+    /* Form inputs */
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+    .form-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 0;
+    }
+    .form-input {
+      font: inherit;
+      font-size: 14px;
+      padding: 10px 12px;
+      border: 1px solid var(--hairline);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .form-input:focus,
+    .form-input-focused {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px var(--primary-50);
+    }
+    .form-input::placeholder { color: var(--grey); }
+    .form-hint {
+      font-size: 12px;
+      color: var(--grey);
+      margin: 0;
+    }
+
+    @media (max-width: 800px) {
+      .swatches { grid-template-columns: repeat(2, 1fr); }
+      .core { grid-template-columns: 1fr; }
+      .risk-row { grid-template-columns: 1fr; }
+      .type-row { grid-template-columns: 1fr; gap: 4px; }
+      .btn-grid { grid-template-columns: 1fr; }
+      .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="ds">
+
+    <div class="ds-header">
+      <div class="eyebrow">Design system · janet.care</div>
+      <h1>The current <em>palette,</em> in colour.</h1>
+      <p class="lede">Three brand surfaces, three semantic risk signals, neutrals for text and structure. Every colour has one job.</p>
+    </div>
+
+    <!-- BRAND CORE -->
+    <section>
+      <div class="section-head">
+        <h2>Brand — the three core colours</h2>
+        <span class="note">White + Dark Purple + Light Purple</span>
+      </div>
+      <div class="core">
+        <div class="swatch bordered">
+          <div class="chip" style="background:#FFFFFF;"></div>
+          <div class="body">
+            <p class="name">White</p>
+            <p class="hex">#FFFFFF</p>
+            <p class="role">Primary background. Every page starts here. Cards and primary surfaces.</p>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#534476;"></div>
+          <div class="body">
+            <p class="name">Dark Purple</p>
+            <p class="hex">#534476</p>
+            <p class="role">Primary accent. CTAs, italic emphasis, headlines, links, focus rings. The brand voice.</p>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#C7B8DD;"></div>
+          <div class="body">
+            <p class="name">Light Purple</p>
+            <p class="hex">#C7B8DD</p>
+            <p class="role">Secondary background + secondary accent. Domain card tiles, alternate section surfaces, emphasis on dark cards.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="usage">
+        <span class="eyebrow" style="color: var(--primary);">Sample usage</span>
+        <h3>Live <em>longer,</em> on purpose.</h3>
+        <p>Light Purple card surface, Dark Purple italic emphasis on the headline, Dark Purple CTA button.</p>
+        <button class="btn">Get my bio-age →</button>
+      </div>
+    </section>
+
+    <!-- BRAND SHADES -->
+    <section>
+      <div class="section-head">
+        <h2>Brand — supporting shades</h2>
+        <span class="note">Hovers, tints, washes</span>
+      </div>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="chip" style="background:#3E3258;"></div>
+          <div class="body">
+            <p class="name">Dark Purple 700</p>
+            <p class="hex">#3E3258</p>
+            <p class="role">Hover / pressed state for primary CTAs and links.</p>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#2E2542;"></div>
+          <div class="body">
+            <p class="name">Dark Purple 800</p>
+            <p class="hex">#2E2542</p>
+            <p class="role">Deepest. Reserved for special emphasis and active states.</p>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#DDD5EA;"></div>
+          <div class="body">
+            <p class="name">Pale Purple</p>
+            <p class="hex">#DDD5EA</p>
+            <p class="role">Borders on light surfaces. Gradient stops. Subtle tints.</p>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#F0ECF5;"></div>
+          <div class="body">
+            <p class="name">Purple Wash</p>
+            <p class="hex">#F0ECF5</p>
+            <p class="role">Lightest tint. Hover-tinted backgrounds on white surfaces.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEXT & STRUCTURE -->
+    <section>
+      <div class="section-head">
+        <h2>Text & structure</h2>
+        <span class="note">Neutrals never compete with the brand</span>
+      </div>
+      <div class="swatches">
+        <div class="swatch">
+          <div class="chip" style="background:#2B2B2B;"></div>
+          <div class="body">
+            <p class="name">Ink</p>
+            <p class="hex">#2B2B2B</p>
+            <p class="role">Body copy. Headlines on light surfaces.</p>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#4B4B4B;"></div>
+          <div class="body">
+            <p class="name">Ink Soft</p>
+            <p class="hex">#4B4B4B</p>
+            <p class="role">Secondary text. Subheadings, lede paragraphs.</p>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#8A9AA5;"></div>
+          <div class="body">
+            <p class="name">Grey</p>
+            <p class="hex">#8A9AA5</p>
+            <p class="role">Tertiary text. Captions, metadata, eyebrows on muted contexts.</p>
+          </div>
+        </div>
+        <div class="swatch bordered">
+          <div class="chip" style="background:#E3E8EC;"></div>
+          <div class="body">
+            <p class="name">Hairline</p>
+            <p class="hex">#E3E8EC</p>
+            <p class="role">Borders, dividers, quiet structural lines.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SURFACES -->
+    <section>
+      <div class="section-head">
+        <h2>Surfaces — backgrounds &amp; cards</h2>
+        <span class="note">Three off-whites for rhythm</span>
+      </div>
+      <div class="swatches">
+        <div class="swatch bordered">
+          <div class="chip" style="background:#FFFFFF;"></div>
+          <div class="body">
+            <p class="name">Surface</p>
+            <p class="hex">#FFFFFF</p>
+            <p class="role">Cards, primary panels.</p>
+          </div>
+        </div>
+        <div class="swatch bordered">
+          <div class="chip" style="background:#FAF7F3;"></div>
+          <div class="body">
+            <p class="name">Surface Warm</p>
+            <p class="hex">#FAF7F3</p>
+            <p class="role">Cream alternative. Quiet emphasis sections.</p>
+          </div>
+        </div>
+        <div class="swatch bordered">
+          <div class="chip" style="background:#F4F7F9;"></div>
+          <div class="body">
+            <p class="name">Background</p>
+            <p class="hex">#F4F7F9</p>
+            <p class="role">Page-level cool off-white. App shell.</p>
+          </div>
+        </div>
+        <div class="swatch bordered">
+          <div class="chip" style="background:#EDF1F4;"></div>
+          <div class="body">
+            <p class="name">Line Soft</p>
+            <p class="hex">#EDF1F4</p>
+            <p class="role">Inset dividers, subtle grouping bands.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEMANTIC RISK -->
+    <section>
+      <div class="section-head">
+        <h2>Semantic — risk bands</h2>
+        <span class="note">Never tied to brand · always communicate state</span>
+      </div>
+      <div class="risk-row">
+        <div class="risk-card risk-low">
+          <span class="badge">Low risk</span>
+          <p class="type-meta" style="font-weight: 500; color: var(--ink);">Cardiovascular</p>
+          <p class="hex">28% · within range</p>
+          <div class="bar"><div class="fill"></div></div>
+          <p class="desc">Green <span style="font-family: var(--mono); font-size: 11px; color: var(--grey);">#3F8A5C</span> — also used for the "−3.2 yrs" bio-age delta and any success state.</p>
+        </div>
+        <div class="risk-card risk-mod">
+          <span class="badge">Moderate</span>
+          <p class="type-meta" style="font-weight: 500; color: var(--ink);">Metabolic</p>
+          <p class="hex">58% · trending up</p>
+          <div class="bar"><div class="fill"></div></div>
+          <p class="desc">Amber <span style="font-family: var(--mono); font-size: 11px; color: var(--grey);">#B5722F</span> — earth-toned, not stoplight yellow. The MOD bar fill on the bio-age report.</p>
+        </div>
+        <div class="risk-card risk-high">
+          <span class="badge">High risk</span>
+          <p class="type-meta" style="font-weight: 500; color: var(--ink);">Musculoskeletal</p>
+          <p class="hex">82% · attention needed</p>
+          <div class="bar"><div class="fill"></div></div>
+          <p class="desc">Red <span style="font-family: var(--mono); font-size: 11px; color: var(--grey);">#B5452F</span> — terracotta, not alarm red. Reserved for genuinely urgent signals.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section>
+      <div class="section-head">
+        <h2>Typography</h2>
+        <span class="note">Three families, one purpose each</span>
+      </div>
+      <div class="type-stack">
+        <div class="type-row">
+          <div class="label">Display · serif</div>
+          <div class="type-display">Live <em style="font-style:italic;color:var(--primary);">longer,</em> on purpose.</div>
+        </div>
+        <div class="type-row">
+          <div class="label">H1 · serif</div>
+          <div class="type-h1">Your cognitive trajectory</div>
+        </div>
+        <div class="type-row">
+          <div class="label">H2 · serif</div>
+          <div class="type-h2">Five domains, one picture.</div>
+        </div>
+        <div class="type-row">
+          <div class="label">H3 · sans</div>
+          <div class="type-h3">Heart and circulation</div>
+        </div>
+        <div class="type-row">
+          <div class="label">Body · sans</div>
+          <div class="type-body">Bio-age is the headline. It sits on top of five risk pictures — each backed by a peer-reviewed model and updated every time your data does.</div>
+        </div>
+        <div class="type-row">
+          <div class="label">Meta · sans</div>
+          <div class="type-meta">Updated 12 minutes ago · UK cohort · n = 5,400</div>
+        </div>
+        <div class="type-row">
+          <div class="label">Eyebrow · mono</div>
+          <div class="type-mono">01 / Cardiovascular</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section>
+      <div class="section-head">
+        <h2>Buttons</h2>
+        <span class="note">Three variants · two sizes · disabled state</span>
+      </div>
+
+      <div class="btn-grid">
+        <div class="btn-cell">
+          <button class="btn">Get my bio-age →</button>
+          <p class="caption">Primary · Dark Purple fill</p>
+        </div>
+        <div class="btn-cell">
+          <button class="btn btn-secondary">See a sample report</button>
+          <p class="caption">Secondary · purple outline</p>
+        </div>
+        <div class="btn-cell">
+          <button class="btn btn-ghost">Cancel</button>
+          <p class="caption">Ghost · text only, underline on hover</p>
+        </div>
+        <div class="btn-cell">
+          <button class="btn btn-danger">Delete account</button>
+          <p class="caption">Destructive · red, used sparingly</p>
+        </div>
+        <div class="btn-cell">
+          <button class="btn" disabled>Saving…</button>
+          <p class="caption">Disabled · opacity 0.55</p>
+        </div>
+        <div class="btn-cell">
+          <button class="btn btn-lg">Get my bio-age →</button>
+          <p class="caption">Large · marketing CTAs only</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPONENTS -->
+    <section>
+      <div class="section-head">
+        <h2>Components</h2>
+        <span class="note">Cards · alerts · pills · inputs</span>
+      </div>
+
+      <p class="sub-h3">Cards</p>
+      <div class="grid-3">
+        <div class="card-base">
+          <p class="eyebrow">Default card</p>
+          <h4>White surface</h4>
+          <p>Hairline border, 14px radius. The base card for most content.</p>
+        </div>
+        <div class="card-light">
+          <p class="eyebrow">Light Purple tile</p>
+          <h4>Domain card</h4>
+          <p>The five-domain block and any secondary content surface.</p>
+        </div>
+        <div class="card-dark">
+          <p class="eyebrow" style="color: var(--light-purple);">Dark Purple tile</p>
+          <h4>Hero metric</h4>
+          <p>Bio-age, big numbers, and any prominent stat moment.</p>
+        </div>
+      </div>
+
+      <p class="sub-h3">Alert chips</p>
+      <div class="stack">
+        <div class="alert alert-info">
+          <div class="icon-dot"></div>
+          <div class="alert-body">
+            <p class="alert-title">Heads up</p>
+            <p class="alert-desc">Dark Purple left border, very pale purple background. For neutral system info.</p>
+          </div>
+        </div>
+        <div class="alert alert-warn">
+          <div class="icon-dot"></div>
+          <div class="alert-body">
+            <p class="alert-title">Worth checking</p>
+            <p class="alert-desc">Amber. Attention states — not urgent, but not nothing.</p>
+          </div>
+        </div>
+        <div class="alert alert-urgent">
+          <div class="icon-dot"></div>
+          <div class="alert-body">
+            <p class="alert-title">Action needed</p>
+            <p class="alert-desc">Red. Reserved for genuinely urgent signals only.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="sub-h3">Pills &amp; badges</p>
+      <div class="pill-row">
+        <span class="pill pill-purple">Tier · Premium</span>
+        <span class="pill pill-success">Active</span>
+        <span class="pill pill-warn">Trialing</span>
+        <span class="pill pill-danger">Canceled</span>
+        <span class="pill pill-mono">01 / Cardiovascular</span>
+      </div>
+
+      <p class="sub-h3">Form inputs</p>
+      <div class="grid-2">
+        <div class="form-field">
+          <label class="form-label" for="ds-email">Email</label>
+          <input id="ds-email" type="email" class="form-input" placeholder="you@example.com" />
+          <p class="form-hint">Hairline border at rest. Grey placeholder text.</p>
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="ds-pw">Password (focused)</label>
+          <input id="ds-pw" type="password" class="form-input form-input-focused" value="example-value" />
+          <p class="form-hint">Dark Purple border + pale purple focus ring.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
